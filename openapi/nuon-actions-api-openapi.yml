@@ -1,0 +1,6729 @@
+swagger: '2.0'
+info:
+  contact:
+    email: support@nuon.co
+    name: Nuon Support
+  description: API for managing nuon apps, components, installs, and actions.
+  title: Nuon accounts actions API
+  version: 0.19.1074
+host: api.nuon.co
+basePath: /
+schemes:
+- https
+tags:
+- description: actions
+  name: actions
+paths:
+  /v1/action-workflows/configs/{action_workflow_config_id}:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Return an action workflow configuration by id.
+
+        '
+      operationId: GetActionWorkflowConfig
+      parameters:
+      - description: action workflow config ID
+        in: path
+        name: action_workflow_config_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflowConfig'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get an app action workflow config
+      tags:
+      - actions
+  /v1/action-workflows/{action_workflow_id}:
+    delete:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Delete an action workflow.
+
+        '
+      operationId: DeleteActionWorkflow
+      parameters:
+      - description: action workflow ID
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.EmptyResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: delete an action workflow
+      tags:
+      - actions
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Return an app action workflow by id.
+
+        '
+      operationId: GetActionWorkflow
+      parameters:
+      - description: action workflow ID or name
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get an app action workflow by action workflow id
+      tags:
+      - actions
+    patch:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Update an app action workflow configuration.
+
+        '
+      operationId: UpdateAppActionWorkflow
+      parameters:
+      - description: action workflow ID
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.UpdateActionWorkflowRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: patch an app
+      tags:
+      - actions
+  /v1/action-workflows/{action_workflow_id}/configs:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Returns all action workflow configurations.
+
+        '
+      operationId: GetActionWorkflowConfigs
+      parameters:
+      - description: action workflow ID
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.ActionWorkflowConfig'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow for an app
+      tags:
+      - actions
+    post:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Create an action workflow configuration.
+
+        '
+      operationId: CreateActionWorkflowConfig
+      parameters:
+      - description: action workflow ID
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateActionWorkflowConfigRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.ActionWorkflowConfig'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create action workflow config
+      tags:
+      - actions
+  /v1/action-workflows/{action_workflow_id}/latest-config:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Return the latest config for an action workflow.
+
+        '
+      operationId: GetActionWorkflowLatestConfig
+      parameters:
+      - description: action workflow ID
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflowConfig'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get an app action workflow's latest config
+      tags:
+      - actions
+  /v1/apps/{app_id}/action-workflows:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Returns all action workflows for the provided app.
+
+        '
+      operationId: GetActionWorkflows
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: search query to filter action workflows by name or ID
+        in: query
+        name: q
+        type: string
+      - description: label filter (key:value,key:value)
+        in: query
+        name: labels
+        type: string
+      - description: filter by action workflow trigger type
+        in: query
+        name: trigger_types
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.ActionWorkflow'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflows for an app
+      tags:
+      - actions
+    post:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Create an action workflow for an app.
+
+        '
+      operationId: CreateAppActionWorkflow
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateAppActionWorkflowRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create an app action workflow
+      tags:
+      - actions
+  /v1/apps/{app_id}/action-workflows/{action_workflow_id}:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Return an app action workflow by id.
+
+        '
+      operationId: GetAppActionWorkflow
+      parameters:
+      - description: app ID or name
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action workflow ID or name
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get an app action workflow
+      tags:
+      - actions
+  /v1/apps/{app_id}/actions:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns all action workflows for the provided app.
+
+        '
+      operationId: GetAppActions
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: search query to filter action workflows by name or ID
+        in: query
+        name: q
+        type: string
+      - description: label filter (key:value,key:value)
+        in: query
+        name: labels
+        type: string
+      - description: filter by action workflow trigger type
+        in: query
+        name: trigger_types
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.ActionWorkflow'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflows for an app
+      tags:
+      - actions
+    post:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Create an action workflow for an app.
+
+        '
+      operationId: CreateAppAction
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateAppActionRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create an app action
+      tags:
+      - actions
+  /v1/apps/{app_id}/actions/configs/{action_config_id}:
+    get:
+      consumes:
+      - application/json
+      description: 'Return an action workflow configuration by id.
+
+        '
+      operationId: GetAppActionConfig
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action config ID
+        in: path
+        name: action_config_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflowConfig'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get an app action config
+      tags:
+      - actions
+  /v1/apps/{app_id}/actions/label-keys:
+    get:
+      consumes:
+      - application/json
+      description: Returns all distinct label key:value pairs for actions in the given app.
+      operationId: GetActionLabelKeys
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            additionalProperties:
+              items:
+                type: string
+              type: array
+            type: object
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get distinct label key:value pairs across all actions for an app
+      tags:
+      - actions
+  /v1/apps/{app_id}/actions/{action_id}:
+    delete:
+      consumes:
+      - application/json
+      description: 'Delete an action workflow.
+
+        '
+      operationId: DeleteAction
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.EmptyResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: delete an action
+      tags:
+      - actions
+    get:
+      consumes:
+      - application/json
+      description: 'Return an app action workflow by id.
+
+        '
+      operationId: GetAppAction
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action ID or name
+        in: path
+        name: action_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get an app action workflow by action workflow id
+      tags:
+      - actions
+    patch:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Update an app action workflow configuration.
+
+        '
+      operationId: UpdateAppAction
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.UpdateActionWorkflowRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: patch an app action
+      tags:
+      - actions
+  /v1/apps/{app_id}/actions/{action_id}/configs:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns all action workflow configurations.
+
+        '
+      operationId: GetAppActionConfigs
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action workflow ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.ActionWorkflowConfig'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow for an app
+      tags:
+      - actions
+    post:
+      consumes:
+      - application/json
+      description: 'Create an action workflow configuration.
+
+        '
+      operationId: CreateActionConfig
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateActionWorkflowConfigRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.ActionWorkflowConfig'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create action config
+      tags:
+      - actions
+  /v1/apps/{app_id}/actions/{action_id}/labels:
+    delete:
+      consumes:
+      - application/json
+      description: Remove the specified label keys from the action.
+      operationId: RemoveAppActionLabels
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.RemoveActionLabelsRequest'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: remove labels from an action
+      tags:
+      - actions
+    post:
+      consumes:
+      - application/json
+      description: Merge the provided labels into the action's existing labels. Existing keys are overwritten.
+      operationId: AddAppActionLabels
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.AddActionLabelsRequest'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: add labels to an action
+      tags:
+      - actions
+  /v1/apps/{app_id}/actions/{action_id}/latest-config:
+    get:
+      consumes:
+      - application/json
+      description: 'Return the latest config for an action workflow.
+
+        '
+      operationId: GetActionLatestConfig
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: action workflow ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.ActionWorkflowConfig'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get an app action workflow's latest config
+      tags:
+      - actions
+  /v1/installs/{install_id}/action-workflows/latest-runs:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Returns the most recent workflow run for each install action workflow.
+
+        '
+      operationId: GetInstallActionWorkflowsLatestRuns
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: filter by action workflow trigger by types
+        in: query
+        name: trigger_types
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      - description: search query for action workflow name or ID
+        in: query
+        name: q
+        type: string
+      - description: label filter (key:value,key:value)
+        in: query
+        name: labels
+        type: string
+      - default: true
+        description: return actions in the install's current app config; set false to return only actions no longer in it
+        in: query
+        name: synced
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.InstallActionWorkflow'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get latest runs for all action workflows by install id
+      tags:
+      - actions
+  /v1/installs/{install_id}/action-workflows/runs:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Returns all action workflow runs for an install.
+
+        '
+      operationId: GetInstallActionWorkflowRuns
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.InstallActionWorkflowRun'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow runs by install id
+      tags:
+      - actions
+    post:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'AppWorkflowConfigId param has been deprecated and is no longer being consumed, the api uses currently install id to lookup related appworkflowconfigId
+
+        '
+      operationId: CreateInstallActionWorkflowRun
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateInstallActionWorkflowRunRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.WorkflowResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create an action workflow run for an install
+      tags:
+      - actions
+  /v1/installs/{install_id}/action-workflows/runs/{run_id}:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Return an install action workflow run by id.
+
+        '
+      operationId: GetInstallActionWorkflowRun
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: run ID
+        in: path
+        name: run_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.InstallActionWorkflowRun'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow runs by install id and run id
+      tags:
+      - actions
+  /v1/installs/{install_id}/action-workflows/runs/{run_id}/steps/{step_id}:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Get an install action workflow run step.
+
+        '
+      operationId: GetInstallActionWorkflowRunStep
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: workflow run ID
+        in: path
+        name: run_id
+        required: true
+        type: string
+      - description: step ID
+        in: path
+        name: step_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.InstallActionWorkflowRunStep'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow run step by install id and step id
+      tags:
+      - actions
+  /v1/installs/{install_id}/action-workflows/{action_workflow_id}/recent-runs:
+    get:
+      consumes:
+      - application/json
+      deprecated: true
+      description: 'Returns recent workflow runs for an install action workflow.
+
+        '
+      operationId: GetInstallActionWorkflowRecentRuns
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: action workflow ID
+        in: path
+        name: action_workflow_id
+        required: true
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.InstallActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get recent runs for an action workflow by install id
+      tags:
+      - actions
+  /v1/installs/{install_id}/actions/adhoc-run:
+    post:
+      consumes:
+      - application/json
+      description: "# Create AdHoc Action\n\nCreates and executes a one-time action on an install without creating a permanent action workflow definition.\n\n## Use Cases\n\n- Running ad-hoc debugging scripts\n- Executing maintenance commands\n- Testing bash snippets before creating permanent actions\n- Quick data exports or transformations\n\n## Request Body\n\nProvide **either** `inline_contents` (for multi-line bash scripts) **or** `command` (for single-line commands), but not both.\n\n### Fields\n\n- `inline_contents` (string, optional): Multi-line bash script to execute\n- `command` (string, optional): Single-line shell command to execute\n- `env_vars` (object, optional): Environment variables as key-value pairs\n- `timeout` (integer, optional): Execution timeout in seconds (1-3600, default: 300)\n- `name` (string, optional): Display name for the action (max 255 chars)\n\n## Response\n\nReturns the created adhoc action run with status information.\n\n## Example\n\n```bash\ncurl -X POST https://api.nuon.co/v1/installs/{install_id}/actions/adhoc \\\n  -H \"Authorization: Bearer $API_KEY\" \\\n  -H \"X-Nuon-Org-ID: $ORG_ID\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"inline_contents\": \"#!/bin/bash\\necho \\\"Hello from adhoc action\\\"\\nenv | grep NUON\",\n    \"env_vars\": {\n      \"DEBUG\": \"true\",\n      \"LOG_LEVEL\": \"info\"\n    },\n    \"timeout\": 300,\n    \"name\": \"Debug Script\"\n  }'\n```\n\n## Notes\n\n- AdHoc actions are marked with `trigger_type: \"adhoc\"`\n- They appear in action run history and can be filtered via trigger_type\n- Execution happens on the install's runner using the same infrastructure as permanent actions\n- Logs are preserved and can be viewed via the action runs API\n- AdHoc runs are kept indefinitely (same retention as regular action runs)\n"
+      operationId: CreateAdHocAction
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateAdHocActionRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/service.CreateAdHocActionResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create an adhoc action run for an install
+      tags:
+      - actions
+  /v1/installs/{install_id}/actions/latest-runs:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns the most recent workflow run for each install action workflow.
+
+        '
+      operationId: GetInstallActionsLatestRuns
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: filter by action workflow trigger by types
+        in: query
+        name: trigger_types
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      - description: search query for action workflow name or ID
+        in: query
+        name: q
+        type: string
+      - description: label filter (key:value,key:value)
+        in: query
+        name: labels
+        type: string
+      - default: true
+        description: return actions in the install's current app config; set false to return only actions no longer in it
+        in: query
+        name: synced
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.InstallActionWorkflow'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get latest runs for all action workflows by install id
+      tags:
+      - actions
+  /v1/installs/{install_id}/actions/runs:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns all action workflow runs for an install.
+
+        '
+      operationId: GetInstallActionRuns
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.InstallActionWorkflowRun'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow runs by install id
+      tags:
+      - actions
+    post:
+      consumes:
+      - application/json
+      description: '
+
+        '
+      operationId: CreateInstallActionRun
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateInstallActionWorkflowRunRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            type: string
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create an action run for an install
+      tags:
+      - actions
+  /v1/installs/{install_id}/actions/runs/{run_id}:
+    get:
+      consumes:
+      - application/json
+      description: 'Return an install action workflow run by id.
+
+        '
+      operationId: GetInstallActionRun
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: run ID
+        in: path
+        name: run_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.InstallActionWorkflowRun'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow runs by install id and run id
+      tags:
+      - actions
+  /v1/installs/{install_id}/actions/runs/{run_id}/steps/{step_id}:
+    get:
+      consumes:
+      - application/json
+      description: 'Get an install action workflow run step.
+
+        '
+      operationId: GetInstallActionRunStep
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: workflow run ID
+        in: path
+        name: run_id
+        required: true
+        type: string
+      - description: step ID
+        in: path
+        name: step_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.InstallActionWorkflowRunStep'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get action workflow run step by install id and step id
+      tags:
+      - actions
+  /v1/installs/{install_id}/actions/{action_id}/recent-runs:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns recent workflow runs for an install action workflow.
+
+        '
+      operationId: GetInstallActionRecentRuns
+      parameters:
+      - description: install ID
+        in: path
+        name: install_id
+        required: true
+        type: string
+      - description: action workflow ID
+        in: path
+        name: action_id
+        required: true
+        type: string
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.InstallActionWorkflow'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get recent runs for an action workflow by install id
+      tags:
+      - actions
+definitions:
+  configs.OCIRegistryType:
+    enum:
+    - ecr
+    - acr
+    - gar
+    - private_oci
+    - public_oci
+    type: string
+    x-enum-varnames:
+    - OCIRegistryTypeECR
+    - OCIRegistryTypeACR
+    - OCIRegistryTypeGAR
+    - OCIRegistryTypePrivateOCI
+    - OCIRegistryTypePublicOCI
+  plantypes.OCIArtifactReference:
+    properties:
+      digest:
+        description: Digest is the immutable artifact digest (e.g., sha256:abc123...)
+        type: string
+      tag:
+        description: Tag is the artifact tag (typically the build ID)
+        type: string
+      url:
+        description: URL is the full artifact URL (e.g., registry.nuon.co/org_id/app_id)
+        type: string
+    type: object
+  plantypes.BuildPlan:
+    properties:
+      component_build_id:
+        type: string
+      component_id:
+        type: string
+      container_image_pull_plan:
+        $ref: '#/definitions/plantypes.ContainerImagePullPlan'
+      docker_build_plan:
+        $ref: '#/definitions/plantypes.DockerBuildPlan'
+      dst_registry:
+        $ref: '#/definitions/configs.OCIRegistryRepository'
+      dst_tag:
+        type: string
+      git_source:
+        $ref: '#/definitions/plantypes.GitSource'
+      helm_build_plan:
+        $ref: '#/definitions/plantypes.HelmBuildPlan'
+      kubernetes_manifest_build_plan:
+        $ref: '#/definitions/plantypes.KubernetesManifestBuildPlan'
+      pulumi_build_plan:
+        $ref: '#/definitions/plantypes.PulumiBuildPlan'
+      sandbox_mode:
+        $ref: '#/definitions/plantypes.SandboxMode'
+      terraform_build_plan:
+        $ref: '#/definitions/plantypes.TerraformBuildPlan'
+    required:
+    - dst_registry
+    - dst_tag
+    type: object
+  compositeerrors.Section:
+    properties:
+      body:
+        type: string
+      heading:
+        type: string
+      kind:
+        $ref: '#/definitions/compositeerrors.SectionKind'
+    type: object
+  github_com_nuonco_nuon_pkg_labels.Labels:
+    additionalProperties:
+      type: string
+    type: object
+  app.DockerBuildComponentConfig:
+    properties:
+      build_args:
+        items:
+          type: string
+        type: array
+      component_config_connection_id:
+        description: value
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      dockerfile:
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      public_git_vcs_config:
+        $ref: '#/definitions/app.PublicGitVCSConfig'
+      target:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  app.CompositeStatus:
+    properties:
+      created_at_ts:
+        type: integer
+      created_by_id:
+        type: string
+      history:
+        items:
+          $ref: '#/definitions/app.CompositeStatus'
+        type: array
+      metadata:
+        additionalProperties: {}
+        type: object
+      status:
+        $ref: '#/definitions/app.Status'
+      status_human_description:
+        type: string
+    type: object
+  service.UpdateActionWorkflowRequest:
+    properties:
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        type: string
+    type: object
+  app.ConnectedGithubVCSConfig:
+    properties:
+      branch:
+        type: string
+      component_config_id:
+        description: parent component
+        type: string
+      component_config_type:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      directory:
+        type: string
+      id:
+        type: string
+      path_filter:
+        type: string
+      repo:
+        type: string
+      repo_name:
+        type: string
+      repo_owner:
+        type: string
+      updated_at:
+        type: string
+      vcs_connection:
+        $ref: '#/definitions/app.VCSConnection'
+      vcs_connection_id:
+        type: string
+    type: object
+  state.RunnerState:
+    properties:
+      id:
+        type: string
+      populated:
+        type: boolean
+      runner_group_id:
+        type: string
+      status:
+        type: string
+    type: object
+  plantypes.SyncOCIPlan:
+    properties:
+      dst_registry:
+        $ref: '#/definitions/configs.OCIRegistryRepository'
+      dst_tag:
+        type: string
+      sandbox_mode:
+        $ref: '#/definitions/plantypes.SandboxMode'
+      src_registry:
+        $ref: '#/definitions/configs.OCIRegistryRepository'
+      src_tag:
+        type: string
+    required:
+    - dst_registry
+    - dst_tag
+    - src_registry
+    - src_tag
+    type: object
+  app.Queue:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      emitters:
+        items:
+          $ref: '#/definitions/app.QueueEmitter'
+        type: array
+      id:
+        type: string
+      idle_timeout:
+        type: integer
+      max_depth:
+        type: integer
+      max_in_flight:
+        type: integer
+      metadata:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        type: string
+      org_id:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      queue_signal:
+        items:
+          $ref: '#/definitions/app.QueueSignal'
+        type: array
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/signaldb.WorkflowRef'
+    type: object
+  app.OCIArtifact:
+    properties:
+      annotations:
+        additionalProperties:
+          type: string
+        type: object
+      architecture:
+        type: string
+      artifact_type:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      digest:
+        type: string
+      id:
+        type: string
+      media_type:
+        type: string
+      org_id:
+        type: string
+      os:
+        description: Platform fields
+        type: string
+      os_features:
+        items:
+          type: string
+        type: array
+      os_version:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      repository:
+        type: string
+      size:
+        type: integer
+      tag:
+        type: string
+      updated_at:
+        type: string
+      urls:
+        items:
+          type: string
+        type: array
+      variant:
+        type: string
+    type: object
+  plantypes.DeployPlan:
+    properties:
+      app_config_id:
+        type: string
+      app_id:
+        type: string
+      apply_plan_contents:
+        description: The following field is for applying a plan that is already save
+        type: string
+      apply_plan_display:
+        description: This field is for storing a human legible plan or corollary representation
+        type: string
+      component_id:
+        type: string
+      component_name:
+        type: string
+      helm:
+        $ref: '#/definitions/plantypes.HelmDeployPlan'
+      install_id:
+        type: string
+      kubernetes_manifest:
+        $ref: '#/definitions/plantypes.KubernetesManifestDeployPlan'
+      noop:
+        $ref: '#/definitions/plantypes.NoopDeployPlan'
+      pulumi:
+        $ref: '#/definitions/plantypes.PulumiDeployPlan'
+      sandbox_mode:
+        $ref: '#/definitions/plantypes.SandboxMode'
+      src_digest:
+        description: 'SrcDigest is the manifest digest of the source artifact in the install
+
+          registry, e.g. "sha256:abc...". Populated for image-type component
+
+          builds with source identity recorded; empty for
+
+          non-image builds and legacy image builds. When non-empty, runners
+
+          should prefer this over SrcTag for content-addressed pulls and for
+
+          rendering digest-pinned image references in pod specs.'
+        type: string
+      src_registry:
+        $ref: '#/definitions/configs.OCIRegistryRepository'
+      src_tag:
+        type: string
+      terraform:
+        $ref: '#/definitions/plantypes.TerraformDeployPlan'
+    required:
+    - src_registry
+    - src_tag
+    type: object
+  app.ComponentRelease:
+    properties:
+      build_id:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      release_steps:
+        items:
+          $ref: '#/definitions/app.ComponentReleaseStep'
+        type: array
+      status:
+        type: string
+      status_description:
+        type: string
+      total_release_steps:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  app.Account:
+    properties:
+      account_type:
+        $ref: '#/definitions/app.AccountType'
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      org_ids:
+        description: ReadOnly Fields
+        items:
+          type: string
+        type: array
+      permissions:
+        $ref: '#/definitions/permissions.Set'
+      roles:
+        items:
+          $ref: '#/definitions/app.Role'
+        type: array
+      subject:
+        type: string
+      updated_at:
+        type: string
+      user_journeys:
+        items:
+          $ref: '#/definitions/app.UserJourney'
+        type: array
+    type: object
+  app.PolicyResult:
+    properties:
+      deny_count:
+        type: integer
+      input_count:
+        type: integer
+      pass_count:
+        type: integer
+      policy_id:
+        type: string
+      policy_name:
+        type: string
+      status:
+        description: '"deny", "warn", or "pass"'
+        type: string
+      warn_count:
+        type: integer
+    type: object
+  plantypes.TerraformLocalArchive:
+    properties:
+      local_archive:
+        type: string
+    type: object
+  service.CreateInstallActionWorkflowRunRequest:
+    properties:
+      action_workflow_config_id:
+        type: string
+      role:
+        type: string
+      run_env_vars:
+        additionalProperties:
+          type: string
+        type: object
+    required:
+    - action_workflow_config_id
+    type: object
+  app.AppBranchInstallGroup:
+    properties:
+      app_branch_config_id:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      install_ids:
+        items:
+          type: string
+        type: array
+      label_selector:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_labels.Selector'
+      max_parallel:
+        type: integer
+      name:
+        type: string
+      order:
+        type: integer
+      org_id:
+        type: string
+      updated_at:
+        type: string
+      use_for_previews:
+        description: UseForPreviews marks this group for plan-only preview runs (e.g., PR previews).
+        type: boolean
+    type: object
+  app.ComponentType:
+    enum:
+    - terraform_module
+    - helm_chart
+    - docker_build
+    - external_image
+    - job
+    - kubernetes_manifest
+    - pulumi
+    - unknown
+    type: string
+    x-enum-varnames:
+    - ComponentTypeTerraformModule
+    - ComponentTypeHelmChart
+    - ComponentTypeDockerBuild
+    - ComponentTypeExternalImage
+    - ComponentTypeJob
+    - ComponentTypeKubernetesManifest
+    - ComponentTypePulumi
+    - ComponentTypeUnknown
+  plantypes.HelmValue:
+    properties:
+      name:
+        type: string
+      type:
+        type: string
+      value:
+        type: string
+    type: object
+  app.AdHocStepConfig:
+    properties:
+      action_workflow_config_id:
+        type: string
+      app_config_id:
+        description: this belongs to an app config id
+        type: string
+      app_id:
+        type: string
+      command:
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      idx:
+        type: integer
+      inline_contents:
+        type: string
+      name:
+        description: metadata
+        type: string
+      previous_step_id:
+        type: string
+      public_git_vcs_config:
+        allOf:
+        - $ref: '#/definitions/app.PublicGitVCSConfig'
+        description: all the details needed for a step
+      references:
+        items:
+          type: string
+        type: array
+      updated_at:
+        type: string
+    type: object
+  app.RunnerJobType:
+    enum:
+    - health-check
+    - docker-build
+    - container-image-build
+    - terraform-module-build
+    - helm-chart-build
+    - kubernetes-manifest-build
+    - pulumi-build
+    - noop-build
+    - sandbox-build
+    - oci-sync
+    - noop-sync
+    - fetch-image-metadata
+    - terraform-deploy
+    - helm-chart-deploy
+    - job-deploy
+    - kubernetes-manifest-deploy
+    - pulumi-deploy
+    - noop-deploy
+    - shut-down
+    - update-version
+    - noop
+    - mng-vm-shut-down
+    - mng-shut-down
+    - mng-runner-update-version
+    - mng-runner-restart
+    - mng-fetch-token
+    - sandbox-terraform
+    - sandbox-terraform-plan
+    - sandbox-pulumi
+    - sandbox-sync-secrets
+    - runner-helm
+    - runner-terraform
+    - runner-local
+    - actions-workflow
+    type: string
+    x-enum-comments:
+      RunnerJobTypeMngFetchToken: fetch authentication token via AWS presigned requests
+      RunnerJobTypeMngRunnerRestart: restart the runner systemctl service (technically, a duplicate. runner can restart self.)
+      RunnerJobTypeMngRunnerUpdateVersion: update the runner image/version (check for changes and update)
+      RunnerJobTypeMngShutDown: shutdown the runner mng process (usually triggers restart)
+      RunnerJobTypeMngVMShutDown: shut down the vm
+    x-enum-descriptions:
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - shut down the vm
+    - shutdown the runner mng process (usually triggers restart)
+    - update the runner image/version (check for changes and update)
+    - restart the runner systemctl service (technically, a duplicate. runner can restart self.)
+    - fetch authentication token via AWS presigned requests
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    x-enum-varnames:
+    - RunnerJobTypeHealthCheck
+    - RunnerJobTypeDockerBuild
+    - RunnerJobTypeContainerImageBuild
+    - RunnerJobTypeTerraformModuleBuild
+    - RunnerJobTypeHelmChartBuild
+    - RunnerJobTypeKubernetesManifestBuild
+    - RunnerJobTypePulumiBuild
+    - RunnerJobTypeNOOPBuild
+    - RunnerJobTypeSandboxBuild
+    - RunnerJobTypeOCISync
+    - RunnerJobTypeNOOPSync
+    - RunnerJobTypeFetchImageMetadata
+    - RunnerJobTypeTerraformDeploy
+    - RunnerJobTypeHelmChartDeploy
+    - RunnerJobTypeJobDeploy
+    - RunnerJobTypeKubrenetesManifestDeploy
+    - RunnerJobTypePulumiDeploy
+    - RunnerJobTypeJobNOOPDeploy
+    - RunnerJobTypeShutDown
+    - RunnerJobTypeUpdateVersion
+    - RunnerJobTypeNOOP
+    - RunnerJobTypeMngVMShutDown
+    - RunnerJobTypeMngShutDown
+    - RunnerJobTypeMngRunnerUpdateVersion
+    - RunnerJobTypeMngRunnerRestart
+    - RunnerJobTypeMngFetchToken
+    - RunnerJobTypeSandboxTerraform
+    - RunnerJobTypeSandboxTerraformPlan
+    - RunnerJobTypeSandboxPulumi
+    - RunnerJobTypeSandboxSyncSecrets
+    - RunnerJobTypeRunnerHelm
+    - RunnerJobTypeRunnerTerraform
+    - RunnerJobTypeRunnerLocal
+    - RunnerJobTypeActionsWorkflowRun
+  plantypes.DockerBuildPlan:
+    properties:
+      build_args:
+        additionalProperties:
+          type: string
+        type: object
+      context:
+        type: string
+      dockerfile:
+        type: string
+      target:
+        type: string
+    type: object
+  state.AWSCloudAccount:
+    properties:
+      region:
+        type: string
+    type: object
+  plantypes.PulumiBackend:
+    properties:
+      config:
+        additionalProperties:
+          type: string
+        type: object
+      pulumi_version:
+        type: string
+      runtime:
+        type: string
+      stack_name:
+        type: string
+      update_plans:
+        type: boolean
+      workspace_id:
+        type: string
+    required:
+    - runtime
+    - stack_name
+    - workspace_id
+    type: object
+  compositeerrors.SectionKind:
+    enum:
+    - markdown
+    - text
+    - code
+    type: string
+    x-enum-varnames:
+    - SectionMarkdown
+    - SectionText
+    - SectionCode
+  app.WorkflowStepPolicyValidation:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      install_workflow_step_id:
+        description: install workflow step is the install step that this was performed within
+        type: string
+      response:
+        description: 'response is the kyverno response (deprecated: use Reports for detailed results)'
+        type: string
+      runner_job_id:
+        description: runnerJobID is the runner job that this was performed within
+        type: string
+      status:
+        allOf:
+        - $ref: '#/definitions/app.CompositeStatus'
+        description: status denotes whether this passed, or whether it failed the job.
+      updated_at:
+        type: string
+    type: object
+  state.SandboxState:
+    properties:
+      outputs:
+        additionalProperties: true
+        type: object
+      populated:
+        type: boolean
+      recent_runs:
+        items:
+          $ref: '#/definitions/state.SandboxState'
+        type: array
+      status:
+        type: string
+      type:
+        type: string
+      version:
+        type: string
+    type: object
+  service.ConnectedGithubVCSActionWorkflowConfigRequest:
+    properties:
+      branch:
+        type: string
+      directory:
+        type: string
+      gitRef:
+        type: string
+      repo:
+        type: string
+    required:
+    - directory
+    - repo
+    type: object
+  app.SandboxRunType:
+    enum:
+    - provision
+    - reprovision
+    - deprovision
+    type: string
+    x-enum-varnames:
+    - SandboxRunTypeProvision
+    - SandboxRunTypeReprovision
+    - SandboxRunTypeDeprovision
+  app.InstallActionWorkflowRun:
+    properties:
+      action_workflow_config_id:
+        type: string
+      config:
+        $ref: '#/definitions/app.ActionWorkflowConfig'
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/app.Account'
+      created_by_id:
+        type: string
+      enable_kube_config:
+        $ref: '#/definitions/sql.NullBool'
+      execution_time:
+        description: after query
+        type: integer
+      id:
+        type: string
+      install_action_workflow:
+        $ref: '#/definitions/app.InstallActionWorkflow'
+      install_action_workflow_id:
+        type: string
+      install_id:
+        type: string
+      install_workflow_id:
+        type: string
+      kubernetes_context_name:
+        description: 'KubernetesContextName is snapshotted from the action''s
+
+          ActionWorkflowConfig at run-creation time so plan resolution can target
+
+          the correct cluster. Empty means fall back to the sandbox default.'
+        type: string
+      log_stream:
+        $ref: '#/definitions/app.LogStream'
+      outputs:
+        additionalProperties: true
+        type: object
+      role:
+        description: Role to be used when running this action
+        type: string
+      run_env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      runner_job:
+        $ref: '#/definitions/app.RunnerJob'
+      status:
+        type: string
+      status_description:
+        type: string
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      steps:
+        items:
+          $ref: '#/definitions/app.InstallActionWorkflowRunStep'
+        type: array
+      timeout:
+        type: integer
+      trigger_type:
+        $ref: '#/definitions/app.ActionWorkflowTriggerType'
+      triggered_by_id:
+        type: string
+      triggered_by_type:
+        type: string
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/app.Workflow'
+      workflow_id:
+        type: string
+    type: object
+  app.InstallActionWorkflowRunStepStatus:
+    enum:
+    - finished
+    - pending
+    - in-progress
+    - timed-out
+    - error
+    type: string
+    x-enum-varnames:
+    - InstallActionWorkflowRunStepStatusFinished
+    - InstallActionWorkflowRunStepStatusPending
+    - InstallActionWorkflowRunStepStatusInProgress
+    - InstallActionWorkflowRunStepStatusTimedOut
+    - InstallActionWorkflowRunStepStatusError
+  app.ActionWorkflowConfig:
+    properties:
+      action_workflow_id:
+        type: string
+      app_config_id:
+        type: string
+      app_id:
+        type: string
+      break_glass_role_arn:
+        type: string
+      component_dependency_ids:
+        items:
+          type: string
+        type: array
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      enable_kube_config:
+        $ref: '#/definitions/sql.NullBool'
+      id:
+        type: string
+      kubernetes_context_name:
+        description: 'KubernetesContextName is the name of an AppKubernetesContextConfig on
+
+          the same AppConfig. Empty means fall back to the implicit sandbox
+
+          default. Stored as a name (not an FK) so it remains stable across
+
+          AppConfig versions.'
+        type: string
+      references:
+        items:
+          type: string
+        type: array
+      refs:
+        items:
+          $ref: '#/definitions/refs.Ref'
+        type: array
+      role:
+        type: string
+      steps:
+        items:
+          $ref: '#/definitions/app.ActionWorkflowStepConfig'
+        type: array
+      timeout:
+        type: integer
+      triggers:
+        description: 'INFO: if adding new associations here, ensure they are added to the batch delete activity'
+        items:
+          $ref: '#/definitions/app.ActionWorkflowTriggerConfig'
+        type: array
+      updated_at:
+        type: string
+    type: object
+  plantypes.HelmDeployPlan:
+    properties:
+      aws_auth:
+        allOf:
+        - $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+        description: Auth for cloud providers
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      cluster_info:
+        $ref: '#/definitions/kube.ClusterInfo'
+      create_namespace:
+        type: boolean
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      helm_chart_id:
+        type: string
+      name:
+        description: 'NOTE(jm): these fields should probably just come from the app config, however we keep them around for
+
+          debuggability'
+        type: string
+      namespace:
+        type: string
+      skip_crds:
+        type: boolean
+      storage_driver:
+        type: string
+      take_ownership:
+        type: boolean
+      values:
+        items:
+          $ref: '#/definitions/plantypes.HelmValue'
+        type: array
+      values_files:
+        items:
+          type: string
+        type: array
+      values_override:
+        description: 'ValuesOverride is the install-level Helm values override (raw YAML). It is
+
+          merged as the highest-precedence layer at deploy time, winning over both
+
+          ValuesFiles and Values. Empty means no override (exact no-op).'
+        type: string
+    type: object
+  plantypes.TerraformBuildPlan:
+    properties:
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+      terraform_version:
+        description: 'TerraformVersion is the version of the terraform CLI the build runner
+
+          should install in order to vendor providers via
+
+          `terraform providers mirror`. When empty the build runner falls back
+
+          to a sane default. Should mirror the version configured for the
+
+          component''s deploy plan so init resolves the same provider bytes the
+
+          build vendored. Only consulted when VendorProviders is true.'
+        type: string
+      vendor_providers:
+        description: 'VendorProviders enables build-time vendoring of terraform providers
+
+          via `terraform providers mirror`. Gated by the
+
+          `terraform-provider-mirror` org feature flag in ctl-api so we can
+
+          roll the change out gradually without coupling install-runner
+
+          behaviour to the flag (the install runner auto-detects whether a
+
+          mirror is present in the OCI artifact).'
+        type: boolean
+    type: object
+  config.HelmRepoConfig:
+    properties:
+      chart:
+        type: string
+      repoURL:
+        type: string
+      version:
+        type: string
+    type: object
+  app.AWSECRImageConfig:
+    properties:
+      aws_region:
+        type: string
+      component_config_id:
+        description: connection to parent model
+        type: string
+      component_config_type:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      iam_role_arn:
+        description: actual configuration
+        type: string
+      id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  refs.Ref:
+    properties:
+      input:
+        type: string
+      name:
+        type: string
+      type:
+        $ref: '#/definitions/refs.RefType'
+      value:
+        type: string
+    type: object
+  plantypes.NoopDeployPlan:
+    type: object
+  app.ComponentConfigConnection:
+    properties:
+      app_config_id:
+        type: string
+      app_config_version:
+        type: integer
+      auto_approve_on_policies_passing:
+        type: boolean
+      build_timeout:
+        description: Duration string for build operations (e.g., "30m", "1h"). Max 1h.
+        type: string
+      checksum:
+        type: string
+      component_dependency_ids:
+        items:
+          type: string
+        type: array
+      component_id:
+        type: string
+      component_name:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      default_enabled:
+        type: boolean
+      deploy_timeout:
+        description: Duration string for deploy operations (e.g., "30m", "1h"). Max 1h.
+        type: string
+      docker_build:
+        $ref: '#/definitions/app.DockerBuildComponentConfig'
+      drift_schedule:
+        type: string
+      external_image:
+        $ref: '#/definitions/app.ExternalImageComponentConfig'
+      helm:
+        $ref: '#/definitions/app.HelmComponentConfig'
+      id:
+        type: string
+      job:
+        $ref: '#/definitions/app.JobComponentConfig'
+      kubernetes_context_name:
+        description: 'KubernetesContextName is the name of an AppKubernetesContextConfig on
+
+          the same AppConfig. Empty means fall back to the implicit sandbox
+
+          default. Stored as a name (not an FK) so it remains stable across
+
+          AppConfig versions, mirroring how component dependencies are tracked.'
+        type: string
+      kubernetes_manifest:
+        $ref: '#/definitions/app.KubernetesManifestComponentConfig'
+      latest_build_id:
+        type: string
+      max_auto_retries:
+        type: integer
+      operation_roles:
+        additionalProperties:
+          type: string
+        description: 'Operation roles map: operation type -> role name'
+        type: object
+      pulumi:
+        $ref: '#/definitions/app.PulumiComponentConfig'
+      references:
+        items:
+          type: string
+        type: array
+      refs:
+        items:
+          $ref: '#/definitions/refs.Ref'
+        type: array
+      skip_noops:
+        type: boolean
+      terraform_module:
+        $ref: '#/definitions/app.TerraformModuleComponentConfig'
+      toggleable:
+        type: boolean
+      type:
+        $ref: '#/definitions/app.ComponentType'
+      updated_at:
+        type: string
+      version:
+        type: integer
+    type: object
+  app.KubernetesManifestComponentConfig:
+    properties:
+      component_config_connection_id:
+        description: value
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      kustomize:
+        allOf:
+        - $ref: '#/definitions/app.KustomizeConfig'
+        description: Kustomize configuration (mutually exclusive with Manifest)
+      manifest:
+        description: Primary fields - used for inline manifests (fully supported)
+        type: string
+      namespace:
+        type: string
+      public_git_vcs_config:
+        allOf:
+        - $ref: '#/definitions/app.PublicGitVCSConfig'
+        description: VCS configuration for kustomize sources (similar to HelmComponentConfig)
+      updated_at:
+        type: string
+    type: object
+  app.TerraformModuleComponentConfig:
+    properties:
+      component_config_connection_id:
+        description: parent reference
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      public_git_vcs_config:
+        $ref: '#/definitions/app.PublicGitVCSConfig'
+      updated_at:
+        type: string
+      variables:
+        additionalProperties:
+          type: string
+        type: object
+      variables_files:
+        items:
+          type: string
+        type: array
+      version:
+        description: terraform configuration values
+        type: string
+    type: object
+  state.SecretsState:
+    additionalProperties:
+      $ref: '#/definitions/outputs.SecretSyncOutput'
+    type: object
+  app.RunnerJobExecutionResult:
+    properties:
+      composite_error:
+        description: 'CompositeError is the typed, structured error parsed from this execution''s
+
+          failure output at write time. It is the canonical, execution-scoped store
+
+          for runner-driven composite errors: strictly 1:1 with the attempt and
+
+          never reused, so it cannot go stale across retries. Aggregate rows derive
+
+          their displayed error from the latest relevant result; they do not own it.'
+        type: object
+      contents:
+        type: string
+      contents_display:
+        type: string
+      contents_display_gzip:
+        type: string
+      contents_gzip:
+        description: columns for storage of gzipped contents and plans
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      error_code:
+        type: integer
+      error_metadata:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      org_id:
+        type: string
+      runner_job_execution_id:
+        type: string
+      success:
+        type: boolean
+      updated_at:
+        type: string
+    type: object
+  app.RunnerJobExecutionOutputs:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      org_id:
+        type: string
+      outputs:
+        additionalProperties:
+          type: object
+        type: object
+      outputs_json:
+        type: string
+      runner_job_execution_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  app.PolicyName:
+    enum:
+    - org_admin
+    - org_support
+    - installer
+    - runner
+    - hosted_installer
+    type: string
+    x-enum-varnames:
+    - PolicyNameOrgAdmin
+    - PolicyNameOrgSupport
+    - PolicyNameInstaller
+    - PolicyNameRunner
+    - PolicyNameHostedInstaller
+  credentials.AssumeRoleConfig:
+    properties:
+      role_arn:
+        type: string
+      session_duration_seconds:
+        type: integer
+      session_name:
+        type: string
+      two_step_config:
+        allOf:
+        - $ref: '#/definitions/iam.TwoStepConfig'
+        description: configuration for two stepping before assuming this role
+      use_gcp_oidc:
+        type: boolean
+      use_github_oidc:
+        type: boolean
+    required:
+    - role_arn
+    - session_name
+    type: object
+  plantypes.HelmSandboxMode:
+    properties:
+      plan_contents:
+        type: string
+      plan_display_contents:
+        type: string
+    type: object
+  plantypes.FetchImageMetadataPlan:
+    properties:
+      include_attestation_layers:
+        type: boolean
+      include_attestation_manifests:
+        type: boolean
+      include_index:
+        description: Options for metadata fetching
+        type: boolean
+      registry:
+        allOf:
+        - $ref: '#/definitions/configs.OCIRegistryRepository'
+        description: Registry configuration for the source image
+      sandbox_mode:
+        $ref: '#/definitions/plantypes.SandboxMode'
+      tag:
+        description: Tag is the image tag to fetch metadata for
+        type: string
+    required:
+    - registry
+    - tag
+    type: object
+  app.HelmRepoConfig:
+    properties:
+      chart:
+        type: string
+      repo_url:
+        type: string
+      version:
+        type: string
+    type: object
+  app.AppBranchRunType:
+    enum:
+    - manual-run
+    - git-run
+    - git-preview-run
+    type: string
+    x-enum-varnames:
+    - AppBranchRunTypeManual
+    - AppBranchRunTypeGit
+    - AppBranchRunTypeGitPreview
+  app.RunnerJob:
+    properties:
+      available_timeout:
+        description: available timeout is how long a job can be marked as "available" before being requeued
+        type: integer
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      execution_count:
+        type: integer
+      execution_time:
+        type: integer
+      execution_timeout:
+        description: execution timeout is how long a job can be marked as "exeucuting" before being requeued
+        type: integer
+      executions:
+        items:
+          $ref: '#/definitions/app.RunnerJobExecution'
+        type: array
+      executor:
+        type: string
+      final_runner_job_execution_id:
+        type: string
+      finished_at:
+        type: string
+      group:
+        $ref: '#/definitions/app.RunnerJobGroup'
+      id:
+        type: string
+      install_role_usage:
+        $ref: '#/definitions/app.InstallRoleUsage'
+      json:
+        $ref: '#/definitions/app.RunnerJobPlan'
+      log_stream_id:
+        type: string
+      max_executions:
+        type: integer
+      metadata:
+        additionalProperties:
+          type: string
+        type: object
+      operation:
+        $ref: '#/definitions/app.RunnerJobOperationType'
+      org_id:
+        type: string
+      outputs:
+        additionalProperties: true
+        type: object
+      outputs_json:
+        type: string
+      overall_timeout:
+        description: overall timeout is how long a job can be attempted, before being cancelled
+        type: integer
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      queue_timeout:
+        description: queue timeout is how long a job can be queued, before being made available
+        type: integer
+      runner_id:
+        type: string
+      runner_process_id:
+        type: string
+      started_at:
+        type: string
+      status:
+        $ref: '#/definitions/app.RunnerJobStatus'
+      status_description:
+        type: string
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      type:
+        $ref: '#/definitions/app.RunnerJobType'
+      updated_at:
+        type: string
+    type: object
+  state.ActionWorkflowState:
+    properties:
+      id:
+        type: string
+      outputs:
+        additionalProperties: {}
+        type: object
+      populated:
+        type: boolean
+      status:
+        type: string
+    type: object
+  state.AzureCloudAccount:
+    properties:
+      location:
+        type: string
+    type: object
+  app.RunnerJobExecutionStatus:
+    enum:
+    - pending
+    - initializing
+    - in-progress
+    - cleaning-up
+    - finished
+    - failed
+    - timed-out
+    - not-attempted
+    - cancelled
+    - unknown
+    type: string
+    x-enum-varnames:
+    - RunnerJobExecutionStatusPending
+    - RunnerJobExecutionStatusInitializing
+    - RunnerJobExecutionStatusInProgress
+    - RunnerJobExecutionStatusCleaningUp
+    - RunnerJobExecutionStatusFinished
+    - RunnerJobExecutionStatusFailed
+    - RunnerJobExecutionStatusTimedOut
+    - RunnerJobExecutionStatusNotAttempted
+    - RunnerJobExecutionStatusCancelled
+    - RunnerJobExecutionStatusUnknown
+  app.PolicyReport:
+    properties:
+      app_id:
+        description: Denormalized context for filtering
+        type: string
+      app_name:
+        type: string
+      component_id:
+        type: string
+      component_name:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      deny_count:
+        description: Summary counts for list views
+        type: integer
+      evaluated_at:
+        description: Canonical policy evaluation data
+        type: string
+      id:
+        type: string
+      inputs:
+        items:
+          $ref: '#/definitions/app.PolicyInputRef'
+        type: array
+      install_id:
+        type: string
+      install_name:
+        type: string
+      org_name:
+        description: Denormalized display names for human-readable reports
+        type: string
+      owner_id:
+        description: Polymorphic relationship to the impacted Nuon resource (indexes defined in Indexes())
+        type: string
+      owner_type:
+        $ref: '#/definitions/app.PolicyReportOwnerType'
+      pass_count:
+        type: integer
+      policies:
+        items:
+          $ref: '#/definitions/app.PolicyResult'
+        type: array
+      policy_ids:
+        items:
+          type: string
+        type: array
+      runner_job_id:
+        type: string
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      violations:
+        items:
+          $ref: '#/definitions/app.PolicyViolation'
+        type: array
+      warn_count:
+        type: integer
+      workflow_step_policy_validation_id:
+        description: Optional context references (indexes defined in Indexes())
+        type: string
+    type: object
+  plantypes.KubernetesSecretSyncTarget:
+    properties:
+      key:
+        type: string
+      name:
+        type: string
+      namespaces:
+        items:
+          type: string
+        type: array
+    type: object
+  plantypes.PulumiBuildPlan:
+    properties:
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+    type: object
+  app.RoleType:
+    enum:
+    - org_admin
+    - org_support
+    - installer
+    - runner
+    - hosted-installer
+    type: string
+    x-enum-varnames:
+    - RoleTypeOrgAdmin
+    - RoleTypeOrgSupport
+    - RoleTypeInstaller
+    - RoleTypeRunner
+    - RoleTypeHostedInstaller
+  plantypes.KubernetesManifestBuildPlan:
+    properties:
+      inline_manifest:
+        description: InlineManifest contains the raw manifest YAML (for inline source type)
+        type: string
+      kustomize_config:
+        allOf:
+        - $ref: '#/definitions/plantypes.KustomizeBuildConfig'
+        description: KustomizeConfig contains additional kustomize build options
+      kustomize_path:
+        description: 'KustomizePath is the path to the kustomization directory (for kustomize source type)
+
+          Relative to the repository root'
+        type: string
+      labels:
+        additionalProperties:
+          type: string
+        description: Labels for the OCI artifact
+        type: object
+      source_type:
+        description: 'SourceType indicates how manifests are sourced: "inline" or "kustomize"'
+        type: string
+    type: object
+  state.InstallState:
+    properties:
+      id:
+        type: string
+      inputs:
+        additionalProperties:
+          type: string
+        type: object
+      internal_domain:
+        type: string
+      name:
+        type: string
+      populated:
+        type: boolean
+      public_domain:
+        type: string
+      sandbox:
+        $ref: '#/definitions/state.SandboxState'
+    type: object
+  app.VCSConnection:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      github_account_id:
+        type: string
+      github_account_name:
+        type: string
+      github_install_id:
+        type: string
+      id:
+        type: string
+      queues:
+        items:
+          $ref: '#/definitions/app.Queue'
+        type: array
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      vcs_connection_commit:
+        items:
+          $ref: '#/definitions/app.VCSConnectionCommit'
+        type: array
+    type: object
+  app.PolicyViolation:
+    properties:
+      input_identity:
+        description: Human-readable input reference (e.g., "Deployment/default/nginx")
+        type: string
+      input_index:
+        type: integer
+      message:
+        type: string
+      policy_id:
+        type: string
+      policy_name:
+        type: string
+      severity:
+        description: '"deny" or "warn"'
+        type: string
+    type: object
+  service.CreateAdHocActionRequest:
+    properties:
+      command:
+        type: string
+      enable_kube_config:
+        type: boolean
+        x-nullable: true
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      inline_contents:
+        type: string
+      name:
+        maxLength: 255
+        type: string
+      role:
+        type: string
+      timeout:
+        maximum: 3600
+        minimum: 1
+        type: integer
+    type: object
+  app.QueueEmitterMode:
+    enum:
+    - cron
+    - scheduled
+    - fire_once
+    type: string
+    x-enum-varnames:
+    - QueueEmitterModeCron
+    - QueueEmitterModeScheduled
+    - QueueEmitterModeFireOnce
+  app.WorkflowStepApprovalType:
+    enum:
+    - noop
+    - approve-all
+    - terraform_plan
+    - kubernetes_manifest_approval
+    - helm_approval
+    - pulumi_plan
+    - app_branch_plan
+    type: string
+    x-enum-varnames:
+    - NoopApprovalType
+    - ApproveAllApprovalType
+    - TerraformPlanApprovalType
+    - KubernetesManifestApprovalType
+    - HelmApprovalApprovalType
+    - PulumiApprovalType
+    - AppBranchPlanApprovalType
+  app.WorkflowResponse:
+    properties:
+      workflow_id:
+        type: string
+    type: object
+  app.InstallDeployType:
+    enum:
+    - sync-image
+    - apply
+    - teardown
+    type: string
+    x-enum-varnames:
+    - InstallDeployTypeSync
+    - InstallDeployTypeApply
+    - InstallDeployTypeTeardown
+  app.WorkflowStepApproval:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      installWorkflowStep:
+        $ref: '#/definitions/app.WorkflowStep'
+      installWorkflowStepID:
+        description: the step that this approval belongs too
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      response:
+        additionalProperties:
+          type: string
+        type: object
+      runner_job:
+        $ref: '#/definitions/app.RunnerJob'
+      runner_job_id:
+        description: the runner job where this approval was created
+        type: string
+      type:
+        $ref: '#/definitions/app.WorkflowStepApprovalType'
+      updated_at:
+        type: string
+      workflow_step:
+        $ref: '#/definitions/app.WorkflowStep'
+      workflow_step_id:
+        description: afterquery
+        type: string
+    type: object
+  service.CreateActionWorkflowConfigTriggerRequest:
+    properties:
+      component_name:
+        type: string
+      cron_schedule:
+        type: string
+      index:
+        type: integer
+      type:
+        $ref: '#/definitions/app.ActionWorkflowTriggerType'
+    required:
+    - type
+    type: object
+  app.Workflow:
+    properties:
+      app_branch_runs:
+        items:
+          $ref: '#/definitions/app.AppBranchRun'
+        type: array
+      approval_option:
+        $ref: '#/definitions/app.InstallApprovalOption'
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/app.Account'
+      created_by_id:
+        type: string
+      execution_time:
+        type: integer
+      finished:
+        type: boolean
+      finished_at:
+        type: string
+      generate_steps_signal:
+        allOf:
+        - $ref: '#/definitions/signaldb.SignalData'
+        description: 'GenerateStepsSignal is an optional queue signal that generates workflow steps.
+
+          When set, the conductor enqueues this signal and calls its "FetchSteps" update
+
+          handler instead of using the hardcoded Generators map.'
+      id:
+        type: string
+      install_action_workflow_runs:
+        items:
+          $ref: '#/definitions/app.InstallActionWorkflowRun'
+        type: array
+      install_deploys:
+        items:
+          $ref: '#/definitions/app.InstallDeploy'
+        type: array
+      install_sandbox_runs:
+        items:
+          $ref: '#/definitions/app.InstallSandboxRun'
+        type: array
+      links:
+        additionalProperties: {}
+        type: object
+      metadata:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        description: 'Name is the human-readable workflow title shown in the UI (e.g.
+
+          "Deploying to install (rds_cluster_temporal)"). Populated by
+
+          BeforeSave via computeWorkflowName — callers that mutate Type,
+
+          Metadata, or FinishedAt must go through GORM (Save / struct-based
+
+          Updates) so the hook fires.'
+        type: string
+      owner_id:
+        type: string
+      owner_name:
+        description: 'OwnerName is a derived, non-persisted convenience field. It is
+
+          populated by activities that need a human-readable owner label
+
+          (e.g. workflow lifecycle webhooks) via a small switch on OwnerType
+
+          — see PkgWorkflowsFlowGetFlow. Empty unless the loading path
+
+          explicitly fills it.'
+        type: string
+      owner_type:
+        type: string
+      plan_only:
+        type: boolean
+      result_directive:
+        description: 'ResultDirective is set by the currently executing group signal to communicate
+
+          the group outcome back to the flow signal. Values: continue, stop, retry-group,
+
+          skip-group, await-approval.'
+        type: string
+      role:
+        type: string
+      started_at:
+        type: string
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      step_error_behavior:
+        description: 'DEPRECATED: for now we always abort on step errors'
+        type: string
+      step_groups:
+        description: step groups represent logical groupings of steps within the workflow
+        items:
+          $ref: '#/definitions/app.WorkflowStepGroup'
+        type: array
+      steps:
+        description: steps represent each piece of the workflow
+        items:
+          $ref: '#/definitions/app.WorkflowStep'
+        type: array
+      type:
+        $ref: '#/definitions/app.WorkflowType'
+      updated_at:
+        type: string
+      workflow_runs:
+        items:
+          $ref: '#/definitions/app.WorkflowRun'
+        type: array
+    type: object
+  app.PulumiComponentConfig:
+    properties:
+      component_config_connection_id:
+        description: parent reference
+        type: string
+      config:
+        additionalProperties:
+          type: string
+        type: object
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      public_git_vcs_config:
+        $ref: '#/definitions/app.PublicGitVCSConfig'
+      runtime:
+        description: pulumi configuration values
+        type: string
+      updated_at:
+        type: string
+      version:
+        type: string
+    type: object
+  plantypes.KubernetesSandboxMode:
+    properties:
+      plan_contents:
+        type: string
+      plan_display_contents:
+        type: string
+    type: object
+  app.WorkflowRun:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      finished_at:
+        type: string
+      id:
+        type: string
+      start_from_idx:
+        description: StartFromIdx is the step index to start execution from.
+        type: integer
+      started_at:
+        type: string
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      trigger_step_id:
+        description: TriggerStepID is the step that triggered this run (empty for initial runs).
+        type: string
+      type:
+        $ref: '#/definitions/app.WorkflowRunType'
+      updated_at:
+        type: string
+      workflow_id:
+        type: string
+    type: object
+  cctx.SignalContext:
+    properties:
+      account_id:
+        type: string
+      log_stream_id:
+        type: string
+      org_id:
+        type: string
+      trace_id:
+        type: string
+    type: object
+  github_com_nuonco_nuon_pkg_aws_credentials.Config:
+    properties:
+      assume_role:
+        $ref: '#/definitions/credentials.AssumeRoleConfig'
+      cache_id:
+        description: when cache ID is set, these credentials will be reused, up to the duration of the sessionTimeout (or default)
+        type: string
+      profile:
+        description: If profile is provided, we'll use that profile over the default credentials
+        type: string
+      region:
+        type: string
+      static:
+        $ref: '#/definitions/credentials.StaticCredentials'
+      use_default:
+        type: boolean
+    type: object
+  compositeerrors.Severity:
+    enum:
+    - fatal
+    - error
+    - warning
+    - info
+    type: string
+    x-enum-varnames:
+    - SeverityFatal
+    - SeverityError
+    - SeverityWarning
+    - SeverityInfo
+  plantypes.CompositePlan:
+    properties:
+      action_workflow_run_plan:
+        $ref: '#/definitions/plantypes.ActionWorkflowRunPlan'
+      build_plan:
+        $ref: '#/definitions/plantypes.BuildPlan'
+      deploy_plan:
+        $ref: '#/definitions/plantypes.DeployPlan'
+      fetch_image_metadata_plan:
+        $ref: '#/definitions/plantypes.FetchImageMetadataPlan'
+      sandbox_run_plan:
+        $ref: '#/definitions/plantypes.SandboxRunPlan'
+      sync_oci_plan:
+        $ref: '#/definitions/plantypes.SyncOCIPlan'
+      sync_secrets_plan:
+        $ref: '#/definitions/plantypes.SyncSecretsPlan'
+    type: object
+  app.JobComponentConfig:
+    properties:
+      args:
+        items:
+          type: string
+        type: array
+      cmd:
+        items:
+          type: string
+        type: array
+      component_config_connection_id:
+        description: value
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      image_url:
+        description: Image attributes, copied from a docker_buid or external_image component.
+        type: string
+      tag:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  sql.NullBool:
+    properties:
+      bool:
+        type: boolean
+      valid:
+        description: Valid is true if Bool is not NULL
+        type: boolean
+    type: object
+  compositeerrors.CompositeErrorData:
+    properties:
+      data:
+        description: 'Data is the typed, per-error-type payload: WHAT the error is. Closed
+
+          schema per Type. Read to render sections and by any future view.'
+        type: object
+      hints:
+        allOf:
+        - $ref: '#/definitions/compositeerrors.Hints'
+        description: 'Hints is the open annotation/directive bag: HOW to handle or present the
+
+          error. Canonical keys (Hint*) are honored by specific consumers.'
+      message:
+        type: string
+      sections:
+        items:
+          $ref: '#/definitions/compositeerrors.Section'
+        type: array
+      severity:
+        $ref: '#/definitions/compositeerrors.Severity'
+      source_id:
+        description: 'SourceID / SourceType identify the row this error originated on
+
+          (polymorphic, same shape as OwnerID/OwnerType). Set at the record site,
+
+          e.g. ("runner_job_execution_results", "<result id>"). Enables a future
+
+          JOINable view without a separate error table.'
+        type: string
+      source_type:
+        type: string
+      type:
+        type: string
+      version:
+        description: Version is the payload schema version (SchemaVersion at write time).
+        type: integer
+    type: object
+  configs.OCIRegistryAuth:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  plantypes.TerraformBackend:
+    properties:
+      workspaceID:
+        type: string
+    required:
+    - workspaceID
+    type: object
+  app.WorkflowType:
+    enum:
+    - provision
+    - deprovision
+    - deprovision_sandbox
+    - manual_deploy
+    - input_update
+    - deploy_components
+    - teardown_component
+    - teardown_components
+    - reprovision_sandbox
+    - drift_run_reprovision_sandbox
+    - action_workflow_run
+    - sync_secrets
+    - drift_run
+    - app_branches_manual_update
+    - app_branches_config_repo_update
+    - app_branches_component_repo_update
+    - app_branch_config_update
+    - reprovision
+    - app_config_build
+    - runbook_run
+    - component_enabled
+    - component_disabled
+    type: string
+    x-enum-varnames:
+    - WorkflowTypeProvision
+    - WorkflowTypeDeprovision
+    - WorkflowTypeDeprovisionSandbox
+    - WorkflowTypeManualDeploy
+    - WorkflowTypeInputUpdate
+    - WorkflowTypeDeployComponents
+    - WorkflowTypeTeardownComponent
+    - WorkflowTypeTeardownComponents
+    - WorkflowTypeReprovisionSandbox
+    - WorkflowTypeDriftRunReprovisionSandbox
+    - WorkflowTypeActionWorkflowRun
+    - WorkflowTypeSyncSecrets
+    - WorkflowTypeDriftRun
+    - WorkflowTypeAppBranchesRun
+    - WorkflowTypeAppBranchesConfigRepoUpdate
+    - WorkflowTypeAppBranchesComponentRepoUpdate
+    - WorkflowTypeAppBranchConfigUpdate
+    - WorkflowTypeReprovision
+    - WorkflowTypeAppConfigBuild
+    - WorkflowTypeRunbookRun
+    - WorkflowTypeComponentEnabled
+    - WorkflowTypeComponentDisabled
+  credentials.StaticCredentials:
+    properties:
+      access_key_id:
+        type: string
+      secret_access_key:
+        type: string
+      session_token:
+        type: string
+    required:
+    - access_key_id
+    - secret_access_key
+    - session_token
+    type: object
+  plantypes.OCISource:
+    properties:
+      registry:
+        $ref: '#/definitions/configs.OCIRegistryRepository'
+      tag:
+        type: string
+    type: object
+  app.AppSandboxConfig:
+    properties:
+      app_config_id:
+        type: string
+      app_id:
+        type: string
+      auto_approve_on_policies_passing:
+        type: boolean
+      aws_region_type:
+        description: cloud specific fields
+        type: string
+      cloud_platform:
+        description: fields set via after query
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      drift_schedule:
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      max_auto_retries:
+        type: integer
+      operation_roles:
+        additionalProperties:
+          type: string
+        description: 'Operation roles map: operation type -> role name'
+        type: object
+      org_id:
+        type: string
+      public_git_vcs_config:
+        $ref: '#/definitions/app.PublicGitVCSConfig'
+      pulumi_config:
+        additionalProperties:
+          type: string
+        type: object
+      pulumi_version:
+        type: string
+      references:
+        items:
+          type: string
+        type: array
+      refs:
+        items:
+          $ref: '#/definitions/refs.Ref'
+        type: array
+      runtime:
+        type: string
+      skip_noops:
+        type: boolean
+      terraform_version:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+      variables:
+        additionalProperties:
+          type: string
+        type: object
+      variables_files:
+        items:
+          type: string
+        type: array
+    type: object
+  signaldb.WorkflowRef:
+    properties:
+      id:
+        type: string
+      namespace:
+        type: string
+      run_id:
+        type: string
+    type: object
+  app.ExternalImageComponentConfig:
+    properties:
+      aws_ecr_image_config:
+        $ref: '#/definitions/app.AWSECRImageConfig'
+      azure_acr_image_config:
+        $ref: '#/definitions/app.AzureACRImageConfig'
+      component_config_connection_id:
+        description: value
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      gcp_gar_image_config:
+        $ref: '#/definitions/app.GCPGARImageConfig'
+      id:
+        type: string
+      image_url:
+        type: string
+      tag:
+        type: string
+      update_policy:
+        description: 'UpdatePolicy is an optional Masterminds-compatible semver constraint
+
+          (e.g. "~1.25.0", "^2", ">=1.0.0,<2.0.0") that, when set, causes the
+
+          runner to list tags from the source registry, filter to those that
+
+          parse as semver and satisfy the constraint, and pick the highest
+
+          matching tag at build time. Tag is then ignored as the source ref;
+
+          the resolved tag is recorded on ComponentBuild.ResolvedTag.
+
+
+          When empty, the runner uses Tag literally.'
+        type: string
+      updated_at:
+        type: string
+    type: object
+  plantypes.SyncSecretsPlan:
+    properties:
+      aws_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      cluster_info:
+        $ref: '#/definitions/kube.ClusterInfo'
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      kubernetes_secrets:
+        items:
+          $ref: '#/definitions/plantypes.KubernetesSecretSync'
+        type: array
+      sandbox_mode:
+        $ref: '#/definitions/plantypes.SandboxMode'
+    type: object
+  stderr.ErrResponse:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+      user_error:
+        type: boolean
+    type: object
+  app.InstallDeploy:
+    properties:
+      action_workflow_runs:
+        items:
+          $ref: '#/definitions/app.InstallActionWorkflowRun'
+        type: array
+      applied_at:
+        description: AppliedAt is set when the apply runner job completes successfully.
+        type: string
+      build_id:
+        type: string
+      component_build:
+        $ref: '#/definitions/app.ComponentBuild'
+      component_config_version:
+        type: integer
+      component_id:
+        type: string
+      component_name:
+        type: string
+      composite_error:
+        allOf:
+        - $ref: '#/definitions/compositeerrors.CompositeErrorData'
+        description: 'CompositeError holds a typed, structured error (e.g. a missing AWS IAM
+
+          permission) frozen at write time when a deploy plan/apply fails. It is
+
+          nil for successful or non-enriched failures.'
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/app.Account'
+      created_by_id:
+        type: string
+      id:
+        type: string
+      install_component_id:
+        type: string
+      install_deploy_type:
+        $ref: '#/definitions/app.InstallDeployType'
+      install_id:
+        description: Fields that are de-nested at read time using AfterQuery
+        type: string
+      install_workflow_id:
+        description: 'DEPRECATED: use WorkflowID'
+        type: string
+      log_stream:
+        $ref: '#/definitions/app.LogStream'
+      oci_artifact:
+        $ref: '#/definitions/app.OCIArtifact'
+      outputs:
+        additionalProperties: {}
+        type: object
+      plan_only:
+        type: boolean
+      planned_at:
+        description: PlannedAt is set when the plan runner job completes successfully.
+        type: string
+      policy_reports:
+        items:
+          $ref: '#/definitions/app.PolicyReport'
+        type: array
+      queue_signals:
+        items:
+          $ref: '#/definitions/app.QueueSignal'
+        type: array
+      release_id:
+        type: string
+      role:
+        description: Role to be used when running this component
+        type: string
+      runner_jobs:
+        description: runner details
+        items:
+          $ref: '#/definitions/app.RunnerJob'
+        type: array
+      status:
+        type: string
+      status_description:
+        type: string
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/app.Workflow'
+      workflow_id:
+        type: string
+    type: object
+  app.WorkflowStepExecutionType:
+    enum:
+    - system
+    - user
+    - approval
+    - skipped
+    - hidden
+    type: string
+    x-enum-varnames:
+    - WorkflowStepExecutionTypeSystem
+    - WorkflowStepExecutionTypeUser
+    - WorkflowStepExecutionTypeApproval
+    - WorkflowStepExecutionTypeSkipped
+    - WorkflowStepExecutionTypeHidden
+  app.RunnerJobPlan:
+    properties:
+      composite_plan:
+        allOf:
+        - $ref: '#/definitions/plantypes.CompositePlan'
+        description: 'Deprecated: composite plans are read from CompositePlanBlob (S3). This
+
+          jsonb column is retained only as a fallback for rows not yet backfilled.'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      org_id:
+        type: string
+      plan_json:
+        type: string
+      runner_job_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  plantypes.KubernetesManifestDeployPlan:
+    properties:
+      aws_auth:
+        allOf:
+        - $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+        description: Auth for cloud providers
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      cluster_info:
+        $ref: '#/definitions/kube.ClusterInfo'
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      manifest:
+        description: 'Manifest is populated at runtime from the OCI artifact.
+
+          This field is no longer set during plan creation - it''s populated by the runner
+
+          after pulling the OCI artifact during Initialize().'
+        type: string
+      namespace:
+        type: string
+      oci_artifact:
+        allOf:
+        - $ref: '#/definitions/plantypes.OCIArtifactReference'
+        description: OCIArtifact reference (set during plan creation, used by runner to pull manifest)
+      state:
+        allOf:
+        - $ref: '#/definitions/github_com_nuonco_nuon_pkg_types_state.State'
+        description: 'State carries the install state the runner needs to interpolate
+
+          nuon template placeholders into the kustomize-produced manifest.yaml
+
+          after pulling the OCI artifact. Nil for inline-manifest deploys,
+
+          which are pre-rendered planner-side and short-circuit the OCI pull
+
+          on the runner. Same shape as SandboxRunPlan.State.'
+    type: object
+  state.ActionsState:
+    properties:
+      populated:
+        type: boolean
+      workflows:
+        additionalProperties:
+          $ref: '#/definitions/state.ActionWorkflowState'
+        type: object
+    type: object
+  iam.StaticCredentials:
+    properties:
+      access_key_id:
+        type: string
+      secret_access_key:
+        type: string
+      session_token:
+        type: string
+    type: object
+  app.RunnerJobExecution:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      metadata:
+        additionalProperties:
+          type: string
+        description: Metadata is used to store additional information about the execution {e.g., client version.}
+        type: object
+      org_id:
+        type: string
+      outputs:
+        $ref: '#/definitions/app.RunnerJobExecutionOutputs'
+      result:
+        $ref: '#/definitions/app.RunnerJobExecutionResult'
+      runner_job_id:
+        type: string
+      status:
+        $ref: '#/definitions/app.RunnerJobExecutionStatus'
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+    type: object
+  signaldb.SignalData:
+    properties:
+      signal: {}
+    type: object
+  github_com_nuonco_nuon_pkg_gcp_credentials.Config:
+    properties:
+      impersonate_service_account:
+        type: string
+      project_id:
+        type: string
+      region:
+        type: string
+    type: object
+  service.CreateAdHocActionResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      install_id:
+        type: string
+      status:
+        $ref: '#/definitions/app.InstallActionWorkflowRunStatus'
+      status_description:
+        type: string
+      trigger_type:
+        $ref: '#/definitions/app.ActionWorkflowTriggerType'
+      workflow_id:
+        type: string
+    type: object
+  app.PolicyInputRef:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+    type: object
+  permissions.Permission:
+    enum:
+    - unknown
+    - all
+    - create
+    - read
+    - update
+    - delete
+    type: string
+    x-enum-varnames:
+    - PermissionUnknown
+    - PermissionAll
+    - PermissionCreate
+    - PermissionRead
+    - PermissionUpdate
+    - PermissionDelete
+  app.EmptyResponse:
+    type: object
+  app.QueueSignal:
+    properties:
+      callback:
+        $ref: '#/definitions/callback.Ref'
+      callbacks:
+        items:
+          $ref: '#/definitions/callback.Ref'
+        type: array
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      emitter_id:
+        description: 'Optional: if this signal was emitted by an emitter'
+        type: string
+      enqueued:
+        type: boolean
+      execution_count:
+        type: integer
+      expires_at:
+        type: string
+      id:
+        type: string
+      org_id:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      queue:
+        $ref: '#/definitions/app.Queue'
+      queue_id:
+        type: string
+      signal:
+        $ref: '#/definitions/signaldb.SignalData'
+      signal_context:
+        $ref: '#/definitions/cctx.SignalContext'
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      type:
+        type: string
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/signaldb.WorkflowRef'
+    type: object
+  permissions.Set:
+    additionalProperties:
+      $ref: '#/definitions/permissions.Permission'
+    type: object
+  app.Component:
+    properties:
+      app_id:
+        type: string
+      config_versions:
+        type: integer
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      dependencies:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      labels:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_labels.Labels'
+      latest_build:
+        $ref: '#/definitions/app.ComponentBuild'
+      links:
+        additionalProperties: {}
+        type: object
+      name:
+        type: string
+      resolved_var_name:
+        type: string
+      status:
+        type: string
+      status_description:
+        type: string
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      type:
+        $ref: '#/definitions/app.ComponentType'
+      updated_at:
+        type: string
+      var_name:
+        type: string
+    type: object
+  app.WorkflowStepGroup:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      eager_execution:
+        description: 'EagerExecution marks this group for early execution during step generation.
+
+          When set, the group is returned via the "eager-step-groups" update handler
+
+          before all groups have been generated, allowing execution to start sooner.
+
+          This field is not persisted to DB — it is only used during generation.'
+        type: boolean
+      group_idx:
+        type: integer
+      id:
+        type: string
+      name:
+        type: string
+      parallel:
+        type: boolean
+      queue_signal:
+        $ref: '#/definitions/app.QueueSignal'
+      result_directive:
+        type: string
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      steps:
+        items:
+          $ref: '#/definitions/app.WorkflowStep'
+        type: array
+      timeout:
+        description: 'Timeout is the execution timeout for this group, derived from its
+
+          steps'' timeouts. For sequential groups: sum of step timeouts. For parallel
+
+          groups: max of step timeouts. Zero means use default fallback.'
+        type: integer
+      updated_at:
+        type: string
+      workflow_id:
+        type: string
+    type: object
+  plantypes.ContainerImagePullPlan:
+    properties:
+      image:
+        type: string
+      previous_source_digest:
+        description: 'PreviousSourceDigest is the SourceDigest of the most recent prior Active
+
+          ComponentBuild for the same component, used by the runner as a dedup
+
+          hint. When the resolver returns a manifest descriptor whose digest matches
+
+          this value, the runner skips the Copy step and reports NoOp=true.
+
+
+          Empty when there is no prior active build, or when the prior build has
+
+          no SourceDigest recorded (legacy builds).'
+        type: string
+      repo_config:
+        $ref: '#/definitions/configs.OCIRegistryRepository'
+      tag:
+        type: string
+      update_policy:
+        description: 'UpdatePolicy is an optional Masterminds-compatible semver constraint
+
+          (e.g. "~1.25.0") propagated from the user''s component config. When
+
+          non-empty, the runner lists tags from the source registry, filters to
+
+          those satisfying the constraint, and selects the highest matching
+
+          tag at build time. Tag is then ignored as the source ref.
+
+
+          Empty for components that don''t use update_policy.'
+        type: string
+    type: object
+  credentials.ServicePrincipalCredentials:
+    properties:
+      subscription_id:
+        type: string
+      subscription_tenant_id:
+        type: string
+    type: object
+  state.OrgState:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      populated:
+        type: boolean
+      status:
+        type: string
+    type: object
+  plantypes.HelmBuildPlan:
+    properties:
+      helmRepoConfig:
+        $ref: '#/definitions/config.HelmRepoConfig'
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+      values:
+        items:
+          $ref: '#/definitions/plantypes.HelmValue'
+        type: array
+      valuesFiles:
+        items:
+          type: string
+        type: array
+    type: object
+  plantypes.GitSource:
+    properties:
+      path:
+        type: string
+      recurse_submodules:
+        type: boolean
+      ref:
+        type: string
+      url:
+        type: string
+    required:
+    - path
+    - ref
+    - url
+    type: object
+  app.Status:
+    enum:
+    - error
+    - pending
+    - in-progress
+    - checking-plan
+    - success
+    - not-attempted
+    - cancelled
+    - retrying
+    - discarded
+    - user-skipped
+    - auto-skipped
+    - planning
+    - applying
+    - queued
+    - warning
+    - failed-pending-retry
+    - generating
+    - awaiting-user-run
+    - provisioning
+    - active
+    - outdated
+    - expired
+    - approved
+    - drifted
+    - no-drift
+    - approval-expired
+    - approval-denied
+    - approval-retry
+    - building
+    - deleting
+    - noop
+    - approval-awaiting
+    type: string
+    x-enum-varnames:
+    - StatusError
+    - StatusPending
+    - StatusInProgress
+    - StatusCheckPlan
+    - StatusSuccess
+    - StatusNotAttempted
+    - StatusCancelled
+    - StatusRetrying
+    - StatusDiscarded
+    - StatusUserSkipped
+    - StatusAutoSkipped
+    - StatusPlanning
+    - StatusApplying
+    - StatusQueued
+    - StatusWarning
+    - StatusFailedPendingRetry
+    - InstallStackVersionStatusGenerating
+    - InstallStackVersionStatusPendingUser
+    - InstallStackVersionStatusProvisioning
+    - InstallStackVersionStatusActive
+    - InstallStackVersionStatusOutdated
+    - InstallStackVersionStatusExpired
+    - WorkflowStepApprovalStatusApproved
+    - WorkflowStepDrifted
+    - WorkflowStepNoDrift
+    - WorkflowStepApprovalStatusApprovalExpired
+    - WorkflowStepApprovalStatusApprovalDenied
+    - WorkflowStepApprovalStatusApprovalRetryPlan
+    - StatusBuilding
+    - StatusDeleting
+    - InstallDeployStatusV2Noop
+    - AwaitingApproval
+  iam.TwoStepConfig:
+    properties:
+      iam_role_arn:
+        type: string
+      src_iam_role_arn:
+        type: string
+      src_static_credentials:
+        allOf:
+        - $ref: '#/definitions/iam.StaticCredentials'
+        description: Root Credentials
+    type: object
+  app.AccountType:
+    enum:
+    - auth
+    - auth0
+    - service
+    - canary
+    - integration
+    type: string
+    x-enum-varnames:
+    - AccountTypeAuth
+    - AccountTypeAuth0
+    - AccountTypeService
+    - AccountTypeCanary
+    - AccountTypeIntegration
+  plantypes.TerraformDeployHooks:
+    properties:
+      enabled:
+        type: boolean
+      envVars:
+        additionalProperties:
+          type: string
+        type: object
+      runAuth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+    type: object
+  app.ActionWorkflowTriggerType:
+    enum:
+    - manual
+    - cron
+    - adhoc
+    - pre-deploy-component
+    - post-deploy-component
+    - pre-teardown-component
+    - post-teardown-component
+    - pre-secrets-sync
+    - post-secrets-sync
+    - pre-provision
+    - post-provision
+    - post-provision-sandbox
+    - pre-reprovision
+    - post-reprovision
+    - pre-deprovision
+    - post-deprovision
+    - pre-deploy-all-components
+    - post-deploy-all-components
+    - pre-teardown-all-components
+    - post-teardown-all-components
+    - pre-deprovision-sandbox
+    - post-deprovision-sandbox
+    - pre-reprovision-sandbox
+    - post-reprovision-sandbox
+    - pre-update-inputs
+    - post-update-inputs
+    - role-enabled
+    - role-disabled
+    - pre-enable-component
+    - post-enable-component
+    - pre-disable-component
+    - post-disable-component
+    type: string
+    x-enum-varnames:
+    - ActionWorkflowTriggerTypeManual
+    - ActionWorkflowTriggerTypeCron
+    - ActionWorkflowTriggerTypeAdHoc
+    - ActionWorkflowTriggerTypePreDeployComponent
+    - ActionWorkflowTriggerTypePostDeployComponent
+    - ActionWorkflowTriggerTypePreTeardownComponent
+    - ActionWorkflowTriggerTypePostTeardownComponent
+    - ActionWorkflowTriggerTypePreSecretsSync
+    - ActionWorkflowTriggerTypePostSecretsSync
+    - ActionWorkflowTriggerTypePreProvision
+    - ActionWorkflowTriggerTypePostProvision
+    - ActionWorkflowTriggerTypePostProvisionSandbox
+    - ActionWorkflowTriggerTypePreReprovision
+    - ActionWorkflowTriggerTypePostReprovision
+    - ActionWorkflowTriggerTypePreDeprovision
+    - ActionWorkflowTriggerTypePostDeprovision
+    - ActionWorkflowTriggerTypePreDeployAllComponents
+    - ActionWorkflowTriggerTypePostDeployAllComponents
+    - ActionWorkflowTriggerTypePreTeardownAllComponents
+    - ActionWorkflowTriggerTypePostTeardownAllComponents
+    - ActionWorkflowTriggerTypePreDeprovisionSandbox
+    - ActionWorkflowTriggerTypePostDeprovisionSandbox
+    - ActionWorkflowTriggerTypePreReprovisionSandbox
+    - ActionWorkflowTriggerTypePostReprovisionSandbox
+    - ActionWorkflowTriggerTypePreUpdateInputs
+    - ActionWorkflowTriggerTypePostUpdateInputs
+    - ActionWorkflowTriggerTypeRoleEnabled
+    - ActionWorkflowTriggerTypeRoleDisabled
+    - ActionWorkflowTriggerTypePreEnableComponent
+    - ActionWorkflowTriggerTypePostEnableComponent
+    - ActionWorkflowTriggerTypePreDisableComponent
+    - ActionWorkflowTriggerTypePostDisableComponent
+  app.WorkflowRunType:
+    enum:
+    - initial
+    - retry
+    - skip
+    - resume
+    type: string
+    x-enum-varnames:
+    - WorkflowRunTypeInitial
+    - WorkflowRunTypeRetry
+    - WorkflowRunTypeSkip
+    - WorkflowRunTypeResume
+  app.WorkflowStep:
+    properties:
+      approval:
+        $ref: '#/definitions/app.WorkflowStepApproval'
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/app.Account'
+      created_by_id:
+        type: string
+      execution_time:
+        type: integer
+      execution_type:
+        $ref: '#/definitions/app.WorkflowStepExecutionType'
+      finished:
+        type: boolean
+      finished_at:
+        type: string
+      group_idx:
+        description: to group steps which belong to same logical group, eg, plan/apply
+        type: integer
+      group_parallel:
+        description: GroupParallel indicates whether steps in this group should execute in parallel.
+        type: boolean
+      group_retry_idx:
+        description: counter for every retry attempted on a group
+        type: integer
+      id:
+        type: string
+      idx:
+        type: integer
+      install_workflow_id:
+        description: 'DEPRECATED: this is the install workflow ID, which is now the workflow ID.'
+        type: string
+      links:
+        additionalProperties: {}
+        type: object
+      log_stream:
+        allOf:
+        - $ref: '#/definitions/app.LogStream'
+        description: LogStream is the log stream associated with this workflow step (when step_target_type is install_workflow_steps).
+      metadata:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      policy_validation:
+        $ref: '#/definitions/app.WorkflowStepPolicyValidation'
+      result_directive:
+        description: 'ResultDirective is set by the execute-workflow-step signal to communicate
+
+          the step''s outcome directive back to the group signal. Values: continue,
+
+          stop, retry, retry-group, skip-group, await-approval.'
+        type: string
+      retried:
+        type: boolean
+      retry_index:
+        type: integer
+      retryable:
+        type: boolean
+      skippable:
+        type: boolean
+      started_at:
+        type: string
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      step_queue_id:
+        description: 'StepQueueID is the queue where the execute-workflow-step signal runs.
+
+          When empty, the group''s default step queue is used.'
+        type: string
+      step_target_id:
+        description: 'the following fields are set _once_ a step is in flight, and are orchestrated via the step''s signal.
+
+
+          this is a polymorphic gorm relationship to one of the following objects:
+
+
+          install_cloudformation_stack
+
+          install_sandbox_run
+
+          install_runner_update
+
+          install_deploy
+
+          install_action_workflow_run (can be many of these)'
+        type: string
+      step_target_type:
+        type: string
+      target_queue_id:
+        description: 'TargetQueueID is the queue where the inner signal (the actual work)
+
+          gets dispatched. When empty, the step signal''s TargetQueueName is used.'
+        type: string
+      timeout:
+        description: 'Timeout is the execution timeout for this step, derived from the
+
+          inner signal''s Timeout() at step generation time. Used by the step-group
+
+          to set ScheduleToCloseTimeout when awaiting step completion.
+
+          Zero means use default fallback.'
+        type: integer
+      updated_at:
+        type: string
+      workflow_id:
+        description: Fields that are de-nested at read time using AfterQuery
+        type: string
+      workflow_step_group_id:
+        description: WorkflowStepGroupID links this step to its parent WorkflowStepGroup.
+        type: string
+    type: object
+  app.AzureACRImageConfig:
+    properties:
+      client_id:
+        type: string
+      component_config_id:
+        description: connection to parent model
+        type: string
+      component_config_type:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      registry_url:
+        description: actual configuration
+        type: string
+      tenant_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  callback.Ref:
+    properties:
+      namespace:
+        type: string
+      signal_name:
+        type: string
+      workflow_id:
+        type: string
+    type: object
+  app.ActionWorkflow:
+    properties:
+      app_id:
+        type: string
+      config_count:
+        type: integer
+      configs:
+        items:
+          $ref: '#/definitions/app.ActionWorkflowConfig'
+        type: array
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      labels:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_labels.Labels'
+      name:
+        description: metadata
+        type: string
+      status:
+        description: 'TODO: change to default null after migration & after initial pr'
+        type: string
+      status_description:
+        type: string
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+    type: object
+  app.InstallActionWorkflowRunStep:
+    properties:
+      adhoc_config:
+        $ref: '#/definitions/app.AdHocStepConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      execution_duration:
+        type: integer
+      id:
+        type: string
+      install_action_workflow_run_id:
+        type: string
+      status:
+        $ref: '#/definitions/app.InstallActionWorkflowRunStepStatus'
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      step_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  app.AppBranchRun:
+    properties:
+      app_branch:
+        $ref: '#/definitions/app.AppBranch'
+      app_branch_config:
+        $ref: '#/definitions/app.AppBranchConfig'
+      app_config_id:
+        description: AppConfigID is the app config that was created/synced during this run
+        type: string
+      base_branch:
+        type: string
+      commit_sha:
+        description: 'CommitSHA is the VCS commit that triggered or is associated with this run
+
+          DEPRECATED: Use VCSConnectionCommit relationship instead'
+        type: string
+      completed_at:
+        description: CompletedAt tracks when execution finished
+        type: string
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/app.Account'
+      created_by_id:
+        type: string
+      error_message:
+        description: ErrorMessage stores any error that occurred during execution
+        type: string
+      event_type:
+        description: EventType indicates what triggered this run. Kept for backward compat; new code uses RunType.
+        type: string
+      force:
+        type: boolean
+      github_comment_id:
+        type: integer
+      head_sha:
+        type: string
+      id:
+        type: string
+      labels:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_labels.Labels'
+      log_stream:
+        $ref: '#/definitions/app.LogStream'
+      log_stream_id:
+        description: LogStreamID is the log stream created during this run for event tracking
+        type: string
+      no_config_changes:
+        type: boolean
+      plan_only:
+        description: PlanOnly indicates this is a preview run. Kept for backward compat; new code uses RunType.
+        type: boolean
+      pr_number:
+        type: integer
+      previous_run:
+        $ref: '#/definitions/app.AppBranchRun'
+      previous_run_id:
+        description: 'PreviousRunID links to the previous successful run on the same branch,
+
+          used for build diffing to determine which components need rebuilding.'
+        type: string
+      queue_signal:
+        allOf:
+        - $ref: '#/definitions/app.QueueSignal'
+        description: QueueSignal is the signal that was enqueued to trigger this run
+      run_type:
+        $ref: '#/definitions/app.AppBranchRunType'
+      started_at:
+        description: StartedAt tracks when execution actually began
+        type: string
+      status:
+        description: 'Status tracks the current state of the run
+
+          Values: pending, running, success, failed, cancelled'
+        type: string
+      updated_at:
+        type: string
+      vcs_connection_commit:
+        $ref: '#/definitions/app.VCSConnectionCommit'
+      workflow:
+        $ref: '#/definitions/app.Workflow'
+      workflow_id:
+        type: string
+    type: object
+  kube.ClusterInfo:
+    properties:
+      aws_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      ca_data:
+        description: CAData is the base64 encoded public certificate
+        type: string
+      endpoint:
+        description: Endpoint is the URL of the k8s api server
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      id:
+        description: ID is the ID of the EKS cluster
+        type: string
+      inline:
+        description: If this is set, we will _not_ use aws-iam-authenticator, but rather inline create the token
+        type: boolean
+      kube_config:
+        description: KubeConfig will override the kube config, and be parsed instead of generating a new one
+        type: string
+      trusted_role_arn:
+        description: 'TrustedRoleARN is the arn of the role that should be assumed to interact with the cluster
+
+          NOTE(JM): we are deprecating this'
+        type: string
+    type: object
+  plantypes.TerraformDeployPlan:
+    properties:
+      aws_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      cluster_info:
+        $ref: '#/definitions/kube.ClusterInfo'
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      hooks:
+        $ref: '#/definitions/plantypes.TerraformDeployHooks'
+      plan_json:
+        items:
+          type: integer
+        type: array
+      policies:
+        additionalProperties:
+          type: string
+        type: object
+      state:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_types_state.State'
+      terraform_backend:
+        $ref: '#/definitions/plantypes.TerraformBackend'
+      vars:
+        additionalProperties: {}
+        type: object
+      vars_files:
+        items:
+          type: string
+        type: array
+    type: object
+  app.PolicyReportOwnerType:
+    enum:
+    - install_deploys
+    - install_sandbox_runs
+    - component_builds
+    type: string
+    x-enum-varnames:
+    - PolicyReportOwnerTypeInstallDeploy
+    - PolicyReportOwnerTypeInstallSandboxRun
+    - PolicyReportOwnerTypeComponentBuild
+  app.UserJourney:
+    properties:
+      name:
+        type: string
+      steps:
+        items:
+          $ref: '#/definitions/app.UserJourneyStep'
+        type: array
+      title:
+        type: string
+    type: object
+  service.AddActionLabelsRequest:
+    properties:
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+    required:
+    - labels
+    type: object
+  app.InstallRoleUsage:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      install_role_id:
+        type: string
+      org_id:
+        type: string
+      role_name:
+        type: string
+      role_selection_trace:
+        items:
+          $ref: '#/definitions/app.InstallRoleSelectionRecord'
+        type: array
+      role_source:
+        type: string
+      runner_job:
+        $ref: '#/definitions/app.RunnerJob'
+      runner_job_id:
+        type: string
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/app.Workflow'
+      workflow_step_id:
+        type: string
+    type: object
+  app.InstallActionWorkflowRunStatus:
+    enum:
+    - finished
+    - queued
+    - in-progress
+    - error
+    - timed-out
+    - cancelled
+    - unknown
+    - retried
+    type: string
+    x-enum-varnames:
+    - InstallActionRunStatusFinished
+    - InstallActionRunStatusQueued
+    - InstallActionRunStatusInProgress
+    - InstallActionRunStatusError
+    - InstallActionRunStatusTimedOut
+    - InstallActionRunStatusCancelled
+    - InstallActionRunStatusUnknown
+    - InstallActionRunStatusRetried
+  app.LogStream:
+    properties:
+      attrs:
+        additionalProperties:
+          type: string
+        type: object
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      open:
+        type: boolean
+      org_id:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      runner_api_url:
+        type: string
+      updated_at:
+        type: string
+      write_token:
+        type: string
+    type: object
+  app.ComponentBuild:
+    properties:
+      app_branch_run_id:
+        type: string
+      checksum:
+        description: checksum of our intermediate component config
+        type: string
+      component_config_connection:
+        $ref: '#/definitions/app.ComponentConfigConnection'
+      component_config_connection_id:
+        description: 'DEPRECATED: will retain the field to connect against the last component config connection that set this build'
+        type: string
+      component_config_version:
+        type: integer
+      component_id:
+        description: Read-only fields set on the object to de-nest data
+        type: string
+      component_name:
+        type: string
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/app.Account'
+      created_by_id:
+        type: string
+      git_ref:
+        type: string
+      id:
+        type: string
+      install_deploys:
+        items:
+          $ref: '#/definitions/app.InstallDeploy'
+        type: array
+      log_stream:
+        $ref: '#/definitions/app.LogStream'
+      no_op:
+        description: "NoOp is true when the runner detected SourceDigest matches the previous\nbuild's SourceDigest and skipped the artifact push.\n\nDownstream contract:\n  - The build is still marked Active because the bytes it represents\n    are deployable (they live in the install registry under the prior\n    build that pushed them).\n  - No new install deploys are auto-queued for a NoOp build; the\n    dep-aware deploy path handles fan-out for installs that depend\n    on the underlying image.\n  - pollForDeployableBuild treats NoOp builds as Active without any\n    special-casing because the deployable artifact at the same\n    SourceDigest is already present in the install registry from the\n    prior build."
+        type: boolean
+      policy_reports:
+        items:
+          $ref: '#/definitions/app.PolicyReport'
+        type: array
+      queue_signal:
+        allOf:
+        - $ref: '#/definitions/app.QueueSignal'
+        description: QueueSignal is the signal enqueued when this build was created via the queue path
+      releases:
+        items:
+          $ref: '#/definitions/app.ComponentRelease'
+        type: array
+      resolved_at:
+        description: ResolvedAt is when the runner resolved SourceRef to SourceDigest.
+        type: string
+      resolved_tag:
+        description: 'ResolvedTag is the tag the runner actually pulled from. For digest-pinned
+
+          refs this is empty. For mutable/semver refs this is the concrete tag the
+
+          runner selected (e.g. "1.25.5" even if SourceRef pinned "1.25.3" with a
+
+          "~1.25.0" update_policy constraint).'
+        type: string
+      runner_job:
+        allOf:
+        - $ref: '#/definitions/app.RunnerJob'
+        description: runner details
+      source_checksum:
+        description: checksum of the component's source directory at build time
+        type: string
+      source_digest:
+        description: 'SourceDigest is the manifest list digest of the resolved source ref,
+
+          e.g. "sha256:abc...". This is the canonical content address of what was
+
+          pulled and is used for build dedup.'
+        type: string
+      source_image:
+        description: SourceImage is the repository portion of SourceRef without tag/digest, e.g. "nginx".
+        type: string
+      source_media_type:
+        description: 'SourceMediaType records the media type of the resolved manifest (image,
+
+          image index, OCI artifact, etc.) for downstream rendering decisions.'
+        type: string
+      source_ref:
+        description: 'Source identity for image-type builds.
+
+
+          SourceRef is what the user wrote in the spec, e.g. "nginx:1.25.3" or
+
+          "myimage@sha256:...". Always populated for image-type builds so we have a
+
+          permanent record of what was requested at build time.'
+        type: string
+      status:
+        type: string
+      status_description:
+        type: string
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      vcs_connection_commit:
+        $ref: '#/definitions/app.VCSConnectionCommit'
+    type: object
+  app.InstallRoleSelectionRecord:
+    properties:
+      available:
+        type: boolean
+      role_id:
+        type: string
+      role_name:
+        type: string
+      role_source:
+        type: string
+      selected:
+        type: boolean
+    type: object
+  app.UserJourneyStep:
+    properties:
+      complete:
+        type: boolean
+      completed_at:
+        description: Top-level completion tracking fields
+        type: string
+      completion_method:
+        type: string
+      completion_source:
+        type: string
+      metadata:
+        additionalProperties: true
+        description: Flexible metadata for business data
+        type: object
+      name:
+        type: string
+      title:
+        type: string
+    type: object
+  app.VCSConnectionCommit:
+    properties:
+      author_email:
+        type: string
+      author_name:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      message:
+        type: string
+      owner_id:
+        description: Polymorphic ownership - references VCS config that owns this commit
+        type: string
+      owner_type:
+        type: string
+      sha:
+        type: string
+      updated_at:
+        type: string
+      vcs_connection_id:
+        type: string
+    type: object
+  github_com_nuonco_nuon_pkg_azure_credentials.Config:
+    properties:
+      managed_identity_client_id:
+        description: 'ManagedIdentityClientID runs the operation as a specific user-assigned
+
+          managed identity instead of the VM''s system identity.'
+        type: string
+      service_principal:
+        $ref: '#/definitions/credentials.ServicePrincipalCredentials'
+      use_default:
+        type: boolean
+    type: object
+  app.QueueEmitter:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      cron_schedule:
+        description: 'Schedule configuration
+
+          For cron mode: cron expression (e.g., "0 * * * *")'
+        type: string
+      description:
+        type: string
+      emit_count:
+        type: integer
+      fired:
+        description: 'For scheduled mode: whether the signal has been fired'
+        type: boolean
+      id:
+        type: string
+      jitter_window:
+        description: 'For cron mode: spread emitter ticks deterministically across this window
+
+          to avoid thundering-herd when many emitters share a schedule. A hash of the
+
+          emitter ID determines each emitter''s static offset within the window. Zero
+
+          disables jitter (default).'
+        type: integer
+      last_emitted_at:
+        type: string
+      mode:
+        allOf:
+        - $ref: '#/definitions/app.QueueEmitterMode'
+        description: 'Emitter mode: "cron" for recurring, "scheduled" for one-shot'
+      name:
+        description: Emitter identity
+        type: string
+      next_emit_at:
+        type: string
+      org_id:
+        type: string
+      queue_id:
+        description: 'Many-to-one: each emitter belongs to exactly one queue'
+        type: string
+      scheduled_at:
+        description: 'For scheduled mode: the time to fire the signal'
+        type: string
+      signal_expires_in:
+        description: 'Optional TTL for emitted signals. When set, each emitted signal''s ExpiresAt
+
+          is computed as time.Now().Add(SignalExpiresIn) at emission time.'
+        type: integer
+      signal_template:
+        $ref: '#/definitions/signaldb.SignalData'
+      signal_type:
+        description: Signal template - the signal to emit on each tick
+        type: string
+      status:
+        allOf:
+        - $ref: '#/definitions/app.CompositeStatus'
+        description: Runtime state using shared CompositeStatus
+      updated_at:
+        type: string
+      workflow:
+        allOf:
+        - $ref: '#/definitions/signaldb.WorkflowRef'
+        description: Workflow reference for the emitter's cron workflow
+    type: object
+  app.ActionWorkflowStepConfig:
+    properties:
+      action_workflow_config_id:
+        type: string
+      app_config_id:
+        description: this belongs to an app config id
+        type: string
+      app_id:
+        type: string
+      command:
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      id:
+        type: string
+      idx:
+        type: integer
+      inline_contents:
+        type: string
+      name:
+        description: metadata
+        type: string
+      previous_step_id:
+        type: string
+      public_git_vcs_config:
+        allOf:
+        - $ref: '#/definitions/app.PublicGitVCSConfig'
+        description: all the details needed for a step
+      references:
+        items:
+          type: string
+        type: array
+      updated_at:
+        type: string
+    type: object
+  app.ComponentReleaseStep:
+    properties:
+      component_release_id:
+        description: parent release ID
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      delay:
+        description: fields to control the delay of the individual step, as this is set based on the parent strategy
+        type: string
+      id:
+        type: string
+      install_deploys:
+        items:
+          $ref: '#/definitions/app.InstallDeploy'
+        type: array
+      requested_install_ids:
+        description: 'When a step is created, a set of installs are targeted. However, by the time the release step goes out, the
+
+          install might have been setup in any order of ways.'
+        items:
+          type: string
+        type: array
+      status:
+        type: string
+      status_description:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  plantypes.PulumiSandboxMode:
+    properties:
+      plan_contents:
+        type: string
+      plan_display_contents:
+        type: string
+      workspace_id:
+        type: string
+    type: object
+  plantypes.KubernetesSecretSync:
+    properties:
+      azure_key_vault_secret_id:
+        description: https://{vault-name}.vault.azure.net/secrets/{secret-name}
+        type: string
+      format:
+        description: 'NOTE(jm): this should probably come from the app config, but for now we just use string parsing to avoid
+
+          updating the runner job and save time.'
+        type: string
+      gcp_secret_name:
+        description: projects/{project}/secrets/{id}/versions/latest
+        type: string
+      key_name:
+        type: string
+      name:
+        type: string
+      namespace:
+        description: v1 destination (single). Used when Targets is empty.
+        type: string
+      secret_arn:
+        type: string
+      secret_name:
+        description: the name of the secret from the config
+        type: string
+      targets:
+        description: 'v2 destinations: when len(Targets) > 0 the runner uses the v2 path and fans the shared source out across each
+
+          target''s namespaces. The v1 fields above are ignored in that case.'
+        items:
+          $ref: '#/definitions/plantypes.KubernetesSecretSyncTarget'
+        type: array
+    type: object
+  app.KustomizeConfig:
+    properties:
+      enable_helm:
+        description: Enable Helm chart inflation during kustomize build
+        type: boolean
+      load_restrictor:
+        description: 'Load restrictor: "none" or "rootOnly" (default: "rootOnly")'
+        type: string
+      patches:
+        description: Additional patch files to apply after kustomize build
+        items:
+          type: string
+        type: array
+      path:
+        description: Path to kustomization directory (relative to source root)
+        type: string
+    type: object
+  app.HelmConfig:
+    properties:
+      chart_name:
+        type: string
+      helm_repo_config:
+        $ref: '#/definitions/app.HelmRepoConfig'
+      namespace:
+        type: string
+      skip_crds:
+        type: boolean
+      storage_driver:
+        type: string
+      take_ownership:
+        description: Newer fields that we don't need to store as columns in the database
+        type: boolean
+      values:
+        additionalProperties:
+          type: string
+        type: object
+      values_files:
+        items:
+          type: string
+        type: array
+    type: object
+  state.AppState:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      populated:
+        type: boolean
+      status:
+        type: string
+      variables:
+        additionalProperties:
+          type: string
+        type: object
+    type: object
+  outputs.SecretSyncOutput:
+    properties:
+      arn:
+        type: string
+      azure_key_vault_secret_id:
+        type: string
+      exists:
+        type: boolean
+      gcp_secret_name:
+        type: string
+      kubernetes_key:
+        type: string
+      kubernetes_name:
+        type: string
+      kubernetes_namespace:
+        type: string
+      length:
+        type: integer
+      name:
+        type: string
+      timestamp:
+        type: string
+    type: object
+  service.CreateAppActionWorkflowRequest:
+    properties:
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        type: string
+    type: object
+  app.Role:
+    properties:
+      createdBy:
+        $ref: '#/definitions/app.Account'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      policies:
+        items:
+          $ref: '#/definitions/app.Policy'
+        type: array
+      role_type:
+        $ref: '#/definitions/app.RoleType'
+      updated_at:
+        type: string
+    type: object
+  app.InstallSandboxRun:
+    properties:
+      action_workflow_runs:
+        items:
+          $ref: '#/definitions/app.InstallActionWorkflowRun'
+        type: array
+      app_sandbox_config:
+        $ref: '#/definitions/app.AppSandboxConfig'
+      applied_at:
+        description: AppliedAt is set when the apply runner job completes successfully.
+        type: string
+      composite_error:
+        allOf:
+        - $ref: '#/definitions/compositeerrors.CompositeErrorData'
+        description: 'CompositeError holds a typed, structured error (e.g. a missing AWS IAM
+
+          permission) frozen at write time when a sandbox plan/apply fails. It is
+
+          nil for successful or non-enriched failures.'
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/app.Account'
+      created_by_id:
+        type: string
+      id:
+        type: string
+      install_id:
+        type: string
+      install_sandbox_id:
+        description: 'TODO: once we run a backfill we can make this non pointer'
+        type: string
+      install_workflow_id:
+        type: string
+      log_stream:
+        $ref: '#/definitions/app.LogStream'
+      outputs:
+        additionalProperties: {}
+        type: object
+      planned_at:
+        description: PlannedAt is set when the plan runner job completes successfully.
+        type: string
+      policy_reports:
+        items:
+          $ref: '#/definitions/app.PolicyReport'
+        type: array
+      role:
+        description: Role to be used when planning and applying sandbox runs
+        type: string
+      run_type:
+        $ref: '#/definitions/app.SandboxRunType'
+      runner_jobs:
+        description: runner details
+        items:
+          $ref: '#/definitions/app.RunnerJob'
+        type: array
+      status:
+        type: string
+      status_description:
+        type: string
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/app.Workflow'
+      workflow_id:
+        description: Fields that are de-nested at read time using AfterQuery
+        type: string
+    type: object
+  app.InstallApprovalOption:
+    enum:
+    - approve-all
+    - prompt
+    type: string
+    x-enum-varnames:
+    - InstallApprovalOptionApproveAll
+    - InstallApprovalOptionPrompt
+  plantypes.SandboxRunPlan:
+    properties:
+      app_config_id:
+        type: string
+      app_id:
+        type: string
+      apply_plan_contents:
+        description: The following field is for applying a plan that is already saved
+        type: string
+      apply_plan_display:
+        description: This field is for storing a human legible plan or corollary representation
+        items:
+          type: integer
+        type: array
+      aws_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      git_source:
+        $ref: '#/definitions/plantypes.GitSource'
+      hooks:
+        $ref: '#/definitions/plantypes.TerraformDeployHooks'
+      install_id:
+        type: string
+      kyverno_policies_dir:
+        type: string
+      local_archive:
+        $ref: '#/definitions/plantypes.TerraformLocalArchive'
+      oci_source:
+        $ref: '#/definitions/plantypes.OCISource'
+      policies:
+        additionalProperties:
+          type: string
+        type: object
+      pulumi_backend:
+        $ref: '#/definitions/plantypes.PulumiBackend'
+      sandbox_mode:
+        $ref: '#/definitions/plantypes.SandboxMode'
+      state:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_types_state.State'
+      terraform_backend:
+        $ref: '#/definitions/plantypes.TerraformBackend'
+      vars:
+        additionalProperties: {}
+        type: object
+      vars_files:
+        items:
+          type: string
+        type: array
+    type: object
+  github_com_nuonco_nuon_pkg_types_state.State:
+    properties:
+      actions:
+        $ref: '#/definitions/state.ActionsState'
+      app:
+        $ref: '#/definitions/state.AppState'
+      cloud_account:
+        $ref: '#/definitions/state.CloudAccount'
+      components:
+        additionalProperties: {}
+        type: object
+      domain:
+        $ref: '#/definitions/state.DomainState'
+      id:
+        type: string
+      inputs:
+        $ref: '#/definitions/state.InputsState'
+      install:
+        allOf:
+        - $ref: '#/definitions/state.InstallState'
+        description: 'NOTE: for backwards compatibility, these are remaining in place.'
+      install_stack:
+        $ref: '#/definitions/state.InstallStackState'
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        type: string
+      org:
+        $ref: '#/definitions/state.OrgState'
+      runner:
+        $ref: '#/definitions/state.RunnerState'
+      sandbox:
+        $ref: '#/definitions/state.SandboxState'
+      secrets:
+        $ref: '#/definitions/state.SecretsState'
+      stale_at:
+        description: loaded from the database but not part of the state itself
+        type: string
+    type: object
+  app.Policy:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      name:
+        $ref: '#/definitions/app.PolicyName'
+      permissions:
+        additionalProperties:
+          type: string
+        description: Permissions are used to track granular permissions for each domain
+        type: object
+      role_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  service.RemoveActionLabelsRequest:
+    properties:
+      keys:
+        items:
+          type: string
+        type: array
+    required:
+    - keys
+    type: object
+  plantypes.KustomizeBuildConfig:
+    properties:
+      enable_helm:
+        description: EnableHelm enables Helm chart inflation during kustomize build
+        type: boolean
+      load_restrictor:
+        description: 'LoadRestrictor controls file loading: "none" or "rootOnly" (default)'
+        type: string
+      patches:
+        description: Patches are additional patch files to apply after kustomize build
+        items:
+          type: string
+        type: array
+    type: object
+  state.GCPCloudAccount:
+    properties:
+      project_id:
+        type: string
+      region:
+        type: string
+    type: object
+  compositeerrors.Hints:
+    additionalProperties:
+      type: string
+    type: object
+  app.RunnerJobOperationType:
+    enum:
+    - exec
+    - build
+    - create-apply-plan
+    - create-teardown-plan
+    - apply-plan
+    - unknown
+    type: string
+    x-enum-varnames:
+    - RunnerJobOperationTypeExec
+    - RunnerJobOperationTypeBuild
+    - RunnerJobOperationTypeCreateApplyPlan
+    - RunnerJobOperationTypeCreateTeardownPlan
+    - RunnerJobOperationTypeApplyPlan
+    - RunnerJobOperationTypeUnknown
+  service.CreateActionWorkflowConfigRequest:
+    properties:
+      app_config_id:
+        type: string
+      break_glass_role_arn:
+        type: string
+      dependencies:
+        items:
+          type: string
+        type: array
+      enable_kube_config:
+        type: boolean
+        x-nullable: true
+      kubernetes_context:
+        type: string
+      references:
+        items:
+          type: string
+        type: array
+      role:
+        type: string
+      steps:
+        items:
+          $ref: '#/definitions/service.CreateActionWorkflowConfigStepRequest'
+        type: array
+      timeout:
+        type: integer
+      triggers:
+        items:
+          $ref: '#/definitions/service.CreateActionWorkflowConfigTriggerRequest'
+        type: array
+    required:
+    - app_config_id
+    - steps
+    - triggers
+    type: object
+  service.CreateAppActionRequest:
+    properties:
+      name:
+        type: string
+    type: object
+  state.CloudAccount:
+    properties:
+      aws:
+        $ref: '#/definitions/state.AWSCloudAccount'
+      azure:
+        $ref: '#/definitions/state.AzureCloudAccount'
+      gcp:
+        $ref: '#/definitions/state.GCPCloudAccount'
+    type: object
+  app.PublicGitVCSConfig:
+    properties:
+      branch:
+        type: string
+      component_config_id:
+        type: string
+      component_config_type:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      directory:
+        type: string
+      id:
+        type: string
+      path_filter:
+        type: string
+      repo:
+        description: actual configuration
+        type: string
+      updated_at:
+        type: string
+    type: object
+  state.InputsState:
+    properties:
+      inputs:
+        additionalProperties:
+          type: string
+        type: object
+      populated:
+        type: boolean
+    type: object
+  plantypes.ActionWorkflowRunPlan:
+    properties:
+      attrs:
+        additionalProperties:
+          type: string
+        type: object
+      aws_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      builtin_env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      cluster_info:
+        $ref: '#/definitions/kube.ClusterInfo'
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      id:
+        type: string
+      install_id:
+        type: string
+      override_env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      sandbox_mode:
+        $ref: '#/definitions/plantypes.SandboxMode'
+      steps:
+        items:
+          $ref: '#/definitions/plantypes.ActionWorkflowRunStepPlan'
+        type: array
+      timeout:
+        type: integer
+    type: object
+  plantypes.ActionWorkflowRunStepPlan:
+    properties:
+      attrs:
+        additionalProperties:
+          type: string
+        type: object
+      git_source:
+        $ref: '#/definitions/plantypes.GitSource'
+      interpolated_command:
+        type: string
+      interpolated_env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      interpolated_inline_contents:
+        type: string
+      run_id:
+        type: string
+    type: object
+  github_com_nuonco_nuon_pkg_labels.Selector:
+    properties:
+      match_labels:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_labels.Labels'
+      not_match_labels:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_labels.Labels'
+    type: object
+  plantypes.PulumiDeployPlan:
+    properties:
+      aws_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+      azure_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      cluster_info:
+        $ref: '#/definitions/kube.ClusterInfo'
+      config:
+        additionalProperties:
+          type: string
+        type: object
+      destroy:
+        description: Destroy indicates this is a teardown operation (pulumi destroy instead of up)
+        type: boolean
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      gcp_auth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_gcp_credentials.Config'
+      plan_json:
+        items:
+          type: integer
+        type: array
+      pulumi_version:
+        type: string
+      runtime:
+        type: string
+      stack_name:
+        type: string
+      state:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_types_state.State'
+      update_plans:
+        type: boolean
+      workspace_id:
+        description: Reuse workspace concept for state storage
+        type: string
+    type: object
+  app.ActionWorkflowTriggerConfig:
+    properties:
+      action_workflow_config_id:
+        type: string
+      app_config_id:
+        description: this belongs to an app config id
+        type: string
+      app_id:
+        type: string
+      component:
+        $ref: '#/definitions/app.Component'
+      component_id:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      cron_schedule:
+        type: string
+      id:
+        type: string
+      index:
+        type: integer
+      type:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  configs.OCIRegistryRepository:
+    properties:
+      acrauth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_azure_credentials.Config'
+      ecrauth:
+        $ref: '#/definitions/github_com_nuonco_nuon_pkg_aws_credentials.Config'
+      loginServer:
+        type: string
+      ociauth:
+        $ref: '#/definitions/configs.OCIRegistryAuth'
+      plugin:
+        type: string
+      region:
+        type: string
+      registryType:
+        $ref: '#/definitions/configs.OCIRegistryType'
+      repository:
+        description: based on the type of access, either the repository (ecr) or login server (acr) will be provided.
+        type: string
+      serviceAccountEmail:
+        type: string
+      workloadIdentityProvider:
+        type: string
+    type: object
+  plantypes.SandboxMode:
+    properties:
+      enabled:
+        type: boolean
+      helm:
+        $ref: '#/definitions/plantypes.HelmSandboxMode'
+      kubernetes_manifest:
+        $ref: '#/definitions/plantypes.KubernetesSandboxMode'
+      outputs:
+        additionalProperties: {}
+        type: object
+      pulumi:
+        $ref: '#/definitions/plantypes.PulumiSandboxMode'
+      terraform:
+        $ref: '#/definitions/plantypes.TerraformSandboxMode'
+    type: object
+  app.RunnerJobStatus:
+    enum:
+    - queued
+    - available
+    - in-progress
+    - finished
+    - failed
+    - timed-out
+    - not-attempted
+    - cancelled
+    - unknown
+    type: string
+    x-enum-varnames:
+    - RunnerJobStatusQueued
+    - RunnerJobStatusAvailable
+    - RunnerJobStatusInProgress
+    - RunnerJobStatusFinished
+    - RunnerJobStatusFailed
+    - RunnerJobStatusTimedOut
+    - RunnerJobStatusNotAttempted
+    - RunnerJobStatusCancelled
+    - RunnerJobStatusUnknown
+  service.PublicGitVCSActionWorkflowConfigRequest:
+    properties:
+      branch:
+        type: string
+      directory:
+        type: string
+      repo:
+        type: string
+    required:
+    - branch
+    - directory
+    - repo
+    type: object
+  service.CreateActionWorkflowConfigStepRequest:
+    properties:
+      command:
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/service.ConnectedGithubVCSActionWorkflowConfigRequest'
+      env_vars:
+        additionalProperties:
+          type: string
+        type: object
+      inline_contents:
+        type: string
+      name:
+        type: string
+      public_git_vcs_config:
+        $ref: '#/definitions/service.PublicGitVCSActionWorkflowConfigRequest'
+      references:
+        items:
+          type: string
+        type: array
+    required:
+    - name
+    type: object
+  plantypes.TerraformSandboxMode:
+    properties:
+      plan_contents:
+        description: create the plan output
+        type: string
+      plan_display_contents:
+        type: string
+      state_json:
+        description: needs to be the outputs of `terraform show -json`
+        type: string
+      workspace_id:
+        type: string
+    type: object
+  state.InstallStackState:
+    properties:
+      checksum:
+        type: string
+      outputs:
+        additionalProperties: true
+        type: object
+      populated:
+        type: boolean
+      quick_link_url:
+        type: string
+      status:
+        type: string
+      template_json:
+        type: string
+      template_url:
+        type: string
+    type: object
+  app.AppBranch:
+    properties:
+      app_id:
+        type: string
+      configs:
+        items:
+          $ref: '#/definitions/app.AppBranchConfig'
+        type: array
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      managed_by:
+        type: string
+      name:
+        type: string
+      org_id:
+        type: string
+      queue:
+        $ref: '#/definitions/app.Queue'
+      updated_at:
+        type: string
+      workflow_count:
+        type: integer
+      workflows:
+        items:
+          $ref: '#/definitions/app.Workflow'
+        type: array
+    type: object
+  app.InstallActionWorkflow:
+    properties:
+      action_workflow:
+        $ref: '#/definitions/app.ActionWorkflow'
+      action_workflow_id:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      install_id:
+        type: string
+      runs:
+        items:
+          $ref: '#/definitions/app.InstallActionWorkflowRun'
+        type: array
+      status:
+        description: after query fields filled in after querying
+        type: string
+      updated_at:
+        type: string
+    type: object
+  app.HelmComponentConfig:
+    properties:
+      chart_name:
+        description: Helm specific configurations
+        type: string
+      component_config_connection_id:
+        description: parent reference
+        type: string
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      helm_config_json:
+        $ref: '#/definitions/app.HelmConfig'
+      id:
+        type: string
+      namespace:
+        type: string
+      public_git_vcs_config:
+        $ref: '#/definitions/app.PublicGitVCSConfig'
+      skip_crds:
+        type: boolean
+      storage_driver:
+        type: string
+      take_ownership:
+        description: Newer config fields that we don't need a column for
+        type: boolean
+      updated_at:
+        type: string
+      values:
+        additionalProperties:
+          type: string
+        type: object
+      values_files:
+        items:
+          type: string
+        type: array
+    type: object
+  app.RunnerJobGroup:
+    enum:
+    - health-checks
+    - sync
+    - build
+    - deploy
+    - sandbox
+    - runner
+    - operations
+    - management
+    - actions
+    - ''
+    - any
+    type: string
+    x-enum-varnames:
+    - RunnerJobGroupHealthChecks
+    - RunnerJobGroupSync
+    - RunnerJobGroupBuild
+    - RunnerJobGroupDeploy
+    - RunnerJobGroupSandbox
+    - RunnerJobGroupRunner
+    - RunnerJobGroupOperations
+    - RunnerJobGroupManagement
+    - RunnerJobGroupActions
+    - RunnerJobGroupUnknown
+    - RunnerJobGroupAny
+  state.DomainState:
+    properties:
+      internal_domain:
+        type: string
+      populated:
+        type: boolean
+      public_domain:
+        type: string
+    type: object
+  app.GCPGARImageConfig:
+    properties:
+      component_config_id:
+        type: string
+      component_config_type:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      gcp_project_id:
+        type: string
+      gcp_region:
+        type: string
+      id:
+        type: string
+      service_account_email:
+        type: string
+      updated_at:
+        type: string
+      workload_identity_provider:
+        type: string
+    type: object
+  refs.RefType:
+    enum:
+    - sandbox
+    - install_stack
+    - component
+    - inputs
+    - install_inputs
+    - secrets
+    - actions
+    type: string
+    x-enum-varnames:
+    - RefTypeSandbox
+    - RefTypeInstallStack
+    - RefTypeComponents
+    - RefTypeInputs
+    - RefTypeInstallInputs
+    - RefTypeSecrets
+    - RefTypeActions
+  app.AppBranchConfig:
+    properties:
+      action_ids:
+        items:
+          type: string
+        type: array
+      app_branch_id:
+        type: string
+      component_ids:
+        items:
+          type: string
+        type: array
+      config_number:
+        description: generated view field
+        type: integer
+      connected_github_vcs_config:
+        $ref: '#/definitions/app.ConnectedGithubVCSConfig'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      install_groups:
+        items:
+          $ref: '#/definitions/app.AppBranchInstallGroup'
+        type: array
+      org_id:
+        type: string
+      public_git_vcs_config:
+        $ref: '#/definitions/app.PublicGitVCSConfig'
+      updated_at:
+        type: string
+      workflows:
+        items:
+          $ref: '#/definitions/app.Workflow'
+        type: array
+    type: object
+securityDefinitions:
+  APIKey:
+    description: Type "Bearer" followed by a space and token.
+    in: header
+    name: Authorization
+    type: apiKey
+  OrgID:
+    description: Nuon org ID
+    in: header
+    name: X-Nuon-Org-ID
+    type: apiKey

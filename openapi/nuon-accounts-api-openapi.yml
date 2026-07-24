@@ -1,0 +1,634 @@
+swagger: '2.0'
+info:
+  contact:
+    email: support@nuon.co
+    name: Nuon Support
+  description: API for managing nuon apps, components, installs, and actions.
+  title: Nuon accounts API
+  version: 0.19.1074
+host: api.nuon.co
+basePath: /
+schemes:
+- https
+tags:
+- description: accounts
+  name: accounts
+paths:
+  /v1/account:
+    get:
+      consumes:
+      - application/json
+      description: Get the current account with user journeys and other data
+      operationId: GetCurrentAccount
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Account'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      summary: Get current account
+      tags:
+      - accounts
+  /v1/account/static-token:
+    post:
+      consumes:
+      - application/json
+      description: Creates a long-lived static API token scoped to your current org. Each token gets its own dedicated service account, and only grants access to the current org.
+      operationId: CreateStaticToken
+      parameters:
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateStaticTokenRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_nuonco_nuon_services_ctl-api_internal_app_accounts_service.StaticTokenResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create a static API token for your org
+      tags:
+      - accounts
+  /v1/account/static-tokens:
+    get:
+      description: Lists the static API tokens for your current org. Token secrets are never returned.
+      operationId: ListStaticTokens
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.Token'
+            type: array
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: list your org's static API tokens
+      tags:
+      - accounts
+  /v1/account/static-tokens/{token_id}:
+    delete:
+      description: Deletes a static API token belonging to your current org, along with its dedicated service account. Once deleted, the token can no longer be used to access the API.
+      operationId: DeleteStaticToken
+      parameters:
+      - description: token ID
+        in: path
+        name: token_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '204':
+          description: No Content
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: delete a static API token
+      tags:
+      - accounts
+  /v1/account/user-journeys:
+    get:
+      consumes:
+      - application/json
+      description: Get all user journeys for the current user account
+      operationId: GetUserJourneys
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.UserJourney'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Get user journeys
+      tags:
+      - accounts
+    post:
+      consumes:
+      - application/json
+      description: Add a new user journey with steps to track user progress
+      operationId: CreateUserJourney
+      parameters:
+      - description: Create journey request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateUserJourneyRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.Account'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      summary: Create a new user journey for account
+      tags:
+      - accounts
+  /v1/account/user-journeys/{journey_name}/complete:
+    post:
+      consumes:
+      - application/json
+      description: Mark all remaining steps in the specified user journey as complete
+      operationId: CompleteUserJourney
+      parameters:
+      - description: Journey name to complete
+        in: path
+        name: journey_name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Account'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      summary: Complete all steps in a specific user journey
+      tags:
+      - accounts
+  /v1/account/user-journeys/{journey_name}/reset:
+    post:
+      consumes:
+      - application/json
+      description: Reset all steps in a specified user journey by setting their completion status to false
+      operationId: ResetUserJourney
+      parameters:
+      - description: Journey name
+        in: path
+        name: journey_name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Account'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Reset user journey steps
+      tags:
+      - accounts
+  /v1/account/user-journeys/{journey_name}/steps/{step_name}:
+    patch:
+      consumes:
+      - application/json
+      description: Mark a user journey step as complete or incomplete
+      operationId: UpdateUserJourneyStep
+      parameters:
+      - description: Journey name
+        in: path
+        name: journey_name
+        required: true
+        type: string
+      - description: Step name
+        in: path
+        name: step_name
+        required: true
+        type: string
+      - description: Update step request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/service.UpdateUserJourneyStepRequest'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Account'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      summary: Update user journey step completion status
+      tags:
+      - accounts
+definitions:
+  permissions.Permission:
+    enum:
+    - unknown
+    - all
+    - create
+    - read
+    - update
+    - delete
+    type: string
+    x-enum-varnames:
+    - PermissionUnknown
+    - PermissionAll
+    - PermissionCreate
+    - PermissionRead
+    - PermissionUpdate
+    - PermissionDelete
+  app.AccountType:
+    enum:
+    - auth
+    - auth0
+    - service
+    - canary
+    - integration
+    type: string
+    x-enum-varnames:
+    - AccountTypeAuth
+    - AccountTypeAuth0
+    - AccountTypeService
+    - AccountTypeCanary
+    - AccountTypeIntegration
+  app.UserJourney:
+    properties:
+      name:
+        type: string
+      steps:
+        items:
+          $ref: '#/definitions/app.UserJourneyStep'
+        type: array
+      title:
+        type: string
+    type: object
+  app.UserJourneyStep:
+    properties:
+      complete:
+        type: boolean
+      completed_at:
+        description: Top-level completion tracking fields
+        type: string
+      completion_method:
+        type: string
+      completion_source:
+        type: string
+      metadata:
+        additionalProperties: true
+        description: Flexible metadata for business data
+        type: object
+      name:
+        type: string
+      title:
+        type: string
+    type: object
+  service.UpdateUserJourneyStepRequest:
+    properties:
+      complete:
+        type: boolean
+      metadata:
+        additionalProperties: true
+        type: object
+    type: object
+  permissions.Set:
+    additionalProperties:
+      $ref: '#/definitions/permissions.Permission'
+    type: object
+  github_com_nuonco_nuon_services_ctl-api_internal_app_accounts_service.StaticTokenResponse:
+    properties:
+      api_token:
+        type: string
+      id:
+        type: string
+    type: object
+  service.CreateStaticTokenRequest:
+    properties:
+      duration:
+        default: 8760h
+        description: defaults to one year
+        type: string
+      name:
+        description: human-friendly name to identify the token later
+        type: string
+    required:
+    - name
+    type: object
+  app.Account:
+    properties:
+      account_type:
+        $ref: '#/definitions/app.AccountType'
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      org_ids:
+        description: ReadOnly Fields
+        items:
+          type: string
+        type: array
+      permissions:
+        $ref: '#/definitions/permissions.Set'
+      roles:
+        items:
+          $ref: '#/definitions/app.Role'
+        type: array
+      subject:
+        type: string
+      updated_at:
+        type: string
+      user_journeys:
+        items:
+          $ref: '#/definitions/app.UserJourney'
+        type: array
+    type: object
+  app.TokenType:
+    enum:
+    - auth
+    - auth0
+    - admin
+    - static
+    - integration
+    - canary
+    - nuon
+    type: string
+    x-enum-comments:
+      TokenTypeAuth: nuon auth service
+    x-enum-descriptions:
+    - nuon auth service
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    - ''
+    x-enum-varnames:
+    - TokenTypeAuth
+    - TokenTypeAuth0
+    - TokenTypeAdmin
+    - TokenTypeStatic
+    - TokenTypeIntegration
+    - TokenTypeCanary
+    - TokenTypeNuon
+  app.Token:
+    properties:
+      account_id:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      expires_at:
+        description: claim data
+        type: string
+      id:
+        type: string
+      issued_at:
+        type: string
+      issuer:
+        type: string
+      name:
+        type: string
+      org_id:
+        type: string
+      token_type:
+        $ref: '#/definitions/app.TokenType'
+      updated_at:
+        type: string
+    type: object
+  stderr.ErrResponse:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+      user_error:
+        type: boolean
+    type: object
+  service.CreateUserJourneyStepReq:
+    properties:
+      name:
+        type: string
+      title:
+        type: string
+    required:
+    - name
+    - title
+    type: object
+  app.RoleType:
+    enum:
+    - org_admin
+    - org_support
+    - installer
+    - runner
+    - hosted-installer
+    type: string
+    x-enum-varnames:
+    - RoleTypeOrgAdmin
+    - RoleTypeOrgSupport
+    - RoleTypeInstaller
+    - RoleTypeRunner
+    - RoleTypeHostedInstaller
+  app.Policy:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      name:
+        $ref: '#/definitions/app.PolicyName'
+      permissions:
+        additionalProperties:
+          type: string
+        description: Permissions are used to track granular permissions for each domain
+        type: object
+      role_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  app.Role:
+    properties:
+      createdBy:
+        $ref: '#/definitions/app.Account'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      policies:
+        items:
+          $ref: '#/definitions/app.Policy'
+        type: array
+      role_type:
+        $ref: '#/definitions/app.RoleType'
+      updated_at:
+        type: string
+    type: object
+  app.PolicyName:
+    enum:
+    - org_admin
+    - org_support
+    - installer
+    - runner
+    - hosted_installer
+    type: string
+    x-enum-varnames:
+    - PolicyNameOrgAdmin
+    - PolicyNameOrgSupport
+    - PolicyNameInstaller
+    - PolicyNameRunner
+    - PolicyNameHostedInstaller
+  service.CreateUserJourneyRequest:
+    properties:
+      name:
+        type: string
+      steps:
+        items:
+          $ref: '#/definitions/service.CreateUserJourneyStepReq'
+        type: array
+      title:
+        type: string
+    required:
+    - name
+    - steps
+    - title
+    type: object
+securityDefinitions:
+  APIKey:
+    description: Type "Bearer" followed by a space and token.
+    in: header
+    name: Authorization
+    type: apiKey
+  OrgID:
+    description: Nuon org ID
+    in: header
+    name: X-Nuon-Org-ID
+    type: apiKey

@@ -1,0 +1,1246 @@
+swagger: '2.0'
+info:
+  contact:
+    email: support@nuon.co
+    name: Nuon Support
+  description: API for managing nuon apps, components, installs, and actions.
+  title: Nuon accounts vcs API
+  version: 0.19.1074
+host: api.nuon.co
+basePath: /
+schemes:
+- https
+tags:
+- description: vcs
+  name: vcs
+paths:
+  /v1/vcs/connection-callback:
+    post:
+      consumes:
+      - application/json
+      description: 'Handle VCS connection callback for OAuth flow.
+
+        '
+      operationId: CreateVCSConnectionCallback
+      parameters:
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateConnectionCallbackRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.VCSConnection'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      summary: public connection to create a vcs connection via a callback
+      tags:
+      - vcs
+  /v1/vcs/connections:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns all VCS connections for the provided organization.
+
+        '
+      operationId: GetOrgVCSConnections
+      parameters:
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.VCSConnection'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get vcs connection for an org
+      tags:
+      - vcs
+    post:
+      consumes:
+      - application/json
+      description: 'Create a VCS connection for version control integration.
+
+        '
+      operationId: CreateVCSConnection
+      parameters:
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateConnectionRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.VCSConnection'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: create a vcs connection for Github
+      tags:
+      - vcs
+  /v1/vcs/connections/{connection_id}:
+    delete:
+      consumes:
+      - application/json
+      description: 'Delete a VCS connection.
+
+        '
+      operationId: DeleteVCSConnection
+      parameters:
+      - description: Connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      - description: If true, also uninstall the GitHub App on the GitHub side. Defaults to false so other Nuon orgs sharing the same installation are not impacted.
+        in: query
+        name: delete_github_app
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Deletes a VCS connection
+      tags:
+      - vcs
+    get:
+      consumes:
+      - application/json
+      description: 'Return a VCS connection by id.
+
+        '
+      operationId: GetVCSConnection
+      parameters:
+      - description: connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.VCSConnection'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: returns a vcs connection for an org
+      tags:
+      - vcs
+  /v1/vcs/connections/{connection_id}/branches:
+    get:
+      consumes:
+      - application/json
+      description: Returns list of branches for the specified repository
+      operationId: GetVCSConnectionRepoBranches
+      parameters:
+      - description: connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      - description: repository owner
+        in: query
+        name: owner
+        required: true
+        type: string
+      - description: repository name
+        in: query
+        name: repo
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/service.Branch'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List branches for a repository
+      tags:
+      - vcs
+  /v1/vcs/connections/{connection_id}/check-status:
+    get:
+      consumes:
+      - application/json
+      description: 'Check the real-time status of a VCS (GitHub App) connection.
+
+
+        This endpoint queries GitHub''s API directly to fetch the current installation status, including:
+
+        - Active/Suspended state
+
+        - Account information
+
+        - Permissions
+
+        - Suspension details (if applicable)
+
+
+        **Important**: This endpoint always fetches fresh data from GitHub (no caching) to ensure accurate status information.
+
+
+        ## Response Status Values
+
+
+        - `active`: The GitHub App installation is active and functioning
+
+        - `suspended`: The installation has been suspended (see `suspended_at` and `suspended_by` for details)
+
+        - `unknown`: Unable to determine status (GitHub API error - see `error` field)
+
+
+        ## Use Cases
+
+
+        - Troubleshooting connection issues
+
+        - Monitoring installation health
+
+        - Detecting suspended or revoked installations
+
+        - Validating permissions before operations
+
+        '
+      operationId: CheckVCSConnectionStatus
+      parameters:
+      - description: connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.VCSConnectionStatusResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: check the real-time status of a VCS connection
+      tags:
+      - vcs
+  /v1/vcs/connections/{connection_id}/repos:
+    get:
+      description: Lists all repositories accessible by a GitHub App installation (VCS connection)
+      parameters:
+      - description: VCS Connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.VCSConnectionReposResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List VCS connection repositories
+      tags:
+      - vcs
+  /v1/vcs/connections/{connection_id}/webhook-subscription:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns the webhook subscription associated with a VCS connection.
+
+        '
+      operationId: GetVCSConnectionWebhookSubscription
+      parameters:
+      - description: connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.VCSWebhookSubscription'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: returns the webhook subscription for a vcs connection
+      tags:
+      - vcs
+    post:
+      consumes:
+      - application/json
+      description: 'Creates a webhook subscription for a VCS connection. This enqueues a signal that will register a GitHub webhook for receiving push and pull request events.
+
+        '
+      operationId: CreateVCSConnectionWebhookSubscription
+      parameters:
+      - description: connection ID
+        in: path
+        name: connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: creates a webhook subscription for a vcs connection
+      tags:
+      - vcs
+  /v1/vcs/webhooks/{subscription_id}/events:
+    post:
+      consumes:
+      - application/json
+      description: Receives webhook events for a webhook subscription and creates a GithubEvent for processing
+      operationId: WriteWebhookEvent
+      parameters:
+      - description: Webhook Subscription ID
+        in: path
+        name: subscription_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.GithubEvent'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      summary: Write a VCS webhook event (shared per subscription)
+      tags:
+      - vcs
+  /v1/vcs/{vcs_connection_id}/events:
+    post:
+      consumes:
+      - application/json
+      description: Writes incoming webhook events for a VCS connection (legacy endpoint)
+      operationId: WriteVCSEvent
+      parameters:
+      - description: VCS Connection ID
+        in: path
+        name: vcs_connection_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.GithubEvent'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      summary: Write a VCS webhook event
+      tags:
+      - vcs
+definitions:
+  github.Match:
+    properties:
+      indices:
+        items:
+          type: integer
+        type: array
+      text:
+        type: string
+    type: object
+  app.VCSConnectionCommit:
+    properties:
+      author_email:
+        type: string
+      author_name:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      message:
+        type: string
+      owner_id:
+        description: Polymorphic ownership - references VCS config that owns this commit
+        type: string
+      owner_type:
+        type: string
+      sha:
+        type: string
+      updated_at:
+        type: string
+      vcs_connection_id:
+        type: string
+    type: object
+  app.QueueEmitter:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      cron_schedule:
+        description: 'Schedule configuration
+
+          For cron mode: cron expression (e.g., "0 * * * *")'
+        type: string
+      description:
+        type: string
+      emit_count:
+        type: integer
+      fired:
+        description: 'For scheduled mode: whether the signal has been fired'
+        type: boolean
+      id:
+        type: string
+      jitter_window:
+        description: 'For cron mode: spread emitter ticks deterministically across this window
+
+          to avoid thundering-herd when many emitters share a schedule. A hash of the
+
+          emitter ID determines each emitter''s static offset within the window. Zero
+
+          disables jitter (default).'
+        type: integer
+      last_emitted_at:
+        type: string
+      mode:
+        allOf:
+        - $ref: '#/definitions/app.QueueEmitterMode'
+        description: 'Emitter mode: "cron" for recurring, "scheduled" for one-shot'
+      name:
+        description: Emitter identity
+        type: string
+      next_emit_at:
+        type: string
+      org_id:
+        type: string
+      queue_id:
+        description: 'Many-to-one: each emitter belongs to exactly one queue'
+        type: string
+      scheduled_at:
+        description: 'For scheduled mode: the time to fire the signal'
+        type: string
+      signal_expires_in:
+        description: 'Optional TTL for emitted signals. When set, each emitted signal''s ExpiresAt
+
+          is computed as time.Now().Add(SignalExpiresIn) at emission time.'
+        type: integer
+      signal_template:
+        $ref: '#/definitions/signaldb.SignalData'
+      signal_type:
+        description: Signal template - the signal to emit on each tick
+        type: string
+      status:
+        allOf:
+        - $ref: '#/definitions/app.CompositeStatus'
+        description: Runtime state using shared CompositeStatus
+      updated_at:
+        type: string
+      workflow:
+        allOf:
+        - $ref: '#/definitions/signaldb.WorkflowRef'
+        description: Workflow reference for the emitter's cron workflow
+    type: object
+  signaldb.SignalData:
+    properties:
+      signal: {}
+    type: object
+  app.VCSWebhookSubscription:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      github_hook_id:
+        type: integer
+      github_install_id:
+        type: string
+      id:
+        type: string
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      vcs_connection_id:
+        type: string
+      webhook_url:
+        type: string
+    type: object
+  app.CompositeStatus:
+    properties:
+      created_at_ts:
+        type: integer
+      created_by_id:
+        type: string
+      history:
+        items:
+          $ref: '#/definitions/app.CompositeStatus'
+        type: array
+      metadata:
+        additionalProperties: {}
+        type: object
+      status:
+        $ref: '#/definitions/app.Status'
+      status_human_description:
+        type: string
+    type: object
+  app.Queue:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      emitters:
+        items:
+          $ref: '#/definitions/app.QueueEmitter'
+        type: array
+      id:
+        type: string
+      idle_timeout:
+        type: integer
+      max_depth:
+        type: integer
+      max_in_flight:
+        type: integer
+      metadata:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        type: string
+      org_id:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      queue_signal:
+        items:
+          $ref: '#/definitions/app.QueueSignal'
+        type: array
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/signaldb.WorkflowRef'
+    type: object
+  app.GithubEvent:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      event_type:
+        type: string
+      github_install_id:
+        type: string
+      id:
+        type: string
+      payload:
+        $ref: '#/definitions/blobstore.Blob'
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+    type: object
+  app.QueueSignal:
+    properties:
+      callback:
+        $ref: '#/definitions/callback.Ref'
+      callbacks:
+        items:
+          $ref: '#/definitions/callback.Ref'
+        type: array
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      emitter_id:
+        description: 'Optional: if this signal was emitted by an emitter'
+        type: string
+      enqueued:
+        type: boolean
+      execution_count:
+        type: integer
+      expires_at:
+        type: string
+      id:
+        type: string
+      org_id:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      queue:
+        $ref: '#/definitions/app.Queue'
+      queue_id:
+        type: string
+      signal:
+        $ref: '#/definitions/signaldb.SignalData'
+      signal_context:
+        $ref: '#/definitions/cctx.SignalContext'
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      type:
+        type: string
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/signaldb.WorkflowRef'
+    type: object
+  app.VCSConnection:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      github_account_id:
+        type: string
+      github_account_name:
+        type: string
+      github_install_id:
+        type: string
+      id:
+        type: string
+      queues:
+        items:
+          $ref: '#/definitions/app.Queue'
+        type: array
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      vcs_connection_commit:
+        items:
+          $ref: '#/definitions/app.VCSConnectionCommit'
+        type: array
+    type: object
+  service.VCSConnectionAccount:
+    properties:
+      id:
+        type: integer
+      login:
+        type: string
+      type:
+        type: string
+    type: object
+  app.QueueEmitterMode:
+    enum:
+    - cron
+    - scheduled
+    - fire_once
+    type: string
+    x-enum-varnames:
+    - QueueEmitterModeCron
+    - QueueEmitterModeScheduled
+    - QueueEmitterModeFireOnce
+  app.Status:
+    enum:
+    - error
+    - pending
+    - in-progress
+    - checking-plan
+    - success
+    - not-attempted
+    - cancelled
+    - retrying
+    - discarded
+    - user-skipped
+    - auto-skipped
+    - planning
+    - applying
+    - queued
+    - warning
+    - failed-pending-retry
+    - generating
+    - awaiting-user-run
+    - provisioning
+    - active
+    - outdated
+    - expired
+    - approved
+    - drifted
+    - no-drift
+    - approval-expired
+    - approval-denied
+    - approval-retry
+    - building
+    - deleting
+    - noop
+    - approval-awaiting
+    type: string
+    x-enum-varnames:
+    - StatusError
+    - StatusPending
+    - StatusInProgress
+    - StatusCheckPlan
+    - StatusSuccess
+    - StatusNotAttempted
+    - StatusCancelled
+    - StatusRetrying
+    - StatusDiscarded
+    - StatusUserSkipped
+    - StatusAutoSkipped
+    - StatusPlanning
+    - StatusApplying
+    - StatusQueued
+    - StatusWarning
+    - StatusFailedPendingRetry
+    - InstallStackVersionStatusGenerating
+    - InstallStackVersionStatusPendingUser
+    - InstallStackVersionStatusProvisioning
+    - InstallStackVersionStatusActive
+    - InstallStackVersionStatusOutdated
+    - InstallStackVersionStatusExpired
+    - WorkflowStepApprovalStatusApproved
+    - WorkflowStepDrifted
+    - WorkflowStepNoDrift
+    - WorkflowStepApprovalStatusApprovalExpired
+    - WorkflowStepApprovalStatusApprovalDenied
+    - WorkflowStepApprovalStatusApprovalRetryPlan
+    - StatusBuilding
+    - StatusDeleting
+    - InstallDeployStatusV2Noop
+    - AwaitingApproval
+  github.TextMatch:
+    properties:
+      fragment:
+        type: string
+      matches:
+        items:
+          $ref: '#/definitions/github.Match'
+        type: array
+      object_type:
+        type: string
+      object_url:
+        type: string
+      property:
+        type: string
+    type: object
+  service.VCSConnectionRepo:
+    properties:
+      default_branch:
+        type: string
+      description:
+        type: string
+      fork:
+        type: boolean
+      full_name:
+        type: string
+      html_url:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      private:
+        type: boolean
+      updated_at:
+        type: string
+    type: object
+  cctx.SignalContext:
+    properties:
+      account_id:
+        type: string
+      log_stream_id:
+        type: string
+      org_id:
+        type: string
+      trace_id:
+        type: string
+    type: object
+  github.User:
+    properties:
+      avatar_url:
+        type: string
+      bio:
+        type: string
+      blog:
+        type: string
+      collaborators:
+        type: integer
+      company:
+        type: string
+      created_at:
+        $ref: '#/definitions/github.Timestamp'
+      disk_usage:
+        type: integer
+      email:
+        type: string
+      events_url:
+        type: string
+      followers:
+        type: integer
+      followers_url:
+        type: string
+      following:
+        type: integer
+      following_url:
+        type: string
+      gists_url:
+        type: string
+      gravatar_id:
+        type: string
+      hireable:
+        type: boolean
+      html_url:
+        type: string
+      id:
+        type: integer
+      ldap_dn:
+        type: string
+      location:
+        type: string
+      login:
+        type: string
+      name:
+        type: string
+      node_id:
+        type: string
+      organizations_url:
+        type: string
+      owned_private_repos:
+        type: integer
+      permissions:
+        additionalProperties:
+          type: boolean
+        description: 'Permissions and RoleName identify the permissions and role that a user has on a given
+
+          repository. These are only populated when calling Repositories.ListCollaborators.'
+        type: object
+      plan:
+        $ref: '#/definitions/github.Plan'
+      private_gists:
+        type: integer
+      public_gists:
+        type: integer
+      public_repos:
+        type: integer
+      received_events_url:
+        type: string
+      repos_url:
+        type: string
+      role_name:
+        type: string
+      site_admin:
+        type: boolean
+      starred_url:
+        type: string
+      subscriptions_url:
+        type: string
+      suspended_at:
+        $ref: '#/definitions/github.Timestamp'
+      text_matches:
+        description: 'TextMatches is only populated from search results that request text matches
+
+          See: search.go and https://docs.github.com/en/rest/search/#text-match-metadata'
+        items:
+          $ref: '#/definitions/github.TextMatch'
+        type: array
+      total_private_repos:
+        type: integer
+      twitter_username:
+        type: string
+      two_factor_authentication:
+        type: boolean
+      type:
+        type: string
+      updated_at:
+        $ref: '#/definitions/github.Timestamp'
+      url:
+        description: API URLs
+        type: string
+    type: object
+  callback.Ref:
+    properties:
+      namespace:
+        type: string
+      signal_name:
+        type: string
+      workflow_id:
+        type: string
+    type: object
+  service.VCSConnectionReposResponse:
+    properties:
+      repositories:
+        items:
+          $ref: '#/definitions/service.VCSConnectionRepo'
+        type: array
+      total_count:
+        type: integer
+    type: object
+  service.VCSConnectionStatusResponse:
+    properties:
+      account:
+        $ref: '#/definitions/service.VCSConnectionAccount'
+      checked_at:
+        type: string
+      error:
+        type: string
+      github_install_id:
+        type: string
+      permissions:
+        additionalProperties:
+          type: string
+        type: object
+      repository_selection:
+        type: string
+      status:
+        type: string
+      suspended_at:
+        type: string
+      suspended_by:
+        $ref: '#/definitions/github.User'
+    type: object
+  service.CreateConnectionRequest:
+    properties:
+      github_install_id:
+        type: string
+    required:
+    - github_install_id
+    type: object
+  signaldb.WorkflowRef:
+    properties:
+      id:
+        type: string
+      namespace:
+        type: string
+      run_id:
+        type: string
+    type: object
+  blobstore.Blob:
+    type: object
+  stderr.ErrResponse:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+      user_error:
+        type: boolean
+    type: object
+  service.Branch:
+    properties:
+      name:
+        type: string
+    type: object
+  github.Timestamp:
+    properties:
+      time.Time:
+        type: string
+    type: object
+  github.Plan:
+    properties:
+      collaborators:
+        type: integer
+      filled_seats:
+        type: integer
+      name:
+        type: string
+      private_repos:
+        type: integer
+      seats:
+        type: integer
+      space:
+        type: integer
+    type: object
+  service.CreateConnectionCallbackRequest:
+    properties:
+      github_install_id:
+        type: string
+      org_id:
+        type: string
+    required:
+    - github_install_id
+    - org_id
+    type: object
+securityDefinitions:
+  APIKey:
+    description: Type "Bearer" followed by a space and token.
+    in: header
+    name: Authorization
+    type: apiKey
+  OrgID:
+    description: Nuon org ID
+    in: header
+    name: X-Nuon-Org-ID
+    type: apiKey

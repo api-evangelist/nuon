@@ -1,0 +1,799 @@
+swagger: '2.0'
+info:
+  contact:
+    email: support@nuon.co
+    name: Nuon Support
+  description: API for managing nuon apps, components, installs, and actions.
+  title: Nuon accounts slack API
+  version: 0.19.1074
+host: api.nuon.co
+basePath: /
+schemes:
+- https
+tags:
+- description: slack
+  name: slack
+paths:
+  /slack/commands/nuon:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: 'Slack invokes this endpoint when a user runs `/nuon <subcommand>` in any channel of an installed workspace. Authenticated via the Slack signing-secret middleware (X-Slack-Signature + X-Slack-Request-Timestamp); not via API key. Subcommands: subscribe, unsubscribe, status, help. Responses are ephemeral.'
+      operationId: SlackSlashCommand
+      parameters:
+      - description: Slack team (workspace) ID
+        in: formData
+        name: team_id
+        required: true
+        type: string
+      - description: Channel ID the command was invoked in
+        in: formData
+        name: channel_id
+        required: true
+        type: string
+      - description: Channel name
+        in: formData
+        name: channel_name
+        type: string
+      - description: Slack user ID who invoked the command
+        in: formData
+        name: user_id
+        required: true
+        type: string
+      - description: The slash command itself (e.g. /nuon)
+        in: formData
+        name: command
+        required: true
+        type: string
+      - description: Subcommand text
+        in: formData
+        name: text
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.slashResponse'
+      summary: Slack /nuon slash command webhook
+      tags:
+      - slack
+  /slack/events:
+    post:
+      consumes:
+      - application/json
+      description: 'Receives lifecycle events from Slack: url_verification (handshake), app_uninstalled (workspace removed Nuon), tokens_revoked (bot token invalidated). Authenticated via Slack signing-secret middleware (X-Slack-Signature + X-Slack-Request-Timestamp); not via API key. Returns 200 even for unhandled event types so Slack does not retry.'
+      operationId: SlackEvents
+      parameters:
+      - description: Slack event envelope
+        in: body
+        name: body
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: 'For url_verification: returns challenge. Otherwise empty body.'
+          schema:
+            $ref: '#/definitions/service.slackChallengeResponse'
+      summary: Slack Events API webhook
+      tags:
+      - slack
+  /slack/interactions:
+    post:
+      consumes:
+      - application/x-www-form-urlencoded
+      description: Receives interactive payloads (view_submission, block_actions, block_suggestion, shortcut). Authenticated via Slack signing-secret middleware (X-Slack-Signature + X-Slack-Request-Timestamp); not via API key. Dispatches subscribe/unsubscribe modal submissions, block_actions (scope/notif radios, Remove buttons), and the install picker's external_select block_suggestion handshake. Returns 200 on every parseable envelope so Slack does not retry; unhandled payload types are logged and acked.
+      operationId: SlackInteractions
+      parameters:
+      - description: JSON-encoded interaction payload
+        in: formData
+        name: payload
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+      summary: Slack interactivity & shortcuts request URL
+      tags:
+      - slack
+  /slack/oauth/callback:
+    get:
+      consumes:
+      - application/json
+      description: Receives the OAuth `code` + signed-state JWT from Slack, exchanges the code for a workspace bot token via oauth.v2.access, persists the installation + org link, and redirects to the dashboard. NOT signed by Slack — trust comes from the state JWT signature. Enterprise Grid (org-wide) installs are rejected.
+      operationId: SlackOAuthCallback
+      parameters:
+      - description: OAuth authorization code from Slack
+        in: query
+        name: code
+        required: true
+        type: string
+      - description: Signed state JWT issued by GetInstallURL
+        in: query
+        name: state
+        required: true
+        type: string
+      produces:
+      - text/html
+      responses:
+        '302':
+          description: Redirect to dashboard with ?slack=installed
+        '400':
+          description: HTML error page
+        '401':
+          description: HTML error page
+        '500':
+          description: HTML error page
+      summary: Slack OAuth v2 redirect target
+      tags:
+      - slack
+  /v1/orgs/{org_id}/slack/channel-subscriptions:
+    get:
+      consumes:
+      - application/json
+      description: Returns the per-channel routing rules belonging to the calling org's verified Slack org links.
+      operationId: ListSlackChannelSubscriptions
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.SlackChannelSubscription'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List Slack channel subscriptions for the current org
+      tags:
+      - slack
+    post:
+      consumes:
+      - application/json
+      description: Subscribes a Slack channel to events for the current org. The org_link_id must resolve to a verified SlackOrgLink belonging to the calling org; this is enforced at the DB query level (ABAC).
+      operationId: CreateSlackChannelSubscription
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateChannelSubscriptionRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.SlackChannelSubscription'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Create a Slack channel subscription
+      tags:
+      - slack
+  /v1/orgs/{org_id}/slack/channel-subscriptions/{sub_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Soft-deletes a SlackChannelSubscription belonging to the current org. ABAC scoped at the DB query so callers cannot delete subscriptions outside their org.
+      operationId: DeleteSlackChannelSubscription
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      - description: Slack channel subscription ID
+        in: path
+        name: sub_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Delete a Slack channel subscription
+      tags:
+      - slack
+    patch:
+      consumes:
+      - application/json
+      description: Mutates a per-channel routing rule. Pass only the fields you want to change. Updating `match` may collide with the `(team_id, channel_id, org_link_id, match_canonical)` unique index — the API returns 409 with a clear description in that case so the dashboard can render the same toast it shows on a duplicate create. The subscription must belong to the calling org (ABAC enforced at the DB query level).
+      operationId: UpdateSlackChannelSubscription
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      - description: Subscription ID
+        in: path
+        name: sub_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.UpdateChannelSubscriptionRequest'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.SlackChannelSubscription'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Update a Slack channel subscription
+      tags:
+      - slack
+  /v1/orgs/{org_id}/slack/install-url:
+    get:
+      consumes:
+      - application/json
+      description: Returns a Slack OAuth v2 authorize URL with a signed state JWT bound to the calling account and org. The dashboard redirects the user to this URL to begin the install flow.
+      operationId: GetSlackInstallURL
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.GetInstallURLResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Get the Slack OAuth install URL for the current org
+      tags:
+      - slack
+  /v1/orgs/{org_id}/slack/installations:
+    get:
+      consumes:
+      - application/json
+      description: Returns every active Slack workspace installation that has a verified org link to the calling org.
+      operationId: ListSlackInstallations
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.SlackInstallation'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List Slack workspaces linked to the current org
+      tags:
+      - slack
+  /v1/orgs/{org_id}/slack/installations/{installation_id}/channels:
+    get:
+      consumes:
+      - application/json
+      description: Calls Slack's conversations.list using the installation's bot token and returns the page of channels the bot can see. The installation must belong to a verified org link for the calling org.
+      operationId: ListSlackChannels
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      - description: Slack installation ID
+        in: path
+        name: installation_id
+        required: true
+        type: string
+      - description: Slack cursor for pagination
+        in: query
+        name: cursor
+        type: string
+      - description: Page size (Slack default 100, max 1000)
+        in: query
+        name: limit
+        type: integer
+      - description: Comma-separated channel types (e.g. public_channel,private_channel)
+        in: query
+        name: types
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.ListChannelsResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List channels visible to a Slack installation
+      tags:
+      - slack
+  /v1/orgs/{org_id}/slack/org-links:
+    get:
+      consumes:
+      - application/json
+      description: Returns the verified SlackOrgLink rows belonging to the calling org. Each row carries the link_id used by the channel-subscription create endpoint.
+      operationId: ListSlackOrgLinks
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.SlackOrgLink'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List Slack workspace bindings for the current org
+      tags:
+      - slack
+    post:
+      consumes:
+      - application/json
+      description: Creates a verified SlackOrgLink between the supplied TeamID and the calling org. Used by the Phase 4 confirmation flow when a user finishes the Slack OAuth round-trip and selects the Nuon org to attach the workspace to.
+      operationId: CreateSlackOrgLink
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      - description: Input
+        in: body
+        name: req
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateOrgLinkRequest'
+      produces:
+      - application/json
+      responses:
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/app.SlackOrgLink'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Bind a Slack workspace to the current org
+      tags:
+      - slack
+  /v1/orgs/{org_id}/slack/org-links/{link_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Soft-deletes the SlackOrgLink. Channel subscriptions cascade off via the FK. Idempotent if the link is already revoked.
+      operationId: DeleteSlackOrgLink
+      parameters:
+      - description: Org ID
+        in: path
+        name: org_id
+        required: true
+        type: string
+      - description: Slack org link ID
+        in: path
+        name: link_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Revoke a Slack workspace ↔ org binding
+      tags:
+      - slack
+definitions:
+  client.Conversation:
+    properties:
+      id:
+        type: string
+      is_archived:
+        type: boolean
+      is_channel:
+        type: boolean
+      is_member:
+        type: boolean
+      is_private:
+        type: boolean
+      name:
+        type: string
+    type: object
+  app.SlackInstallationStatus:
+    enum:
+    - active
+    - uninstalled
+    - disabled
+    type: string
+    x-enum-varnames:
+    - SlackInstallationStatusActive
+    - SlackInstallationStatusUninstalled
+    - SlackInstallationStatusDisabled
+  service.slackChallengeResponse:
+    properties:
+      challenge:
+        type: string
+    type: object
+  service.ListChannelsResponse:
+    properties:
+      channels:
+        items:
+          $ref: '#/definitions/client.Conversation'
+        type: array
+      next_cursor:
+        type: string
+    type: object
+  app.SlackOrgLink:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      linked_by_account_id:
+        type: string
+      org_id:
+        type: string
+      status:
+        $ref: '#/definitions/app.SlackOrgLinkStatus'
+      team_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  service.CreateChannelSubscriptionRequest:
+    properties:
+      channel_id:
+        type: string
+      channel_name:
+        type: string
+      interests:
+        type: object
+      match:
+        type: object
+      org_link_id:
+        type: string
+    required:
+    - channel_id
+    - org_link_id
+    type: object
+  app.SlackInstallation:
+    properties:
+      app_id:
+        type: string
+      bot_user_id:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      enterprise_id:
+        type: string
+      id:
+        type: string
+      installed_by_account_id:
+        type: string
+      installed_by_slack_user_id:
+        type: string
+      scope:
+        type: string
+      status:
+        $ref: '#/definitions/app.SlackInstallationStatus'
+      team_id:
+        description: 'TeamID is the stable Slack workspace identifier (e.g. "T0123456789").
+
+          Combined with deleted_at to allow re-installation after uninstall.'
+        type: string
+      team_name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  app.SlackOrgLinkStatus:
+    enum:
+    - verified
+    - revoked
+    type: string
+    x-enum-varnames:
+    - SlackOrgLinkStatusVerified
+    - SlackOrgLinkStatusRevoked
+  app.SlackChannelSubscription:
+    properties:
+      channel_id:
+        type: string
+      channel_name:
+        type: string
+      created_at:
+        type: string
+      created_by_account_id:
+        type: string
+      created_by_id:
+        type: string
+      created_by_slack_user_id:
+        type: string
+      id:
+        type: string
+      interests:
+        description: 'Interests is the per-subscription event filter. Stored as JSONB; one
+
+          shape is shared with webhooks (see internal/pkg/interests). New rows
+
+          default to AllEvents=true via the create handler when the request omits
+
+          the field.'
+        type: object
+      match:
+        description: 'Match is the per-subscription routing predicate. Nil = match every
+
+          event in the org. Non-nil = evaluated by labels.SubscriptionMatch
+
+          against the dispatch-time labels.EventTargets. swaggertype:"object"
+
+          keeps the SDK from materialising the full nested type tree.'
+        type: object
+      org_id:
+        description: OrgID is denormalized from OrgLink for query convenience.
+        type: string
+      org_link_id:
+        type: string
+      team_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  service.GetInstallURLResponse:
+    properties:
+      url:
+        type: string
+    type: object
+  stderr.ErrResponse:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+      user_error:
+        type: boolean
+    type: object
+  service.UpdateChannelSubscriptionRequest:
+    properties:
+      channel_id:
+        type: string
+      channel_name:
+        type: string
+      interests:
+        type: object
+      match:
+        type: object
+    type: object
+  service.slashResponse:
+    properties:
+      response_type:
+        type: string
+      text:
+        type: string
+    type: object
+  service.CreateOrgLinkRequest:
+    properties:
+      team_id:
+        type: string
+    required:
+    - team_id
+    type: object
+securityDefinitions:
+  APIKey:
+    description: Type "Bearer" followed by a space and token.
+    in: header
+    name: Authorization
+    type: apiKey
+  OrgID:
+    description: Nuon org ID
+    in: header
+    name: X-Nuon-Org-ID
+    type: apiKey

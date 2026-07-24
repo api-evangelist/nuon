@@ -1,0 +1,302 @@
+swagger: '2.0'
+info:
+  contact:
+    email: support@nuon.co
+    name: Nuon Support
+  description: API for managing nuon apps, components, installs, and actions.
+  title: Nuon accounts auth API
+  version: 0.19.1074
+host: api.nuon.co
+basePath: /
+schemes:
+- https
+tags:
+- description: auth
+  name: auth
+paths:
+  /v1/auth/me:
+    get:
+      consumes:
+      - application/json
+      description: Returns the authenticated account with identity profile information (provider_type, name, picture)
+      operationId: GetAuthMe
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.AuthMeResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      summary: Get current account with identity information
+      tags:
+      - auth
+  /v1/auth/validate:
+    get:
+      consumes:
+      - application/json
+      description: Returns 200 if the provided token is valid, 401 otherwise.
+      operationId: ValidateToken
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      summary: Validate authentication token
+      tags:
+      - auth
+definitions:
+  permissions.Permission:
+    enum:
+    - unknown
+    - all
+    - create
+    - read
+    - update
+    - delete
+    type: string
+    x-enum-varnames:
+    - PermissionUnknown
+    - PermissionAll
+    - PermissionCreate
+    - PermissionRead
+    - PermissionUpdate
+    - PermissionDelete
+  app.UserJourney:
+    properties:
+      name:
+        type: string
+      steps:
+        items:
+          $ref: '#/definitions/app.UserJourneyStep'
+        type: array
+      title:
+        type: string
+    type: object
+  app.UserJourneyStep:
+    properties:
+      complete:
+        type: boolean
+      completed_at:
+        description: Top-level completion tracking fields
+        type: string
+      completion_method:
+        type: string
+      completion_source:
+        type: string
+      metadata:
+        additionalProperties: true
+        description: Flexible metadata for business data
+        type: object
+      name:
+        type: string
+      title:
+        type: string
+    type: object
+  service.AuthMeResponse:
+    properties:
+      account_type:
+        $ref: '#/definitions/app.AccountType'
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      identities:
+        items:
+          $ref: '#/definitions/service.AuthMeIdentity'
+        type: array
+      org_ids:
+        description: ReadOnly Fields
+        items:
+          type: string
+        type: array
+      permissions:
+        $ref: '#/definitions/permissions.Set'
+      roles:
+        items:
+          $ref: '#/definitions/app.Role'
+        type: array
+      subject:
+        type: string
+      updated_at:
+        type: string
+      user_journeys:
+        items:
+          $ref: '#/definitions/app.UserJourney'
+        type: array
+    type: object
+  permissions.Set:
+    additionalProperties:
+      $ref: '#/definitions/permissions.Permission'
+    type: object
+  app.PolicyName:
+    enum:
+    - org_admin
+    - org_support
+    - installer
+    - runner
+    - hosted_installer
+    type: string
+    x-enum-varnames:
+    - PolicyNameOrgAdmin
+    - PolicyNameOrgSupport
+    - PolicyNameInstaller
+    - PolicyNameRunner
+    - PolicyNameHostedInstaller
+  app.Account:
+    properties:
+      account_type:
+        $ref: '#/definitions/app.AccountType'
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      org_ids:
+        description: ReadOnly Fields
+        items:
+          type: string
+        type: array
+      permissions:
+        $ref: '#/definitions/permissions.Set'
+      roles:
+        items:
+          $ref: '#/definitions/app.Role'
+        type: array
+      subject:
+        type: string
+      updated_at:
+        type: string
+      user_journeys:
+        items:
+          $ref: '#/definitions/app.UserJourney'
+        type: array
+    type: object
+  stderr.ErrResponse:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+      user_error:
+        type: boolean
+    type: object
+  app.RoleType:
+    enum:
+    - org_admin
+    - org_support
+    - installer
+    - runner
+    - hosted-installer
+    type: string
+    x-enum-varnames:
+    - RoleTypeOrgAdmin
+    - RoleTypeOrgSupport
+    - RoleTypeInstaller
+    - RoleTypeRunner
+    - RoleTypeHostedInstaller
+  app.Policy:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      name:
+        $ref: '#/definitions/app.PolicyName'
+      permissions:
+        additionalProperties:
+          type: string
+        description: Permissions are used to track granular permissions for each domain
+        type: object
+      role_id:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  app.Role:
+    properties:
+      createdBy:
+        $ref: '#/definitions/app.Account'
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      id:
+        type: string
+      policies:
+        items:
+          $ref: '#/definitions/app.Policy'
+        type: array
+      role_type:
+        $ref: '#/definitions/app.RoleType'
+      updated_at:
+        type: string
+    type: object
+  app.ProviderType:
+    enum:
+    - oidc
+    - google
+    - github
+    type: string
+    x-enum-varnames:
+    - ProviderTypeOIDC
+    - ProviderTypeGoogle
+    - ProviderTypeGitHub
+  service.AuthMeIdentity:
+    properties:
+      name:
+        type: string
+      picture:
+        type: string
+      provider_type:
+        $ref: '#/definitions/app.ProviderType'
+    type: object
+  app.AccountType:
+    enum:
+    - auth
+    - auth0
+    - service
+    - canary
+    - integration
+    type: string
+    x-enum-varnames:
+    - AccountTypeAuth
+    - AccountTypeAuth0
+    - AccountTypeService
+    - AccountTypeCanary
+    - AccountTypeIntegration
+securityDefinitions:
+  APIKey:
+    description: Type "Bearer" followed by a space and token.
+    in: header
+    name: Authorization
+    type: apiKey
+  OrgID:
+    description: Nuon org ID
+    in: header
+    name: X-Nuon-Org-ID
+    type: apiKey

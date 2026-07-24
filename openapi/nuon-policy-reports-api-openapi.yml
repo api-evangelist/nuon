@@ -1,0 +1,703 @@
+swagger: '2.0'
+info:
+  contact:
+    email: support@nuon.co
+    name: Nuon Support
+  description: API for managing nuon apps, components, installs, and actions.
+  title: Nuon accounts policy-reports API
+  version: 0.19.1074
+host: api.nuon.co
+basePath: /
+schemes:
+- https
+tags:
+- description: policy-reports
+  name: policy-reports
+paths:
+  /v1/apps/{app_id}/policy-analytics/breakdown:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns policy evaluation counts broken down by a single dimension (policy_id, install_id, or owner_type), sorted by violation count (denies first, then warns). Use this to identify which policies, installs, or lifecycle stages produce the most violations.
+
+        '
+      operationId: GetPolicyAnalyticsBreakdown
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: 'dimension to break down by: policy_id, install_id, owner_type'
+        in: query
+        name: dimension
+        required: true
+        type: string
+      - description: start time (RFC3339)
+        in: query
+        name: start
+        type: string
+      - description: end time (RFC3339)
+        in: query
+        name: end
+        type: string
+      - description: filter by install ID
+        in: query
+        name: install_id
+        type: string
+      - description: filter by policy ID
+        in: query
+        name: policy_id
+        type: string
+      - description: max entries to return (default 10)
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.PolicyAnalyticsBreakdown'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get policy analytics breakdown by dimension
+      tags:
+      - policy-reports
+  /v1/apps/{app_id}/policy-analytics/summary:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns aggregate policy evaluation counts for an app over a time range, with optional drill-down by install or policy.
+
+        '
+      operationId: GetPolicyAnalyticsSummary
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: start time (RFC3339)
+        in: query
+        name: start
+        type: string
+      - description: end time (RFC3339)
+        in: query
+        name: end
+        type: string
+      - description: filter by install ID
+        in: query
+        name: install_id
+        type: string
+      - description: filter by policy ID
+        in: query
+        name: policy_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.PolicyAnalyticsSummary'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get policy analytics summary
+      tags:
+      - policy-reports
+  /v1/apps/{app_id}/policy-analytics/timeseries:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns policy evaluation counts bucketed over time for charting, with optional grouping by policy, install, or component.
+
+        '
+      operationId: GetPolicyAnalyticsTimeseries
+      parameters:
+      - description: app ID
+        in: path
+        name: app_id
+        required: true
+        type: string
+      - description: start time (RFC3339)
+        in: query
+        name: start
+        type: string
+      - description: end time (RFC3339)
+        in: query
+        name: end
+        type: string
+      - description: 'comma-separated dimensions: policy_id, install_id, component_id, owner_type'
+        in: query
+        name: group_by
+        type: string
+      - description: filter by install ID
+        in: query
+        name: install_id
+        type: string
+      - description: filter by policy ID
+        in: query
+        name: policy_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/service.PolicyAnalyticsTimeseries'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get policy analytics timeseries
+      tags:
+      - policy-reports
+  /v1/policy-reports:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns policy reports for the current organization.
+
+        '
+      operationId: GetPolicyReports
+      parameters:
+      - default: 0
+        description: offset of results to return
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: limit of results to return
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: page number of results to return
+        in: query
+        name: page
+        type: integer
+      - description: owner type (install_deploys, install_sandbox_runs, component_builds)
+        in: query
+        name: owner_type
+        type: string
+      - description: owner id
+        in: query
+        name: owner_id
+        type: string
+      - description: app id
+        in: query
+        name: app_id
+        type: string
+      - description: install id
+        in: query
+        name: install_id
+        type: string
+      - description: report status
+        in: query
+        name: status
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.PolicyReport'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get policy reports
+      tags:
+      - policy-reports
+  /v1/policy-reports/{report_id}:
+    get:
+      consumes:
+      - application/json
+      description: 'Returns a single policy report by ID.
+
+        '
+      operationId: GetPolicyReport
+      parameters:
+      - description: policy report ID
+        in: path
+        name: report_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.PolicyReport'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: get policy report
+      tags:
+      - policy-reports
+  /v1/policy-reports/{report_id}/export:
+    get:
+      consumes:
+      - application/json
+      description: 'Exports a policy report as JSON, SARIF, or PDF.
+
+        '
+      operationId: ExportPolicyReport
+      parameters:
+      - description: policy report ID
+        in: path
+        name: report_id
+        required: true
+        type: string
+      - description: 'export format: json, sarif, pdf (default: json)'
+        in: query
+        name: format
+        type: string
+      produces:
+      - application/json
+      - application/pdf
+      responses:
+        '200':
+          description: OK
+          schema: {}
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: export policy report
+      tags:
+      - policy-reports
+definitions:
+  app.PolicyReportOwnerType:
+    enum:
+    - install_deploys
+    - install_sandbox_runs
+    - component_builds
+    type: string
+    x-enum-varnames:
+    - PolicyReportOwnerTypeInstallDeploy
+    - PolicyReportOwnerTypeInstallSandboxRun
+    - PolicyReportOwnerTypeComponentBuild
+  app.PolicyReport:
+    properties:
+      app_id:
+        description: Denormalized context for filtering
+        type: string
+      app_name:
+        type: string
+      component_id:
+        type: string
+      component_name:
+        type: string
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      deny_count:
+        description: Summary counts for list views
+        type: integer
+      evaluated_at:
+        description: Canonical policy evaluation data
+        type: string
+      id:
+        type: string
+      inputs:
+        items:
+          $ref: '#/definitions/app.PolicyInputRef'
+        type: array
+      install_id:
+        type: string
+      install_name:
+        type: string
+      org_name:
+        description: Denormalized display names for human-readable reports
+        type: string
+      owner_id:
+        description: Polymorphic relationship to the impacted Nuon resource (indexes defined in Indexes())
+        type: string
+      owner_type:
+        $ref: '#/definitions/app.PolicyReportOwnerType'
+      pass_count:
+        type: integer
+      policies:
+        items:
+          $ref: '#/definitions/app.PolicyResult'
+        type: array
+      policy_ids:
+        items:
+          type: string
+        type: array
+      runner_job_id:
+        type: string
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      violations:
+        items:
+          $ref: '#/definitions/app.PolicyViolation'
+        type: array
+      warn_count:
+        type: integer
+      workflow_step_policy_validation_id:
+        description: Optional context references (indexes defined in Indexes())
+        type: string
+    type: object
+  app.PolicyViolation:
+    properties:
+      input_identity:
+        description: Human-readable input reference (e.g., "Deployment/default/nginx")
+        type: string
+      input_index:
+        type: integer
+      message:
+        type: string
+      policy_id:
+        type: string
+      policy_name:
+        type: string
+      severity:
+        description: '"deny" or "warn"'
+        type: string
+    type: object
+  service.PolicyAnalyticsSummary:
+    properties:
+      end:
+        type: string
+      start:
+        type: string
+      total_denies:
+        type: integer
+      total_evaluations:
+        type: integer
+      total_passes:
+        type: integer
+      total_warns:
+        type: integer
+      unique_policies:
+        type: integer
+      unique_reports:
+        type: integer
+    type: object
+  app.PolicyResult:
+    properties:
+      deny_count:
+        type: integer
+      input_count:
+        type: integer
+      pass_count:
+        type: integer
+      policy_id:
+        type: string
+      policy_name:
+        type: string
+      status:
+        description: '"deny", "warn", or "pass"'
+        type: string
+      warn_count:
+        type: integer
+    type: object
+  app.CompositeStatus:
+    properties:
+      created_at_ts:
+        type: integer
+      created_by_id:
+        type: string
+      history:
+        items:
+          $ref: '#/definitions/app.CompositeStatus'
+        type: array
+      metadata:
+        additionalProperties: {}
+        type: object
+      status:
+        $ref: '#/definitions/app.Status'
+      status_human_description:
+        type: string
+    type: object
+  service.SeriesPoint:
+    properties:
+      denies:
+        type: integer
+      evaluations:
+        type: integer
+      labels:
+        additionalProperties:
+          type: string
+        type: object
+      passes:
+        type: integer
+      warns:
+        type: integer
+    type: object
+  service.TimeseriesBucket:
+    properties:
+      denies:
+        type: integer
+      evaluations:
+        type: integer
+      passes:
+        type: integer
+      series:
+        items:
+          $ref: '#/definitions/service.SeriesPoint'
+        type: array
+      time:
+        type: string
+      warns:
+        type: integer
+    type: object
+  stderr.ErrResponse:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+      user_error:
+        type: boolean
+    type: object
+  service.PolicyAnalyticsTimeseries:
+    properties:
+      buckets:
+        items:
+          $ref: '#/definitions/service.TimeseriesBucket'
+        type: array
+      end:
+        type: string
+      group_by:
+        items:
+          type: string
+        type: array
+      interval:
+        type: string
+      start:
+        type: string
+    type: object
+  app.Status:
+    enum:
+    - error
+    - pending
+    - in-progress
+    - checking-plan
+    - success
+    - not-attempted
+    - cancelled
+    - retrying
+    - discarded
+    - user-skipped
+    - auto-skipped
+    - planning
+    - applying
+    - queued
+    - warning
+    - failed-pending-retry
+    - generating
+    - awaiting-user-run
+    - provisioning
+    - active
+    - outdated
+    - expired
+    - approved
+    - drifted
+    - no-drift
+    - approval-expired
+    - approval-denied
+    - approval-retry
+    - building
+    - deleting
+    - noop
+    - approval-awaiting
+    type: string
+    x-enum-varnames:
+    - StatusError
+    - StatusPending
+    - StatusInProgress
+    - StatusCheckPlan
+    - StatusSuccess
+    - StatusNotAttempted
+    - StatusCancelled
+    - StatusRetrying
+    - StatusDiscarded
+    - StatusUserSkipped
+    - StatusAutoSkipped
+    - StatusPlanning
+    - StatusApplying
+    - StatusQueued
+    - StatusWarning
+    - StatusFailedPendingRetry
+    - InstallStackVersionStatusGenerating
+    - InstallStackVersionStatusPendingUser
+    - InstallStackVersionStatusProvisioning
+    - InstallStackVersionStatusActive
+    - InstallStackVersionStatusOutdated
+    - InstallStackVersionStatusExpired
+    - WorkflowStepApprovalStatusApproved
+    - WorkflowStepDrifted
+    - WorkflowStepNoDrift
+    - WorkflowStepApprovalStatusApprovalExpired
+    - WorkflowStepApprovalStatusApprovalDenied
+    - WorkflowStepApprovalStatusApprovalRetryPlan
+    - StatusBuilding
+    - StatusDeleting
+    - InstallDeployStatusV2Noop
+    - AwaitingApproval
+  app.PolicyInputRef:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+    type: object
+  service.PolicyAnalyticsBreakdown:
+    properties:
+      dimension:
+        type: string
+      end:
+        type: string
+      entries:
+        items:
+          $ref: '#/definitions/service.BreakdownEntry'
+        type: array
+      start:
+        type: string
+    type: object
+  service.BreakdownEntry:
+    properties:
+      denies:
+        type: integer
+      evaluations:
+        type: integer
+      key:
+        type: string
+      passes:
+        type: integer
+      warns:
+        type: integer
+    type: object
+securityDefinitions:
+  APIKey:
+    description: Type "Bearer" followed by a space and token.
+    in: header
+    name: Authorization
+    type: apiKey
+  OrgID:
+    description: Nuon org ID
+    in: header
+    name: X-Nuon-Org-ID
+    type: apiKey

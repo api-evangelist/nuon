@@ -1,0 +1,611 @@
+swagger: '2.0'
+info:
+  contact:
+    email: support@nuon.co
+    name: Nuon Support
+  description: API for managing nuon apps, components, installs, and actions.
+  title: Nuon accounts queues API
+  version: 0.19.1074
+host: api.nuon.co
+basePath: /
+schemes:
+- https
+tags:
+- description: queues
+  name: queues
+paths:
+  /v1/queues:
+    get:
+      consumes:
+      - application/json
+      description: List queues with optional filtering by owner
+      operationId: ListQueues
+      parameters:
+      - description: Filter by owner ID
+        in: query
+        name: owner_id
+        type: string
+      - description: Filter by owner type (e.g., 'app_branches')
+        in: query
+        name: owner_type
+        type: string
+      - default: 50
+        description: Limit results
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Offset results
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.Queue'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List queues
+      tags:
+      - queues
+  /v1/queues/{queue_id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a single queue by its ID
+      operationId: GetQueue
+      parameters:
+      - description: Queue ID
+        in: path
+        name: queue_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Queue'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Get queue by ID
+      tags:
+      - queues
+  /v1/queues/{queue_id}/signals:
+    get:
+      consumes:
+      - application/json
+      description: Get a list of signals for a specific queue with optional filtering
+      operationId: GetQueueSignals
+      parameters:
+      - description: Queue ID
+        in: path
+        name: queue_id
+        required: true
+        type: string
+      - description: Filter by owner ID
+        in: query
+        name: owner_id
+        type: string
+      - description: Filter by owner type (e.g., app_branches)
+        in: query
+        name: owner_type
+        type: string
+      - description: Filter by status
+        in: query
+        name: status
+        type: string
+      - description: Filter by signal type
+        in: query
+        name: type
+        type: string
+      - description: 'Limit results (default: 50)'
+        in: query
+        name: limit
+        type: integer
+      - description: 'Offset for pagination (default: 0)'
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/app.QueueSignal'
+            type: array
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: List queue signals
+      tags:
+      - queues
+  /v1/queues/{queue_id}/signals/{signal_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get detailed information about a specific queue signal
+      operationId: GetQueueSignal
+      parameters:
+      - description: Queue ID
+        in: path
+        name: queue_id
+        required: true
+        type: string
+      - description: Signal ID
+        in: path
+        name: signal_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.QueueSignal'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Get queue signal details
+      tags:
+      - queues
+  /v1/queues/{queue_id}/signals/{signal_id}/await:
+    get:
+      consumes:
+      - application/json
+      description: Blocks until the queue signal finishes or the timeout is reached
+      operationId: AwaitQueueSignal
+      parameters:
+      - description: Queue ID
+        in: path
+        name: queue_id
+        required: true
+        type: string
+      - description: Signal ID
+        in: path
+        name: signal_id
+        required: true
+        type: string
+      - description: Timeout in seconds (default 30, max 120)
+        in: query
+        name: timeout
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/app.QueueSignal'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+        '408':
+          description: Request Timeout
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Long-poll for queue signal completion
+      tags:
+      - queues
+  /v1/queues/{queue_id}/signals/{signal_id}/graph:
+    get:
+      consumes:
+      - application/json
+      description: Returns a recursive tree of a signal and all its awaited/enqueued child signals.
+      operationId: GetQueueSignalGraph
+      parameters:
+      - description: Queue ID
+        in: path
+        name: queue_id
+        required: true
+        type: string
+      - description: Signal ID
+        in: path
+        name: signal_id
+        required: true
+        type: string
+      - description: Max recursion depth (default 1, max 10)
+        in: query
+        name: depth
+        type: integer
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Get signal execution graph
+      tags:
+      - queues
+  /v1/queues/{queue_id}/status:
+    get:
+      consumes:
+      - application/json
+      description: Get real-time status of a queue including depth and in-flight signals
+      operationId: GetQueueStatus
+      parameters:
+      - description: Queue ID
+        in: path
+        name: queue_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/queue.StatusResponse'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/stderr.ErrResponse'
+      security:
+      - APIKey: []
+      - OrgID: []
+      summary: Get live queue status
+      tags:
+      - queues
+definitions:
+  app.Queue:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      emitters:
+        items:
+          $ref: '#/definitions/app.QueueEmitter'
+        type: array
+      id:
+        type: string
+      idle_timeout:
+        type: integer
+      max_depth:
+        type: integer
+      max_in_flight:
+        type: integer
+      metadata:
+        additionalProperties:
+          type: string
+        type: object
+      name:
+        type: string
+      org_id:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      queue_signal:
+        items:
+          $ref: '#/definitions/app.QueueSignal'
+        type: array
+      status_v2:
+        $ref: '#/definitions/app.CompositeStatus'
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/signaldb.WorkflowRef'
+    type: object
+  app.QueueSignal:
+    properties:
+      callback:
+        $ref: '#/definitions/callback.Ref'
+      callbacks:
+        items:
+          $ref: '#/definitions/callback.Ref'
+        type: array
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      emitter_id:
+        description: 'Optional: if this signal was emitted by an emitter'
+        type: string
+      enqueued:
+        type: boolean
+      execution_count:
+        type: integer
+      expires_at:
+        type: string
+      id:
+        type: string
+      org_id:
+        type: string
+      owner_id:
+        type: string
+      owner_type:
+        type: string
+      queue:
+        $ref: '#/definitions/app.Queue'
+      queue_id:
+        type: string
+      signal:
+        $ref: '#/definitions/signaldb.SignalData'
+      signal_context:
+        $ref: '#/definitions/cctx.SignalContext'
+      status:
+        $ref: '#/definitions/app.CompositeStatus'
+      type:
+        type: string
+      updated_at:
+        type: string
+      workflow:
+        $ref: '#/definitions/signaldb.WorkflowRef'
+    type: object
+  app.QueueEmitter:
+    properties:
+      created_at:
+        type: string
+      created_by_id:
+        type: string
+      cron_schedule:
+        description: 'Schedule configuration
+
+          For cron mode: cron expression (e.g., "0 * * * *")'
+        type: string
+      description:
+        type: string
+      emit_count:
+        type: integer
+      fired:
+        description: 'For scheduled mode: whether the signal has been fired'
+        type: boolean
+      id:
+        type: string
+      jitter_window:
+        description: 'For cron mode: spread emitter ticks deterministically across this window
+
+          to avoid thundering-herd when many emitters share a schedule. A hash of the
+
+          emitter ID determines each emitter''s static offset within the window. Zero
+
+          disables jitter (default).'
+        type: integer
+      last_emitted_at:
+        type: string
+      mode:
+        allOf:
+        - $ref: '#/definitions/app.QueueEmitterMode'
+        description: 'Emitter mode: "cron" for recurring, "scheduled" for one-shot'
+      name:
+        description: Emitter identity
+        type: string
+      next_emit_at:
+        type: string
+      org_id:
+        type: string
+      queue_id:
+        description: 'Many-to-one: each emitter belongs to exactly one queue'
+        type: string
+      scheduled_at:
+        description: 'For scheduled mode: the time to fire the signal'
+        type: string
+      signal_expires_in:
+        description: 'Optional TTL for emitted signals. When set, each emitted signal''s ExpiresAt
+
+          is computed as time.Now().Add(SignalExpiresIn) at emission time.'
+        type: integer
+      signal_template:
+        $ref: '#/definitions/signaldb.SignalData'
+      signal_type:
+        description: Signal template - the signal to emit on each tick
+        type: string
+      status:
+        allOf:
+        - $ref: '#/definitions/app.CompositeStatus'
+        description: Runtime state using shared CompositeStatus
+      updated_at:
+        type: string
+      workflow:
+        allOf:
+        - $ref: '#/definitions/signaldb.WorkflowRef'
+        description: Workflow reference for the emitter's cron workflow
+    type: object
+  cctx.SignalContext:
+    properties:
+      account_id:
+        type: string
+      log_stream_id:
+        type: string
+      org_id:
+        type: string
+      trace_id:
+        type: string
+    type: object
+  signaldb.WorkflowRef:
+    properties:
+      id:
+        type: string
+      namespace:
+        type: string
+      run_id:
+        type: string
+    type: object
+  signaldb.SignalData:
+    properties:
+      signal: {}
+    type: object
+  app.CompositeStatus:
+    properties:
+      created_at_ts:
+        type: integer
+      created_by_id:
+        type: string
+      history:
+        items:
+          $ref: '#/definitions/app.CompositeStatus'
+        type: array
+      metadata:
+        additionalProperties: {}
+        type: object
+      status:
+        $ref: '#/definitions/app.Status'
+      status_human_description:
+        type: string
+    type: object
+  callback.Ref:
+    properties:
+      namespace:
+        type: string
+      signal_name:
+        type: string
+      workflow_id:
+        type: string
+    type: object
+  app.QueueEmitterMode:
+    enum:
+    - cron
+    - scheduled
+    - fire_once
+    type: string
+    x-enum-varnames:
+    - QueueEmitterModeCron
+    - QueueEmitterModeScheduled
+    - QueueEmitterModeFireOnce
+  app.Status:
+    enum:
+    - error
+    - pending
+    - in-progress
+    - checking-plan
+    - success
+    - not-attempted
+    - cancelled
+    - retrying
+    - discarded
+    - user-skipped
+    - auto-skipped
+    - planning
+    - applying
+    - queued
+    - warning
+    - failed-pending-retry
+    - generating
+    - awaiting-user-run
+    - provisioning
+    - active
+    - outdated
+    - expired
+    - approved
+    - drifted
+    - no-drift
+    - approval-expired
+    - approval-denied
+    - approval-retry
+    - building
+    - deleting
+    - noop
+    - approval-awaiting
+    type: string
+    x-enum-varnames:
+    - StatusError
+    - StatusPending
+    - StatusInProgress
+    - StatusCheckPlan
+    - StatusSuccess
+    - StatusNotAttempted
+    - StatusCancelled
+    - StatusRetrying
+    - StatusDiscarded
+    - StatusUserSkipped
+    - StatusAutoSkipped
+    - StatusPlanning
+    - StatusApplying
+    - StatusQueued
+    - StatusWarning
+    - StatusFailedPendingRetry
+    - InstallStackVersionStatusGenerating
+    - InstallStackVersionStatusPendingUser
+    - InstallStackVersionStatusProvisioning
+    - InstallStackVersionStatusActive
+    - InstallStackVersionStatusOutdated
+    - InstallStackVersionStatusExpired
+    - WorkflowStepApprovalStatusApproved
+    - WorkflowStepDrifted
+    - WorkflowStepNoDrift
+    - WorkflowStepApprovalStatusApprovalExpired
+    - WorkflowStepApprovalStatusApprovalDenied
+    - WorkflowStepApprovalStatusApprovalRetryPlan
+    - StatusBuilding
+    - StatusDeleting
+    - InstallDeployStatusV2Noop
+    - AwaitingApproval
+  stderr.ErrResponse:
+    properties:
+      description:
+        type: string
+      error:
+        type: string
+      user_error:
+        type: boolean
+    type: object
+  queue.StatusResponse:
+    properties:
+      inFlight:
+        items:
+          type: string
+        type: array
+      inFlightCount:
+        type: integer
+      paused:
+        type: boolean
+      queueDepthCount:
+        type: integer
+      ready:
+        type: boolean
+      stopped:
+        type: boolean
+    type: object
+securityDefinitions:
+  APIKey:
+    description: Type "Bearer" followed by a space and token.
+    in: header
+    name: Authorization
+    type: apiKey
+  OrgID:
+    description: Nuon org ID
+    in: header
+    name: X-Nuon-Org-ID
+    type: apiKey
