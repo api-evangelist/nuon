@@ -1,0 +1,48 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.nuon.co/cli, https://docs.nuon.co/cli-commands, https://docs.nuon.co/tui
+name: nuon
+description: >-
+  First-party Nuon CLI for managing the full BYOC app + install lifecycle from the terminal —
+  auth, orgs/tokens, apps, config sync, installs, components, actions, runbooks, and webhooks.
+  Ships interactive TUIs and a plugin/extension system.
+binary_package: packages/nuon-packages.yml
+install:
+  - method: homebrew
+    command: brew install nuonco/tap/nuon
+    upgrade: brew upgrade nuonco/tap/nuon
+  - method: install-script
+    command: bash <(curl -sSL https://nuon-artifacts.s3.us-west-2.amazonaws.com/cli/install.sh)
+  - method: manual-binary
+    url: https://nuon-artifacts.s3.us-west-2.amazonaws.com/cli
+    note: Versioned binaries for macOS and Linux.
+  - method: github-action
+    url: https://github.com/nuonco/actions-nuon
+    note: Set up the nuon CLI in CI/CD.
+auth:
+  login: nuon auth login
+  logout: nuon auth logout
+  api_token: nuon orgs api-tokens create --name <name> --role <org_admin|org_support|org_read_only>
+command_groups:
+  - group: auth
+    commands: [auth login, auth logout]
+  - group: orgs
+    commands: [orgs select, orgs current, orgs api-tokens create, orgs api-tokens list, orgs api-tokens delete, orgs update-user-role, orgs webhooks list, orgs webhooks create, orgs webhooks update, orgs webhooks delete]
+  - group: apps
+    commands: [apps create, apps sync, apps validate, apps list, apps select]
+  - group: installs
+    commands: [installs create, installs list, installs get, installs deploy-components, installs outputs, installs reprovision-sandbox]
+  - group: components
+    commands: [components]
+  - group: actions
+    commands: [actions]
+  - group: runbooks
+    commands: [runbooks --install-id <id>]
+  - group: help
+    commands: [docs, completion, version]
+extensions:
+  note: Extend the CLI with community and first-party plugins (nuon-ext-*).
+  docs: https://docs.nuon.co/guides/cli-extensions
+tui:
+  note: Run entire workflows and trigger install actions via TUIs.
+  docs: https://docs.nuon.co/tui

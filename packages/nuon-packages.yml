@@ -1,0 +1,62 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.nuon.co/sdks, https://github.com/nuonco
+note: >-
+  Nuon officially maintains a Go SDK; community/first-party Python and Elixir SDKs also exist in
+  the nuonco org. The CLI binary is distributed via Homebrew and an install script (see cli/).
+  Terraform providers are published to the Terraform Registry.
+packages:
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/nuonco/nuon-go
+    url: https://pkg.go.dev/github.com/nuonco/nuon-go
+    source: https://github.com/nuonco/nuon-go
+    install: go get github.com/nuonco/nuon-go
+    official: true
+  - language: go
+    registry: github
+    name: nuonco/nuon-runner-go
+    url: https://github.com/nuonco/nuon-runner-go
+    install: go get github.com/nuonco/nuon-runner-go
+    description: SDK that powers the Nuon runner.
+    official: true
+  - language: python
+    registry: github
+    name: nuonco/nuon-python
+    url: https://github.com/nuonco/nuon-python
+    install: pip install nuon
+    description: SDK for integrating with Nuon from Python.
+    official: true
+  - language: elixir
+    registry: github
+    name: nuonco/nuon-elixir
+    url: https://github.com/nuonco/nuon-elixir
+    description: SDK for integrating with Nuon from Elixir.
+    official: true
+  - language: hcl
+    registry: terraform
+    name: nuonco/nuon
+    url: https://registry.terraform.io/providers/nuonco/nuon/latest
+    source: https://github.com/nuonco/terraform-provider-nuon
+    description: Terraform provider for managing applications in Nuon.
+    official: true
+  - language: hcl
+    registry: terraform
+    name: nuonco/stack
+    url: https://registry.terraform.io/providers/nuonco/stack/latest
+    source: https://github.com/nuonco/terraform-provider-stack
+    description: Terraform provider for reading Nuon install-stack configuration.
+    official: true
+  - language: cli
+    registry: homebrew
+    name: nuonco/tap/nuon
+    url: https://github.com/nuonco/homebrew-tap
+    install: brew install nuonco/tap/nuon
+    description: Nuon CLI (also via install script). See cli/nuon-cli.yml.
+    official: true
+  - language: yaml
+    registry: github-actions
+    name: nuonco/actions-nuon
+    url: https://github.com/nuonco/actions-nuon
+    description: GitHub Action for using the Nuon CLI in CI/CD.
+    official: true

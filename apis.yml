@@ -1,9 +1,34 @@
 aid: nuon
 name: Nuon
-description: Nuon is a company surfaced as a portfolio company of redpoint-ventures, uncork-capital and
-  added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 26
+  pass: local-v1
+description: >-
+  Nuon is a Bring Your Own Cloud (BYOC) continuous-delivery platform for software vendors. It lets
+  vendors package existing applications — Terraform, Pulumi, Helm charts, Kubernetes manifests, and
+  container images — and deploy them into their customers' own AWS, Azure, or GCP accounts while
+  keeping a SaaS-like experience. Nuon runs a Control Plane plus egress-only Runners installed in
+  each customer account (no cross-account IAM), and adds day-2 operations: least-privilege operation
+  roles, drift detection, approval workflows, OPA-based policies, runbooks, secrets, actions, and
+  org-scoped CloudEvents webhooks. The platform exposes a REST control-plane API (OpenAPI v2 + v3),
+  a first-party CLI and TUIs, Go/Python/Elixir SDKs, and Terraform providers. Nuon's core is open
+  source under github.com/nuonco.
 url: https://raw.githubusercontent.com/api-evangelist/nuon/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://nuon.co/favicon.svg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -13,15 +38,275 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- BYOC
+- Deployment
+- Continuous Delivery
+- DevOps
+- Infrastructure
+- Cloud
+- Multi-Cloud
+- Kubernetes
+- Terraform
+- Platform Engineering
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: nuon:nuon-accounts-api
+  name: Nuon accounts API
+  description: accounts
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-accounts-api-openapi.yml
+- aid: nuon:nuon-actions-api
+  name: Nuon actions API
+  description: actions
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - actions
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-actions-api-openapi.yml
+- aid: nuon:nuon-actions-runner-api
+  name: Nuon actions/runner API
+  description: actions/runner
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - actions/runner
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-actions-runner-api-openapi.yml
+- aid: nuon:nuon-apps-api
+  name: Nuon apps API
+  description: apps
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - apps
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-apps-api-openapi.yml
+- aid: nuon:nuon-auth-api
+  name: Nuon auth API
+  description: auth
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - auth
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-auth-api-openapi.yml
+- aid: nuon:nuon-components-api
+  name: Nuon components API
+  description: components
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - components
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-components-api-openapi.yml
+- aid: nuon:nuon-general-api
+  name: Nuon general API
+  description: general
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - general
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-general-api-openapi.yml
+- aid: nuon:nuon-installs-api
+  name: Nuon installs API
+  description: installs
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - installs
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-installs-api-openapi.yml
+- aid: nuon:nuon-notebooks-api
+  name: Nuon notebooks API
+  description: notebooks
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - notebooks
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-notebooks-api-openapi.yml
+- aid: nuon:nuon-onboarding-api
+  name: Nuon onboarding API
+  description: onboarding
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-onboarding-api-openapi.yml
+- aid: nuon:nuon-orgs-api
+  name: Nuon orgs API
+  description: orgs
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - orgs
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-orgs-api-openapi.yml
+- aid: nuon:nuon-policy-reports-api
+  name: Nuon policy-reports API
+  description: policy-reports
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - policy-reports
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-policy-reports-api-openapi.yml
+- aid: nuon:nuon-queues-api
+  name: Nuon queues API
+  description: queues
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - queues
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-queues-api-openapi.yml
+- aid: nuon:nuon-runbooks-api
+  name: Nuon runbooks API
+  description: runbooks
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - runbooks
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-runbooks-api-openapi.yml
+- aid: nuon:nuon-runners-api
+  name: Nuon runners API
+  description: runners
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - runners
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-runners-api-openapi.yml
+- aid: nuon:nuon-runners-runner-api
+  name: Nuon runners/runner API
+  description: runners/runner
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - runners/runner
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-runners-runner-api-openapi.yml
+- aid: nuon:nuon-slack-api
+  name: Nuon slack API
+  description: slack
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - slack
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-slack-api-openapi.yml
+- aid: nuon:nuon-vcs-api
+  name: Nuon vcs API
+  description: vcs
+  humanURL: https://docs.nuon.co/nuon-api
+  baseURL: https://api.nuon.co
+  tags:
+  - vcs
+  properties:
+  - type: OpenAPI
+    url: openapi/nuon-vcs-api-openapi.yml
 common:
+- type: DomainSecurity
+  url: security/nuon-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/nuon-agentic-access.yml
+- type: Authentication
+  url: authentication/nuon-authentication.yml
 - type: Website
   url: https://nuon.co/
+- type: DeveloperPortal
+  url: https://docs.nuon.co
+- type: Documentation
+  url: https://docs.nuon.co
+- type: APIReference
+  url: https://docs.nuon.co/nuon-api
+- type: GettingStarted
+  url: https://docs.nuon.co/get-started/introduction
+- type: Quickstart
+  url: https://docs.nuon.co/get-started/quickstart
+- type: Support
+  url: https://docs.nuon.co/support/support
+- type: HelpCenter
+  url: https://support.nuon.co
+- type: Blog
+  url: https://nuon.co/blog
+- type: GitHubOrganization
+  url: https://github.com/nuonco
+- type: Pricing
+  url: https://nuon.co/pricing
+- type: SignUp
+  url: https://app.nuon.co/api/auth/login
+- type: TermsOfService
+  url: https://nuon.co/terms
+- type: PrivacyPolicy
+  url: https://nuon.co/privacy
+- type: StatusPage
+  url: https://status.nuon.co
+- type: ChangeLog
+  url: changelog/nuon-changelog.yml
+- type: ChangeLog
+  url: https://docs.nuon.co/updates/updates
+- type: Compliance
+  url: https://trust.nuon.co
+- type: TrustCenter
+  url: security/nuon-trust-center.yml
+- type: Packages
+  url: packages/nuon-packages.yml
+- type: SDKs
+  url: packages/nuon-packages.yml
+- type: CLI
+  url: cli/nuon-cli.yml
+- type: MCPServer
+  url: mcp/nuon-mcp.yml
+- type: LLMsTxt
+  url: llms/nuon-llms.txt
+- type: WellKnown
+  url: well-known/nuon-well-known.yml
+- type: ErrorCatalog
+  url: errors/nuon-problem-types.yml
+- type: Conventions
+  url: conventions/nuon-conventions.yml
+- type: DataModel
+  url: data-model/nuon-data-model.yml
+- type: Conformance
+  url: conformance/nuon-conformance.yml
+- type: Lifecycle
+  url: lifecycle/nuon-lifecycle.yml
+- type: AsyncAPI
+  url: asyncapi/nuon-webhooks-asyncapi.yml
+- type: Webhooks
+  url: https://docs.nuon.co/guides/webhooks
+- type: AgentSkill
+  url: skills/_index.yml

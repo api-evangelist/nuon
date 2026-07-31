@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nuon-oapi-v3-openapi.json, https://docs.nuon.co/nuon-api, https://docs.nuon.co/guides/webhooks
+authentication:
+  style: bearer-token + org header
+  scheme: 'Authorization: Bearer <api-token>'
+  org_header: X-Nuon-Org-ID
+  token_creation: nuon orgs api-tokens create --name <name> --role <org_admin|org_support|org_read_only>
+  ref: authentication/nuon-authentication.yml
+idempotency:
+  api_level: false
+  note: 'The Nuon control-plane API does not document a request-level Idempotency-Key header. Idempotency
+    is guided on the consumer side for webhook delivery: handlers must be idempotent and derive an idempotency
+    key from workflow/step/resource/transition fields, since rare duplicate deliveries can occur with
+    different CloudEvents ids.'
+  webhook_guidance: https://docs.nuon.co/guides/webhooks#delivery-guarantees-and-failures
+pagination:
+  style: query-parameter
+  params:
+  - offset
+  - limit
+  - page
+  - cursor
+  note: CLI exposes pagination flags (see update 012). List endpoints return arrays under a `data`-style
+    envelope.
+versioning:
+  style: uri-path + spec version
+  paths: v1 under https://api.nuon.co/v1/...
+  openapi_versions:
+  - https://api.nuon.co/oapi/v2
+  - https://api.nuon.co/oapi/v3
+  ref: lifecycle/nuon-lifecycle.yml
+error_envelope:
+  field: error
+  type: string
+  ref: errors/nuon-problem-types.yml
+events:
+  style: CloudEvents v1.0 webhooks (HMAC-SHA256 signed)
+  signature_header: X-Nuon-Signature
+  ref: asyncapi/nuon-webhooks-asyncapi.yml
+ids:
+  style: prefixed opaque ids
+  examples:
+  - org_
+  - ins_ (install)
+  - cmp_ (component)
+  - ind_ (install deploy)
+  - iws_ (workflow step)
+  - inw (workflow)

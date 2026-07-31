@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nuon-oapi-v3-openapi.json, https://docs.nuon.co/security, https://trust.nuon.co
+standards:
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 securityScheme; auth is apiKey Bearer token + X-Nuon-Org-ID header.
+- id: openid-connect
+  conforms: false
+- id: api-key-bearer
+  conforms: true
+  evidence: 'securitySchemes.APIKey (Authorization: Bearer) + APIKey OrgID header.'
+- id: cloudevents-1.0
+  conforms: true
+  evidence: Webhooks POST CloudEvents v1.0 JSON envelopes (application/cloudevents+json).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'Errors use a plain JSON {error: string} envelope, not application/problem+json.'
+- id: hmac-webhook-signing
+  conforms: true
+  evidence: Webhook bodies signed HMAC-SHA256, hex digest in X-Nuon-Signature.
+- id: openapi-3.0
+  conforms: true
+  evidence: Published OpenAPI 3.0.3 at api.nuon.co/oapi/v3 (and Swagger 2.0 at /oapi/v2).
+- id: opa-policy
+  conforms: true
+  evidence: External-image and sandbox/runner policies authored as Open Policy Agent (Rego) — github.com/nuonco/policies.
+- id: terraform-provider
+  conforms: true
+  evidence: 'First-class Terraform providers: nuonco/nuon and nuonco/stack.'

@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: searched
+source: https://trust.nuon.co
+url: https://trust.nuon.co/
+platform: SafeBase
+certifications:
+  - SOC 2
+compliance:
+  - CCPA
+note: >-
+  Nuon operates a public Trust Center on SafeBase (trust.nuon.co) advertising SOC 2 and CCPA
+  posture; the security model (egress-only runners, no cross-account IAM, customer-controlled
+  runner kill switch) is documented at docs.nuon.co/security. Detailed report access is
+  gated behind SafeBase request/NDA.
+evidence:
+  - {source: https://trust.nuon.co/, keywords: [soc 2, trust center, ccpa]}
+security_docs: https://docs.nuon.co/security

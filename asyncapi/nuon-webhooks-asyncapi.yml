@@ -1,0 +1,121 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.nuon.co/guides/webhooks
+spec_type: AsyncAPI
+asyncapi: 3.0.0
+info:
+  title: Nuon Org Webhooks
+  version: v1
+  description: >-
+    Org-scoped webhooks deliver workflow and workflow-step lifecycle events for a Nuon Org as
+    CloudEvents v1.0 JSON envelopes over HTTP POST. Best-effort delivery (no retries or replay);
+    handlers must be idempotent. Bodies are optionally signed HMAC-SHA256 with the shared secret,
+    hex digest in the X-Nuon-Signature header. Content-Type: application/cloudevents+json.
+  contact:
+    name: Nuon Support
+    email: support@nuon.co
+defaultContentType: application/cloudevents+json
+servers:
+  subscriber:
+    host: your-endpoint.example.com
+    protocol: https
+    description: Consumer HTTPS endpoint registered via `nuon orgs webhooks create --url`.
+channels:
+  workflowLifecycle:
+    address: com.nuon.workflow.lifecycle.v1
+    description: Fires for a workflow as a whole (provision, reprovision, manual_deploy, action_workflow_run).
+    messages:
+      workflowLifecycleEvent:
+        $ref: '#/components/messages/WorkflowLifecycle'
+  workflowStepLifecycle:
+    address: com.nuon.workflow_step.lifecycle.v1
+    description: Fires for each step within a workflow (install_deploys, install_sandbox_runs, install_action_workflow_runs).
+    messages:
+      workflowStepLifecycleEvent:
+        $ref: '#/components/messages/WorkflowStepLifecycle'
+operations:
+  receiveWorkflowLifecycle:
+    action: receive
+    channel:
+      $ref: '#/channels/workflowLifecycle'
+  receiveWorkflowStepLifecycle:
+    action: receive
+    channel:
+      $ref: '#/channels/workflowStepLifecycle'
+components:
+  messages:
+    WorkflowLifecycle:
+      name: WorkflowLifecycle
+      title: Workflow lifecycle event
+      contentType: application/cloudevents+json
+      payload:
+        type: object
+        properties:
+          specversion: {type: string, const: '1.0'}
+          id: {type: string}
+          type: {type: string, const: com.nuon.workflow.lifecycle.v1}
+          source: {type: string, example: '//nuon.co/ctl-api'}
+          time: {type: string, format: date-time}
+          subject: {type: string}
+          nuonorgid: {type: string}
+          nuonkind: {type: string, const: workflow}
+          nuontransition: {type: string, enum: [started, succeeded, failed, cancelled]}
+          data:
+            type: object
+            properties:
+              kind: {type: string}
+              transition: {type: string, enum: [started, succeeded, failed, cancelled]}
+              org_id: {type: string}
+              workflow:
+                type: object
+                properties:
+                  id: {type: string}
+                  type: {type: string}
+                  owner_id: {type: string}
+                  owner_type: {type: string, enum: [installs, apps, app_branches]}
+    WorkflowStepLifecycle:
+      name: WorkflowStepLifecycle
+      title: Workflow step lifecycle event
+      contentType: application/cloudevents+json
+      payload:
+        type: object
+        properties:
+          specversion: {type: string, const: '1.0'}
+          id: {type: string}
+          type: {type: string, const: com.nuon.workflow_step.lifecycle.v1}
+          nuonkind: {type: string, const: workflow_step}
+          nuontransition: {type: string, enum: [started, succeeded, failed, cancelled]}
+          data:
+            type: object
+            properties:
+              step:
+                type: object
+                properties:
+                  id: {type: string}
+                  name: {type: string}
+                  idx: {type: integer}
+                  target_type: {type: string, example: install_deploys}
+                  component_id: {type: string}
+                  sandbox_id: {type: string}
+                  execution_type: {type: string, enum: [system, user, approval, skipped, hidden]}
+              outcome:
+                type: object
+                properties:
+                  status: {type: string}
+                  error: {type: string}
+                  duration_ms: {type: integer}
+  securitySchemes:
+    hmacSignature:
+      type: httpApiKey
+      name: X-Nuon-Signature
+      in: header
+      description: Lowercase hex HMAC-SHA256 digest of the raw request body, keyed with the webhook shared secret.
+x-webhook-management:
+  transport: HTTP POST
+  content_type: application/cloudevents+json; charset=utf-8
+  signature: HMAC-SHA256 hex in X-Nuon-Signature (present only when a secret is configured)
+  delivery: best-effort; 5s ack timeout; no retries, no replay; duplicates possible
+  subscribe: nuon orgs webhooks create --url <https-url> --secret <shared-secret>
+  filtering: interests (per-resource ops/outcome/approvals/drift) + match predicate (ids/label selector)
+  resources: [installs, stacks, components, sandboxes, install_configurations, runners, actions]
+  transitions: [started, succeeded, failed, cancelled]

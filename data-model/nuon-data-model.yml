@@ -1,0 +1,1795 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nuon-oapi-v3-openapi.json
+note: 'Entity-relationship graph derived from OpenAPI components.schemas $refs and *_id reference fields.
+  Domain nouns: apps, installs, components, sandboxes, runners, actions, workflows, orgs, policies.'
+id_prefixes:
+  org: org_
+  install: ins_
+  component: cmp_
+  install_deploy: ind_
+  workflow: inw
+  workflow_step: iws_
+entities:
+- app.Account
+- app.AccountType
+- app.ActionWorkflow
+- app.ActionWorkflowConfig
+- app.ActionWorkflowStepConfig
+- app.ActionWorkflowTriggerConfig
+- app.ActionWorkflowTriggerType
+- app.App
+- app.AppAWSIAMPolicyConfig
+- app.AppAWSIAMRoleConfig
+- app.AppBranch
+- app.AppBranchConfig
+- app.AppBranchInstallGroup
+- app.AppBranchRun
+- app.AppBranchRunType
+- app.AppBreakGlassConfig
+- app.AppConfig
+- app.AppConfigStatus
+- app.AppConfigVersion
+- app.AppInput
+- app.AppInputConfig
+- app.AppInputGroup
+- app.AppInputSource
+- app.AppKubernetesContextConfig
+- app.AppKubernetesContextsConfig
+- app.AppOperationRoleConfig
+- app.AppOperationRoleRule
+- app.AppPermissionsConfig
+- app.AppPoliciesConfig
+- app.AppPolicyConfig
+- app.AppRunnerConfig
+- app.AppRunnerConfigHelmDriverType
+- app.AppRunnerType
+- app.AppSandboxBuild
+- app.AppSandboxConfig
+- app.AppSecret
+- app.AppSecretConfig
+- app.AppSecretKubernetesSyncTarget
+- app.AppSecretsConfig
+- app.AppStackConfig
+- app.Component
+- app.ComponentBuild
+- app.ComponentConfigConnection
+- app.ComponentDiffEntry
+- app.ComponentRelease
+- app.ComponentReleaseStep
+- app.ComponentType
+- app.Install
+- app.InstallActionWorkflow
+- app.InstallActionWorkflowRun
+- app.InstallActionWorkflowRunStatus
+- app.InstallActionWorkflowRunStep
+- app.InstallActionWorkflowRunStepStatus
+- app.InstallAppBranchConnection
+- app.InstallAppConfigVersion
+- app.InstallApprovalOption
+- app.InstallAuditLog
+- app.InstallComponent
+- app.InstallConfig
+- app.InstallConfigDiff
+- app.InstallDeploy
+- app.InstallDeployType
+- app.InstallEvent
+- app.InstallGroupRun
+- app.InstallGroupRunInstall
+- app.InstallInputs
+- app.InstallRoleSelectionRecord
+- app.InstallRoleUsage
+- app.InstallRoles
+- app.InstallRunbook
+- app.InstallRunbookRun
+- app.InstallSandbox
+- app.InstallSandboxRun
+- app.InstallStack
+- app.InstallStackOutputs
+- app.InstallStackVersion
+- app.InstallStackVersionRun
+- app.InstallState
+- app.InstallStateGenerateSource
+- app.Notebook
+- app.NotebookCell
+- app.NotebookCellRun
+- app.Org
+- app.OrgFeatureInfo
+- app.OrgInvite
+- app.OrgInviteStatus
+- app.Policy
+- app.PolicyInputRef
+- app.PolicyName
+- app.PolicyReport
+- app.PolicyReportOwnerType
+- app.PolicyResult
+- app.PolicyViolation
+- app.Runbook
+- app.RunbookConfig
+- app.RunbookInput
+- app.RunbookStepConfig
+- app.RunbookStepSelection
+- app.Runner
+- app.RunnerGroup
+- app.RunnerGroupSettings
+- app.RunnerGroupType
+- app.RunnerHealthCheck
+- app.RunnerHeartBeat
+- app.RunnerJob
+- app.RunnerJobExecution
+- app.RunnerJobExecutionOutputs
+- app.RunnerJobExecutionResult
+- app.RunnerJobExecutionStatus
+- app.RunnerJobGroup
+- app.RunnerJobOperationType
+- app.RunnerJobPlan
+- app.RunnerJobStatus
+- app.RunnerJobType
+- app.RunnerOperation
+- app.RunnerOperationType
+- app.RunnerProcess
+- app.RunnerProcessShutdown
+- app.RunnerProcessShutdownType
+- app.RunnerProcessType
+- app.RunnerStatus
+- app.SandboxRunType
+- app.StackType
+- app.StackVersionRunInputDiff
+- app.StackVersionRunRoleDiff
+- app.StackVersionRunType
+- app.Workflow
+- app.WorkflowResponse
+- app.WorkflowRun
+- app.WorkflowRunType
+- app.WorkflowStep
+- app.WorkflowStepApproval
+- app.WorkflowStepApprovalType
+- app.WorkflowStepExecutionType
+- app.WorkflowStepGroup
+- app.WorkflowStepPolicyValidation
+- app.WorkflowStepResponseType
+- app.WorkflowType
+- config.AppPolicyEngine
+- config.AppPolicyType
+- helpers.InstallMetadata
+- outputs.SecretSyncOutput
+- plantypes.ActionWorkflowRunPlan
+- plantypes.ActionWorkflowRunStepPlan
+- plantypes.SandboxMode
+- plantypes.SandboxRunPlan
+- service.AppAWSIAMPolicyConfig
+- service.AppAWSIAMRoleConfig
+- service.AppConfigDiffResponse
+- service.AppConfigTemplate
+- service.AppConfigTemplateType
+- service.AppGroupRequest
+- service.AppInputRequest
+- service.AppKubernetesContext
+- service.AppLabelKeySummary
+- service.AppLabelsResponse
+- service.AppPolicyConfig
+- service.AppSecretConfig
+- service.ComponentChildren
+- service.InstallAppPermissionsConfigResponse
+- service.InstallGroupRequest
+- service.InstallPermissionsRoleStatus
+- service.InstallPhoneHomeRequest
+- service.PolicyAnalyticsBreakdown
+- service.PolicyAnalyticsSummary
+- service.PolicyAnalyticsTimeseries
+- service.RunnerCardDetailsResponse
+- service.RunnerConnectionStatus
+- service.WorkflowQueueItem
+- service.WorkflowQueuePositionResponse
+- signaldb.WorkflowRef
+- state.ActionWorkflowState
+- state.ActionsState
+- state.AppState
+- state.InputsState
+- state.InstallStackState
+- state.InstallState
+- state.OrgState
+- state.RunnerState
+- state.SandboxState
+- state.SecretsState
+relationships:
+- from: app.Account
+  type: has_one
+  to: app.AccountType
+  via: account_type
+- from: app.ActionWorkflow
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.ActionWorkflow
+  type: has_many
+  to: app.ActionWorkflowConfig
+  via: configs
+- from: app.ActionWorkflow
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.ActionWorkflowConfig
+  type: belongs_to
+  to: action_workflow
+  via: action_workflow_id
+- from: app.ActionWorkflowConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.ActionWorkflowConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.ActionWorkflowConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.ActionWorkflowConfig
+  type: has_many
+  to: app.ActionWorkflowStepConfig
+  via: steps
+- from: app.ActionWorkflowConfig
+  type: has_many
+  to: app.ActionWorkflowTriggerConfig
+  via: triggers
+- from: app.ActionWorkflowStepConfig
+  type: belongs_to
+  to: action_workflow_config
+  via: action_workflow_config_id
+- from: app.ActionWorkflowStepConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.ActionWorkflowStepConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.ActionWorkflowStepConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.ActionWorkflowStepConfig
+  type: belongs_to
+  to: previous_step
+  via: previous_step_id
+- from: app.ActionWorkflowTriggerConfig
+  type: belongs_to
+  to: action_workflow_config
+  via: action_workflow_config_id
+- from: app.ActionWorkflowTriggerConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.ActionWorkflowTriggerConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.ActionWorkflowTriggerConfig
+  type: has_one
+  to: app.Component
+  via: component
+- from: app.ActionWorkflowTriggerConfig
+  type: belongs_to
+  to: component
+  via: component_id
+- from: app.ActionWorkflowTriggerConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.App
+  type: has_many
+  to: app.AppConfig
+  via: app_configs
+- from: app.App
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.App
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.App
+  type: has_one
+  to: app.AppPermissionsConfig
+  via: permissions_config
+- from: app.App
+  type: belongs_to
+  to: queue
+  via: queue_id
+- from: app.App
+  type: has_one
+  to: app.AppRunnerConfig
+  via: runner_config
+- from: app.App
+  type: has_one
+  to: app.AppSandboxConfig
+  via: sandbox_config
+- from: app.AppAWSIAMPolicyConfig
+  type: belongs_to
+  to: app_aws_iam_role_config
+  via: app_aws_iam_role_config_id
+- from: app.AppAWSIAMPolicyConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppAWSIAMPolicyConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppAWSIAMPolicyConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppAWSIAMRoleConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppAWSIAMRoleConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppAWSIAMRoleConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppAWSIAMRoleConfig
+  type: belongs_to
+  to: owner
+  via: owner_id
+- from: app.AppAWSIAMRoleConfig
+  type: has_many
+  to: app.AppAWSIAMPolicyConfig
+  via: policies
+- from: app.AppBranch
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppBranch
+  type: has_many
+  to: app.AppBranchConfig
+  via: configs
+- from: app.AppBranch
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppBranch
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppBranch
+  type: has_many
+  to: app.Workflow
+  via: workflows
+- from: app.AppBranchConfig
+  type: belongs_to
+  to: app_branch
+  via: app_branch_id
+- from: app.AppBranchConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppBranchConfig
+  type: has_many
+  to: app.AppBranchInstallGroup
+  via: install_groups
+- from: app.AppBranchConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppBranchConfig
+  type: has_many
+  to: app.Workflow
+  via: workflows
+- from: app.AppBranchInstallGroup
+  type: belongs_to
+  to: app_branch_config
+  via: app_branch_config_id
+- from: app.AppBranchInstallGroup
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppBranchInstallGroup
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppBranchRun
+  type: has_one
+  to: app.AppBranch
+  via: app_branch
+- from: app.AppBranchRun
+  type: has_one
+  to: app.AppBranchConfig
+  via: app_branch_config
+- from: app.AppBranchRun
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppBranchRun
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.AppBranchRun
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppBranchRun
+  type: belongs_to
+  to: github_comment
+  via: github_comment_id
+- from: app.AppBranchRun
+  type: belongs_to
+  to: log_stream
+  via: log_stream_id
+- from: app.AppBranchRun
+  type: has_one
+  to: app.AppBranchRun
+  via: previous_run
+- from: app.AppBranchRun
+  type: belongs_to
+  to: previous_run
+  via: previous_run_id
+- from: app.AppBranchRun
+  type: has_one
+  to: app.AppBranchRunType
+  via: run_type
+- from: app.AppBranchRun
+  type: has_one
+  to: app.Workflow
+  via: workflow
+- from: app.AppBranchRun
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.AppBreakGlassConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppBreakGlassConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppBreakGlassConfig
+  type: has_many
+  to: app.AppAWSIAMRoleConfig
+  via: aws_iam_roles
+- from: app.AppBreakGlassConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppBreakGlassConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppConfig
+  type: has_many
+  to: app.ActionWorkflowConfig
+  via: action_workflow_configs
+- from: app.AppConfig
+  type: has_one
+  to: app.AppBranch
+  via: app_branch
+- from: app.AppConfig
+  type: belongs_to
+  to: app_branch
+  via: app_branch_id
+- from: app.AppConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppConfig
+  type: has_one
+  to: app.AppBreakGlassConfig
+  via: break_glass
+- from: app.AppConfig
+  type: has_many
+  to: app.ComponentConfigConnection
+  via: component_config_connections
+- from: app.AppConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppConfig
+  type: has_one
+  to: app.AppInputConfig
+  via: input
+- from: app.AppConfig
+  type: has_one
+  to: app.AppKubernetesContextsConfig
+  via: kubernetes_contexts
+- from: app.AppConfig
+  type: has_one
+  to: app.AppOperationRoleConfig
+  via: operation_role_config
+- from: app.AppConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppConfig
+  type: has_one
+  to: app.AppPermissionsConfig
+  via: permissions
+- from: app.AppConfig
+  type: has_one
+  to: app.AppPoliciesConfig
+  via: policies
+- from: app.AppConfig
+  type: has_one
+  to: app.AppRunnerConfig
+  via: runner
+- from: app.AppConfig
+  type: has_one
+  to: app.AppSandboxConfig
+  via: sandbox
+- from: app.AppConfig
+  type: has_one
+  to: app.AppSecretsConfig
+  via: secrets
+- from: app.AppConfig
+  type: has_one
+  to: app.AppStackConfig
+  via: stack
+- from: app.AppConfig
+  type: has_one
+  to: app.AppConfigStatus
+  via: status
+- from: app.AppInput
+  type: belongs_to
+  to: app_input
+  via: app_input_id
+- from: app.AppInput
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppInput
+  type: has_one
+  to: app.AppInputGroup
+  via: group
+- from: app.AppInput
+  type: belongs_to
+  to: group
+  via: group_id
+- from: app.AppInput
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppInputConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppInputConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppInputConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppInputConfig
+  type: has_many
+  to: app.AppInputGroup
+  via: input_groups
+- from: app.AppInputConfig
+  type: has_many
+  to: app.AppInput
+  via: inputs
+- from: app.AppInputConfig
+  type: has_many
+  to: app.InstallInputs
+  via: install_inputs
+- from: app.AppInputConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppInputGroup
+  type: belongs_to
+  to: app_input
+  via: app_input_id
+- from: app.AppInputGroup
+  type: has_many
+  to: app.AppInput
+  via: app_inputs
+- from: app.AppInputGroup
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppInputGroup
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppKubernetesContextConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppKubernetesContextConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppKubernetesContextConfig
+  type: belongs_to
+  to: app_kubernetes_contexts_config
+  via: app_kubernetes_contexts_config_id
+- from: app.AppKubernetesContextConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppKubernetesContextConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppKubernetesContextConfig
+  type: belongs_to
+  to: source_component
+  via: source_component_id
+- from: app.AppKubernetesContextsConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppKubernetesContextsConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppKubernetesContextsConfig
+  type: has_many
+  to: app.AppKubernetesContextConfig
+  via: contexts
+- from: app.AppKubernetesContextsConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppKubernetesContextsConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppOperationRoleConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppOperationRoleConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppOperationRoleConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppOperationRoleConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppOperationRoleConfig
+  type: has_many
+  to: app.AppOperationRoleRule
+  via: rules
+- from: app.AppOperationRoleRule
+  type: belongs_to
+  to: app_operation_role_config
+  via: app_operation_role_config_id
+- from: app.AppOperationRoleRule
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppOperationRoleRule
+  type: has_one
+  to: app.Org
+  via: org
+- from: app.AppOperationRoleRule
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppPermissionsConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppPermissionsConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppPermissionsConfig
+  type: has_many
+  to: app.AppAWSIAMRoleConfig
+  via: aws_iam_roles
+- from: app.AppPermissionsConfig
+  type: has_one
+  to: app.AppAWSIAMRoleConfig
+  via: break_glass_aws_iam_role
+- from: app.AppPermissionsConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppPermissionsConfig
+  type: has_many
+  to: app.AppAWSIAMRoleConfig
+  via: custom_aws_iam_roles
+- from: app.AppPermissionsConfig
+  type: has_one
+  to: app.AppAWSIAMRoleConfig
+  via: deprovision_aws_iam_role
+- from: app.AppPermissionsConfig
+  type: has_one
+  to: app.AppAWSIAMRoleConfig
+  via: maintenance_aws_iam_role
+- from: app.AppPermissionsConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppPoliciesConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppPoliciesConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppPoliciesConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppPoliciesConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppPoliciesConfig
+  type: has_many
+  to: app.AppPolicyConfig
+  via: policies
+- from: app.AppPolicyConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppPolicyConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppPolicyConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppPolicyConfig
+  type: has_one
+  to: config.AppPolicyEngine
+  via: engine
+- from: app.AppPolicyConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppPolicyConfig
+  type: has_one
+  to: config.AppPolicyType
+  via: type
+- from: app.AppRunnerConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppRunnerConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppRunnerConfig
+  type: has_one
+  to: app.AppRunnerType
+  via: app_runner_type
+- from: app.AppRunnerConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppRunnerConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppSandboxBuild
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppSandboxBuild
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppSandboxBuild
+  type: belongs_to
+  to: app_sandbox_config
+  via: app_sandbox_config_id
+- from: app.AppSandboxBuild
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.AppSandboxBuild
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppSandboxBuild
+  type: has_one
+  to: app.RunnerJob
+  via: runner_job
+- from: app.AppSandboxBuild
+  type: belongs_to
+  to: vcs_connection_commit
+  via: vcs_connection_commit_id
+- from: app.AppSandboxConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppSandboxConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppSandboxConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppSandboxConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppSecret
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppSecret
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppSecret
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppSecretConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppSecretConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppSecretConfig
+  type: belongs_to
+  to: app_secrets_config
+  via: app_secrets_config_id
+- from: app.AppSecretConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppSecretConfig
+  type: has_many
+  to: app.AppSecretKubernetesSyncTarget
+  via: kubernetes_sync_targets
+- from: app.AppSecretConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppSecretKubernetesSyncTarget
+  type: belongs_to
+  to: app_secret_config
+  via: app_secret_config_id
+- from: app.AppSecretKubernetesSyncTarget
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppSecretKubernetesSyncTarget
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppSecretsConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppSecretsConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppSecretsConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppSecretsConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppSecretsConfig
+  type: has_many
+  to: app.AppSecretConfig
+  via: secrets
+- from: app.AppStackConfig
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.AppStackConfig
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.AppStackConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.AppStackConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.AppStackConfig
+  type: has_one
+  to: app.StackType
+  via: type
+- from: app.Component
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.Component
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.Component
+  type: has_one
+  to: app.ComponentBuild
+  via: latest_build
+- from: app.Component
+  type: has_one
+  to: app.ComponentType
+  via: type
+- from: app.ComponentBuild
+  type: belongs_to
+  to: app_branch_run
+  via: app_branch_run_id
+- from: app.ComponentBuild
+  type: has_one
+  to: app.ComponentConfigConnection
+  via: component_config_connection
+- from: app.ComponentBuild
+  type: belongs_to
+  to: component_config_connection
+  via: component_config_connection_id
+- from: app.ComponentBuild
+  type: belongs_to
+  to: component
+  via: component_id
+- from: app.ComponentBuild
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.ComponentBuild
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.ComponentBuild
+  type: has_many
+  to: app.InstallDeploy
+  via: install_deploys
+- from: app.ComponentBuild
+  type: has_many
+  to: app.PolicyReport
+  via: policy_reports
+- from: app.ComponentBuild
+  type: has_many
+  to: app.ComponentRelease
+  via: releases
+- from: app.ComponentConfigConnection
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.ComponentConfigConnection
+  type: belongs_to
+  to: component
+  via: component_id
+- from: app.ComponentConfigConnection
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.ComponentConfigConnection
+  type: belongs_to
+  to: latest_build
+  via: latest_build_id
+- from: app.ComponentConfigConnection
+  type: has_one
+  to: app.ComponentType
+  via: type
+- from: app.ComponentDiffEntry
+  type: belongs_to
+  to: component
+  via: component_id
+- from: app.ComponentRelease
+  type: belongs_to
+  to: build
+  via: build_id
+- from: app.ComponentRelease
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.ComponentRelease
+  type: has_many
+  to: app.ComponentReleaseStep
+  via: release_steps
+- from: app.ComponentReleaseStep
+  type: belongs_to
+  to: component_release
+  via: component_release_id
+- from: app.ComponentReleaseStep
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.ComponentReleaseStep
+  type: has_many
+  to: app.InstallDeploy
+  via: install_deploys
+- from: app.Install
+  type: has_one
+  to: app.AppBranch
+  via: app_branch
+- from: app.Install
+  type: has_many
+  to: app.InstallAppBranchConnection
+  via: app_branch_connections
+- from: app.Install
+  type: belongs_to
+  to: app_branch
+  via: app_branch_id
+- from: app.Install
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.Install
+  type: belongs_to
+  to: app
+  via: app_id
+- from: app.Install
+  type: has_one
+  to: app.AppRunnerConfig
+  via: app_runner_config
+- from: app.Install
+  type: has_one
+  to: app.AppSandboxConfig
+  via: app_sandbox_config
+- from: app.Install
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.Install
+  type: has_many
+  to: app.InstallActionWorkflow
+  via: install_action_workflows
+- from: app.Install
+  type: has_many
+  to: app.InstallComponent
+  via: install_components
+- from: app.Install
+  type: has_one
+  to: app.InstallConfig
+  via: install_config
+- from: app.Install
+  type: has_many
+  to: app.InstallEvent
+  via: install_events
+- from: app.Install
+  type: has_many
+  to: app.InstallInputs
+  via: install_inputs
+- from: app.Install
+  type: has_many
+  to: app.InstallRoles
+  via: install_roles
+- from: app.Install
+  type: has_many
+  to: app.InstallSandboxRun
+  via: install_sandbox_runs
+- from: app.Install
+  type: has_one
+  to: app.InstallStack
+  via: install_stack
+- from: app.Install
+  type: has_many
+  to: app.InstallState
+  via: install_states
+- from: app.Install
+  type: belongs_to
+  to: runner
+  via: runner_id
+- from: app.Install
+  type: has_one
+  to: app.InstallSandbox
+  via: sandbox
+- from: app.Install
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.Install
+  type: has_many
+  to: app.Workflow
+  via: workflows
+- from: app.InstallActionWorkflow
+  type: has_one
+  to: app.ActionWorkflow
+  via: action_workflow
+- from: app.InstallActionWorkflow
+  type: belongs_to
+  to: action_workflow
+  via: action_workflow_id
+- from: app.InstallActionWorkflow
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallActionWorkflow
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallActionWorkflow
+  type: has_many
+  to: app.InstallActionWorkflowRun
+  via: runs
+- from: app.InstallActionWorkflowRun
+  type: belongs_to
+  to: action_workflow_config
+  via: action_workflow_config_id
+- from: app.InstallActionWorkflowRun
+  type: has_one
+  to: app.ActionWorkflowConfig
+  via: config
+- from: app.InstallActionWorkflowRun
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.InstallActionWorkflowRun
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallActionWorkflowRun
+  type: has_one
+  to: app.InstallActionWorkflow
+  via: install_action_workflow
+- from: app.InstallActionWorkflowRun
+  type: belongs_to
+  to: install_action_workflow
+  via: install_action_workflow_id
+- from: app.InstallActionWorkflowRun
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallActionWorkflowRun
+  type: belongs_to
+  to: install_workflow
+  via: install_workflow_id
+- from: app.InstallActionWorkflowRun
+  type: has_one
+  to: app.RunnerJob
+  via: runner_job
+- from: app.InstallActionWorkflowRun
+  type: has_many
+  to: app.InstallActionWorkflowRunStep
+  via: steps
+- from: app.InstallActionWorkflowRun
+  type: has_one
+  to: app.ActionWorkflowTriggerType
+  via: trigger_type
+- from: app.InstallActionWorkflowRun
+  type: belongs_to
+  to: triggered_by
+  via: triggered_by_id
+- from: app.InstallActionWorkflowRun
+  type: has_one
+  to: app.Workflow
+  via: workflow
+- from: app.InstallActionWorkflowRun
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.InstallActionWorkflowRunStep
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallActionWorkflowRunStep
+  type: belongs_to
+  to: install_action_workflow_run
+  via: install_action_workflow_run_id
+- from: app.InstallActionWorkflowRunStep
+  type: has_one
+  to: app.InstallActionWorkflowRunStepStatus
+  via: status
+- from: app.InstallActionWorkflowRunStep
+  type: belongs_to
+  to: step
+  via: step_id
+- from: app.InstallAppBranchConnection
+  type: has_one
+  to: app.AppBranch
+  via: app_branch
+- from: app.InstallAppBranchConnection
+  type: belongs_to
+  to: app_branch
+  via: app_branch_id
+- from: app.InstallAppBranchConnection
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallAppBranchConnection
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: app_branch_run
+  via: app_branch_run_id
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: install_group
+  via: install_group_id
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: new_app_config
+  via: new_app_config_id
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: old_app_config
+  via: old_app_config_id
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallAppConfigVersion
+  type: has_one
+  to: app.Workflow
+  via: workflow
+- from: app.InstallAppConfigVersion
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.InstallAuditLog
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallComponent
+  type: has_one
+  to: app.Component
+  via: component
+- from: app.InstallComponent
+  type: belongs_to
+  to: component
+  via: component_id
+- from: app.InstallComponent
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallComponent
+  type: has_many
+  to: app.InstallDeploy
+  via: install_deploys
+- from: app.InstallComponent
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallConfig
+  type: has_one
+  to: app.InstallApprovalOption
+  via: approval_option
+- from: app.InstallConfig
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallConfig
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallConfig
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallConfigDiff
+  type: has_many
+  to: app.ComponentDiffEntry
+  via: added
+- from: app.InstallConfigDiff
+  type: has_many
+  to: app.ComponentDiffEntry
+  via: changed
+- from: app.InstallConfigDiff
+  type: has_many
+  to: app.ComponentDiffEntry
+  via: removed
+- from: app.InstallConfigDiff
+  type: belongs_to
+  to: sandbox_new
+  via: sandbox_new_id
+- from: app.InstallConfigDiff
+  type: belongs_to
+  to: sandbox_old
+  via: sandbox_old_id
+- from: app.InstallConfigDiff
+  type: belongs_to
+  to: stack_new
+  via: stack_new_id
+- from: app.InstallConfigDiff
+  type: belongs_to
+  to: stack_old
+  via: stack_old_id
+- from: app.InstallConfigDiff
+  type: has_many
+  to: app.ComponentDiffEntry
+  via: unchanged
+- from: app.InstallDeploy
+  type: has_many
+  to: app.InstallActionWorkflowRun
+  via: action_workflow_runs
+- from: app.InstallDeploy
+  type: belongs_to
+  to: build
+  via: build_id
+- from: app.InstallDeploy
+  type: has_one
+  to: app.ComponentBuild
+  via: component_build
+- from: app.InstallDeploy
+  type: belongs_to
+  to: component
+  via: component_id
+- from: app.InstallDeploy
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.InstallDeploy
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallDeploy
+  type: belongs_to
+  to: install_component
+  via: install_component_id
+- from: app.InstallDeploy
+  type: has_one
+  to: app.InstallDeployType
+  via: install_deploy_type
+- from: app.InstallDeploy
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallDeploy
+  type: belongs_to
+  to: install_workflow
+  via: install_workflow_id
+- from: app.InstallDeploy
+  type: has_many
+  to: app.PolicyReport
+  via: policy_reports
+- from: app.InstallDeploy
+  type: belongs_to
+  to: release
+  via: release_id
+- from: app.InstallDeploy
+  type: has_many
+  to: app.RunnerJob
+  via: runner_jobs
+- from: app.InstallDeploy
+  type: has_one
+  to: app.Workflow
+  via: workflow
+- from: app.InstallDeploy
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.InstallEvent
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallEvent
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallEvent
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallGroupRun
+  type: belongs_to
+  to: app_branch_run
+  via: app_branch_run_id
+- from: app.InstallGroupRun
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallGroupRun
+  type: has_one
+  to: app.AppBranchInstallGroup
+  via: install_group
+- from: app.InstallGroupRun
+  type: belongs_to
+  to: install_group
+  via: install_group_id
+- from: app.InstallGroupRun
+  type: has_many
+  to: app.InstallGroupRunInstall
+  via: installs
+- from: app.InstallGroupRun
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallGroupRunInstall
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallGroupRunInstall
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.InstallInputs
+  type: belongs_to
+  to: app_input_config
+  via: app_input_config_id
+- from: app.InstallInputs
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallInputs
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallInputs
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallInputs
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.InstallRoleSelectionRecord
+  type: belongs_to
+  to: role
+  via: role_id
+- from: app.InstallRoleUsage
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallRoleUsage
+  type: belongs_to
+  to: install_role
+  via: install_role_id
+- from: app.InstallRoleUsage
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallRoleUsage
+  type: has_many
+  to: app.InstallRoleSelectionRecord
+  via: role_selection_trace
+- from: app.InstallRoleUsage
+  type: has_one
+  to: app.RunnerJob
+  via: runner_job
+- from: app.InstallRoleUsage
+  type: belongs_to
+  to: runner_job
+  via: runner_job_id
+- from: app.InstallRoleUsage
+  type: has_one
+  to: app.Workflow
+  via: workflow
+- from: app.InstallRoleUsage
+  type: belongs_to
+  to: workflow_step
+  via: workflow_step_id
+- from: app.InstallRoles
+  type: has_one
+  to: app.AppAWSIAMRoleConfig
+  via: app_role_config
+- from: app.InstallRoles
+  type: belongs_to
+  to: app_role_config
+  via: app_role_config_id
+- from: app.InstallRoles
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallRoles
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallRoles
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallRoles
+  type: belongs_to
+  to: role
+  via: role_id
+- from: app.InstallRunbook
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallRunbook
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallRunbook
+  type: has_one
+  to: app.Runbook
+  via: runbook
+- from: app.InstallRunbook
+  type: belongs_to
+  to: runbook
+  via: runbook_id
+- from: app.InstallRunbook
+  type: has_many
+  to: app.InstallRunbookRun
+  via: runs
+- from: app.InstallRunbookRun
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.InstallRunbookRun
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallRunbookRun
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallRunbookRun
+  type: has_one
+  to: app.InstallRunbook
+  via: install_runbook
+- from: app.InstallRunbookRun
+  type: belongs_to
+  to: install_runbook
+  via: install_runbook_id
+- from: app.InstallRunbookRun
+  type: has_one
+  to: app.Workflow
+  via: install_workflow
+- from: app.InstallRunbookRun
+  type: belongs_to
+  to: install_workflow
+  via: install_workflow_id
+- from: app.InstallRunbookRun
+  type: has_one
+  to: app.RunbookConfig
+  via: runbook_config
+- from: app.InstallRunbookRun
+  type: belongs_to
+  to: runbook_config
+  via: runbook_config_id
+- from: app.InstallRunbookRun
+  type: has_many
+  to: app.RunbookStepSelection
+  via: step_selections
+- from: app.InstallRunbookRun
+  type: belongs_to
+  to: triggered_by
+  via: triggered_by_id
+- from: app.InstallSandbox
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallSandbox
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallSandbox
+  type: has_many
+  to: app.InstallSandboxRun
+  via: install_sandbox_runs
+- from: app.InstallSandboxRun
+  type: has_many
+  to: app.InstallActionWorkflowRun
+  via: action_workflow_runs
+- from: app.InstallSandboxRun
+  type: has_one
+  to: app.AppSandboxConfig
+  via: app_sandbox_config
+- from: app.InstallSandboxRun
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.InstallSandboxRun
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallSandboxRun
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallSandboxRun
+  type: belongs_to
+  to: install_sandbox
+  via: install_sandbox_id
+- from: app.InstallSandboxRun
+  type: belongs_to
+  to: install_workflow
+  via: install_workflow_id
+- from: app.InstallSandboxRun
+  type: has_many
+  to: app.PolicyReport
+  via: policy_reports
+- from: app.InstallSandboxRun
+  type: has_one
+  to: app.SandboxRunType
+  via: run_type
+- from: app.InstallSandboxRun
+  type: has_many
+  to: app.RunnerJob
+  via: runner_jobs
+- from: app.InstallSandboxRun
+  type: has_one
+  to: app.Workflow
+  via: workflow
+- from: app.InstallSandboxRun
+  type: belongs_to
+  to: workflow
+  via: workflow_id
+- from: app.InstallStack
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallStack
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallStack
+  type: has_one
+  to: app.InstallStackOutputs
+  via: install_stack_outputs
+- from: app.InstallStack
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallStack
+  type: has_many
+  to: app.InstallStackVersion
+  via: versions
+- from: app.InstallStackOutputs
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallStackOutputs
+  type: belongs_to
+  to: install_stack
+  via: install_stack_id
+- from: app.InstallStackOutputs
+  type: belongs_to
+  to: install_version_run
+  via: install_version_run_id
+- from: app.InstallStackOutputs
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallStackVersion
+  type: belongs_to
+  to: app_config
+  via: app_config_id
+- from: app.InstallStackVersion
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallStackVersion
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallStackVersion
+  type: belongs_to
+  to: install_stack
+  via: install_stack_id
+- from: app.InstallStackVersion
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.InstallStackVersion
+  type: belongs_to
+  to: phone_home
+  via: phone_home_id
+- from: app.InstallStackVersion
+  type: has_many
+  to: app.InstallStackVersionRun
+  via: runs
+- from: app.InstallStackVersionRun
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallStackVersionRun
+  type: has_one
+  to: app.StackVersionRunInputDiff
+  via: input_diff
+- from: app.InstallStackVersionRun
+  type: has_one
+  to: app.StackVersionRunRoleDiff
+  via: role_diff
+- from: app.InstallStackVersionRun
+  type: has_one
+  to: app.StackVersionRunType
+  via: run_type
+- from: app.InstallState
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.InstallState
+  type: has_one
+  to: app.InstallStateGenerateSource
+  via: generated_by
+- from: app.InstallState
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.InstallState
+  type: belongs_to
+  to: triggered_by
+  via: triggered_by_id
+- from: app.Notebook
+  type: has_many
+  to: app.NotebookCell
+  via: cells
+- from: app.Notebook
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.Notebook
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.Notebook
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.NotebookCell
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.NotebookCell
+  type: belongs_to
+  to: notebook
+  via: notebook_id
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: cell
+  via: cell_id
+- from: app.NotebookCellRun
+  type: has_one
+  to: app.Account
+  via: created_by
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: install_action_workflow_run
+  via: install_action_workflow_run_id
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: install
+  via: install_id
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: log_stream
+  via: log_stream_id
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: notebook
+  via: notebook_id
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: runner_job
+  via: runner_job_id
+- from: app.NotebookCellRun
+  type: belongs_to
+  to: triggered_by
+  via: triggered_by_id
+- from: app.Org
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.Org
+  type: has_one
+  to: app.RunnerGroup
+  via: runner_group
+- from: app.OrgInvite
+  type: belongs_to
+  to: created_by
+  via: created_by_id
+- from: app.OrgInvite
+  type: belongs_to
+  to: org
+  via: org_id
+- from: app.OrgInvite
+  type: has_one
+  to: app.OrgInviteStatus
+  via: status

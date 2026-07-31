@@ -1,0 +1,67 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.nuon.co/updates/updates
+scheme: sequential-numbered-updates
+versioning: semver (v0.x); update entries carry a "Since vX.Y.ZZZ" badge
+current_version_seen: v0.19.952
+note: >-
+  Nuon publishes a dated, sequentially-numbered product changelog (000-038+). Recent window below;
+  see the source for full history. Each entry links a docs page and a control-plane version badge.
+entries:
+  - id: '038'
+    title: Terraform stack provider
+    date: '2026-07-14'
+    highlights: First-class support for building stack templates in Terraform.
+    url: https://docs.nuon.co/updates/038-stack-terraform-provider
+  - id: '038'
+    title: Spacelift install stacks and CLI automation
+    date: '2026-07-10'
+    highlights: Provision install stacks through Spacelift; improved error messages; reliable CI/CD CLI.
+    url: https://docs.nuon.co/updates/038-spacelift-and-cli-automation
+  - id: '037'
+    title: Split install stack tfvars
+    date: '2026-07-03'
+    highlights: Install stack Terraform config split into inputs.auto.tfvars and secrets.auto.tfvars.
+    breaking: true
+    url: https://docs.nuon.co/updates/037-split-install-stack-tfvars
+  - id: '036'
+    title: Toggleable Components
+    date: '2026-06-30'
+    highlights: Turn components on/off per install; Kubernetes contexts; YAML/HCL inputs.
+    url: https://docs.nuon.co/updates/036-toggleable-components
+  - id: '035'
+    title: Runbooks and rendered READMEs
+    date: '2026-06-01'
+    highlights: Notebooks that define common actions; runbooks for incidents/upgrades.
+    url: https://docs.nuon.co/updates/035-runbooks-and-readmes
+  - id: '034'
+    title: Slack Integration, Webhooks, and AWS Terraform Stacks
+    date: '2026-05-12'
+    highlights: Slack notifications; org-scoped webhooks; Terraform stacks for AWS.
+    url: https://docs.nuon.co/updates/034-aws-terraform-install-stack
+  - id: '033'
+    title: Parallel Workflows, Policy Analytics, and Improved GCP/Azure
+    date: '2026-04-24'
+    version: v0.19.952
+    highlights: Parallel workflows, retries, policy analytics, labels; improved Azure/GCP/plan diffs.
+    url: https://docs.nuon.co/updates/033-Workflow-Policy-and-improved-cloud-support
+  - id: '032'
+    title: Nuon TUIs and Extensions, Dashboard UX, and Role Management
+    date: '2026-03-25'
+    version: v0.19.821
+    highlights: CLI workflow TUIs; CLI extensions GA; operation-role expansion.
+    url: https://docs.nuon.co/updates/032-extensions-and-roles
+  - id: '031'
+    title: Operation Roles
+    date: '2026-02-26'
+    highlights: Assign different IAM roles to different operations for least-privilege access.
+    url: https://docs.nuon.co/updates/031-operation-roles
+  - id: '030'
+    title: Policies
+    date: '2026-02-19'
+    highlights: Enforce compliance/security/operational standards across deploys, sandbox runs, external images.
+    url: https://docs.nuon.co/updates/030-policies
+  - id: '028'
+    title: Nuon is now Open Source
+    highlights: Nuon's core platform is now open source (github.com/nuonco/nuon).
+    url: https://docs.nuon.co/updates/028-open-source

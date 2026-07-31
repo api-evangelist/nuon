@@ -1,0 +1,2490 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/nuon-oapi-v3-openapi.json
+note: Candidate MCP tool surface derived one-tool-per-operationId from the Nuon OpenAPI v3 spec. Nuon
+  does not publish a hosted MCP server; it ships a Claude Code plugin (github.com/nuonco/nuon-plugin)
+  and AI skills (github.com/nuonco/skills) instead.
+server:
+  name: nuon
+  transport: stdio
+  status: candidate
+auth:
+  type: apiKey
+  header: 'Authorization: Bearer <token>'
+  org_header: X-Nuon-Org-ID
+tool_count: 412
+tools:
+- name: SlackSlashCommand
+  description: Slack /nuon slash command webhook
+  method: POST
+  path: /slack/commands/nuon
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#SlackSlashCommand
+- name: SlackEvents
+  description: Slack Events API webhook
+  method: POST
+  path: /slack/events
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#SlackEvents
+- name: SlackInteractions
+  description: Slack interactivity & shortcuts request URL
+  method: POST
+  path: /slack/interactions
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#SlackInteractions
+- name: SlackOAuthCallback
+  description: Slack OAuth v2 redirect target
+  method: GET
+  path: /slack/oauth/callback
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#SlackOAuthCallback
+- name: GetCurrentAccount
+  description: Get current account
+  method: GET
+  path: /v1/account
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCurrentAccount
+- name: CreateStaticToken
+  description: create a static API token for your org
+  method: POST
+  path: /v1/account/static-token
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateStaticToken
+- name: ListStaticTokens
+  description: list your org's static API tokens
+  method: GET
+  path: /v1/account/static-tokens
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListStaticTokens
+- name: DeleteStaticToken
+  description: delete a static API token
+  method: DELETE
+  path: /v1/account/static-tokens/{token_id}
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteStaticToken
+- name: GetUserJourneys
+  description: Get user journeys
+  method: GET
+  path: /v1/account/user-journeys
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetUserJourneys
+- name: CreateUserJourney
+  description: Create a new user journey for account
+  method: POST
+  path: /v1/account/user-journeys
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateUserJourney
+- name: CompleteUserJourney
+  description: Complete all steps in a specific user journey
+  method: POST
+  path: /v1/account/user-journeys/{journey_name}/complete
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CompleteUserJourney
+- name: ResetUserJourney
+  description: Reset user journey steps
+  method: POST
+  path: /v1/account/user-journeys/{journey_name}/reset
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ResetUserJourney
+- name: UpdateUserJourneyStep
+  description: Update user journey step completion status
+  method: PATCH
+  path: /v1/account/user-journeys/{journey_name}/steps/{step_name}
+  tag: accounts
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateUserJourneyStep
+- name: GetActionWorkflowConfig
+  description: get an app action workflow config
+  method: GET
+  path: /v1/action-workflows/configs/{action_workflow_config_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetActionWorkflowConfig
+- name: DeleteActionWorkflow
+  description: delete an action workflow
+  method: DELETE
+  path: /v1/action-workflows/{action_workflow_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteActionWorkflow
+- name: GetActionWorkflow
+  description: get an app action workflow by action workflow id
+  method: GET
+  path: /v1/action-workflows/{action_workflow_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetActionWorkflow
+- name: UpdateAppActionWorkflow
+  description: patch an app
+  method: PATCH
+  path: /v1/action-workflows/{action_workflow_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppActionWorkflow
+- name: GetActionWorkflowConfigs
+  description: get action workflow for an app
+  method: GET
+  path: /v1/action-workflows/{action_workflow_id}/configs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetActionWorkflowConfigs
+- name: CreateActionWorkflowConfig
+  description: create action workflow config
+  method: POST
+  path: /v1/action-workflows/{action_workflow_id}/configs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateActionWorkflowConfig
+- name: GetActionWorkflowLatestConfig
+  description: get an app action workflow's latest config
+  method: GET
+  path: /v1/action-workflows/{action_workflow_id}/latest-config
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetActionWorkflowLatestConfig
+- name: GetApps
+  description: get all apps for the current org
+  method: GET
+  path: /v1/apps
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetApps
+- name: CreateApp
+  description: create an app
+  method: POST
+  path: /v1/apps
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateApp
+- name: DeleteApp
+  description: delete an app
+  method: DELETE
+  path: /v1/apps/{app_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteApp
+- name: GetApp
+  description: get an app
+  method: GET
+  path: /v1/apps/{app_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetApp
+- name: UpdateApp
+  description: update an app
+  method: PATCH
+  path: /v1/apps/{app_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateApp
+- name: GetActionWorkflows
+  description: get action workflows for an app
+  method: GET
+  path: /v1/apps/{app_id}/action-workflows
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetActionWorkflows
+- name: CreateAppActionWorkflow
+  description: create an app action workflow
+  method: POST
+  path: /v1/apps/{app_id}/action-workflows
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppActionWorkflow
+- name: GetAppActionWorkflow
+  description: get an app action workflow
+  method: GET
+  path: /v1/apps/{app_id}/action-workflows/{action_workflow_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppActionWorkflow
+- name: GetAppActions
+  description: get action workflows for an app
+  method: GET
+  path: /v1/apps/{app_id}/actions
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppActions
+- name: CreateAppAction
+  description: create an app action
+  method: POST
+  path: /v1/apps/{app_id}/actions
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppAction
+- name: GetAppActionConfig
+  description: get an app action config
+  method: GET
+  path: /v1/apps/{app_id}/actions/configs/{action_config_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppActionConfig
+- name: GetActionLabelKeys
+  description: get distinct label key:value pairs across all actions for an app
+  method: GET
+  path: /v1/apps/{app_id}/actions/label-keys
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetActionLabelKeys
+- name: DeleteAction
+  description: delete an action
+  method: DELETE
+  path: /v1/apps/{app_id}/actions/{action_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteAction
+- name: GetAppAction
+  description: get an app action workflow by action workflow id
+  method: GET
+  path: /v1/apps/{app_id}/actions/{action_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppAction
+- name: UpdateAppAction
+  description: patch an app action
+  method: PATCH
+  path: /v1/apps/{app_id}/actions/{action_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppAction
+- name: GetAppActionConfigs
+  description: get action workflow for an app
+  method: GET
+  path: /v1/apps/{app_id}/actions/{action_id}/configs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppActionConfigs
+- name: CreateActionConfig
+  description: create action config
+  method: POST
+  path: /v1/apps/{app_id}/actions/{action_id}/configs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateActionConfig
+- name: RemoveAppActionLabels
+  description: remove labels from an action
+  method: DELETE
+  path: /v1/apps/{app_id}/actions/{action_id}/labels
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RemoveAppActionLabels
+- name: AddAppActionLabels
+  description: add labels to an action
+  method: POST
+  path: /v1/apps/{app_id}/actions/{action_id}/labels
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#AddAppActionLabels
+- name: GetActionLatestConfig
+  description: get an app action workflow's latest config
+  method: GET
+  path: /v1/apps/{app_id}/actions/{action_id}/latest-config
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetActionLatestConfig
+- name: GetAppBranches
+  description: get app branches
+  method: GET
+  path: /v1/apps/{app_id}/branches
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBranches
+- name: CreateAppBranch
+  description: Cancel a runner job.
+  method: POST
+  path: /v1/apps/{app_id}/branches
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppBranch
+- name: DeleteAppBranch
+  description: delete an app branch
+  method: DELETE
+  path: /v1/apps/{app_id}/branches/{app_branch_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteAppBranch
+- name: GetAppBranch
+  description: get an app branch
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBranch
+- name: UpdateAppBranch
+  description: update app branch metadata
+  method: PATCH
+  path: /v1/apps/{app_id}/branches/{app_branch_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppBranch
+- name: GetAppBranchAppConfigs
+  description: get app branch app configs
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBranchAppConfigs
+- name: CreateAppBranchConfig
+  description: create an app branch config
+  method: POST
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppBranchConfig
+- name: GetAppBranchLatestConfig
+  description: get latest app branch config
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/latest-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBranchLatestConfig
+- name: GetAppBranchRuns
+  description: get app branch workflow runs
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/runs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBranchRuns
+- name: TriggerAppBranchRun
+  description: trigger app branch workflow run
+  method: POST
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/runs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#TriggerAppBranchRun
+- name: GetAppBranchRunBuilds
+  description: get builds for an app branch run
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/runs/{run_id}/builds
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBranchRunBuilds
+- name: GetInstallGroupRuns
+  description: list install group runs for an app branch run
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/runs/{run_id}/install-group-runs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallGroupRuns
+- name: GetInstallGroupRun
+  description: get a specific install group run
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/runs/{run_id}/install-group-runs/{install_group_run_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallGroupRun
+- name: GetAppBranchRunInstallGroups
+  description: get install group deployments for an app branch run
+  method: GET
+  path: /v1/apps/{app_id}/branches/{app_branch_id}/runs/{run_id}/install-groups
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBranchRunInstallGroups
+- name: CreateAppBreakGlassConfig
+  description: Create a break glass config for an app.
+  method: POST
+  path: /v1/apps/{app_id}/break-glass-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppBreakGlassConfig
+- name: GetAppBreakGlassConfig
+  description: get app break_glass config
+  method: GET
+  path: /v1/apps/{app_id}/break-glass-configs/{config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppBreakGlassConfig
+- name: GetAppComponent
+  description: get a components for a specific app
+  method: GET
+  path: /v1/apps/{app_id}/component/{component_name_or_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponent
+- name: GetAppComponents
+  description: get all components for an app
+  method: GET
+  path: /v1/apps/{app_id}/components
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponents
+- name: CreateComponent
+  description: create a component
+  method: POST
+  path: /v1/apps/{app_id}/components
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateComponent
+- name: BuildAllComponents
+  description: create component build
+  method: POST
+  path: /v1/apps/{app_id}/components/build-all
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#BuildAllComponents
+- name: GetComponentLabelKeys
+  description: get distinct label key:value pairs across all components for an app
+  method: GET
+  path: /v1/apps/{app_id}/components/label-keys
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentLabelKeys
+- name: DeleteAppComponent
+  description: delete a component
+  method: DELETE
+  path: /v1/apps/{app_id}/components/{component_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteAppComponent
+- name: UpdateAppComponent
+  description: update a component
+  method: PATCH
+  path: /v1/apps/{app_id}/components/{component_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppComponent
+- name: GetAppComponentBuilds
+  description: get builds for components
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/builds
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentBuilds
+- name: CreateAppComponentBuild
+  description: create component build
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/builds
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppComponentBuild
+- name: GetAppComponentLatestBuild
+  description: get latest build for a component
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/builds/latest
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentLatestBuild
+- name: GetAppComponentBuild
+  description: get a build for a component
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/builds/{build_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentBuild
+- name: CancelAppComponentBuild
+  description: cancel component build
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/builds/{build_id}/cancel
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CancelAppComponentBuild
+- name: GetAppComponentConfigs
+  description: get all configs for a component
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/configs
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentConfigs
+- name: CreateAppDockerBuildComponentConfig
+  description: create a docker build component config
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/configs/docker-build
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppDockerBuildComponentConfig
+- name: CreateAppExternalImageComponentConfig
+  description: create an external image component config
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/configs/external-image
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppExternalImageComponentConfig
+- name: CreateAppHelmComponentConfig
+  description: create a helm component config
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/configs/helm
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppHelmComponentConfig
+- name: CreateAppJobComponentConfig
+  description: create a job component config
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/configs/job
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppJobComponentConfig
+- name: CreateAppKubernetesManifestComponentConfig
+  description: create a kubernetes manifest component config
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/configs/kubernetes-manifest
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppKubernetesManifestComponentConfig
+- name: GetAppComponentLatestConfig
+  description: get latest config for a component
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/configs/latest
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentLatestConfig
+- name: CreateAppPulumiComponentConfig
+  description: create a pulumi component config
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/configs/pulumi
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppPulumiComponentConfig
+- name: CreateAppTerraformModuleComponentConfig
+  description: create a terraform component config
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/configs/terraform-module
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppTerraformModuleComponentConfig
+- name: GetAppComponentConfig
+  description: get a config for a component
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/configs/{config_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentConfig
+- name: GetAppComponentDependencies
+  description: get a component's dependencies
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/dependencies
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentDependencies
+- name: GetAppComponentDependents
+  description: get a component's children
+  method: GET
+  path: /v1/apps/{app_id}/components/{component_id}/dependents
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppComponentDependents
+- name: RemoveAppComponentLabels
+  description: remove labels from a component
+  method: DELETE
+  path: /v1/apps/{app_id}/components/{component_id}/labels
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RemoveAppComponentLabels
+- name: AddAppComponentLabels
+  description: add labels to a component
+  method: POST
+  path: /v1/apps/{app_id}/components/{component_id}/labels
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#AddAppComponentLabels
+- name: CreateAppConfig
+  description: Create an app config, by pushing the contents of a config file.
+  method: POST
+  path: /v1/apps/{app_id}/config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppConfig
+- name: GetAppConfig
+  description: get an app config
+  method: GET
+  path: /v1/apps/{app_id}/config/{app_config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppConfig
+- name: UpdateAppConfig
+  description: Update an app config, setting status and state.
+  method: PATCH
+  path: /v1/apps/{app_id}/config/{app_config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppConfig
+- name: GetAppConfigGraph
+  description: get an app config graph
+  method: GET
+  path: /v1/apps/{app_id}/config/{app_config_id}/graph
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppConfigGraph
+- name: UpdateAppConfigInstalls
+  description: Update app configuration across multiple installs.
+  method: POST
+  path: /v1/apps/{app_id}/config/{app_config_id}/update-installs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppConfigInstalls
+- name: GetAppConfigs
+  description: get app configs
+  method: GET
+  path: /v1/apps/{app_id}/configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppConfigs
+- name: CreateAppConfigV2
+  description: Create an app config, by pushing the contents of a config file.
+  method: POST
+  path: /v1/apps/{app_id}/configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppConfigV2
+- name: GetAppConflgV2
+  description: get an app config
+  method: GET
+  path: /v1/apps/{app_id}/configs/{config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppConflgV2
+- name: UpdateAppConflgV2
+  description: Update an app config, setting status and state.
+  method: PATCH
+  path: /v1/apps/{app_id}/configs/{config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppConflgV2
+- name: BuildAppConfig
+  description: Build all components for an app config
+  method: POST
+  path: /v1/apps/{app_id}/configs/{config_id}/build
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#BuildAppConfig
+- name: GetAppConfigDiff
+  description: diff two app configs
+  method: GET
+  path: /v1/apps/{app_id}/configs/{config_id}/diff
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppConfigDiff
+- name: GetAppConfigGraphV2
+  description: get an app config graph
+  method: GET
+  path: /v1/apps/{app_id}/configs/{config_id}/graph
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppConfigGraphV2
+- name: UpdateAppConfigInstallsV2
+  description: Update app configuration across multiple installs.
+  method: POST
+  path: /v1/apps/{app_id}/configs/{config_id}/update-installs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateAppConfigInstallsV2
+- name: CreateAppInputConfig
+  description: App input configs allow you to declare the inputs for your application, and do things such
+    as require customer inputs or
+  method: POST
+  path: /v1/apps/{app_id}/input-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppInputConfig
+- name: GetAppInputConfigs
+  description: get app input configs
+  method: GET
+  path: /v1/apps/{app_id}/input-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppInputConfigs
+- name: GetAppInputConfig
+  description: get app input config
+  method: GET
+  path: /v1/apps/{app_id}/input-configs/{input_config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppInputConfig
+- name: GetAppInputLatestConfig
+  description: get latest app input config
+  method: GET
+  path: /v1/apps/{app_id}/input-latest-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppInputLatestConfig
+- name: GetAppInstalls
+  description: get all installs for an app
+  method: GET
+  path: /v1/apps/{app_id}/installs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppInstalls
+- name: CreateInstall
+  description: create an app install
+  method: POST
+  path: /v1/apps/{app_id}/installs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstall
+- name: CreateAppKubernetesContextsConfig
+  description: create a kubernetes contexts config
+  method: POST
+  path: /v1/apps/{app_id}/kubernetes-contexts-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppKubernetesContextsConfig
+- name: GetAppLabels
+  description: get all labels used across an app
+  method: GET
+  path: /v1/apps/{app_id}/labels
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppLabels
+- name: GetLatestAppBreakGlassConfig
+  description: get latest app break glass config
+  method: GET
+  path: /v1/apps/{app_id}/latest-break-glass-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetLatestAppBreakGlassConfig
+- name: GetAppLatestConfig
+  description: get latest app config
+  method: GET
+  path: /v1/apps/{app_id}/latest-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppLatestConfig
+- name: GetLatestAppPermissionsConfig
+  description: get latest app permissions config
+  method: GET
+  path: /v1/apps/{app_id}/latest-permissions-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetLatestAppPermissionsConfig
+- name: GetLatestAppPoliciesConfig
+  description: get latest app policies config
+  method: GET
+  path: /v1/apps/{app_id}/latest-policies-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetLatestAppPoliciesConfig
+- name: GetLatestAppSecretsConfig
+  description: get latest app secrets config
+  method: GET
+  path: /v1/apps/{app_id}/latest-secrets-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetLatestAppSecretsConfig
+- name: CreateAppOperationRoleConfig
+  description: create operation role config
+  method: POST
+  path: /v1/apps/{app_id}/operation-role-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppOperationRoleConfig
+- name: GetAppOperationRoleConfigs
+  description: get operation role configs
+  method: GET
+  path: /v1/apps/{app_id}/operation-role-configs/{operation_role_config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppOperationRoleConfigs
+- name: CreateAppPermissionsConfig
+  description: Create app permissions config.
+  method: POST
+  path: /v1/apps/{app_id}/permissions-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppPermissionsConfig
+- name: GetAppPermissionsConfig
+  description: get app permissions config
+  method: GET
+  path: /v1/apps/{app_id}/permissions-configs/{config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppPermissionsConfig
+- name: GetAppPoliciesConfigs
+  description: get app policies configs
+  method: GET
+  path: /v1/apps/{app_id}/policies-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppPoliciesConfigs
+- name: CreateAppPoliciesConfig
+  description: Create app policies config.
+  method: POST
+  path: /v1/apps/{app_id}/policies-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppPoliciesConfig
+- name: GetAppPoliciesConfig
+  description: get app policies config
+  method: GET
+  path: /v1/apps/{app_id}/policies-configs/{config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppPoliciesConfig
+- name: GetPolicyAnalyticsBreakdown
+  description: get policy analytics breakdown by dimension
+  method: GET
+  path: /v1/apps/{app_id}/policy-analytics/breakdown
+  tag: policy-reports
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetPolicyAnalyticsBreakdown
+- name: GetPolicyAnalyticsSummary
+  description: get policy analytics summary
+  method: GET
+  path: /v1/apps/{app_id}/policy-analytics/summary
+  tag: policy-reports
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetPolicyAnalyticsSummary
+- name: GetPolicyAnalyticsTimeseries
+  description: get policy analytics timeseries
+  method: GET
+  path: /v1/apps/{app_id}/policy-analytics/timeseries
+  tag: policy-reports
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetPolicyAnalyticsTimeseries
+- name: GetAppPolicyConfig
+  description: get app policy config
+  method: GET
+  path: /v1/apps/{app_id}/policy-config/{policy_config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppPolicyConfig
+- name: GetRunbooks
+  description: get runbooks for an app
+  method: GET
+  path: /v1/apps/{app_id}/runbooks
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunbooks
+- name: CreateRunbook
+  description: create a runbook for an app
+  method: POST
+  path: /v1/apps/{app_id}/runbooks
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateRunbook
+- name: DeleteRunbook
+  description: delete a runbook
+  method: DELETE
+  path: /v1/apps/{app_id}/runbooks/{runbook_id}
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteRunbook
+- name: GetRunbook
+  description: get a runbook
+  method: GET
+  path: /v1/apps/{app_id}/runbooks/{runbook_id}
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunbook
+- name: UpdateRunbook
+  description: update a runbook
+  method: PATCH
+  path: /v1/apps/{app_id}/runbooks/{runbook_id}
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateRunbook
+- name: GetRunbookConfigs
+  description: get runbook configs
+  method: GET
+  path: /v1/apps/{app_id}/runbooks/{runbook_id}/configs
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunbookConfigs
+- name: CreateRunbookConfig
+  description: create a runbook config
+  method: POST
+  path: /v1/apps/{app_id}/runbooks/{runbook_id}/configs
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateRunbookConfig
+- name: GetAppRunnerConfigs
+  description: get app runner configs
+  method: GET
+  path: /v1/apps/{app_id}/runner-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppRunnerConfigs
+- name: CreateAppRunnerConfig
+  description: create an app runner config
+  method: POST
+  path: /v1/apps/{app_id}/runner-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppRunnerConfig
+- name: GetAppRunnerLatestConfig
+  description: get latest app runner config
+  method: GET
+  path: /v1/apps/{app_id}/runner-latest-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppRunnerLatestConfig
+- name: CreateAppSandboxConfig
+  description: create an app sandbox config
+  method: POST
+  path: /v1/apps/{app_id}/sandbox-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppSandboxConfig
+- name: GetAppSandboxConfigs
+  description: get app sandbox configs
+  method: GET
+  path: /v1/apps/{app_id}/sandbox-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppSandboxConfigs
+- name: CreateAppSandboxConfigV2
+  description: create an app sandbox config
+  method: POST
+  path: /v1/apps/{app_id}/sandbox-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppSandboxConfigV2
+- name: GetAppSandboxLatestConfig
+  description: get latest app sandbox config
+  method: GET
+  path: /v1/apps/{app_id}/sandbox-latest-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppSandboxLatestConfig
+- name: GetAppSandboxBuilds
+  description: get app sandbox builds
+  method: GET
+  path: /v1/apps/{app_id}/sandbox/builds
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppSandboxBuilds
+- name: CreateAppSandboxBuild
+  description: create app sandbox build
+  method: POST
+  path: /v1/apps/{app_id}/sandbox/builds
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppSandboxBuild
+- name: GetAppSandboxBuild
+  description: get app sandbox build
+  method: GET
+  path: /v1/apps/{app_id}/sandbox/builds/{build_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppSandboxBuild
+- name: CreateAppSecret
+  description: create an app secret
+  method: POST
+  path: /v1/apps/{app_id}/secret
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppSecret
+- name: DeleteAppSecret
+  description: delete an app secret
+  method: DELETE
+  path: /v1/apps/{app_id}/secret/{secret_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteAppSecret
+- name: GetAppSecrets
+  description: get app secrets
+  method: GET
+  path: /v1/apps/{app_id}/secrets
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppSecrets
+- name: CreateAppSecretV2
+  description: create an app secret
+  method: POST
+  path: /v1/apps/{app_id}/secrets
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppSecretV2
+- name: CreateAppSecretsConfig
+  description: Create an app secrets config.
+  method: POST
+  path: /v1/apps/{app_id}/secrets-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppSecretsConfig
+- name: GetAppSecretsConfig
+  description: get app secrets config
+  method: GET
+  path: /v1/apps/{app_id}/secrets-configs/{config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppSecretsConfig
+- name: DeleteAppSecretV2
+  description: delete an app secret
+  method: DELETE
+  path: /v1/apps/{app_id}/secrets/{secret_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteAppSecretV2
+- name: CreateAppStackConfig
+  description: create an app stack config
+  method: POST
+  path: /v1/apps/{app_id}/stack-configs
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAppStackConfig
+- name: GetAppStackConfig
+  description: get app stack config
+  method: GET
+  path: /v1/apps/{app_id}/stack-configs/{config_id}
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppStackConfig
+- name: GetAppConfigTemplate
+  description: get an app config template
+  method: GET
+  path: /v1/apps/{app_id}/template-config
+  tag: apps
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAppConfigTemplate
+- name: GetAuthMe
+  description: Get current account with identity information
+  method: GET
+  path: /v1/auth/me
+  tag: auth
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAuthMe
+- name: ValidateToken
+  description: Validate authentication token
+  method: GET
+  path: /v1/auth/validate
+  tag: auth
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ValidateToken
+- name: GetComponentBuilds
+  description: get builds for components
+  method: GET
+  path: /v1/builds
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentBuilds
+- name: GetOrgComponents
+  description: get all components for an org
+  method: GET
+  path: /v1/components
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgComponents
+- name: GetBuild
+  description: get a build
+  method: GET
+  path: /v1/components/builds/{build_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetBuild
+- name: DeleteComponent
+  description: delete a component
+  method: DELETE
+  path: /v1/components/{component_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteComponent
+- name: GetComponent
+  description: get a component
+  method: GET
+  path: /v1/components/{component_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponent
+- name: UpdateComponent
+  description: update a component
+  method: PATCH
+  path: /v1/components/{component_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateComponent
+- name: CreateComponentBuild
+  description: create component build
+  method: POST
+  path: /v1/components/{component_id}/builds
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateComponentBuild
+- name: GetComponentLatestBuild
+  description: get latest build for a component
+  method: GET
+  path: /v1/components/{component_id}/builds/latest
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentLatestBuild
+- name: GetComponentBuild
+  description: get a build for a component
+  method: GET
+  path: /v1/components/{component_id}/builds/{build_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentBuild
+- name: GetComponentConfigs
+  description: get all configs for a component
+  method: GET
+  path: /v1/components/{component_id}/configs
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentConfigs
+- name: CreateDockerBuildComponentConfig
+  description: create a docker build component config
+  method: POST
+  path: /v1/components/{component_id}/configs/docker-build
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateDockerBuildComponentConfig
+- name: CreateExternalImageComponentConfig
+  description: create an external image component config
+  method: POST
+  path: /v1/components/{component_id}/configs/external-image
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateExternalImageComponentConfig
+- name: CreateHelmComponentConfig
+  description: create a helm component config
+  method: POST
+  path: /v1/components/{component_id}/configs/helm
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateHelmComponentConfig
+- name: CreateJobComponentConfig
+  description: create a job component config
+  method: POST
+  path: /v1/components/{component_id}/configs/job
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateJobComponentConfig
+- name: CreateKubernetesManifestComponentConfig
+  description: create a kubernetes manifest component config
+  method: POST
+  path: /v1/components/{component_id}/configs/kubernetes-manifest
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateKubernetesManifestComponentConfig
+- name: GetComponentLatestConfig
+  description: get latest config for a component
+  method: GET
+  path: /v1/components/{component_id}/configs/latest
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentLatestConfig
+- name: CreatePulumiComponentConfig
+  description: create a pulumi component config
+  method: POST
+  path: /v1/components/{component_id}/configs/pulumi
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreatePulumiComponentConfig
+- name: CreateTerraformModuleComponentConfig
+  description: create a terraform component config
+  method: POST
+  path: /v1/components/{component_id}/configs/terraform-module
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateTerraformModuleComponentConfig
+- name: GetComponentConfig
+  description: get a config for a component
+  method: GET
+  path: /v1/components/{component_id}/configs/{config_id}
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentConfig
+- name: GetComponentDependencies
+  description: get a component's dependencies
+  method: GET
+  path: /v1/components/{component_id}/dependencies
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentDependencies
+- name: GetComponentDependents
+  description: get a component's children
+  method: GET
+  path: /v1/components/{component_id}/dependents
+  tag: components
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetComponentDependents
+- name: GetCLIConfig
+  description: Get config for cli
+  method: GET
+  path: /v1/general/cli-config
+  tag: general
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCLIConfig
+- name: GetCloudPlatformRegions
+  description: Get regions for a cloud platform
+  method: GET
+  path: /v1/general/cloud-platform/{cloud_platform}/regions
+  tag: general
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCloudPlatformRegions
+- name: GetConfigSchema
+  description: Get jsonschema for config file (deprecated query form)
+  method: GET
+  path: /v1/general/config-schema
+  tag: general
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetConfigSchema
+- name: GetConfigSchemaByType
+  description: Get jsonschema for a config file type
+  method: GET
+  path: /v1/general/config-schema/{type}
+  tag: general
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetConfigSchemaByType
+- name: GetCurrentUser
+  description: Get current user
+  method: GET
+  path: /v1/general/current-user
+  tag: general
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCurrentUser
+- name: CreateWaitlist
+  description: Allow user to be added to an org waitlist.
+  method: POST
+  path: /v1/general/waitlist
+  tag: general
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateWaitlist
+- name: GetInstallWorkflow
+  description: get an install workflow
+  method: GET
+  path: /v1/install-workflows/{install_workflow_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallWorkflow
+- name: UpdateInstallWorkflow
+  description: update an install workflow
+  method: PATCH
+  path: /v1/install-workflows/{install_workflow_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateInstallWorkflow
+- name: CancelInstallWorkflow
+  description: cancel an ongoing install workflow
+  method: POST
+  path: /v1/install-workflows/{install_workflow_id}/cancel
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CancelInstallWorkflow
+- name: GetInstallWorkflowSteps
+  description: get all of the steps for a given install workflow
+  method: GET
+  path: /v1/install-workflows/{install_workflow_id}/steps
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallWorkflowSteps
+- name: GetInstallWorkflowStep
+  description: get an install workflow step
+  method: GET
+  path: /v1/install-workflows/{install_workflow_id}/steps/{install_workflow_step_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallWorkflowStep
+- name: GetInstallWorkflowStepApproval
+  description: get an install workflow step approval
+  method: GET
+  path: /v1/install-workflows/{install_workflow_id}/steps/{install_workflow_step_id}/approvals/{approval_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallWorkflowStepApproval
+- name: GetOrgInstalls
+  description: get all installs for an org
+  method: GET
+  path: /v1/installs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgInstalls
+- name: CreateInstallV2
+  description: create an app install
+  method: POST
+  path: /v1/installs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallV2
+- name: GetInstallLabelKeys
+  description: get distinct label key:value pairs across all installs for an org
+  method: GET
+  path: /v1/installs/label-keys
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallLabelKeys
+- name: GetInstallSandboxRun
+  description: get an install sandbox run
+  method: GET
+  path: /v1/installs/sandbox-runs/{run_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallSandboxRun
+- name: GetInstallStack
+  description: get an install stack by stack ID
+  method: GET
+  path: /v1/installs/stacks/{stack_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallStack
+- name: DeleteInstall
+  description: delete an install
+  method: DELETE
+  path: /v1/installs/{install_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteInstall
+- name: GetInstall
+  description: get an install
+  method: GET
+  path: /v1/installs/{install_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstall
+- name: UpdateInstall
+  description: update an install
+  method: PATCH
+  path: /v1/installs/{install_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateInstall
+- name: GetInstallActionWorkflows
+  description: get an installs action workflows
+  method: GET
+  path: /v1/installs/{install_id}/action-workflows
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflows
+- name: GetInstallActionWorkflowsLatestRuns
+  description: get latest runs for all action workflows by install id
+  method: GET
+  path: /v1/installs/{install_id}/action-workflows/latest-runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflowsLatestRuns
+- name: GetInstallActionWorkflowRuns
+  description: get action workflow runs by install id
+  method: GET
+  path: /v1/installs/{install_id}/action-workflows/runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflowRuns
+- name: CreateInstallActionWorkflowRun
+  description: create an action workflow run for an install
+  method: POST
+  path: /v1/installs/{install_id}/action-workflows/runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallActionWorkflowRun
+- name: GetInstallActionWorkflowRun
+  description: get action workflow runs by install id and run id
+  method: GET
+  path: /v1/installs/{install_id}/action-workflows/runs/{run_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflowRun
+- name: GetInstallActionWorkflowRunStep
+  description: get action workflow run step by install id and step id
+  method: GET
+  path: /v1/installs/{install_id}/action-workflows/runs/{run_id}/steps/{step_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflowRunStep
+- name: GetInstallActionWorkflow
+  description: get an install action workflow
+  method: GET
+  path: /v1/installs/{install_id}/action-workflows/{action_workflow_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflow
+- name: GetInstallActionWorkflowRecentRuns
+  description: get recent runs for an action workflow by install id
+  method: GET
+  path: /v1/installs/{install_id}/action-workflows/{action_workflow_id}/recent-runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflowRecentRuns
+- name: GetInstallActions
+  description: get an installs action workflows
+  method: GET
+  path: /v1/installs/{install_id}/actions
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActions
+- name: CreateAdHocAction
+  description: create an adhoc action run for an install
+  method: POST
+  path: /v1/installs/{install_id}/actions/adhoc-run
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateAdHocAction
+- name: GetInstallActionsLatestRuns
+  description: get latest runs for all action workflows by install id
+  method: GET
+  path: /v1/installs/{install_id}/actions/latest-runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionsLatestRuns
+- name: GetInstallActionRuns
+  description: get action workflow runs by install id
+  method: GET
+  path: /v1/installs/{install_id}/actions/runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionRuns
+- name: CreateInstallActionRun
+  description: create an action run for an install
+  method: POST
+  path: /v1/installs/{install_id}/actions/runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallActionRun
+- name: GetInstallActionRun
+  description: get action workflow runs by install id and run id
+  method: GET
+  path: /v1/installs/{install_id}/actions/runs/{run_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionRun
+- name: GetInstallActionRunStep
+  description: get action workflow run step by install id and step id
+  method: GET
+  path: /v1/installs/{install_id}/actions/runs/{run_id}/steps/{step_id}
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionRunStep
+- name: GetInstallAction
+  description: get an install action
+  method: GET
+  path: /v1/installs/{install_id}/actions/{action_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallAction
+- name: GetInstallActionWorkflowOutputs
+  description: get an install action workflow outputs
+  method: GET
+  path: /v1/installs/{install_id}/actions/{action_id}/outputs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionWorkflowOutputs
+- name: GetInstallActionRecentRuns
+  description: get recent runs for an action workflow by install id
+  method: GET
+  path: /v1/installs/{install_id}/actions/{action_id}/recent-runs
+  tag: actions
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallActionRecentRuns
+- name: CreateInstallAppConfigUpdate
+  description: trigger an app config update for an install
+  method: POST
+  path: /v1/installs/{install_id}/app-config-updates
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallAppConfigUpdate
+- name: GetInstallAppConfigVersions
+  description: get app config versions for an install
+  method: GET
+  path: /v1/installs/{install_id}/app-config-versions
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallAppConfigVersions
+- name: GetInstallAppConfigVersionDiff
+  description: get the diff for an install app config version
+  method: GET
+  path: /v1/installs/{install_id}/app-config-versions/{version_id}/diff
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallAppConfigVersionDiff
+- name: GetInstallAppPermissionsConfig
+  description: get app permissions config for an install with provisioning status
+  method: GET
+  path: /v1/installs/{install_id}/app-permissions-config
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallAppPermissionsConfig
+- name: GetInstallAuditLogs
+  description: get install audit logs
+  method: GET
+  path: /v1/installs/{install_id}/audit_logs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallAuditLogs
+- name: GetAvailableRoles
+  description: get available IAM roles for a specific operation
+  method: GET
+  path: /v1/installs/{install_id}/available-roles
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetAvailableRoles
+- name: GetInstallComponents
+  description: get an installs components
+  method: GET
+  path: /v1/installs/{install_id}/components
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallComponents
+- name: DeployInstallComponents
+  description: deploy all components on an install
+  method: POST
+  path: /v1/installs/{install_id}/components/deploy-all
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeployInstallComponents
+- name: GetInstallComponentsDeploys
+  description: get all deploys to an install
+  method: GET
+  path: /v1/installs/{install_id}/components/deploys
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallComponentsDeploys
+- name: TeardownInstallComponents
+  description: teardown an install's components
+  method: POST
+  path: /v1/installs/{install_id}/components/teardown-all
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#TeardownInstallComponents
+- name: GetInstallComponent
+  description: get an install component
+  method: GET
+  path: /v1/installs/{install_id}/components/{component_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallComponent
+- name: GetInstallComponentDeploys
+  description: get an install components deploys
+  method: GET
+  path: /v1/installs/{install_id}/components/{component_id}/deploys
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallComponentDeploys
+- name: CreateInstallComponentDeploy
+  description: deploy a build to an install
+  method: POST
+  path: /v1/installs/{install_id}/components/{component_id}/deploys
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallComponentDeploy
+- name: GetInstallComponentLatestDeploy
+  description: get the latest deploy for an install component
+  method: GET
+  path: /v1/installs/{install_id}/components/{component_id}/deploys/latest
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallComponentLatestDeploy
+- name: GetInstallComponentDeploy
+  description: get an install deploy
+  method: GET
+  path: /v1/installs/{install_id}/components/{component_id}/deploys/{deploy_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallComponentDeploy
+- name: ForgetInstallComponent
+  description: forget an install component
+  method: POST
+  path: /v1/installs/{install_id}/components/{component_id}/forget
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ForgetInstallComponent
+- name: GetInstallComponentOutputs
+  description: get an install component outputs
+  method: GET
+  path: /v1/installs/{install_id}/components/{component_id}/outputs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallComponentOutputs
+- name: TeardownInstallComponent
+  description: teardown an install component
+  method: POST
+  path: /v1/installs/{install_id}/components/{component_id}/teardown
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#TeardownInstallComponent
+- name: ToggleInstallComponent
+  description: toggle an install component on or off
+  method: POST
+  path: /v1/installs/{install_id}/components/{component_id}/toggle
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ToggleInstallComponent
+- name: CreateInstallConfig
+  description: create an install config
+  method: POST
+  path: /v1/installs/{install_id}/configs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallConfig
+- name: UpdateInstallConfig
+  description: update an install config
+  method: PATCH
+  path: /v1/installs/{install_id}/configs/{config_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateInstallConfig
+- name: GetInstallDeploys
+  description: get all deploys to an install
+  method: GET
+  path: /v1/installs/{install_id}/deploys
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallDeploys
+- name: CreateInstallDeploy
+  description: deploy a build to an install
+  method: POST
+  path: /v1/installs/{install_id}/deploys
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallDeploy
+- name: GetInstallLatestDeploy
+  description: get an install's latest deploy
+  method: GET
+  path: /v1/installs/{install_id}/deploys/latest
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallLatestDeploy
+- name: GetInstallDeploy
+  description: get an install deploy
+  method: GET
+  path: /v1/installs/{install_id}/deploys/{deploy_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallDeploy
+- name: DeprovisionInstall
+  description: deprovision an install
+  method: POST
+  path: /v1/installs/{install_id}/deprovision
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeprovisionInstall
+- name: DeprovisionInstallSandbox
+  description: deprovision an install
+  method: POST
+  path: /v1/installs/{install_id}/deprovision-sandbox
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeprovisionInstallSandbox
+- name: GetDriftedObjects
+  description: get drifted objects for an install
+  method: GET
+  path: /v1/installs/{install_id}/drifted-objects
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetDriftedObjects
+- name: GetInstallEvents
+  description: get events for an install
+  method: GET
+  path: /v1/installs/{install_id}/events
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallEvents
+- name: GetInstallEvent
+  description: get an install event
+  method: GET
+  path: /v1/installs/{install_id}/events/{event_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallEvent
+- name: ForgetInstall
+  description: forget an install
+  method: POST
+  path: /v1/installs/{install_id}/forget
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ForgetInstall
+- name: GenerateCLIInstallConfig
+  description: generate an install config to be used with CLI
+  method: GET
+  path: /v1/installs/{install_id}/generate-cli-install-config
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GenerateCLIInstallConfig
+- name: GenerateTerraformInstallerConfig
+  description: generate a Terraform installer config
+  method: GET
+  path: /v1/installs/{install_id}/generate-terraform-installer-config
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GenerateTerraformInstallerConfig
+- name: GetInstallInputs
+  description: get an installs inputs
+  method: GET
+  path: /v1/installs/{install_id}/inputs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallInputs
+- name: UpdateInstallInputs
+  description: Updates install input config for app
+  method: PATCH
+  path: /v1/installs/{install_id}/inputs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateInstallInputs
+- name: CreateInstallInputs
+  description: create install inputs
+  method: POST
+  path: /v1/installs/{install_id}/inputs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateInstallInputs
+- name: GetCurrentInstallInputs
+  description: get an installs current inputs
+  method: GET
+  path: /v1/installs/{install_id}/inputs/current
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCurrentInstallInputs
+- name: RemoveInstallLabels
+  description: remove labels from an install
+  method: DELETE
+  path: /v1/installs/{install_id}/labels
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RemoveInstallLabels
+- name: AddInstallLabels
+  description: add labels to an install
+  method: POST
+  path: /v1/installs/{install_id}/labels
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#AddInstallLabels
+- name: GetNotebooks
+  description: list notebooks for an install
+  method: GET
+  path: /v1/installs/{install_id}/notebooks
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetNotebooks
+- name: CreateNotebook
+  description: create a notebook for an install
+  method: POST
+  path: /v1/installs/{install_id}/notebooks
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateNotebook
+- name: DeleteNotebook
+  description: delete a notebook
+  method: DELETE
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteNotebook
+- name: GetNotebook
+  description: get a notebook with its ordered cells and each cell's latest run
+  method: GET
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetNotebook
+- name: UpdateNotebook
+  description: update a notebook
+  method: PATCH
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateNotebook
+- name: CreateNotebookCell
+  description: add a cell to a notebook
+  method: POST
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}/cells
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateNotebookCell
+- name: ReorderNotebookCells
+  description: reorder a notebook's cells
+  method: PUT
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}/cells/reorder
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ReorderNotebookCells
+- name: DeleteNotebookCell
+  description: delete a cell
+  method: DELETE
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}/cells/{cell_id}
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteNotebookCell
+- name: UpdateNotebookCell
+  description: edit a cell (bumps its revision)
+  method: PATCH
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}/cells/{cell_id}
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateNotebookCell
+- name: GetNotebookCellRuns
+  description: list a cell's run history (newest first)
+  method: GET
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}/cells/{cell_id}/runs
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetNotebookCellRuns
+- name: RunNotebookCell
+  description: run a notebook cell on the install's runner
+  method: POST
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}/cells/{cell_id}/runs
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RunNotebookCell
+- name: GetNotebookCellRun
+  description: get a single cell run (includes log_stream_id for tailing)
+  method: GET
+  path: /v1/installs/{install_id}/notebooks/{notebook_id}/runs/{run_id}
+  tag: notebooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetNotebookCellRun
+- name: PhoneHome
+  description: phone home for an install
+  method: POST
+  path: /v1/installs/{install_id}/phone-home/{phone_home_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#PhoneHome
+- name: GetInstallReadme
+  description: get install readme rendered with
+  method: GET
+  path: /v1/installs/{install_id}/readme
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallReadme
+- name: ReprovisionInstall
+  description: reprovision an install
+  method: POST
+  path: /v1/installs/{install_id}/reprovision
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ReprovisionInstall
+- name: ReprovisionInstallSandbox
+  description: reprovision an install sandbox
+  method: POST
+  path: /v1/installs/{install_id}/reprovision-sandbox
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ReprovisionInstallSandbox
+- name: RetryWorkflow
+  description: rerun the workflow steps starting from input step id, can be used to retry a failed step
+  method: POST
+  path: /v1/installs/{install_id}/retry-workflow
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RetryWorkflow
+- name: GetInstallRoles
+  description: get install roles
+  method: GET
+  path: /v1/installs/{install_id}/roles
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallRoles
+- name: GetLatestInstallRoles
+  description: get latest install roles
+  method: GET
+  path: /v1/installs/{install_id}/roles/latest
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetLatestInstallRoles
+- name: GetInstallRoleUsages
+  description: get install role usages
+  method: GET
+  path: /v1/installs/{install_id}/roles/usages
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallRoleUsages
+- name: UpdateInstallRole
+  description: update an install role
+  method: PATCH
+  path: /v1/installs/{install_id}/roles/{role_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateInstallRole
+- name: GetInstallRunbookRuns
+  description: get runbook runs for an install
+  method: GET
+  path: /v1/installs/{install_id}/runbook-runs
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallRunbookRuns
+- name: GetInstallRunbookRun
+  description: get a runbook run
+  method: GET
+  path: /v1/installs/{install_id}/runbook-runs/{run_id}
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallRunbookRun
+- name: GetInstallRunbooks
+  description: get runbooks for an install
+  method: GET
+  path: /v1/installs/{install_id}/runbooks
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallRunbooks
+- name: GetInstallRunbook
+  description: get an install runbook
+  method: GET
+  path: /v1/installs/{install_id}/runbooks/{runbook_id}
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallRunbook
+- name: CreateRunbookRun
+  description: run a runbook on an install
+  method: POST
+  path: /v1/installs/{install_id}/runbooks/{runbook_id}/runs
+  tag: runbooks
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateRunbookRun
+- name: CreateRunnerBootstrapToken
+  description: create a bootstrap token for an install's runner
+  method: POST
+  path: /v1/installs/{install_id}/runner-bootstrap-token
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateRunnerBootstrapToken
+- name: GetInstallRunnerGroup
+  description: Get an install's runner group
+  method: GET
+  path: /v1/installs/{install_id}/runner-group
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallRunnerGroup
+- name: GetInstallSandboxRuns
+  description: get an installs sandbox runs
+  method: GET
+  path: /v1/installs/{install_id}/sandbox-runs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallSandboxRuns
+- name: GetInstallSandboxRunV2
+  description: get an install sandbox run
+  method: GET
+  path: /v1/installs/{install_id}/sandbox-runs/{run_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallSandboxRunV2
+- name: GetInstallStackByInstallID
+  description: get an install stack by install ID
+  method: GET
+  path: /v1/installs/{install_id}/stack
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallStackByInstallID
+- name: GetInstallStackRuns
+  description: get an install's stack runs
+  method: GET
+  path: /v1/installs/{install_id}/stack-runs
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallStackRuns
+- name: GetInstallState
+  description: Get the current state of an install.
+  method: GET
+  path: /v1/installs/{install_id}/state
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallState
+- name: GetInstallStateHistory
+  description: Get install state history.
+  method: GET
+  path: /v1/installs/{install_id}/state-history
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetInstallStateHistory
+- name: SyncSecrets
+  description: sync secrets install
+  method: POST
+  path: /v1/installs/{install_id}/sync-secrets
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#SyncSecrets
+- name: GetWorkflows
+  description: get workflows
+  method: GET
+  path: /v1/installs/{install_id}/workflows
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflows
+- name: GetLogStream
+  description: get a log stream
+  method: GET
+  path: /v1/log-streams/{log_stream_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetLogStream
+- name: LogStreamReadLogs
+  description: read a log stream's logs
+  method: GET
+  path: /v1/log-streams/{log_stream_id}/logs
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#LogStreamReadLogs
+- name: LogStreamTailLogs
+  description: long-poll tail a log stream
+  method: GET
+  path: /v1/log-streams/{log_stream_id}/logs/tail
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#LogStreamTailLogs
+- name: LogStreamReadSpans
+  description: read a log stream's trace spans
+  method: GET
+  path: /v1/log-streams/{log_stream_id}/spans
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#LogStreamReadSpans
+- name: CreateOnboarding
+  description: Start a new onboarding session
+  method: POST
+  path: /v1/onboarding
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateOnboarding
+- name: AbandonOnboarding
+  description: Abandon onboarding session
+  method: DELETE
+  path: /v1/onboarding/current
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#AbandonOnboarding
+- name: GetCurrentOnboarding
+  description: Get current onboarding session
+  method: GET
+  path: /v1/onboarding/current
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCurrentOnboarding
+- name: CompleteOnboardingDeployStep
+  description: Complete the deploy step
+  method: POST
+  path: /v1/onboarding/current/steps/deploy
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CompleteOnboardingDeployStep
+- name: CompleteOnboardingGetStartedStep
+  description: Complete onboarding
+  method: POST
+  path: /v1/onboarding/current/steps/get-started
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CompleteOnboardingGetStartedStep
+- name: CompleteOnboardingInstallStep
+  description: Complete the install step
+  method: POST
+  path: /v1/onboarding/current/steps/install
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CompleteOnboardingInstallStep
+- name: CompleteOnboardingOrganizationStep
+  description: Complete the organization step
+  method: POST
+  path: /v1/onboarding/current/steps/organization
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CompleteOnboardingOrganizationStep
+- name: CompleteOnboardingYourStackStep
+  description: Complete the your stack step
+  method: POST
+  path: /v1/onboarding/current/steps/your-stack
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CompleteOnboardingYourStackStep
+- name: GetOnboardingExampleApps
+  description: Get example apps catalog
+  method: GET
+  path: /v1/onboarding/example-apps
+  tag: onboarding
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOnboardingExampleApps
+- name: GetOrgs
+  description: Return current user's orgs
+  method: GET
+  path: /v1/orgs
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgs
+- name: CreateOrg
+  description: create a new org
+  method: POST
+  path: /v1/orgs
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateOrg
+- name: DeleteOrg
+  description: Delete an org
+  method: DELETE
+  path: /v1/orgs/current
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteOrg
+- name: GetOrg
+  description: Get an org
+  method: GET
+  path: /v1/orgs/current
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrg
+- name: UpdateOrg
+  description: Update current org
+  method: PATCH
+  path: /v1/orgs/current
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateOrg
+- name: GetOrgAcounts
+  description: Get user accounts for current org
+  method: GET
+  path: /v1/orgs/current/accounts
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgAcounts
+- name: GetCurrentOrgFeatures
+  description: get current org's feature flags
+  method: GET
+  path: /v1/orgs/current/features
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCurrentOrgFeatures
+- name: UpdateOrgFeatures
+  description: update org features (requires user-managed-features flag)
+  method: PATCH
+  path: /v1/orgs/current/features
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateOrgFeatures
+- name: GetOrgInvites
+  description: Return org invites
+  method: GET
+  path: /v1/orgs/current/invites
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgInvites
+- name: CreateOrgInvite
+  description: Invite a user to the current org
+  method: POST
+  path: /v1/orgs/current/invites
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateOrgInvite
+- name: ResendOrgInvite
+  description: Resend an org invite
+  method: POST
+  path: /v1/orgs/current/invites/{invite_id}/resend
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ResendOrgInvite
+- name: RevokeOrgInvite
+  description: Revoke an org invite
+  method: POST
+  path: /v1/orgs/current/invites/{invite_id}/revoke
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RevokeOrgInvite
+- name: RemoveUser
+  description: Remove a user from the current org
+  method: POST
+  path: /v1/orgs/current/remove-user
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RemoveUser
+- name: GetOrgRunnerGroup
+  description: Get an org's runner group
+  method: GET
+  path: /v1/orgs/current/runner-group
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgRunnerGroup
+- name: GetOrgStats
+  description: Get an org
+  method: GET
+  path: /v1/orgs/current/stats
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgStats
+- name: AddUser
+  description: Add a user to the current org
+  method: POST
+  path: /v1/orgs/current/user
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#AddUser
+- name: GetCurrentOrgWebhooks
+  description: list webhooks for the current org
+  method: GET
+  path: /v1/orgs/current/webhooks
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCurrentOrgWebhooks
+- name: CreateCurrentOrgWebhook
+  description: create a webhook for the current org
+  method: POST
+  path: /v1/orgs/current/webhooks
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateCurrentOrgWebhook
+- name: DeleteCurrentOrgWebhook
+  description: delete a webhook for the current org
+  method: DELETE
+  path: /v1/orgs/current/webhooks/{webhook_id}
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteCurrentOrgWebhook
+- name: UpdateCurrentOrgWebhook
+  description: update a webhook for the current org
+  method: PATCH
+  path: /v1/orgs/current/webhooks/{webhook_id}
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateCurrentOrgWebhook
+- name: GetOrgFeatures
+  description: get available org features
+  method: GET
+  path: /v1/orgs/features
+  tag: orgs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgFeatures
+- name: ListSlackChannelSubscriptions
+  description: List Slack channel subscriptions for the current org
+  method: GET
+  path: /v1/orgs/{org_id}/slack/channel-subscriptions
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListSlackChannelSubscriptions
+- name: CreateSlackChannelSubscription
+  description: Create a Slack channel subscription
+  method: POST
+  path: /v1/orgs/{org_id}/slack/channel-subscriptions
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateSlackChannelSubscription
+- name: DeleteSlackChannelSubscription
+  description: Delete a Slack channel subscription
+  method: DELETE
+  path: /v1/orgs/{org_id}/slack/channel-subscriptions/{sub_id}
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteSlackChannelSubscription
+- name: UpdateSlackChannelSubscription
+  description: Update a Slack channel subscription
+  method: PATCH
+  path: /v1/orgs/{org_id}/slack/channel-subscriptions/{sub_id}
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateSlackChannelSubscription
+- name: GetSlackInstallURL
+  description: Get the Slack OAuth install URL for the current org
+  method: GET
+  path: /v1/orgs/{org_id}/slack/install-url
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetSlackInstallURL
+- name: ListSlackInstallations
+  description: List Slack workspaces linked to the current org
+  method: GET
+  path: /v1/orgs/{org_id}/slack/installations
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListSlackInstallations
+- name: ListSlackChannels
+  description: List channels visible to a Slack installation
+  method: GET
+  path: /v1/orgs/{org_id}/slack/installations/{installation_id}/channels
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListSlackChannels
+- name: ListSlackOrgLinks
+  description: List Slack workspace bindings for the current org
+  method: GET
+  path: /v1/orgs/{org_id}/slack/org-links
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListSlackOrgLinks
+- name: CreateSlackOrgLink
+  description: Bind a Slack workspace to the current org
+  method: POST
+  path: /v1/orgs/{org_id}/slack/org-links
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateSlackOrgLink
+- name: DeleteSlackOrgLink
+  description: Revoke a Slack workspace ↔ org binding
+  method: DELETE
+  path: /v1/orgs/{org_id}/slack/org-links/{link_id}
+  tag: slack
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteSlackOrgLink
+- name: GetPolicyReports
+  description: get policy reports
+  method: GET
+  path: /v1/policy-reports
+  tag: policy-reports
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetPolicyReports
+- name: GetPolicyReport
+  description: get policy report
+  method: GET
+  path: /v1/policy-reports/{report_id}
+  tag: policy-reports
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetPolicyReport
+- name: ExportPolicyReport
+  description: export policy report
+  method: GET
+  path: /v1/policy-reports/{report_id}/export
+  tag: policy-reports
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ExportPolicyReport
+- name: ListQueues
+  description: List queues
+  method: GET
+  path: /v1/queues
+  tag: queues
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListQueues
+- name: GetQueue
+  description: Get queue by ID
+  method: GET
+  path: /v1/queues/{queue_id}
+  tag: queues
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetQueue
+- name: GetQueueSignals
+  description: List queue signals
+  method: GET
+  path: /v1/queues/{queue_id}/signals
+  tag: queues
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetQueueSignals
+- name: GetQueueSignal
+  description: Get queue signal details
+  method: GET
+  path: /v1/queues/{queue_id}/signals/{signal_id}
+  tag: queues
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetQueueSignal
+- name: AwaitQueueSignal
+  description: Long-poll for queue signal completion
+  method: GET
+  path: /v1/queues/{queue_id}/signals/{signal_id}/await
+  tag: queues
+  source_operation: openapi/nuon-oapi-v3-openapi.json#AwaitQueueSignal
+- name: GetQueueSignalGraph
+  description: Get signal execution graph
+  method: GET
+  path: /v1/queues/{queue_id}/signals/{signal_id}/graph
+  tag: queues
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetQueueSignalGraph
+- name: GetQueueStatus
+  description: Get live queue status
+  method: GET
+  path: /v1/queues/{queue_id}/status
+  tag: queues
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetQueueStatus
+- name: ListRunnerJobs
+  description: list org runner jobs
+  method: GET
+  path: /v1/runner-jobs
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListRunnerJobs
+- name: GetRunnerJob
+  description: get runner job
+  method: GET
+  path: /v1/runner-jobs/{runner_job_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerJob
+- name: CancelRunnerJob
+  description: cancel runner job
+  method: POST
+  path: /v1/runner-jobs/{runner_job_id}/cancel
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CancelRunnerJob
+- name: GetRunnerJobCompositePlan
+  description: get runner job composite plan
+  method: GET
+  path: /v1/runner-jobs/{runner_job_id}/composite-plan
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerJobCompositePlan
+- name: GetRunnerJobPlan
+  description: get runner job plan
+  method: GET
+  path: /v1/runner-jobs/{runner_job_id}/plan
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerJobPlan
+- name: GetTerraformWorkspaceStatesJSON
+  description: get terraform states json
+  method: GET
+  path: /v1/runners/terraform-workspace/{workspace_id}/state-json
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStatesJSON
+- name: GetTerraformWorkspaceStatesJSONByID
+  description: get terraform state json by id. This output is same as "terraform show --json"
+  method: GET
+  path: /v1/runners/terraform-workspace/{workspace_id}/state-json/{state_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStatesJSONByID
+- name: GetTerraformWorkspaceStateJSONResources
+  description: get terraform state resources. This output is similar to "terraform state list"
+  method: GET
+  path: /v1/runners/terraform-workspace/{workspace_id}/state-json/{state_id}/resources
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStateJSONResources
+- name: GetTerraformStates
+  description: get terraform states
+  method: GET
+  path: /v1/runners/terraform-workspace/{workspace_id}/states
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformStates
+- name: GetTerraformWorkspaceStateByID
+  description: get terraform state by ID
+  method: GET
+  path: /v1/runners/terraform-workspace/{workspace_id}/states/{state_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStateByID
+- name: GetTerraformWorkspaceStateResources
+  description: get terraform state resources
+  method: GET
+  path: /v1/runners/terraform-workspace/{workspace_id}/states/{state_id}/resources
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStateResources
+- name: GetRunnerCardDetails
+  description: get runner card details
+  method: GET
+  path: /v1/runners/{runner_id}/card-details
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerCardDetails
+- name: GetRunnerConnectStatus
+  description: get a runner connection satus based on heartbeat
+  method: GET
+  path: /v1/runners/{runner_id}/connected
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerConnectStatus
+- name: ForceShutDownRunner
+  description: force shut down a runner
+  method: POST
+  path: /v1/runners/{runner_id}/force-shutdown
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ForceShutDownRunner
+- name: GracefulShutDownRunner
+  description: shut down a runner
+  method: POST
+  path: /v1/runners/{runner_id}/graceful-shutdown
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GracefulShutDownRunner
+- name: GetLatestRunnerHeartBeat
+  description: get a runner
+  method: GET
+  path: /v1/runners/{runner_id}/heart-beats/latest
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetLatestRunnerHeartBeat
+- name: GetRunnerJobs
+  description: get runner jobs
+  method: GET
+  path: /v1/runners/{runner_id}/jobs
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerJobs
+- name: GetRunnerLatestHeartBeat
+  description: get the latest heartbeats for a runner
+  method: GET
+  path: /v1/runners/{runner_id}/latest-heart-beat
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerLatestHeartBeat
+- name: RestartRunnerInstall
+  description: restart the runner install process via the mng process
+  method: POST
+  path: /v1/runners/{runner_id}/mng/restart
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RestartRunnerInstall
+- name: ShutDownRunnerMng
+  description: shut down an install runner's mng process. does not shut down the install runner process.
+  method: POST
+  path: /v1/runners/{runner_id}/mng/shutdown
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ShutDownRunnerMng
+- name: MngVMShutDown
+  description: shut down an install runner VM
+  method: POST
+  path: /v1/runners/{runner_id}/mng/shutdown-vm
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#MngVMShutDown
+- name: UpdateRunnerMng
+  description: update an install runner via the mng process. this is practically a restart.
+  method: POST
+  path: /v1/runners/{runner_id}/mng/update
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateRunnerMng
+- name: ListRunnerProcesses
+  description: list runner processes
+  method: GET
+  path: /v1/runners/{runner_id}/processes
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ListRunnerProcesses
+- name: GetCurrentRunnerProcesses
+  description: get current active runner processes
+  method: GET
+  path: /v1/runners/{runner_id}/processes/current
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetCurrentRunnerProcesses
+- name: GetRunnerProcessPublic
+  description: get a runner process
+  method: GET
+  path: /v1/runners/{runner_id}/processes/{process_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerProcessPublic
+- name: GetProcessLatestHeartBeat
+  description: get the latest heartbeat for a runner process
+  method: GET
+  path: /v1/runners/{runner_id}/processes/{process_id}/heart-beats/latest
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetProcessLatestHeartBeat
+- name: ShutdownRunnerProcess
+  description: request shutdown of a runner process
+  method: POST
+  path: /v1/runners/{runner_id}/processes/{process_id}/shutdown
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#ShutdownRunnerProcess
+- name: PruneTokens
+  description: Prune old tokens for a runner
+  method: POST
+  path: /v1/runners/{runner_id}/prune-tokens
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#PruneTokens
+- name: GetRunnerRecentHealthChecks
+  description: get recent health checks
+  method: GET
+  path: /v1/runners/{runner_id}/recent-health-checks
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerRecentHealthChecks
+- name: GetRunnerSettings
+  description: get runner settings
+  method: GET
+  path: /v1/runners/{runner_id}/settings
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetRunnerSettings
+- name: UpdateRunnerSettings
+  description: update a runner's settings via its runner settings group
+  method: PATCH
+  path: /v1/runners/{runner_id}/settings
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateRunnerSettings
+- name: GetTerraformCurrentStateData
+  description: get current terraform
+  method: GET
+  path: /v1/terraform-backend
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformCurrentStateData
+- name: UpdateTerraformState
+  description: update terraform state
+  method: POST
+  path: /v1/terraform-backend
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateTerraformState
+- name: CreateTerraformWorkspace
+  description: create terraform workspace
+  method: POST
+  path: /v1/terraform-workspace
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateTerraformWorkspace
+- name: GetTerraformWorkspaces
+  description: get  terraform workspaces
+  method: GET
+  path: /v1/terraform-workspaces
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaces
+- name: CreateTerraformWorkspaceV2
+  description: create terraform workspace
+  method: POST
+  path: /v1/terraform-workspaces
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateTerraformWorkspaceV2
+- name: DeleteTerraformWorkspace
+  description: delete terraform workspace
+  method: DELETE
+  path: /v1/terraform-workspaces/{workspace_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteTerraformWorkspace
+- name: GetTerraformWorkspace
+  description: get  terraform workspace
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspace
+- name: GetTerraformWorkspaceLock
+  description: get terraform workspace lock
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}/lock
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceLock
+- name: LockTerraformWorkspace
+  description: lock terraform state
+  method: POST
+  path: /v1/terraform-workspaces/{workspace_id}/lock
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#LockTerraformWorkspace
+- name: GetTerraformWorkspaceStatesJSONV2
+  description: get terraform states json
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}/state-json
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStatesJSONV2
+- name: GetTerraformWorkspaceStatesJSONByIDV2
+  description: get terraform state json by id. This output is same as "terraform show --json"
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}/state-json/{state_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStatesJSONByIDV2
+- name: GetWorkspaceStateJSONRawByID
+  description: get raw workspace state json by id
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}/state-json/{state_id}/raw
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkspaceStateJSONRawByID
+- name: GetTerraformWorkspaceStateJSONResourcesV2
+  description: get terraform state resources. This output is similar to "terraform state list"
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}/state-json/{state_id}/resources
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStateJSONResourcesV2
+- name: GetTerraformStatesV2
+  description: get terraform states
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}/states
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformStatesV2
+- name: GetTerraformWorkspaceStateByIDV2
+  description: get terraform state by ID
+  method: GET
+  path: /v1/terraform-workspaces/{workspace_id}/states/{state_id}
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetTerraformWorkspaceStateByIDV2
+- name: UnlockTerraformWorkspace
+  description: unlock terraform workspace
+  method: POST
+  path: /v1/terraform-workspaces/{workspace_id}/unlock
+  tag: runners
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UnlockTerraformWorkspace
+- name: CreateVCSConnectionCallback
+  description: public connection to create a vcs connection via a callback
+  method: POST
+  path: /v1/vcs/connection-callback
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateVCSConnectionCallback
+- name: GetOrgVCSConnections
+  description: get vcs connection for an org
+  method: GET
+  path: /v1/vcs/connections
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgVCSConnections
+- name: CreateVCSConnection
+  description: create a vcs connection for Github
+  method: POST
+  path: /v1/vcs/connections
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateVCSConnection
+- name: DeleteVCSConnection
+  description: Deletes a VCS connection
+  method: DELETE
+  path: /v1/vcs/connections/{connection_id}
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#DeleteVCSConnection
+- name: GetVCSConnection
+  description: returns a vcs connection for an org
+  method: GET
+  path: /v1/vcs/connections/{connection_id}
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetVCSConnection
+- name: GetVCSConnectionRepoBranches
+  description: List branches for a repository
+  method: GET
+  path: /v1/vcs/connections/{connection_id}/branches
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetVCSConnectionRepoBranches
+- name: CheckVCSConnectionStatus
+  description: check the real-time status of a VCS connection
+  method: GET
+  path: /v1/vcs/connections/{connection_id}/check-status
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CheckVCSConnectionStatus
+- name: GetVCSConnectionWebhookSubscription
+  description: returns the webhook subscription for a vcs connection
+  method: GET
+  path: /v1/vcs/connections/{connection_id}/webhook-subscription
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetVCSConnectionWebhookSubscription
+- name: CreateVCSConnectionWebhookSubscription
+  description: creates a webhook subscription for a vcs connection
+  method: POST
+  path: /v1/vcs/connections/{connection_id}/webhook-subscription
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateVCSConnectionWebhookSubscription
+- name: WriteWebhookEvent
+  description: Write a VCS webhook event (shared per subscription)
+  method: POST
+  path: /v1/vcs/webhooks/{subscription_id}/events
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#WriteWebhookEvent
+- name: WriteVCSEvent
+  description: Write a VCS webhook event
+  method: POST
+  path: /v1/vcs/{vcs_connection_id}/events
+  tag: vcs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#WriteVCSEvent
+- name: GetOrgWorkflows
+  description: get all workflows for the org
+  method: GET
+  path: /v1/workflows
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgWorkflows
+- name: CancelWorkflows
+  description: cancel multiple workflows
+  method: POST
+  path: /v1/workflows/cancel
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CancelWorkflows
+- name: GetOrgPendingApprovals
+  description: get all pending workflow step approvals for the org
+  method: GET
+  path: /v1/workflows/pending-approvals
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetOrgPendingApprovals
+- name: GetWorkflow
+  description: get a workflow
+  method: GET
+  path: /v1/workflows/{workflow_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflow
+- name: UpdateWorkflow
+  description: update a workflow
+  method: PATCH
+  path: /v1/workflows/{workflow_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#UpdateWorkflow
+- name: CancelWorkflow
+  description: cancel an ongoing workflow
+  method: POST
+  path: /v1/workflows/{workflow_id}/cancel
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CancelWorkflow
+- name: GetWorkflowQueuePosition
+  description: get queue position for a workflow
+  method: GET
+  path: /v1/workflows/{workflow_id}/queue-position
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflowQueuePosition
+- name: GetWorkflowStepGroups
+  description: get all step groups for a workflow
+  method: GET
+  path: /v1/workflows/{workflow_id}/step-groups
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflowStepGroups
+- name: GetWorkflowStepGroup
+  description: get a workflow step group
+  method: GET
+  path: /v1/workflows/{workflow_id}/step-groups/{step_group_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflowStepGroup
+- name: GetWorkflowSteps
+  description: get all of the steps for a given workflow
+  method: GET
+  path: /v1/workflows/{workflow_id}/steps
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflowSteps
+- name: GetWorkflowStep
+  description: get a workflow step
+  method: GET
+  path: /v1/workflows/{workflow_id}/steps/{step_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflowStep
+- name: GetWorkflowStepApproval
+  description: get an workflow step approval
+  method: GET
+  path: /v1/workflows/{workflow_id}/steps/{step_id}/approvals/{approval_id}
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflowStepApproval
+- name: GetWorkflowStepApprovalContents
+  description: get a workflow step approval contents
+  method: GET
+  path: /v1/workflows/{workflow_id}/steps/{step_id}/approvals/{approval_id}/contents
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#GetWorkflowStepApprovalContents
+- name: CreateWorkflowStepApprovalResponse
+  description: Create an approval response for a workflow step.
+  method: POST
+  path: /v1/workflows/{workflow_id}/steps/{step_id}/approvals/{approval_id}/response
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CreateWorkflowStepApprovalResponse
+- name: AwaitWorkflowStep
+  description: long-poll for workflow step completion
+  method: GET
+  path: /v1/workflows/{workflow_id}/steps/{step_id}/await
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#AwaitWorkflowStep
+- name: CancelWorkflowStep
+  description: cancel an in-progress workflow step
+  method: POST
+  path: /v1/workflows/{workflow_id}/steps/{step_id}/cancel
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#CancelWorkflowStep
+- name: RetryWorkflowStep
+  description: retry a failed or awaiting-approval workflow step
+  method: POST
+  path: /v1/workflows/{workflow_id}/steps/{step_id}/retry
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#RetryWorkflowStep
+- name: SkipWorkflowStep
+  description: skip a failed workflow step and continue the workflow
+  method: POST
+  path: /v1/workflows/{workflow_id}/steps/{step_id}/skip
+  tag: installs
+  source_operation: openapi/nuon-oapi-v3-openapi.json#SkipWorkflowStep

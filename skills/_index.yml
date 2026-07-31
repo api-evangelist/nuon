@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/nuon-oapi-v3-openapi.json
+note: >-
+  Agent Skills generated from the Nuon OpenAPI v3 spec; every operationId below was verified to
+  exist verbatim in the spec. Nuon also publishes AI tooling: a Claude Code plugin
+  (github.com/nuonco/nuon-plugin) and Skills.sh commands (github.com/nuonco/skills).
+provider_published:
+  - name: Nuon Claude Code plugin
+    url: https://github.com/nuonco/nuon-plugin
+  - name: Nuon AI skills (Skills.sh)
+    url: https://github.com/nuonco/skills
+skills:
+  - file: nuon-provision-static-token.md
+    name: Create an API token and identify the current account
+    api: openapi/nuon-oapi-v3-openapi.json
+    operations: [GetCurrentAccount, CreateStaticToken, ListStaticTokens, DeleteStaticToken]
+  - file: nuon-create-and-sync-app.md
+    name: Create a BYOC app and manage its config
+    api: openapi/nuon-oapi-v3-openapi.json
+    operations: [CreateApp, GetApps, GetApp, UpdateApp, DeleteApp]
+  - file: nuon-create-and-provision-install.md
+    name: Create an install and follow its provision workflow
+    api: openapi/nuon-oapi-v3-openapi.json
+    operations: [CreateInstall, GetAppInstalls, GetInstall, GetInstallWorkflow, GetInstallWorkflowSteps, DeleteInstall]
+  - file: nuon-manage-components.md
+    name: Add and build app components
+    api: openapi/nuon-oapi-v3-openapi.json
+    operations: [CreateComponent, GetAppComponents, CreateAppComponentBuild, GetAppComponentLatestBuild, UpdateAppComponent]
+  - file: nuon-subscribe-org-webhooks.md
+    name: Subscribe to org workflow lifecycle webhooks
+    api: openapi/nuon-oapi-v3-openapi.json
+    operations: [CreateCurrentOrgWebhook, GetCurrentOrgWebhooks, UpdateCurrentOrgWebhook, DeleteCurrentOrgWebhook]

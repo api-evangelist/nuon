@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.nuon.co, https://status.nuon.co, https://docs.nuon.co/updates/updates
+versioning:
+  scheme: semver + uri-path
+  current: v0.19.x
+  api_paths: https://api.nuon.co/v1/...
+  openapi_specs:
+    - https://api.nuon.co/oapi/v2
+    - https://api.nuon.co/oapi/v3
+  docs: https://docs.nuon.co/nuon-api
+deprecation:
+  policy_url: null
+  note: >-
+    No standalone published deprecation/sunset-header policy. Deprecations are communicated through
+    the dated changelog (e.g. the CreateAnActionWorkflowRunForAnInstall endpoint notes the
+    AppWorkflowConfigId param is deprecated). No RFC 8594 Sunset/Deprecation header support documented.
+  sunset_header: false
+status_page: https://status.nuon.co
+status_page_alt: https://nuon.statuspage.io
+changelog: https://docs.nuon.co/updates/updates
+open_source: https://github.com/nuonco/nuon
+deprecated_operations: []

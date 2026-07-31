@@ -1,0 +1,24 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Nuon
+  version: 1.0.0
+extends: openapi/nuon-oapi-v3-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-apievangelist-artifacts:
+    - authentication
+    - conventions
+    - errors
+    - data-model
+    - mcp
+    - conformance
+    - asyncapi
+    - skills
+    - packages
+    - cli
+    - changelog
+    - lifecycle
+    x-api-auth: Bearer API token (Authorization) + X-Nuon-Org-ID header
+    x-events: CloudEvents 1.0 webhooks (org-scoped, HMAC-SHA256 signed)

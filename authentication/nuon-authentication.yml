@@ -1,0 +1,25 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nuon-oapi-v2-openapi.json, openapi/nuon-oapi-v3-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: APIKey
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Type "Bearer" followed by a space and token.
+  sources:
+  - openapi/nuon-oapi-v2-openapi.json
+  - openapi/nuon-oapi-v3-openapi.json
+- name: OrgID
+  type: apiKey
+  in: header
+  parameter: X-Nuon-Org-ID
+  description: Nuon org ID
+  sources:
+  - openapi/nuon-oapi-v2-openapi.json
+  - openapi/nuon-oapi-v3-openapi.json

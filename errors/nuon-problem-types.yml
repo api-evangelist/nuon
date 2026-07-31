@@ -1,0 +1,85 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nuon-oapi-v3-openapi.json
+format: http-status
+note: 'Nuon returns JSON error responses with a top-level `error` string; there is no application/problem+json
+  media type declared in the spec. Envelope field: `error`.'
+envelope:
+  field: error
+  type: string
+problems:
+- status: 400
+  title: Bad Request
+  description: HTML error page
+  remediation: Check the request body and parameters against the schema.
+  source_operations:
+  - SlackOAuthCallback
+  - GetUserJourneys
+  - CreateUserJourney
+  - CompleteUserJourney
+  - ResetUserJourney
+  - UpdateUserJourneyStep
+- status: 401
+  title: Unauthorized
+  description: HTML error page
+  remediation: Provide a valid Bearer API token in the Authorization header (create one with `nuon orgs
+    api-tokens create`).
+  source_operations:
+  - SlackOAuthCallback
+  - GetCurrentAccount
+  - GetUserJourneys
+  - CreateUserJourney
+  - CompleteUserJourney
+  - ResetUserJourney
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  remediation: The token lacks the role/permission for this operation, or the X-Nuon-Org-ID does not match
+    the resource org.
+  source_operations:
+  - GetUserJourneys
+  - CreateUserJourney
+  - CompleteUserJourney
+  - ResetUserJourney
+  - UpdateUserJourneyStep
+  - GetActionWorkflowConfig
+- status: 404
+  title: Not Found
+  description: Not Found
+  remediation: Verify the resource id and that it belongs to the active org.
+  source_operations:
+  - GetCurrentAccount
+  - GetUserJourneys
+  - CreateUserJourney
+  - CompleteUserJourney
+  - ResetUserJourney
+  - UpdateUserJourneyStep
+- status: 408
+  title: Request Timeout
+  description: Request Timeout
+  remediation: Retry the request; the operation exceeded the server timeout.
+  source_operations:
+  - AwaitQueueSignal
+  - AwaitWorkflowStep
+- status: 409
+  title: Conflict
+  description: Conflict
+  remediation: Resource conflict (e.g. duplicate name or a concurrent workflow). Reconcile state and retry.
+  source_operations:
+  - CreateUserJourney
+  - CreateActionWorkflowConfig
+  - CreateApp
+  - CreateAppActionWorkflow
+  - CreateAppAction
+  - CreateActionConfig
+- status: 500
+  title: Internal Server Error
+  description: HTML error page
+  remediation: Transient server error. Retry with backoff; contact support@nuon.co if it persists.
+  source_operations:
+  - SlackOAuthCallback
+  - GetCurrentAccount
+  - GetUserJourneys
+  - CreateUserJourney
+  - CompleteUserJourney
+  - ResetUserJourney

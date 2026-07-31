@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+note: >-
+  Probed the standard /.well-known/ discovery surface on the Nuon API and web hosts. The public
+  API (api.nuon.co) requires auth (401) on all paths including /.well-known/*; no public
+  security.txt, OIDC, or catalog documents are exposed. Absence is recorded as valid data.
+hosts:
+  - host: https://api.nuon.co
+    documents:
+      - {path: /.well-known/security.txt, status: 401}
+      - {path: /.well-known/openid-configuration, status: 401}
+      - {path: /.well-known/oauth-authorization-server, status: 401}
+      - {path: /.well-known/api-catalog, status: 401}
+      - {path: /.well-known/ai-plugin.json, status: 401}
+  - host: https://nuon.co
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+  - host: https://docs.nuon.co
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+      - {path: /llms.txt, status: 200, file: ../llms/nuon-llms.txt}
