@@ -238,6 +238,8 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-vcs-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/nuon-oapi-v3-overlay.yaml
 - type: DomainSecurity
   url: security/nuon-domain-security.yml
 - type: AgenticAccess
