@@ -1,0 +1,1343 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts runners API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "runners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get a log stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/log-streams/:log_stream_id",
+            "params": [
+              {
+                "name": "log_stream_id",
+                "value": "",
+                "type": "path",
+                "description": "log stream ID"
+              }
+            ]
+          },
+          "docs": "Return a log stream.\n"
+        },
+        {
+          "info": {
+            "name": "read a log stream's logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/log-streams/:log_stream_id/logs",
+            "headers": [
+              {
+                "name": "X-Nuon-API-Offset",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "log_stream_id",
+                "value": "",
+                "type": "path",
+                "description": "log stream ID"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "sort direction"
+              },
+              {
+                "name": "service_name",
+                "value": "",
+                "type": "query",
+                "description": "filter by service_name (repeatable)"
+              },
+              {
+                "name": "scope_name",
+                "value": "",
+                "type": "query",
+                "description": "filter by scope_name (repeatable)"
+              },
+              {
+                "name": "severity_text",
+                "value": "",
+                "type": "query",
+                "description": "filter by severity_text (repeatable)"
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['nuon.tool']"
+              },
+              {
+                "name": "helm_release_name",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['helm.release_name']"
+              },
+              {
+                "name": "helm_operation",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['helm.operation']"
+              },
+              {
+                "name": "tf_workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['tf.workspace_id']"
+              },
+              {
+                "name": "tf_operation",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['tf.operation']"
+              },
+              {
+                "name": "k8s_kind",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['k8s.kind']"
+              },
+              {
+                "name": "k8s_namespace",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['k8s.namespace']"
+              },
+              {
+                "name": "k8s_name",
+                "value": "",
+                "type": "query",
+                "description": "filter by log_attributes['k8s.name']"
+              },
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by exact trace_id (dedicated CH column)"
+              },
+              {
+                "name": "span_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by exact span_id (dedicated CH column)"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "case-insensitive substring filter on log body"
+              }
+            ]
+          },
+          "docs": "Read OTEL formatted logs for a log stream.\n"
+        },
+        {
+          "info": {
+            "name": "long-poll tail a log stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/log-streams/:log_stream_id/logs/tail",
+            "params": [
+              {
+                "name": "log_stream_id",
+                "value": "",
+                "type": "path",
+                "description": "log stream ID"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "composite cursor in the form `<unix_nano>:<id>`; empty starts from the oldest row"
+              },
+              {
+                "name": "wait",
+                "value": "",
+                "type": "query",
+                "description": "max wait for new rows (Go duration, capped server-side at 30s)"
+              }
+            ]
+          },
+          "docs": "Returns rows after the supplied composite cursor, long-polling up to ~30s for new rows on an idle stream. Behind the `log-tail-long-poll` org feature flag."
+        },
+        {
+          "info": {
+            "name": "read a log stream's trace spans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/log-streams/:log_stream_id/spans",
+            "params": [
+              {
+                "name": "log_stream_id",
+                "value": "",
+                "type": "path",
+                "description": "log stream ID"
+              }
+            ]
+          },
+          "docs": "Read OTEL trace spans for a log stream.\n\nReturns the flat list of spans recorded by the runner for the job execution\n(or executions) associated with this log stream, ordered by start timestamp\nASC. The frontend assembles the tree from `parent_span_id`.\n"
+        },
+        {
+          "info": {
+            "name": "list org runner jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runner-jobs",
+            "params": [
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "job group"
+              },
+              {
+                "name": "groups",
+                "value": "",
+                "type": "query",
+                "description": "job groups"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "job status"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "job statuses"
+              },
+              {
+                "name": "executor",
+                "value": "",
+                "type": "query",
+                "description": "job executor (must be control-plane)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "list runner jobs for the current org that ran on the control plane. Used by orgs that build on the control plane and therefore have no org runner."
+        },
+        {
+          "info": {
+            "name": "get runner job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runner-jobs/:runner_job_id",
+            "params": [
+              {
+                "name": "runner_job_id",
+                "value": "",
+                "type": "path",
+                "description": "runner job ID"
+              }
+            ]
+          },
+          "docs": "Return a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "cancel runner job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runner-jobs/:runner_job_id/cancel",
+            "params": [
+              {
+                "name": "runner_job_id",
+                "value": "",
+                "type": "path",
+                "description": "runner job ID"
+              }
+            ]
+          },
+          "docs": "Cancel a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "get runner job composite plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runner-jobs/:runner_job_id/composite-plan",
+            "params": [
+              {
+                "name": "runner_job_id",
+                "value": "",
+                "type": "path",
+                "description": "runner job ID"
+              }
+            ]
+          },
+          "docs": "Return a plan for a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "get runner job plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runner-jobs/:runner_job_id/plan",
+            "params": [
+              {
+                "name": "runner_job_id",
+                "value": "",
+                "type": "path",
+                "description": "runner job ID"
+              }
+            ]
+          },
+          "docs": "Return a plan for a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform states json",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/terraform-workspace/:workspace_id/state-json",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns terraform states in JSON format.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform state json by id. This output is same as \"terraform show --json\"",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/terraform-workspace/:workspace_id/state-json/:state_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "terraform state ID"
+              }
+            ]
+          },
+          "docs": "Return a terraform state in JSON format by id.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform state resources. This output is similar to \"terraform state list\"",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/terraform-workspace/:workspace_id/state-json/:state_id/resources",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "state ID"
+              }
+            ]
+          },
+          "docs": "Returns terraform state resources in JSON format.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform states",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/terraform-workspace/:workspace_id/states",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns terraform states for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform state by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/terraform-workspace/:workspace_id/states/:state_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "state ID"
+              }
+            ]
+          },
+          "docs": "Return a terraform state by id.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform state resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/terraform-workspace/:workspace_id/states/:state_id/resources",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "state ID"
+              }
+            ]
+          },
+          "docs": "Returns resources within a terraform state.\n"
+        },
+        {
+          "info": {
+            "name": "get runner card details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/card-details",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "Returns runner card details for monitoring and status.\n"
+        },
+        {
+          "info": {
+            "name": "get a runner connection satus based on heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/connected",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "# get runner connect status\n\nThe connected status is based on runner heartbeat:\n\nif no heart beat found — false\nif heart beat > 15 seconds ago — false, hb timestamp\nif the heart beat < 15 seconds ago — true"
+        },
+        {
+          "info": {
+            "name": "force shut down a runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/force-shutdown",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "Force shutdown a runner.\n\nThis will result in jobs being lost/cancelled if they are in-flight.\n"
+        },
+        {
+          "info": {
+            "name": "shut down a runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/graceful-shutdown",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "Gracefully shut down a runner.\n\n_NOTE_ when a runner is unhealthy, the runner will not be able to pick up this job, so use force shut down instead.\n"
+        },
+        {
+          "info": {
+            "name": "get a runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/heart-beats/latest",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "\n"
+        },
+        {
+          "info": {
+            "name": "get runner jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/jobs",
+            "params": [
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "job group"
+              },
+              {
+                "name": "groups",
+                "value": "",
+                "type": "query",
+                "description": "job groups"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "job status"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "job statuses"
+              },
+              {
+                "name": "executor",
+                "value": "",
+                "type": "query",
+                "description": "job executor"
+              },
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Return runner jobs.\n"
+        },
+        {
+          "info": {
+            "name": "get the latest heartbeats for a runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/latest-heart-beat",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "\n"
+        },
+        {
+          "info": {
+            "name": "restart the runner install process via the mng process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/mng/restart",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "restart the runner install process via the mng process"
+        },
+        {
+          "info": {
+            "name": "shut down an install runner's mng process. does not shut down the install runner process.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/mng/shutdown",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "shut down an install runner's mng process. does not shut down the install runner process."
+        },
+        {
+          "info": {
+            "name": "shut down an install runner VM",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/mng/shutdown-vm",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "shut down an install runner VM"
+        },
+        {
+          "info": {
+            "name": "update an install runner via the mng process. this is practically a restart.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/mng/update",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "update an install runner via the mng process. this is practically a restart."
+        },
+        {
+          "info": {
+            "name": "list runner processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/processes",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "filter by process type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "filter by status"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              }
+            ]
+          },
+          "docs": "list runner processes"
+        },
+        {
+          "info": {
+            "name": "get current active runner processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/processes/current",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "get current active runner processes"
+        },
+        {
+          "info": {
+            "name": "get a runner process",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/processes/:process_id",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "process ID"
+              }
+            ]
+          },
+          "docs": "get a runner process"
+        },
+        {
+          "info": {
+            "name": "get the latest heartbeat for a runner process",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/processes/:process_id/heart-beats/latest",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "process ID"
+              }
+            ]
+          },
+          "docs": "\n"
+        },
+        {
+          "info": {
+            "name": "request shutdown of a runner process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/processes/:process_id/shutdown",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "process ID"
+              }
+            ]
+          },
+          "docs": "request shutdown of a runner process"
+        },
+        {
+          "info": {
+            "name": "Prune old tokens for a runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/prune-tokens",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "Prune old tokens for a specific runner by invalidating all tokens except the most recent one.\n\nThis is useful for cleaning up old tokens without disrupting the currently running runner.\nThe latest token (by creation time) is preserved, ensuring the active runner continues to function.\n\nReturns the count of invalidated tokens for the specified runner.\n"
+        },
+        {
+          "info": {
+            "name": "get recent health checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/recent-health-checks",
+            "headers": [
+              {
+                "name": "x-nuon-pagination-enabled",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              },
+              {
+                "name": "window",
+                "value": "",
+                "type": "query",
+                "description": "window of health checks to return"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by process ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              }
+            ]
+          },
+          "docs": "\n"
+        },
+        {
+          "info": {
+            "name": "get runner settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/settings",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "Return runner settings for the provided runner.\n"
+        },
+        {
+          "info": {
+            "name": "update a runner's settings via its runner settings group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/runners/:runner_id/settings",
+            "params": [
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "path",
+                "description": "runner ID"
+              }
+            ]
+          },
+          "docs": "Update runner settings and configuration.\n"
+        },
+        {
+          "info": {
+            "name": "get current terraform",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-backend"
+          },
+          "docs": "Returns the current terraform state.\n"
+        },
+        {
+          "info": {
+            "name": "update terraform state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-backend"
+          },
+          "docs": "Update a terraform state.\n"
+        },
+        {
+          "info": {
+            "name": "create terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-workspace"
+          },
+          "docs": "Create a terraform workspace.\n"
+        },
+        {
+          "info": {
+            "name": "get  terraform workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces"
+          },
+          "docs": "Returns all terraform workspaces.\n"
+        },
+        {
+          "info": {
+            "name": "create terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-workspaces"
+          },
+          "docs": "Create a terraform workspace.\n"
+        },
+        {
+          "info": {
+            "name": "get  terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              }
+            ]
+          },
+          "docs": "Return a terraform workspace by id.\n"
+        },
+        {
+          "info": {
+            "name": "delete terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              }
+            ]
+          },
+          "docs": "Delete a terraform workspace.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform workspace lock",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/lock",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              }
+            ]
+          },
+          "docs": "Returns the lock status for a terraform workspace.\n"
+        },
+        {
+          "info": {
+            "name": "lock terraform state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/lock",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "job ID"
+              }
+            ]
+          },
+          "docs": "Lock a terraform workspace to prevent concurrent modifications.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform states json",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/state-json",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns terraform states in JSON format.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform state json by id. This output is same as \"terraform show --json\"",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/state-json/:state_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "terraform state ID"
+              }
+            ]
+          },
+          "docs": "Return a terraform state in JSON format by id.\n"
+        },
+        {
+          "info": {
+            "name": "get raw workspace state json by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/state-json/:state_id/raw",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "state ID"
+              }
+            ]
+          },
+          "docs": "Returns the raw state contents without format-specific parsing. Works for both terraform and pulumi state."
+        },
+        {
+          "info": {
+            "name": "get terraform state resources. This output is similar to \"terraform state list\"",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/state-json/:state_id/resources",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "state ID"
+              }
+            ]
+          },
+          "docs": "Returns terraform state resources in JSON format.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform states",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/states",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns terraform states for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get terraform state by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/states/:state_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "state_id",
+                "value": "",
+                "type": "path",
+                "description": "state ID"
+              }
+            ]
+          },
+          "docs": "Return a terraform state by id.\n"
+        },
+        {
+          "info": {
+            "name": "unlock terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/unlock",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              }
+            ]
+          },
+          "docs": "Unlock a terraform workspace.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

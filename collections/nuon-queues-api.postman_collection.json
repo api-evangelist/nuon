@@ -1,0 +1,1515 @@
+{
+  "item": [
+    {
+      "id": "f2d06af2-4607-49dc-8050-fb6dde295cc9",
+      "name": "queues",
+      "description": {
+        "content": "queues",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c1b7341-e5de-4bbc-82e9-403c008a6bd9",
+          "name": "List queues",
+          "request": {
+            "name": "List queues",
+            "description": {
+              "content": "List queues with optional filtering by owner",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "queues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "owner_id",
+                  "value": "<string>",
+                  "description": "Filter by owner ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_type",
+                  "value": "<string>",
+                  "description": "Filter by owner type (e.g., 'app_branches')"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Limit results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "969ab175-7810-44f4-8327-d5311836edc2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"emitters\": [\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 5039,\n        \"fired\": true,\n        \"id\": \"string\",\n        \"jitter_window\": 2587,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"scheduled\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 6690,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 3000,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 7741,\n        \"fired\": true,\n        \"id\": \"string\",\n        \"jitter_window\": 8018,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"fire_once\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 4811,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 896,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_2\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_3\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_4\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"id\": \"string\",\n    \"idle_timeout\": 9384,\n    \"max_depth\": 1020,\n    \"max_in_flight\": 9009,\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"owner_id\": \"string\",\n    \"owner_type\": \"string\",\n    \"queue_signal\": [\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": false,\n        \"execution_count\": 6524,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 5269,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {}\n          },\n          \"status\": \"expired\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": false,\n        \"execution_count\": 2117,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 2095,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          },\n          \"status\": \"user-skipped\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"status_v2\": {\n      \"created_at_ts\": 6594,\n      \"created_by_id\": \"string\",\n      \"history\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      },\n      \"status\": \"checking-plan\",\n      \"status_human_description\": \"string\"\n    },\n    \"updated_at\": \"string\",\n    \"workflow\": {\n      \"id\": \"string\",\n      \"namespace\": \"string\",\n      \"run_id\": \"string\"\n    }\n  },\n  {\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"emitters\": [\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 6804,\n        \"fired\": true,\n        \"id\": \"string\",\n        \"jitter_window\": 6756,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"cron\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 3926,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 6150,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 723,\n        \"fired\": false,\n        \"id\": \"string\",\n        \"jitter_window\": 1851,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"cron\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 3331,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 3538,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"id\": \"string\",\n    \"idle_timeout\": 6181,\n    \"max_depth\": 3806,\n    \"max_in_flight\": 3014,\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"owner_id\": \"string\",\n    \"owner_type\": \"string\",\n    \"queue_signal\": [\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": false,\n        \"execution_count\": 9006,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 9902,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {}\n          },\n          \"status\": \"provisioning\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": false,\n        \"execution_count\": 8078,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 3162,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {}\n          },\n          \"status\": \"cancelled\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"status_v2\": {\n      \"created_at_ts\": 2,\n      \"created_by_id\": \"string\",\n      \"history\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      },\n      \"status\": \"approval-retry\",\n      \"status_human_description\": \"string\"\n    },\n    \"updated_at\": \"string\",\n    \"workflow\": {\n      \"id\": \"string\",\n      \"namespace\": \"string\",\n      \"run_id\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d7ab582-c0b7-49b0-9092-a762596663fb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9d91c53-7fbd-4955-af6d-0588d2467d8d",
+          "name": "Get queue by ID",
+          "request": {
+            "name": "Get queue by ID",
+            "description": {
+              "content": "Retrieve a single queue by its ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "queues",
+                ":queue_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queue_id",
+                  "description": "(Required) Queue ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f39b4432-3e02-443a-92ca-bdb04702c4cd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"emitters\": [\n    {\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"cron_schedule\": \"string\",\n      \"description\": \"string\",\n      \"emit_count\": 6615,\n      \"fired\": false,\n      \"id\": \"string\",\n      \"jitter_window\": 184,\n      \"last_emitted_at\": \"string\",\n      \"mode\": \"fire_once\",\n      \"name\": \"string\",\n      \"next_emit_at\": \"string\",\n      \"org_id\": \"string\",\n      \"queue_id\": \"string\",\n      \"scheduled_at\": \"string\",\n      \"signal_expires_in\": 7731,\n      \"signal_template\": {\n        \"signal\": \"\"\n      },\n      \"signal_type\": \"string\",\n      \"status\": {\n        \"created_at_ts\": 4388,\n        \"created_by_id\": \"string\",\n        \"history\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          }\n        ],\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"status\": \"noop\",\n        \"status_human_description\": \"string\"\n      },\n      \"updated_at\": \"string\",\n      \"workflow\": {\n        \"id\": \"string\",\n        \"namespace\": \"string\",\n        \"run_id\": \"string\"\n      }\n    },\n    {\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"cron_schedule\": \"string\",\n      \"description\": \"string\",\n      \"emit_count\": 2325,\n      \"fired\": false,\n      \"id\": \"string\",\n      \"jitter_window\": 7209,\n      \"last_emitted_at\": \"string\",\n      \"mode\": \"fire_once\",\n      \"name\": \"string\",\n      \"next_emit_at\": \"string\",\n      \"org_id\": \"string\",\n      \"queue_id\": \"string\",\n      \"scheduled_at\": \"string\",\n      \"signal_expires_in\": 5590,\n      \"signal_template\": {\n        \"signal\": \"\"\n      },\n      \"signal_type\": \"string\",\n      \"status\": {\n        \"created_at_ts\": 7993,\n        \"created_by_id\": \"string\",\n        \"history\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          }\n        ],\n        \"metadata\": {\n          \"key_0\": {}\n        },\n        \"status\": \"generating\",\n        \"status_human_description\": \"string\"\n      },\n      \"updated_at\": \"string\",\n      \"workflow\": {\n        \"id\": \"string\",\n        \"namespace\": \"string\",\n        \"run_id\": \"string\"\n      }\n    }\n  ],\n  \"id\": \"string\",\n  \"idle_timeout\": 9474,\n  \"max_depth\": 5590,\n  \"max_in_flight\": 6724,\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  },\n  \"name\": \"string\",\n  \"org_id\": \"string\",\n  \"owner_id\": \"string\",\n  \"owner_type\": \"string\",\n  \"queue_signal\": [\n    {\n      \"callback\": {\n        \"namespace\": \"string\",\n        \"signal_name\": \"string\",\n        \"workflow_id\": \"string\"\n      },\n      \"callbacks\": [\n        {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        }\n      ],\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"emitter_id\": \"string\",\n      \"enqueued\": false,\n      \"execution_count\": 6909,\n      \"expires_at\": \"string\",\n      \"id\": \"string\",\n      \"org_id\": \"string\",\n      \"owner_id\": \"string\",\n      \"owner_type\": \"string\",\n      \"queue\": {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitters\": [\n          {\n            \"created_at\": \"string\",\n            \"created_by_id\": \"string\",\n            \"cron_schedule\": \"string\",\n            \"description\": \"string\",\n            \"emit_count\": 805,\n            \"fired\": true,\n            \"id\": \"string\",\n            \"jitter_window\": 1912,\n            \"last_emitted_at\": \"string\",\n            \"mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"next_emit_at\": \"string\",\n            \"org_id\": \"string\",\n            \"queue_id\": \"string\",\n            \"scheduled_at\": \"string\",\n            \"signal_expires_in\": 6466,\n            \"signal_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"signal_type\": \"string\",\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": \"string\",\n            \"workflow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"created_at\": \"string\",\n            \"created_by_id\": \"string\",\n            \"cron_schedule\": \"string\",\n            \"description\": \"string\",\n            \"emit_count\": 6647,\n            \"fired\": true,\n            \"id\": \"string\",\n            \"jitter_window\": 4857,\n            \"last_emitted_at\": \"string\",\n            \"mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"next_emit_at\": \"string\",\n            \"org_id\": \"string\",\n            \"queue_id\": \"string\",\n            \"scheduled_at\": \"string\",\n            \"signal_expires_in\": 9676,\n            \"signal_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"signal_type\": \"string\",\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": \"string\",\n            \"workflow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"string\",\n        \"idle_timeout\": 4241,\n        \"max_depth\": 9872,\n        \"max_in_flight\": 350,\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\",\n          \"key_3\": \"string\"\n        },\n        \"name\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue_signal\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n          }\n        ],\n        \"status_v2\": {\n          \"created_at_ts\": 1566,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"status\": \"cancelled\",\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      \"queue_id\": \"string\",\n      \"signal\": {\n        \"signal\": \"\"\n      },\n      \"signal_context\": {\n        \"account_id\": \"string\",\n        \"log_stream_id\": \"string\",\n        \"org_id\": \"string\",\n        \"trace_id\": \"string\"\n      },\n      \"status\": {\n        \"created_at_ts\": 2252,\n        \"created_by_id\": \"string\",\n        \"history\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          }\n        ],\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"status\": \"building\",\n        \"status_human_description\": \"string\"\n      },\n      \"type\": \"string\",\n      \"updated_at\": \"string\",\n      \"workflow\": {\n        \"id\": \"string\",\n        \"namespace\": \"string\",\n        \"run_id\": \"string\"\n      }\n    },\n    {\n      \"callback\": {\n        \"namespace\": \"string\",\n        \"signal_name\": \"string\",\n        \"workflow_id\": \"string\"\n      },\n      \"callbacks\": [\n        {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        }\n      ],\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"emitter_id\": \"string\",\n      \"enqueued\": false,\n      \"execution_count\": 8741,\n      \"expires_at\": \"string\",\n      \"id\": \"string\",\n      \"org_id\": \"string\",\n      \"owner_id\": \"string\",\n      \"owner_type\": \"string\",\n      \"queue\": {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitters\": [\n          {\n            \"created_at\": \"string\",\n            \"created_by_id\": \"string\",\n            \"cron_schedule\": \"string\",\n            \"description\": \"string\",\n            \"emit_count\": 2494,\n            \"fired\": true,\n            \"id\": \"string\",\n            \"jitter_window\": 543,\n            \"last_emitted_at\": \"string\",\n            \"mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"next_emit_at\": \"string\",\n            \"org_id\": \"string\",\n            \"queue_id\": \"string\",\n            \"scheduled_at\": \"string\",\n            \"signal_expires_in\": 1444,\n            \"signal_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"signal_type\": \"string\",\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": \"string\",\n            \"workflow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"created_at\": \"string\",\n            \"created_by_id\": \"string\",\n            \"cron_schedule\": \"string\",\n            \"description\": \"string\",\n            \"emit_count\": 4539,\n            \"fired\": true,\n            \"id\": \"string\",\n            \"jitter_window\": 9902,\n            \"last_emitted_at\": \"string\",\n            \"mode\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": \"string\",\n            \"next_emit_at\": \"string\",\n            \"org_id\": \"string\",\n            \"queue_id\": \"string\",\n            \"scheduled_at\": \"string\",\n            \"signal_expires_in\": 7596,\n            \"signal_template\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"signal_type\": \"string\",\n            \"status\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updated_at\": \"string\",\n            \"workflow\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"id\": \"string\",\n        \"idle_timeout\": 5903,\n        \"max_depth\": 1953,\n        \"max_in_flight\": 4482,\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"name\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue_signal\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n          }\n        ],\n        \"status_v2\": {\n          \"created_at_ts\": 1822,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"status\": \"user-skipped\",\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      \"queue_id\": \"string\",\n      \"signal\": {\n        \"signal\": \"\"\n      },\n      \"signal_context\": {\n        \"account_id\": \"string\",\n        \"log_stream_id\": \"string\",\n        \"org_id\": \"string\",\n        \"trace_id\": \"string\"\n      },\n      \"status\": {\n        \"created_at_ts\": 9209,\n        \"created_by_id\": \"string\",\n        \"history\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          }\n        ],\n        \"metadata\": {\n          \"key_0\": {}\n        },\n        \"status\": \"no-drift\",\n        \"status_human_description\": \"string\"\n      },\n      \"type\": \"string\",\n      \"updated_at\": \"string\",\n      \"workflow\": {\n        \"id\": \"string\",\n        \"namespace\": \"string\",\n        \"run_id\": \"string\"\n      }\n    }\n  ],\n  \"status_v2\": {\n    \"created_at_ts\": 259,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {}\n    },\n    \"status\": \"expired\",\n    \"status_human_description\": \"string\"\n  },\n  \"updated_at\": \"string\",\n  \"workflow\": {\n    \"id\": \"string\",\n    \"namespace\": \"string\",\n    \"run_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1e79046-829f-4e17-97e8-a6dcece96522",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f8c7b7e-3f3b-43ff-883d-c66c98be82ad",
+          "name": "List queue signals",
+          "request": {
+            "name": "List queue signals",
+            "description": {
+              "content": "Get a list of signals for a specific queue with optional filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "queues",
+                ":queue_id",
+                "signals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "owner_id",
+                  "value": "<string>",
+                  "description": "Filter by owner ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_type",
+                  "value": "<string>",
+                  "description": "Filter by owner type (e.g., app_branches)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by status"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by signal type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit results (default: 50)"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination (default: 0)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queue_id",
+                  "description": "(Required) Queue ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1f32ba37-76e5-4662-ba4b-91d5e26f594c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"callback\": {\n      \"namespace\": \"string\",\n      \"signal_name\": \"string\",\n      \"workflow_id\": \"string\"\n    },\n    \"callbacks\": [\n      {\n        \"namespace\": \"string\",\n        \"signal_name\": \"string\",\n        \"workflow_id\": \"string\"\n      },\n      {\n        \"namespace\": \"string\",\n        \"signal_name\": \"string\",\n        \"workflow_id\": \"string\"\n      }\n    ],\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"emitter_id\": \"string\",\n    \"enqueued\": true,\n    \"execution_count\": 7934,\n    \"expires_at\": \"string\",\n    \"id\": \"string\",\n    \"org_id\": \"string\",\n    \"owner_id\": \"string\",\n    \"owner_type\": \"string\",\n    \"queue\": {\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"emitters\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"cron_schedule\": \"string\",\n          \"description\": \"string\",\n          \"emit_count\": 5779,\n          \"fired\": false,\n          \"id\": \"string\",\n          \"jitter_window\": 2354,\n          \"last_emitted_at\": \"string\",\n          \"mode\": {\n            \"description\": \"Emitter mode: \\\"cron\\\" for recurring, \\\"scheduled\\\" for one-shot\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"next_emit_at\": \"string\",\n          \"org_id\": \"string\",\n          \"queue_id\": \"string\",\n          \"scheduled_at\": \"string\",\n          \"signal_expires_in\": 264,\n          \"signal_template\": {\n            \"signal\": \"\"\n          },\n          \"signal_type\": \"string\",\n          \"status\": {\n            \"description\": \"Runtime state using shared CompositeStatus\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": \"string\",\n          \"workflow\": {\n            \"description\": \"Workflow reference for the emitter's cron workflow\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"cron_schedule\": \"string\",\n          \"description\": \"string\",\n          \"emit_count\": 5731,\n          \"fired\": true,\n          \"id\": \"string\",\n          \"jitter_window\": 1117,\n          \"last_emitted_at\": \"string\",\n          \"mode\": {\n            \"description\": \"Emitter mode: \\\"cron\\\" for recurring, \\\"scheduled\\\" for one-shot\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"next_emit_at\": \"string\",\n          \"org_id\": \"string\",\n          \"queue_id\": \"string\",\n          \"scheduled_at\": \"string\",\n          \"signal_expires_in\": 2643,\n          \"signal_template\": {\n            \"signal\": \"\"\n          },\n          \"signal_type\": \"string\",\n          \"status\": {\n            \"description\": \"Runtime state using shared CompositeStatus\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": \"string\",\n          \"workflow\": {\n            \"description\": \"Workflow reference for the emitter's cron workflow\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"id\": \"string\",\n      \"idle_timeout\": 9700,\n      \"max_depth\": 5883,\n      \"max_in_flight\": 6952,\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"name\": \"string\",\n      \"org_id\": \"string\",\n      \"owner_id\": \"string\",\n      \"owner_type\": \"string\",\n      \"queue_signal\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n        }\n      ],\n      \"status_v2\": {\n        \"created_at_ts\": 7316,\n        \"created_by_id\": \"string\",\n        \"history\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          }\n        ],\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"status\": \"no-drift\",\n        \"status_human_description\": \"string\"\n      },\n      \"updated_at\": \"string\",\n      \"workflow\": {\n        \"id\": \"string\",\n        \"namespace\": \"string\",\n        \"run_id\": \"string\"\n      }\n    },\n    \"queue_id\": \"string\",\n    \"signal\": {\n      \"signal\": \"\"\n    },\n    \"signal_context\": {\n      \"account_id\": \"string\",\n      \"log_stream_id\": \"string\",\n      \"org_id\": \"string\",\n      \"trace_id\": \"string\"\n    },\n    \"status\": {\n      \"created_at_ts\": 6680,\n      \"created_by_id\": \"string\",\n      \"history\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"status\": \"planning\",\n      \"status_human_description\": \"string\"\n    },\n    \"type\": \"string\",\n    \"updated_at\": \"string\",\n    \"workflow\": {\n      \"id\": \"string\",\n      \"namespace\": \"string\",\n      \"run_id\": \"string\"\n    }\n  },\n  {\n    \"callback\": {\n      \"namespace\": \"string\",\n      \"signal_name\": \"string\",\n      \"workflow_id\": \"string\"\n    },\n    \"callbacks\": [\n      {\n        \"namespace\": \"string\",\n        \"signal_name\": \"string\",\n        \"workflow_id\": \"string\"\n      },\n      {\n        \"namespace\": \"string\",\n        \"signal_name\": \"string\",\n        \"workflow_id\": \"string\"\n      }\n    ],\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"emitter_id\": \"string\",\n    \"enqueued\": true,\n    \"execution_count\": 4223,\n    \"expires_at\": \"string\",\n    \"id\": \"string\",\n    \"org_id\": \"string\",\n    \"owner_id\": \"string\",\n    \"owner_type\": \"string\",\n    \"queue\": {\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"emitters\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"cron_schedule\": \"string\",\n          \"description\": \"string\",\n          \"emit_count\": 7265,\n          \"fired\": false,\n          \"id\": \"string\",\n          \"jitter_window\": 3532,\n          \"last_emitted_at\": \"string\",\n          \"mode\": {\n            \"description\": \"Emitter mode: \\\"cron\\\" for recurring, \\\"scheduled\\\" for one-shot\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"next_emit_at\": \"string\",\n          \"org_id\": \"string\",\n          \"queue_id\": \"string\",\n          \"scheduled_at\": \"string\",\n          \"signal_expires_in\": 4977,\n          \"signal_template\": {\n            \"signal\": \"\"\n          },\n          \"signal_type\": \"string\",\n          \"status\": {\n            \"description\": \"Runtime state using shared CompositeStatus\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": \"string\",\n          \"workflow\": {\n            \"description\": \"Workflow reference for the emitter's cron workflow\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"cron_schedule\": \"string\",\n          \"description\": \"string\",\n          \"emit_count\": 6231,\n          \"fired\": false,\n          \"id\": \"string\",\n          \"jitter_window\": 6056,\n          \"last_emitted_at\": \"string\",\n          \"mode\": {\n            \"description\": \"Emitter mode: \\\"cron\\\" for recurring, \\\"scheduled\\\" for one-shot\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"next_emit_at\": \"string\",\n          \"org_id\": \"string\",\n          \"queue_id\": \"string\",\n          \"scheduled_at\": \"string\",\n          \"signal_expires_in\": 3438,\n          \"signal_template\": {\n            \"signal\": \"\"\n          },\n          \"signal_type\": \"string\",\n          \"status\": {\n            \"description\": \"Runtime state using shared CompositeStatus\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": \"string\",\n          \"workflow\": {\n            \"description\": \"Workflow reference for the emitter's cron workflow\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"id\": \"string\",\n      \"idle_timeout\": 5091,\n      \"max_depth\": 3566,\n      \"max_in_flight\": 8841,\n      \"metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"name\": \"string\",\n      \"org_id\": \"string\",\n      \"owner_id\": \"string\",\n      \"owner_type\": \"string\",\n      \"queue_signal\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.QueueSignal detected>\"\n        }\n      ],\n      \"status_v2\": {\n        \"created_at_ts\": 3523,\n        \"created_by_id\": \"string\",\n        \"history\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n          }\n        ],\n        \"metadata\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"status\": \"applying\",\n        \"status_human_description\": \"string\"\n      },\n      \"updated_at\": \"string\",\n      \"workflow\": {\n        \"id\": \"string\",\n        \"namespace\": \"string\",\n        \"run_id\": \"string\"\n      }\n    },\n    \"queue_id\": \"string\",\n    \"signal\": {\n      \"signal\": \"\"\n    },\n    \"signal_context\": {\n      \"account_id\": \"string\",\n      \"log_stream_id\": \"string\",\n      \"org_id\": \"string\",\n      \"trace_id\": \"string\"\n    },\n    \"status\": {\n      \"created_at_ts\": 2590,\n      \"created_by_id\": \"string\",\n      \"history\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      },\n      \"status\": \"cancelled\",\n      \"status_human_description\": \"string\"\n    },\n    \"type\": \"string\",\n    \"updated_at\": \"string\",\n    \"workflow\": {\n      \"id\": \"string\",\n      \"namespace\": \"string\",\n      \"run_id\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b7de43f-5700-433a-8d25-c80bcde5839a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "owner_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52ecb7ff-c8b6-42a8-a1bb-3f0edac8935d",
+          "name": "Get queue signal details",
+          "request": {
+            "name": "Get queue signal details",
+            "description": {
+              "content": "Get detailed information about a specific queue signal",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "queues",
+                ":queue_id",
+                "signals",
+                ":signal_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queue_id",
+                  "description": "(Required) Queue ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signal_id",
+                  "description": "(Required) Signal ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "19276cca-b11f-43c7-bb77-eaa72219622d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals",
+                    ":signal_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signal_id",
+                      "description": "(Required) Signal ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callback\": {\n    \"namespace\": \"string\",\n    \"signal_name\": \"string\",\n    \"workflow_id\": \"string\"\n  },\n  \"callbacks\": [\n    {\n      \"namespace\": \"string\",\n      \"signal_name\": \"string\",\n      \"workflow_id\": \"string\"\n    },\n    {\n      \"namespace\": \"string\",\n      \"signal_name\": \"string\",\n      \"workflow_id\": \"string\"\n    }\n  ],\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"emitter_id\": \"string\",\n  \"enqueued\": true,\n  \"execution_count\": 7552,\n  \"expires_at\": \"string\",\n  \"id\": \"string\",\n  \"org_id\": \"string\",\n  \"owner_id\": \"string\",\n  \"owner_type\": \"string\",\n  \"queue\": {\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"emitters\": [\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 8381,\n        \"fired\": true,\n        \"id\": \"string\",\n        \"jitter_window\": 4640,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"fire_once\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 8873,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 8859,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 564,\n        \"fired\": true,\n        \"id\": \"string\",\n        \"jitter_window\": 45,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"fire_once\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 5717,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 3047,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"id\": \"string\",\n    \"idle_timeout\": 4168,\n    \"max_depth\": 7510,\n    \"max_in_flight\": 8013,\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"owner_id\": \"string\",\n    \"owner_type\": \"string\",\n    \"queue_signal\": [\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": true,\n        \"execution_count\": 6552,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 8865,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {}\n          },\n          \"status\": \"checking-plan\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": false,\n        \"execution_count\": 1163,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 5101,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          },\n          \"status\": \"approval-awaiting\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"status_v2\": {\n      \"created_at_ts\": 9078,\n      \"created_by_id\": \"string\",\n      \"history\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      },\n      \"status\": \"provisioning\",\n      \"status_human_description\": \"string\"\n    },\n    \"updated_at\": \"string\",\n    \"workflow\": {\n      \"id\": \"string\",\n      \"namespace\": \"string\",\n      \"run_id\": \"string\"\n    }\n  },\n  \"queue_id\": \"string\",\n  \"signal\": {\n    \"signal\": \"\"\n  },\n  \"signal_context\": {\n    \"account_id\": \"string\",\n    \"log_stream_id\": \"string\",\n    \"org_id\": \"string\",\n    \"trace_id\": \"string\"\n  },\n  \"status\": {\n    \"created_at_ts\": 8036,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-retry\",\n    \"status_human_description\": \"string\"\n  },\n  \"type\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow\": {\n    \"id\": \"string\",\n    \"namespace\": \"string\",\n    \"run_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18d0e329-78e6-45d4-8fc8-ebccd761e425",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals",
+                    ":signal_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signal_id",
+                      "description": "(Required) Signal ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10d3b536-6337-41e6-a84f-c7dcd4d65355",
+          "name": "Long-poll for queue signal completion",
+          "request": {
+            "name": "Long-poll for queue signal completion",
+            "description": {
+              "content": "Blocks until the queue signal finishes or the timeout is reached",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "queues",
+                ":queue_id",
+                "signals",
+                ":signal_id",
+                "await"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "<integer>",
+                  "description": "Timeout in seconds (default 30, max 120)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queue_id",
+                  "description": "(Required) Queue ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signal_id",
+                  "description": "(Required) Signal ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b50a860c-3257-47b5-ae8b-0b1b9e8e9e40",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals",
+                    ":signal_id",
+                    "await"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signal_id",
+                      "description": "(Required) Signal ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"callback\": {\n    \"namespace\": \"string\",\n    \"signal_name\": \"string\",\n    \"workflow_id\": \"string\"\n  },\n  \"callbacks\": [\n    {\n      \"namespace\": \"string\",\n      \"signal_name\": \"string\",\n      \"workflow_id\": \"string\"\n    },\n    {\n      \"namespace\": \"string\",\n      \"signal_name\": \"string\",\n      \"workflow_id\": \"string\"\n    }\n  ],\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"emitter_id\": \"string\",\n  \"enqueued\": true,\n  \"execution_count\": 7552,\n  \"expires_at\": \"string\",\n  \"id\": \"string\",\n  \"org_id\": \"string\",\n  \"owner_id\": \"string\",\n  \"owner_type\": \"string\",\n  \"queue\": {\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"emitters\": [\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 8381,\n        \"fired\": true,\n        \"id\": \"string\",\n        \"jitter_window\": 4640,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"fire_once\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 8873,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 8859,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"cron_schedule\": \"string\",\n        \"description\": \"string\",\n        \"emit_count\": 564,\n        \"fired\": true,\n        \"id\": \"string\",\n        \"jitter_window\": 45,\n        \"last_emitted_at\": \"string\",\n        \"mode\": \"fire_once\",\n        \"name\": \"string\",\n        \"next_emit_at\": \"string\",\n        \"org_id\": \"string\",\n        \"queue_id\": \"string\",\n        \"scheduled_at\": \"string\",\n        \"signal_expires_in\": 5717,\n        \"signal_template\": {\n          \"signal\": \"\"\n        },\n        \"signal_type\": \"string\",\n        \"status\": {\n          \"created_at_ts\": 3047,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"key_1\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_human_description\": \"string\"\n        },\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"id\": \"string\",\n    \"idle_timeout\": 4168,\n    \"max_depth\": 7510,\n    \"max_in_flight\": 8013,\n    \"metadata\": {\n      \"key_0\": \"string\"\n    },\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"owner_id\": \"string\",\n    \"owner_type\": \"string\",\n    \"queue_signal\": [\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": true,\n        \"execution_count\": 6552,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 8865,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {}\n          },\n          \"status\": \"checking-plan\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      },\n      {\n        \"callback\": {\n          \"namespace\": \"string\",\n          \"signal_name\": \"string\",\n          \"workflow_id\": \"string\"\n        },\n        \"callbacks\": [\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          },\n          {\n            \"namespace\": \"string\",\n            \"signal_name\": \"string\",\n            \"workflow_id\": \"string\"\n          }\n        ],\n        \"created_at\": \"string\",\n        \"created_by_id\": \"string\",\n        \"emitter_id\": \"string\",\n        \"enqueued\": false,\n        \"execution_count\": 1163,\n        \"expires_at\": \"string\",\n        \"id\": \"string\",\n        \"org_id\": \"string\",\n        \"owner_id\": \"string\",\n        \"owner_type\": \"string\",\n        \"queue\": {\n          \"value\": \"<Circular reference to #/components/schemas/app.Queue detected>\"\n        },\n        \"queue_id\": \"string\",\n        \"signal\": {\n          \"signal\": \"\"\n        },\n        \"signal_context\": {\n          \"account_id\": \"string\",\n          \"log_stream_id\": \"string\",\n          \"org_id\": \"string\",\n          \"trace_id\": \"string\"\n        },\n        \"status\": {\n          \"created_at_ts\": 5101,\n          \"created_by_id\": \"string\",\n          \"history\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n            }\n          ],\n          \"metadata\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {},\n            \"key_3\": {}\n          },\n          \"status\": \"approval-awaiting\",\n          \"status_human_description\": \"string\"\n        },\n        \"type\": \"string\",\n        \"updated_at\": \"string\",\n        \"workflow\": {\n          \"id\": \"string\",\n          \"namespace\": \"string\",\n          \"run_id\": \"string\"\n        }\n      }\n    ],\n    \"status_v2\": {\n      \"created_at_ts\": 9078,\n      \"created_by_id\": \"string\",\n      \"history\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n        }\n      ],\n      \"metadata\": {\n        \"key_0\": {}\n      },\n      \"status\": \"provisioning\",\n      \"status_human_description\": \"string\"\n    },\n    \"updated_at\": \"string\",\n    \"workflow\": {\n      \"id\": \"string\",\n      \"namespace\": \"string\",\n      \"run_id\": \"string\"\n    }\n  },\n  \"queue_id\": \"string\",\n  \"signal\": {\n    \"signal\": \"\"\n  },\n  \"signal_context\": {\n    \"account_id\": \"string\",\n    \"log_stream_id\": \"string\",\n    \"org_id\": \"string\",\n    \"trace_id\": \"string\"\n  },\n  \"status\": {\n    \"created_at_ts\": 8036,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-retry\",\n    \"status_human_description\": \"string\"\n  },\n  \"type\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow\": {\n    \"id\": \"string\",\n    \"namespace\": \"string\",\n    \"run_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9312104c-7239-4151-95fe-fc9ee4011213",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals",
+                    ":signal_id",
+                    "await"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signal_id",
+                      "description": "(Required) Signal ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20e3837e-d4b2-455b-b869-e3343037fdb3",
+              "name": "Request Timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals",
+                    ":signal_id",
+                    "await"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signal_id",
+                      "description": "(Required) Signal ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c02ed9d8-919b-40f7-81d7-9dc665cad2fa",
+          "name": "Get signal execution graph",
+          "request": {
+            "name": "Get signal execution graph",
+            "description": {
+              "content": "Returns a recursive tree of a signal and all its awaited/enqueued child signals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "queues",
+                ":queue_id",
+                "signals",
+                ":signal_id",
+                "graph"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "depth",
+                  "value": "<integer>",
+                  "description": "Max recursion depth (default 1, max 10)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queue_id",
+                  "description": "(Required) Queue ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "signal_id",
+                  "description": "(Required) Signal ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1af002dd-5044-4b06-aeb1-cd79f5436894",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals",
+                    ":signal_id",
+                    "graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "depth",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signal_id",
+                      "description": "(Required) Signal ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": 4980.7631798401035,\n  \"key_1\": \"string\",\n  \"key_2\": true,\n  \"key_3\": 7697\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e7175c0-25ba-43bc-bec8-851614189e72",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "signals",
+                    ":signal_id",
+                    "graph"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "depth",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "signal_id",
+                      "description": "(Required) Signal ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d705d65-fa40-495e-acab-2c3740bc72c1",
+          "name": "Get live queue status",
+          "request": {
+            "name": "Get live queue status",
+            "description": {
+              "content": "Get real-time status of a queue including depth and in-flight signals",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "queues",
+                ":queue_id",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queue_id",
+                  "description": "(Required) Queue ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e4e4993d-0b66-4d3a-af6f-240d0e699498",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inFlight\": [\n    \"string\",\n    \"string\"\n  ],\n  \"inFlightCount\": 3005,\n  \"paused\": true,\n  \"queueDepthCount\": 2315,\n  \"ready\": true,\n  \"stopped\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5c0221b-3ead-42df-9a59-8fce54d8aaee",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "queues",
+                    ":queue_id",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queue_id",
+                      "description": "(Required) Queue ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nuon.co",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "53434ec3-1f5e-40c6-9194-1cd976576335",
+    "name": "Nuon accounts queues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing nuon apps, components, installs, and actions.\n\nContact Support:\n Name: Nuon Support\n Email: support@nuon.co",
+      "type": "text/plain"
+    }
+  }
+}

@@ -2488,3 +2488,9 @@ tools:
   path: /v1/workflows/{workflow_id}/steps/{step_id}/skip
   tag: installs
   source_operation: openapi/nuon-oapi-v3-openapi.json#SkipWorkflowStep
+deployment:
+  mode: none
+  verified: derived
+  tools: 412
+  checked: '2026-08-12'
+  source: catalog MCP census

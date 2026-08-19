@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts general API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "general",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get config for cli",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/general/cli-config"
+          },
+          "docs": "Returns CLI configuration and settings.\n"
+        },
+        {
+          "info": {
+            "name": "Get regions for a cloud platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/general/cloud-platform/:cloud_platform/regions",
+            "params": [
+              {
+                "name": "cloud_platform",
+                "value": "",
+                "type": "path",
+                "description": "cloud platform"
+              }
+            ]
+          },
+          "docs": "Return region metadata for the Nuon supported cloud platforms.\n"
+        },
+        {
+          "info": {
+            "name": "Get jsonschema for config file (deprecated query form)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/general/config-schema",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "return a schema for a source file"
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "deprecated alias for type; responses include a Deprecation header when used"
+              }
+            ]
+          },
+          "docs": "Return jsonschemas for Nuon configs. These can be used in frontmatter in most editors that have a TOML LSP (such as\n[Taplo](https://taplo.tamasfe.dev/) configured.\n\n```toml\n#:schema https://api.nuon.co/v1/general/config-schema?source=inputs\n\ndescription = \"description\"\n```\n\nYou can pass in a valid source argument to render within a specific config file:\n\n- input\n- input-group\n- installer\n- sandbox\n- runner\n- docker_build\n- container_image\n- helm\n- terraform\n- runbook\n- job\n"
+        },
+        {
+          "info": {
+            "name": "Get jsonschema for a config file type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/general/config-schema/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "config file type, e.g. sandbox, terraform, action"
+              }
+            ]
+          },
+          "docs": "Return jsonschemas for Nuon configs. These can be used in frontmatter in most editors that have a TOML LSP (such as\n[Taplo](https://taplo.tamasfe.dev/) configured.\n\n```toml\n#:schema https://api.nuon.co/v1/general/config-schema?source=inputs\n\ndescription = \"description\"\n```\n\nYou can pass in a valid source argument to render within a specific config file:\n\n- input\n- input-group\n- installer\n- sandbox\n- runner\n- docker_build\n- container_image\n- helm\n- terraform\n- runbook\n- job\n"
+        },
+        {
+          "info": {
+            "name": "Get current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/general/current-user"
+          },
+          "docs": "Returns the current authenticated user account.\n"
+        },
+        {
+          "info": {
+            "name": "Allow user to be added to an org waitlist.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/general/waitlist"
+          },
+          "docs": "Add an entry to the waitlist.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

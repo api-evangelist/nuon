@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts auth API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current account with identity information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/auth/me"
+          },
+          "docs": "Returns the authenticated account with identity profile information (provider_type, name, picture)"
+        },
+        {
+          "info": {
+            "name": "Validate authentication token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/auth/validate"
+          },
+          "docs": "Returns 200 if the provided token is valid, 401 otherwise."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

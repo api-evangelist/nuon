@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts actions/runner API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "actions/runner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get an app action workflow config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/action-workflows/configs/:action_workflow_config_id",
+            "params": [
+              {
+                "name": "action_workflow_config_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow config ID"
+              }
+            ]
+          },
+          "docs": "Return an action workflow configuration by id.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow runs by install id and run id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/runs/:run_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "run ID"
+              }
+            ]
+          },
+          "docs": "Return an install action workflow run by id.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

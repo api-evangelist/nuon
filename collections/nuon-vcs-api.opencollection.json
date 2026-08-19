@@ -1,0 +1,260 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts vcs API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "vcs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "public connection to create a vcs connection via a callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/vcs/connection-callback"
+          },
+          "docs": "Handle VCS connection callback for OAuth flow.\n"
+        },
+        {
+          "info": {
+            "name": "get vcs connection for an org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/vcs/connections",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all VCS connections for the provided organization.\n"
+        },
+        {
+          "info": {
+            "name": "create a vcs connection for Github",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/vcs/connections"
+          },
+          "docs": "Create a VCS connection for version control integration.\n"
+        },
+        {
+          "info": {
+            "name": "returns a vcs connection for an org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/vcs/connections/:connection_id",
+            "params": [
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "path",
+                "description": "connection ID"
+              }
+            ]
+          },
+          "docs": "Return a VCS connection by id.\n"
+        },
+        {
+          "info": {
+            "name": "Deletes a VCS connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/vcs/connections/:connection_id",
+            "params": [
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "path",
+                "description": "Connection ID"
+              },
+              {
+                "name": "delete_github_app",
+                "value": "",
+                "type": "query",
+                "description": "If true, also uninstall the GitHub App on the GitHub side. Defaults to false so other Nuon orgs sharing the same installation are not impacted."
+              }
+            ]
+          },
+          "docs": "Delete a VCS connection.\n"
+        },
+        {
+          "info": {
+            "name": "List branches for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/vcs/connections/:connection_id/branches",
+            "params": [
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "path",
+                "description": "connection ID"
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query",
+                "description": "repository owner"
+              },
+              {
+                "name": "repo",
+                "value": "",
+                "type": "query",
+                "description": "repository name"
+              }
+            ]
+          },
+          "docs": "Returns list of branches for the specified repository"
+        },
+        {
+          "info": {
+            "name": "check the real-time status of a VCS connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/vcs/connections/:connection_id/check-status",
+            "params": [
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "path",
+                "description": "connection ID"
+              }
+            ]
+          },
+          "docs": "Check the real-time status of a VCS (GitHub App) connection.\n\nThis endpoint queries GitHub's API directly to fetch the current installation status, including:\n- Active/Suspended state\n- Account information\n- Permissions\n- Suspension details (if applicable)\n\n**Important**: This endpoint always fetches fresh data from GitHub (no caching) to ensure accurate status information.\n\n## Response Status Values\n\n- `active`: The GitHub App installation is active and functioning\n- `suspended`: The installati"
+        },
+        {
+          "info": {
+            "name": "List VCS connection repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/vcs/connections/:connection_id/repos",
+            "params": [
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "path",
+                "description": "VCS Connection ID"
+              }
+            ]
+          },
+          "docs": "Lists all repositories accessible by a GitHub App installation (VCS connection)"
+        },
+        {
+          "info": {
+            "name": "returns the webhook subscription for a vcs connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/vcs/connections/:connection_id/webhook-subscription",
+            "params": [
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "path",
+                "description": "connection ID"
+              }
+            ]
+          },
+          "docs": "Returns the webhook subscription associated with a VCS connection.\n"
+        },
+        {
+          "info": {
+            "name": "creates a webhook subscription for a vcs connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/vcs/connections/:connection_id/webhook-subscription",
+            "params": [
+              {
+                "name": "connection_id",
+                "value": "",
+                "type": "path",
+                "description": "connection ID"
+              }
+            ]
+          },
+          "docs": "Creates a webhook subscription for a VCS connection. This enqueues a signal that will register a GitHub webhook for receiving push and pull request events.\n"
+        },
+        {
+          "info": {
+            "name": "Write a VCS webhook event (shared per subscription)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/vcs/webhooks/:subscription_id/events",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook Subscription ID"
+              }
+            ]
+          },
+          "docs": "Receives webhook events for a webhook subscription and creates a GithubEvent for processing"
+        },
+        {
+          "info": {
+            "name": "Write a VCS webhook event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/vcs/:vcs_connection_id/events",
+            "params": [
+              {
+                "name": "vcs_connection_id",
+                "value": "",
+                "type": "path",
+                "description": "VCS Connection ID"
+              }
+            ]
+          },
+          "docs": "Writes incoming webhook events for a VCS connection (legacy endpoint)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,366 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts notebooks API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "notebooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "list notebooks for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search by name or ID"
+              }
+            ]
+          },
+          "docs": "list notebooks for an install"
+        },
+        {
+          "info": {
+            "name": "create a notebook for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "create a notebook for an install"
+        },
+        {
+          "info": {
+            "name": "get a notebook with its ordered cells and each cell's latest run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              }
+            ]
+          },
+          "docs": "get a notebook with its ordered cells and each cell's latest run"
+        },
+        {
+          "info": {
+            "name": "update a notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              }
+            ]
+          },
+          "docs": "update a notebook"
+        },
+        {
+          "info": {
+            "name": "delete a notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              }
+            ]
+          },
+          "docs": "delete a notebook"
+        },
+        {
+          "info": {
+            "name": "add a cell to a notebook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id/cells",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              }
+            ]
+          },
+          "docs": "add a cell to a notebook"
+        },
+        {
+          "info": {
+            "name": "reorder a notebook's cells",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id/cells/reorder",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              }
+            ]
+          },
+          "docs": "accepts the full ordered list of cell IDs and assigns positions"
+        },
+        {
+          "info": {
+            "name": "edit a cell (bumps its revision)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id/cells/:cell_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              },
+              {
+                "name": "cell_id",
+                "value": "",
+                "type": "path",
+                "description": "cell ID"
+              }
+            ]
+          },
+          "docs": "edit a cell (bumps its revision)"
+        },
+        {
+          "info": {
+            "name": "delete a cell",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id/cells/:cell_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              },
+              {
+                "name": "cell_id",
+                "value": "",
+                "type": "path",
+                "description": "cell ID"
+              }
+            ]
+          },
+          "docs": "delete a cell"
+        },
+        {
+          "info": {
+            "name": "list a cell's run history (newest first)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id/cells/:cell_id/runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              },
+              {
+                "name": "cell_id",
+                "value": "",
+                "type": "path",
+                "description": "cell ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              }
+            ]
+          },
+          "docs": "list a cell's run history (newest first)"
+        },
+        {
+          "info": {
+            "name": "run a notebook cell on the install's runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id/cells/:cell_id/runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              },
+              {
+                "name": "cell_id",
+                "value": "",
+                "type": "path",
+                "description": "cell ID"
+              }
+            ]
+          },
+          "docs": "dispatches the cell to the notebook's warm Temporal workflow and records a NotebookCellRun linking to the underlying execution + log stream. Returns once the run is queued, not when it finishes."
+        },
+        {
+          "info": {
+            "name": "get a single cell run (includes log_stream_id for tailing)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/notebooks/:notebook_id/runs/:run_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "notebook_id",
+                "value": "",
+                "type": "path",
+                "description": "notebook ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "run ID"
+              }
+            ]
+          },
+          "docs": "get a single cell run (includes log_stream_id for tailing)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

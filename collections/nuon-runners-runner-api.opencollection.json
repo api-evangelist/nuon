@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts runners/runner API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "runners/runner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get runner job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runner-jobs/:runner_job_id",
+            "params": [
+              {
+                "name": "runner_job_id",
+                "value": "",
+                "type": "path",
+                "description": "runner job ID"
+              }
+            ]
+          },
+          "docs": "Return a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "get runner job composite plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runner-jobs/:runner_job_id/composite-plan",
+            "params": [
+              {
+                "name": "runner_job_id",
+                "value": "",
+                "type": "path",
+                "description": "runner job ID"
+              }
+            ]
+          },
+          "docs": "Return a plan for a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "get runner job plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/runner-jobs/:runner_job_id/plan",
+            "params": [
+              {
+                "name": "runner_job_id",
+                "value": "",
+                "type": "path",
+                "description": "runner job ID"
+              }
+            ]
+          },
+          "docs": "Return a plan for a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "get current terraform",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-backend"
+          },
+          "docs": "Returns the current terraform state.\n"
+        },
+        {
+          "info": {
+            "name": "update terraform state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-backend"
+          },
+          "docs": "Update a terraform state.\n"
+        },
+        {
+          "info": {
+            "name": "get  terraform workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces"
+          },
+          "docs": "Returns all terraform workspaces.\n"
+        },
+        {
+          "info": {
+            "name": "create terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-workspaces"
+          },
+          "docs": "Create a terraform workspace.\n"
+        },
+        {
+          "info": {
+            "name": "get  terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              }
+            ]
+          },
+          "docs": "Return a terraform workspace by id.\n"
+        },
+        {
+          "info": {
+            "name": "delete terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              }
+            ]
+          },
+          "docs": "Delete a terraform workspace.\n"
+        },
+        {
+          "info": {
+            "name": "lock terraform state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/lock",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "job ID"
+              }
+            ]
+          },
+          "docs": "Lock a terraform workspace to prevent concurrent modifications.\n"
+        },
+        {
+          "info": {
+            "name": "unlock terraform workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/terraform-workspaces/:workspace_id/unlock",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "workspace ID"
+              }
+            ]
+          },
+          "docs": "Unlock a terraform workspace.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,347 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts orgs API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "orgs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return current user's orgs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter orgs by name or ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all organizations for the authenticated user.\n"
+        },
+        {
+          "info": {
+            "name": "create a new org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs"
+          },
+          "docs": "Create a new organization.\n"
+        },
+        {
+          "info": {
+            "name": "Get an org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/current"
+          },
+          "docs": "Return an organization by id.\n"
+        },
+        {
+          "info": {
+            "name": "Update current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/orgs/current"
+          },
+          "docs": "Update an organization's settings.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an org",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/orgs/current"
+          },
+          "docs": "Delete an organization.\n"
+        },
+        {
+          "info": {
+            "name": "Get user accounts for current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/current/accounts",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Return an organization by id.\n"
+        },
+        {
+          "info": {
+            "name": "get current org's feature flags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/current/features"
+          },
+          "docs": "Get the current organization's feature flag values.\n\nReturns a map of feature flag names to their enabled/disabled status for the authenticated organization.\n\nThis endpoint shows which features are currently enabled or disabled for your organization, unlike `/v1/orgs/features` which returns all available features with their descriptions.\n\nExample response:\n```json\n{\n  \"api-pagination\": true,\n  \"org-dashboard\": true,\n  \"org-runner\": true,\n  \"stratus-layout\": true,\n  \"user-managed-features\": false"
+        },
+        {
+          "info": {
+            "name": "update org features (requires user-managed-features flag)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/orgs/current/features"
+          },
+          "docs": "Update feature flags for your current organization.\n\nThis endpoint allows organization users to manage feature flags, but requires the `user-managed-features` flag to be enabled for the organization. The `user-managed-features` flag itself cannot be modified through this endpoint and can only be enabled/disabled by administrators.\n\n**Requirements:**\n- The `user-managed-features` flag must be enabled for your organization\n- You cannot toggle the `user-managed-features` flag through this endpoint "
+        },
+        {
+          "info": {
+            "name": "Return org invites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/current/invites",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns a list of all invites to the org.\n"
+        },
+        {
+          "info": {
+            "name": "Invite a user to the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/current/invites"
+          },
+          "docs": "Invite a user (by email) to an org.\n\nThis user will receive an email, and when they next log into the application will be added to the org.\n"
+        },
+        {
+          "info": {
+            "name": "Resend an org invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/current/invites/:invite_id/resend",
+            "params": [
+              {
+                "name": "invite_id",
+                "value": "",
+                "type": "path",
+                "description": "invite ID"
+              }
+            ]
+          },
+          "docs": "Resend the invite email for an existing pending org invite.\n\nThe invite must be in \"pending\" status. Accepted invites cannot be resent.\n"
+        },
+        {
+          "info": {
+            "name": "Revoke an org invite",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/current/invites/:invite_id/revoke",
+            "params": [
+              {
+                "name": "invite_id",
+                "value": "",
+                "type": "path",
+                "description": "invite ID"
+              }
+            ]
+          },
+          "docs": "Revoke a pending org invite. The invite status is set to \"revoked\" and the record is soft-deleted, freeing the unique constraint so the same email can be re-invited.\n\nOnly org admins can revoke invites. Only pending invites can be revoked.\n"
+        },
+        {
+          "info": {
+            "name": "Remove a user from the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/current/remove-user"
+          },
+          "docs": "Remove a user from an org.\n"
+        },
+        {
+          "info": {
+            "name": "Get an org's runner group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/current/runner-group"
+          },
+          "docs": "Get the current org's runner group, which includes the runners and their settings.\n"
+        },
+        {
+          "info": {
+            "name": "Get an org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/current/stats"
+          },
+          "docs": "Returns statistics for the provided organization.\n"
+        },
+        {
+          "info": {
+            "name": "Add a user to the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/current/user"
+          },
+          "docs": "Add a user to an organization.\n"
+        },
+        {
+          "info": {
+            "name": "list webhooks for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/current/webhooks"
+          },
+          "docs": "list webhooks for the current org"
+        },
+        {
+          "info": {
+            "name": "create a webhook for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/current/webhooks"
+          },
+          "docs": "create a webhook for the current org"
+        },
+        {
+          "info": {
+            "name": "update a webhook for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/orgs/current/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook ID"
+              }
+            ]
+          },
+          "docs": "Replaces the webhook's interests filter and/or rotates its signing secret. WebhookURL is part of the (org_id, webhook_url) unique index and cannot be changed in place — delete and recreate to rename."
+        },
+        {
+          "info": {
+            "name": "delete a webhook for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/orgs/current/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "webhook ID"
+              }
+            ]
+          },
+          "docs": "delete a webhook for the current org"
+        },
+        {
+          "info": {
+            "name": "get available org features",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/features"
+          },
+          "docs": "Get all available organization feature flags with their descriptions.\n\nThis endpoint returns a list of all feature flags that can be enabled or disabled for organizations, along with detailed descriptions of what each feature provides.\n\nFeature flags control access to specific platform capabilities and can be managed by administrators through the admin API endpoints.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

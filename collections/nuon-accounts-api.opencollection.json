@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/account"
+          },
+          "docs": "Get the current account with user journeys and other data"
+        },
+        {
+          "info": {
+            "name": "create a static API token for your org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/account/static-token"
+          },
+          "docs": "Creates a long-lived static API token scoped to your current org. Each token gets its own dedicated service account, and only grants access to the current org."
+        },
+        {
+          "info": {
+            "name": "list your org's static API tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/account/static-tokens"
+          },
+          "docs": "Lists the static API tokens for your current org. Token secrets are never returned."
+        },
+        {
+          "info": {
+            "name": "delete a static API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/account/static-tokens/:token_id",
+            "params": [
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "path",
+                "description": "token ID"
+              }
+            ]
+          },
+          "docs": "Deletes a static API token belonging to your current org, along with its dedicated service account. Once deleted, the token can no longer be used to access the API."
+        },
+        {
+          "info": {
+            "name": "Get user journeys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/account/user-journeys"
+          },
+          "docs": "Get all user journeys for the current user account"
+        },
+        {
+          "info": {
+            "name": "Create a new user journey for account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/account/user-journeys"
+          },
+          "docs": "Add a new user journey with steps to track user progress"
+        },
+        {
+          "info": {
+            "name": "Complete all steps in a specific user journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/account/user-journeys/:journey_name/complete",
+            "params": [
+              {
+                "name": "journey_name",
+                "value": "",
+                "type": "path",
+                "description": "Journey name to complete"
+              }
+            ]
+          },
+          "docs": "Mark all remaining steps in the specified user journey as complete"
+        },
+        {
+          "info": {
+            "name": "Reset user journey steps",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/account/user-journeys/:journey_name/reset",
+            "params": [
+              {
+                "name": "journey_name",
+                "value": "",
+                "type": "path",
+                "description": "Journey name"
+              }
+            ]
+          },
+          "docs": "Reset all steps in a specified user journey by setting their completion status to false"
+        },
+        {
+          "info": {
+            "name": "Update user journey step completion status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/account/user-journeys/:journey_name/steps/:step_name",
+            "params": [
+              {
+                "name": "journey_name",
+                "value": "",
+                "type": "path",
+                "description": "Journey name"
+              },
+              {
+                "name": "step_name",
+                "value": "",
+                "type": "path",
+                "description": "Step name"
+              }
+            ]
+          },
+          "docs": "Mark a user journey step as complete or incomplete"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,270 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts policy-reports API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "policy-reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get policy analytics breakdown by dimension",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/policy-analytics/breakdown",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "dimension",
+                "value": "",
+                "type": "query",
+                "description": "dimension to break down by: policy_id, install_id, owner_type"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "start time (RFC3339)"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "end time (RFC3339)"
+              },
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by install ID"
+              },
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by policy ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "max entries to return (default 10)"
+              }
+            ]
+          },
+          "docs": "Returns policy evaluation counts broken down by a single dimension (policy_id, install_id, or owner_type), sorted by violation count (denies first, then warns). Use this to identify which policies, installs, or lifecycle stages produce the most violations.\n"
+        },
+        {
+          "info": {
+            "name": "get policy analytics summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/policy-analytics/summary",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "start time (RFC3339)"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "end time (RFC3339)"
+              },
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by install ID"
+              },
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by policy ID"
+              }
+            ]
+          },
+          "docs": "Returns aggregate policy evaluation counts for an app over a time range, with optional drill-down by install or policy.\n"
+        },
+        {
+          "info": {
+            "name": "get policy analytics timeseries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/policy-analytics/timeseries",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "start time (RFC3339)"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "end time (RFC3339)"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query",
+                "description": "comma-separated dimensions: policy_id, install_id, component_id, owner_type"
+              },
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by install ID"
+              },
+              {
+                "name": "policy_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by policy ID"
+              }
+            ]
+          },
+          "docs": "Returns policy evaluation counts bucketed over time for charting, with optional grouping by policy, install, or component.\n"
+        },
+        {
+          "info": {
+            "name": "get policy reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/policy-reports",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "owner_type",
+                "value": "",
+                "type": "query",
+                "description": "owner type (install_deploys, install_sandbox_runs, component_builds)"
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "owner id"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "app id"
+              },
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "query",
+                "description": "install id"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "report status"
+              }
+            ]
+          },
+          "docs": "Returns policy reports for the current organization.\n"
+        },
+        {
+          "info": {
+            "name": "get policy report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/policy-reports/:report_id",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "policy report ID"
+              }
+            ]
+          },
+          "docs": "Returns a single policy report by ID.\n"
+        },
+        {
+          "info": {
+            "name": "export policy report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/policy-reports/:report_id/export",
+            "params": [
+              {
+                "name": "report_id",
+                "value": "",
+                "type": "path",
+                "description": "policy report ID"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "export format: json, sarif, pdf (default: json)"
+              }
+            ]
+          },
+          "docs": "Exports a policy report as JSON, SARIF, or PDF.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

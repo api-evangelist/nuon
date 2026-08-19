@@ -1,0 +1,2639 @@
+{
+  "item": [
+    {
+      "id": "34924cdc-023c-46b2-8c5b-76b38d7937e8",
+      "name": "accounts",
+      "description": {
+        "content": "accounts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd4b4b64-aaf7-4364-8fee-d0ed17f12f1b",
+          "name": "Get current account",
+          "request": {
+            "name": "Get current account",
+            "description": {
+              "content": "Get the current account with user journeys and other data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1e604d9d-d5e2-4054-a33a-25c85807b2c7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_type\": \"service\",\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"id\": \"string\",\n  \"org_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"permissions\": {\n    \"key_0\": \"update\",\n    \"key_1\": \"create\"\n  },\n  \"roles\": [\n    {\n      \"createdBy\": {\n        \"account_type\": \"service\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"all\",\n          \"key_1\": \"all\",\n          \"key_2\": \"read\",\n          \"key_3\": \"delete\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_support\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"hosted-installer\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"createdBy\": {\n        \"account_type\": \"integration\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"all\",\n          \"key_1\": \"all\",\n          \"key_2\": \"delete\",\n          \"key_3\": \"unknown\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"installer\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"subject\": \"string\",\n  \"updated_at\": \"string\",\n  \"user_journeys\": [\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": true,\n            \"key_1\": false,\n            \"key_2\": 2376.5647096329067\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": true,\n            \"key_1\": false,\n            \"key_2\": \"string\"\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 9436.109346113451\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 8740.725260290983\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f291314-dfa5-4d7e-943a-ba4e3dbd4286",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd8a2c87-8695-4bad-b6ef-a1a5b48e3899",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a090934d-e923-4dfd-b2e0-06ad47005132",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56ba13c4-b6a6-410f-a883-c921298e01e1",
+          "name": "create a static API token for your org",
+          "request": {
+            "name": "create a static API token for your org",
+            "description": {
+              "content": "Creates a long-lived static API token scoped to your current org. Each token gets its own dedicated service account, and only grants access to the current org.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "static-token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"duration\": \"8760h\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85df39e4-177e-4d01-a825-ec522fd817de",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "static-token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"duration\": \"8760h\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api_token\": \"string\",\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44bcb04d-cd9b-4614-a5dd-e084bf97d24d",
+          "name": "list your org's static API tokens",
+          "request": {
+            "name": "list your org's static API tokens",
+            "description": {
+              "content": "Lists the static API tokens for your current org. Token secrets are never returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "static-tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0d5c9bea-64ba-4ee5-beaf-8171c9f7965f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "static-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"account_id\": \"string\",\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"expires_at\": \"string\",\n    \"id\": \"string\",\n    \"issued_at\": \"string\",\n    \"issuer\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"token_type\": \"static\",\n    \"updated_at\": \"string\"\n  },\n  {\n    \"account_id\": \"string\",\n    \"created_at\": \"string\",\n    \"created_by_id\": \"string\",\n    \"expires_at\": \"string\",\n    \"id\": \"string\",\n    \"issued_at\": \"string\",\n    \"issuer\": \"string\",\n    \"name\": \"string\",\n    \"org_id\": \"string\",\n    \"token_type\": \"admin\",\n    \"updated_at\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "501f8e35-596e-40f5-b784-00665e0d248b",
+          "name": "delete a static API token",
+          "request": {
+            "name": "delete a static API token",
+            "description": {
+              "content": "Deletes a static API token belonging to your current org, along with its dedicated service account. Once deleted, the token can no longer be used to access the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "static-tokens",
+                ":token_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token_id",
+                  "description": "(Required) token ID"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a21effc-f7d9-44d4-a96b-a20b247342c1",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "static-tokens",
+                    ":token_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token_id",
+                      "description": "(Required) token ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a696397-4538-44e6-8b7a-00c79685bebf",
+          "name": "Get user journeys",
+          "request": {
+            "name": "Get user journeys",
+            "description": {
+              "content": "Get all user journeys for the current user account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "user-journeys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5116b8a8-7b9c-410d-9610-9ab3d529b403",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"steps\": [\n      {\n        \"complete\": true,\n        \"completed_at\": \"string\",\n        \"completion_method\": \"string\",\n        \"completion_source\": \"string\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": true,\n          \"key_2\": 7289,\n          \"key_3\": 5336.5590673798515\n        },\n        \"name\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"complete\": true,\n        \"completed_at\": \"string\",\n        \"completion_method\": \"string\",\n        \"completion_source\": \"string\",\n        \"metadata\": {\n          \"key_0\": false,\n          \"key_1\": \"string\",\n          \"key_2\": true\n        },\n        \"name\": \"string\",\n        \"title\": \"string\"\n      }\n    ],\n    \"title\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"steps\": [\n      {\n        \"complete\": true,\n        \"completed_at\": \"string\",\n        \"completion_method\": \"string\",\n        \"completion_source\": \"string\",\n        \"metadata\": {\n          \"key_0\": false\n        },\n        \"name\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"complete\": true,\n        \"completed_at\": \"string\",\n        \"completion_method\": \"string\",\n        \"completion_source\": \"string\",\n        \"metadata\": {\n          \"key_0\": 3085,\n          \"key_1\": 6419\n        },\n        \"name\": \"string\",\n        \"title\": \"string\"\n      }\n    ],\n    \"title\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b94fab31-200b-4912-bded-bfccc1767415",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6493c598-4da8-490c-9200-d2d8716ff5ba",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5a10437-0cc9-42e9-8f48-f0484bcae4c4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "003ca294-2474-4b67-83e2-6e3b84de7f74",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63cb4d45-dfec-4d2e-a93b-204f7a2d1a6a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "beda9f8e-a75f-4be4-be1b-56f732ce1ba5",
+          "name": "Create a new user journey for account",
+          "request": {
+            "name": "Create a new user journey for account",
+            "description": {
+              "content": "Add a new user journey with steps to track user progress",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "user-journeys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71cf0fe5-3275-420f-8d15-466bb0fc1fb8",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_type\": \"service\",\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"id\": \"string\",\n  \"org_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"permissions\": {\n    \"key_0\": \"unknown\"\n  },\n  \"roles\": [\n    {\n      \"createdBy\": {\n        \"account_type\": \"auth\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"update\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"createdBy\": {\n        \"account_type\": \"canary\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"unknown\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"subject\": \"string\",\n  \"updated_at\": \"string\",\n  \"user_journeys\": [\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": 2156,\n            \"key_2\": \"string\"\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": true,\n            \"key_1\": 856.0545208006598,\n            \"key_2\": 5881\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 4858.111853424179,\n            \"key_1\": 5675.667911846725\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 2809\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70e4909c-8aa6-4721-ab0a-3f7eb8ea1e9f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6696673-bc12-4c89-b451-54049cc87be3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab8d5543-6e7d-4b5a-80ae-ce6897b7e5b0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "353c1016-9d21-4e76-b657-e0baaa85791e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a9520a5-8a74-4aea-9ddf-1b6c29015e0b",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b59b259-553f-44ae-9c02-3c64ce0502b3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90fc4a9b-4506-46f9-8252-21b3ad5787d9",
+          "name": "Complete all steps in a specific user journey",
+          "request": {
+            "name": "Complete all steps in a specific user journey",
+            "description": {
+              "content": "Mark all remaining steps in the specified user journey as complete",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "user-journeys",
+                ":journey_name",
+                "complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "journey_name",
+                  "description": "(Required) Journey name to complete"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9ed85b27-5af0-4028-ab6c-9953014c6607",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name to complete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_type\": \"service\",\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"id\": \"string\",\n  \"org_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"permissions\": {\n    \"key_0\": \"unknown\"\n  },\n  \"roles\": [\n    {\n      \"createdBy\": {\n        \"account_type\": \"auth\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"update\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"createdBy\": {\n        \"account_type\": \"canary\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"unknown\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"subject\": \"string\",\n  \"updated_at\": \"string\",\n  \"user_journeys\": [\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": 2156,\n            \"key_2\": \"string\"\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": true,\n            \"key_1\": 856.0545208006598,\n            \"key_2\": 5881\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 4858.111853424179,\n            \"key_1\": 5675.667911846725\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 2809\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8cd2f49-8aab-4b47-96c4-3ad9d27230ff",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name to complete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fd94ec9-b1a1-4ab0-968c-ca64f8fa8fd2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name to complete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "230ccf42-1b0c-4c8f-8faa-4394539c96f1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name to complete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c42d9ba-4ff9-40c4-9681-6687465ddd31",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name to complete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0927e5f5-2e4f-4f6b-bf96-e29debe5e225",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name to complete"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a548818b-b9a6-4436-80eb-03c831bfe44a",
+          "name": "Reset user journey steps",
+          "request": {
+            "name": "Reset user journey steps",
+            "description": {
+              "content": "Reset all steps in a specified user journey by setting their completion status to false",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "user-journeys",
+                ":journey_name",
+                "reset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "journey_name",
+                  "description": "(Required) Journey name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cad6430a-0e08-48f8-8641-8cc12ed938c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_type\": \"service\",\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"id\": \"string\",\n  \"org_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"permissions\": {\n    \"key_0\": \"unknown\"\n  },\n  \"roles\": [\n    {\n      \"createdBy\": {\n        \"account_type\": \"auth\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"update\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"createdBy\": {\n        \"account_type\": \"canary\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"unknown\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"subject\": \"string\",\n  \"updated_at\": \"string\",\n  \"user_journeys\": [\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": 2156,\n            \"key_2\": \"string\"\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": true,\n            \"key_1\": 856.0545208006598,\n            \"key_2\": 5881\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 4858.111853424179,\n            \"key_1\": 5675.667911846725\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 2809\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c57124d7-05cf-447b-9a38-81a7d4ff3a12",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb77be47-1976-4553-878e-0602285eb399",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a29f2d54-a86b-4f92-834c-8eb10b7e3d6b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c3960aa-17d1-4a5f-bf39-6e67dc96b802",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bf4321b-b217-4c2e-8bce-7a6b3899d698",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a7e5ba5-82ec-4a06-b0be-e8a306d1fa21",
+          "name": "Update user journey step completion status",
+          "request": {
+            "name": "Update user journey step completion status",
+            "description": {
+              "content": "Mark a user journey step as complete or incomplete",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "account",
+                "user-journeys",
+                ":journey_name",
+                "steps",
+                ":step_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "journey_name",
+                  "description": "(Required) Journey name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "step_name",
+                  "description": "(Required) Step name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"complete\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": 293.83263161296134\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8fbd42e9-72f8-4067-b708-c71695ba5cc3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "steps",
+                    ":step_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "step_name",
+                      "description": "(Required) Step name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"complete\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_type\": \"service\",\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"id\": \"string\",\n  \"org_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"permissions\": {\n    \"key_0\": \"unknown\"\n  },\n  \"roles\": [\n    {\n      \"createdBy\": {\n        \"account_type\": \"auth\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"update\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"createdBy\": {\n        \"account_type\": \"canary\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"update\",\n          \"key_1\": \"unknown\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"subject\": \"string\",\n  \"updated_at\": \"string\",\n  \"user_journeys\": [\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": 2156,\n            \"key_2\": \"string\"\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": true,\n            \"key_1\": 856.0545208006598,\n            \"key_2\": 5881\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 4858.111853424179,\n            \"key_1\": 5675.667911846725\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 2809\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33c51c4f-f9f5-4351-aa34-a08211452ca9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "steps",
+                    ":step_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "step_name",
+                      "description": "(Required) Step name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"complete\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "451126a8-9a8e-433c-a0d4-e6f8180a5af3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "steps",
+                    ":step_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "step_name",
+                      "description": "(Required) Step name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"complete\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6e9eaf9-f74f-4efc-a252-63ff7b226cf8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "steps",
+                    ":step_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "step_name",
+                      "description": "(Required) Step name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"complete\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bd6120b-62e6-42ce-b114-1bd4e463c400",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "steps",
+                    ":step_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "step_name",
+                      "description": "(Required) Step name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"complete\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e870940-0545-40d0-8cf8-ba390f2ad45f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "account",
+                    "user-journeys",
+                    ":journey_name",
+                    "steps",
+                    ":step_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "journey_name",
+                      "description": "(Required) Journey name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "step_name",
+                      "description": "(Required) Step name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"complete\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nuon.co",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "44e937c1-a30f-4267-bb12-904baaa68316",
+    "name": "Nuon accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing nuon apps, components, installs, and actions.\n\nContact Support:\n Name: Nuon Support\n Email: support@nuon.co",
+      "type": "text/plain"
+    }
+  }
+}

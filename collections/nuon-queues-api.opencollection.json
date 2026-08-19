@@ -1,0 +1,235 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts queues API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "queues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/queues",
+            "params": [
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner ID"
+              },
+              {
+                "name": "owner_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner type (e.g., 'app_branches')"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset results"
+              }
+            ]
+          },
+          "docs": "List queues with optional filtering by owner"
+        },
+        {
+          "info": {
+            "name": "Get queue by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/queues/:queue_id",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "Queue ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a single queue by its ID"
+        },
+        {
+          "info": {
+            "name": "List queue signals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/queues/:queue_id/signals",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "Queue ID"
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner ID"
+              },
+              {
+                "name": "owner_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner type (e.g., app_branches)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by signal type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit results (default: 50)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination (default: 0)"
+              }
+            ]
+          },
+          "docs": "Get a list of signals for a specific queue with optional filtering"
+        },
+        {
+          "info": {
+            "name": "Get queue signal details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/queues/:queue_id/signals/:signal_id",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "Queue ID"
+              },
+              {
+                "name": "signal_id",
+                "value": "",
+                "type": "path",
+                "description": "Signal ID"
+              }
+            ]
+          },
+          "docs": "Get detailed information about a specific queue signal"
+        },
+        {
+          "info": {
+            "name": "Long-poll for queue signal completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/queues/:queue_id/signals/:signal_id/await",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "Queue ID"
+              },
+              {
+                "name": "signal_id",
+                "value": "",
+                "type": "path",
+                "description": "Signal ID"
+              },
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query",
+                "description": "Timeout in seconds (default 30, max 120)"
+              }
+            ]
+          },
+          "docs": "Blocks until the queue signal finishes or the timeout is reached"
+        },
+        {
+          "info": {
+            "name": "Get signal execution graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/queues/:queue_id/signals/:signal_id/graph",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "Queue ID"
+              },
+              {
+                "name": "signal_id",
+                "value": "",
+                "type": "path",
+                "description": "Signal ID"
+              },
+              {
+                "name": "depth",
+                "value": "",
+                "type": "query",
+                "description": "Max recursion depth (default 1, max 10)"
+              }
+            ]
+          },
+          "docs": "Returns a recursive tree of a signal and all its awaited/enqueued child signals."
+        },
+        {
+          "info": {
+            "name": "Get live queue status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/queues/:queue_id/status",
+            "params": [
+              {
+                "name": "queue_id",
+                "value": "",
+                "type": "path",
+                "description": "Queue ID"
+              }
+            ]
+          },
+          "docs": "Get real-time status of a queue including depth and in-flight signals"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

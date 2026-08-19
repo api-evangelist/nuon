@@ -1,0 +1,308 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts slack API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "slack",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Slack /nuon slash command webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/slack/commands/nuon"
+          },
+          "docs": "Slack invokes this endpoint when a user runs `/nuon <subcommand>` in any channel of an installed workspace. Authenticated via the Slack signing-secret middleware (X-Slack-Signature + X-Slack-Request-Timestamp); not via API key. Subcommands: subscribe, unsubscribe, status, help. Responses are ephemeral."
+        },
+        {
+          "info": {
+            "name": "Slack Events API webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/slack/events"
+          },
+          "docs": "Receives lifecycle events from Slack: url_verification (handshake), app_uninstalled (workspace removed Nuon), tokens_revoked (bot token invalidated). Authenticated via Slack signing-secret middleware (X-Slack-Signature + X-Slack-Request-Timestamp); not via API key. Returns 200 even for unhandled event types so Slack does not retry."
+        },
+        {
+          "info": {
+            "name": "Slack interactivity & shortcuts request URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/slack/interactions"
+          },
+          "docs": "Receives interactive payloads (view_submission, block_actions, block_suggestion, shortcut). Authenticated via Slack signing-secret middleware (X-Slack-Signature + X-Slack-Request-Timestamp); not via API key. Dispatches subscribe/unsubscribe modal submissions, block_actions (scope/notif radios, Remove buttons), and the install picker's external_select block_suggestion handshake. Returns 200 on every parseable envelope so Slack does not retry; unhandled payload types are logged and acked."
+        },
+        {
+          "info": {
+            "name": "Slack OAuth v2 redirect target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/slack/oauth/callback",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "OAuth authorization code from Slack"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Signed state JWT issued by GetInstallURL"
+              }
+            ]
+          },
+          "docs": "Receives the OAuth `code` + signed-state JWT from Slack, exchanges the code for a workspace bot token via oauth.v2.access, persists the installation + org link, and redirects to the dashboard. NOT signed by Slack — trust comes from the state JWT signature. Enterprise Grid (org-wide) installs are rejected."
+        },
+        {
+          "info": {
+            "name": "List Slack channel subscriptions for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/channel-subscriptions",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              }
+            ]
+          },
+          "docs": "Returns the per-channel routing rules belonging to the calling org's verified Slack org links."
+        },
+        {
+          "info": {
+            "name": "Create a Slack channel subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/channel-subscriptions",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              }
+            ]
+          },
+          "docs": "Subscribes a Slack channel to events for the current org. The org_link_id must resolve to a verified SlackOrgLink belonging to the calling org; this is enforced at the DB query level (ABAC)."
+        },
+        {
+          "info": {
+            "name": "Update a Slack channel subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/channel-subscriptions/:sub_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              },
+              {
+                "name": "sub_id",
+                "value": "",
+                "type": "path",
+                "description": "Subscription ID"
+              }
+            ]
+          },
+          "docs": "Mutates a per-channel routing rule. Pass only the fields you want to change. Updating `match` may collide with the `(team_id, channel_id, org_link_id, match_canonical)` unique index — the API returns 409 with a clear description in that case so the dashboard can render the same toast it shows on a duplicate create. The subscription must belong to the calling org (ABAC enforced at the DB query level)."
+        },
+        {
+          "info": {
+            "name": "Delete a Slack channel subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/channel-subscriptions/:sub_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              },
+              {
+                "name": "sub_id",
+                "value": "",
+                "type": "path",
+                "description": "Slack channel subscription ID"
+              }
+            ]
+          },
+          "docs": "Soft-deletes a SlackChannelSubscription belonging to the current org. ABAC scoped at the DB query so callers cannot delete subscriptions outside their org."
+        },
+        {
+          "info": {
+            "name": "Get the Slack OAuth install URL for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/install-url",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              }
+            ]
+          },
+          "docs": "Returns a Slack OAuth v2 authorize URL with a signed state JWT bound to the calling account and org. The dashboard redirects the user to this URL to begin the install flow."
+        },
+        {
+          "info": {
+            "name": "List Slack workspaces linked to the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/installations",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              }
+            ]
+          },
+          "docs": "Returns every active Slack workspace installation that has a verified org link to the calling org."
+        },
+        {
+          "info": {
+            "name": "List channels visible to a Slack installation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/installations/:installation_id/channels",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              },
+              {
+                "name": "installation_id",
+                "value": "",
+                "type": "path",
+                "description": "Slack installation ID"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Slack cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size (Slack default 100, max 1000)"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated channel types (e.g. public_channel,private_channel)"
+              }
+            ]
+          },
+          "docs": "Calls Slack's conversations.list using the installation's bot token and returns the page of channels the bot can see. The installation must belong to a verified org link for the calling org."
+        },
+        {
+          "info": {
+            "name": "List Slack workspace bindings for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/org-links",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              }
+            ]
+          },
+          "docs": "Returns the verified SlackOrgLink rows belonging to the calling org. Each row carries the link_id used by the channel-subscription create endpoint."
+        },
+        {
+          "info": {
+            "name": "Bind a Slack workspace to the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/org-links",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              }
+            ]
+          },
+          "docs": "Creates a verified SlackOrgLink between the supplied TeamID and the calling org. Used by the Phase 4 confirmation flow when a user finishes the Slack OAuth round-trip and selects the Nuon org to attach the workspace to."
+        },
+        {
+          "info": {
+            "name": "Revoke a Slack workspace ↔ org binding",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/orgs/:org_id/slack/org-links/:link_id",
+            "params": [
+              {
+                "name": "org_id",
+                "value": "",
+                "type": "path",
+                "description": "Org ID"
+              },
+              {
+                "name": "link_id",
+                "value": "",
+                "type": "path",
+                "description": "Slack org link ID"
+              }
+            ]
+          },
+          "docs": "Soft-deletes the SlackOrgLink. Channel subscriptions cascade off via the FK. Idempotent if the link is already revoked."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

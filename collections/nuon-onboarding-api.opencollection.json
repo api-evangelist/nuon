@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts onboarding API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "onboarding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start a new onboarding session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/onboarding"
+          },
+          "docs": "Creates a new active onboarding session for the current account"
+        },
+        {
+          "info": {
+            "name": "Get current onboarding session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/onboarding/current"
+          },
+          "docs": "Returns the active onboarding session for the current account"
+        },
+        {
+          "info": {
+            "name": "Abandon onboarding session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/onboarding/current"
+          },
+          "docs": "Marks the current active onboarding session as abandoned"
+        },
+        {
+          "info": {
+            "name": "Complete the deploy step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/onboarding/current/steps/deploy"
+          },
+          "docs": "Advances the onboarding past the deploy monitoring to get started"
+        },
+        {
+          "info": {
+            "name": "Complete onboarding",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/onboarding/current/steps/get-started"
+          },
+          "docs": "Marks the onboarding session as completed"
+        },
+        {
+          "info": {
+            "name": "Complete the install step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/onboarding/current/steps/install"
+          },
+          "docs": "Creates an install and advances the onboarding to the install status step"
+        },
+        {
+          "info": {
+            "name": "Complete the organization step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/onboarding/current/steps/organization"
+          },
+          "docs": "Creates a sandbox organization or attaches an existing one, then advances the onboarding to the app profile step"
+        },
+        {
+          "info": {
+            "name": "Complete the your stack step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/onboarding/current/steps/your-stack"
+          },
+          "docs": "Configures the application profile and advances the onboarding to the install step"
+        },
+        {
+          "info": {
+            "name": "Get example apps catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/onboarding/example-apps"
+          },
+          "docs": "Returns the list of available example applications for onboarding"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

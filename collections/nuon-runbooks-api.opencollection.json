@@ -1,0 +1,366 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts runbooks API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "runbooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get runbooks for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runbooks",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter runbooks by name or ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              }
+            ]
+          },
+          "docs": "get runbooks for an app"
+        },
+        {
+          "info": {
+            "name": "create a runbook for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runbooks",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "create a runbook for an app"
+        },
+        {
+          "info": {
+            "name": "get a runbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runbooks/:runbook_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "path",
+                "description": "runbook ID"
+              }
+            ]
+          },
+          "docs": "get a runbook"
+        },
+        {
+          "info": {
+            "name": "update a runbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runbooks/:runbook_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "path",
+                "description": "runbook ID"
+              }
+            ]
+          },
+          "docs": "update a runbook"
+        },
+        {
+          "info": {
+            "name": "delete a runbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runbooks/:runbook_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "path",
+                "description": "runbook ID"
+              }
+            ]
+          },
+          "docs": "delete a runbook"
+        },
+        {
+          "info": {
+            "name": "get runbook configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runbooks/:runbook_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "path",
+                "description": "runbook ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              }
+            ]
+          },
+          "docs": "get runbook configs"
+        },
+        {
+          "info": {
+            "name": "create a runbook config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runbooks/:runbook_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "path",
+                "description": "runbook ID"
+              }
+            ]
+          },
+          "docs": "create a runbook config"
+        },
+        {
+          "info": {
+            "name": "get runbook runs for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/runbook-runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by runbook ID or name"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              }
+            ]
+          },
+          "docs": "get runbook runs for an install"
+        },
+        {
+          "info": {
+            "name": "get a runbook run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/runbook-runs/:run_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "run ID"
+              }
+            ]
+          },
+          "docs": "get a runbook run"
+        },
+        {
+          "info": {
+            "name": "get runbooks for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/runbooks",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search by runbook name or ID"
+              },
+              {
+                "name": "synced",
+                "value": "",
+                "type": "query",
+                "description": "return runbooks in the install's current app config; set false to return only runbooks no longer in it"
+              }
+            ]
+          },
+          "docs": "get runbooks for an install"
+        },
+        {
+          "info": {
+            "name": "get an install runbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/runbooks/:runbook_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "path",
+                "description": "runbook ID or name"
+              }
+            ]
+          },
+          "docs": "get an install runbook"
+        },
+        {
+          "info": {
+            "name": "run a runbook on an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/runbooks/:runbook_id/runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "runbook_id",
+                "value": "",
+                "type": "path",
+                "description": "runbook ID or name"
+              }
+            ]
+          },
+          "docs": "run a runbook on an install"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

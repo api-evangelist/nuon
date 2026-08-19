@@ -1,0 +1,1853 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts apps API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get all apps for the current org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter apps by name or ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all apps for the authenticated user.\n"
+        },
+        {
+          "info": {
+            "name": "create an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps"
+          },
+          "docs": "Create a new app.\n"
+        },
+        {
+          "info": {
+            "name": "get an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Return an app.\n"
+        },
+        {
+          "info": {
+            "name": "update an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/apps/:app_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Update an app's configuration.\n"
+        },
+        {
+          "info": {
+            "name": "delete an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/apps/:app_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Delete an app.\n"
+        },
+        {
+          "info": {
+            "name": "get app branches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of branches to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of branches to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all branches for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "CreateAppBranch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Cancel a runner job.\n"
+        },
+        {
+          "info": {
+            "name": "get an app branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              },
+              {
+                "name": "latest_config",
+                "value": "",
+                "type": "query",
+                "description": "include only the latest config"
+              }
+            ]
+          },
+          "docs": "Get an app branch by ID. Use `latest_config=true` query parameter to include only the most recent config with its VCS settings and install groups.\n"
+        },
+        {
+          "info": {
+            "name": "update app branch metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              }
+            ]
+          },
+          "docs": "Updates app branch metadata (name only). To update configuration, create a new AppBranchConfig via POST /branches/:id/configs"
+        },
+        {
+          "info": {
+            "name": "delete an app branch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              }
+            ]
+          },
+          "docs": "Deletes an app branch and all associated configs, runs, and install group runs."
+        },
+        {
+          "info": {
+            "name": "get app branch app configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of branches to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of branches to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all branch configurations for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create an app branch config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              }
+            ]
+          },
+          "docs": "Create a branch configuration for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app branch config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/latest-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              }
+            ]
+          },
+          "docs": "Returns the latest AppBranchConfig ordered by config_number (descending)"
+        },
+        {
+          "info": {
+            "name": "get app branch workflow runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/runs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns workflow runs for an app branch ordered by creation time (descending)"
+        },
+        {
+          "info": {
+            "name": "trigger app branch workflow run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/runs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              }
+            ]
+          },
+          "docs": "Creates and triggers a workflow run for an app branch. If config_id is not provided, uses the latest config."
+        },
+        {
+          "info": {
+            "name": "get builds for an app branch run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/runs/:run_id/builds",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch run ID"
+              }
+            ]
+          },
+          "docs": "Returns component builds triggered by a specific app branch run"
+        },
+        {
+          "info": {
+            "name": "list install group runs for an app branch run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/runs/:run_id/install-group-runs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch run ID"
+              }
+            ]
+          },
+          "docs": "Returns all install group runs for a specific app branch run"
+        },
+        {
+          "info": {
+            "name": "get a specific install group run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/runs/:run_id/install-group-runs/:install_group_run_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch run ID"
+              },
+              {
+                "name": "install_group_run_id",
+                "value": "",
+                "type": "path",
+                "description": "install group run ID"
+              }
+            ]
+          },
+          "docs": "Returns a single install group run with full details"
+        },
+        {
+          "info": {
+            "name": "get install group deployments for an app branch run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/branches/:app_branch_id/runs/:run_id/install-groups",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_branch_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "app branch run ID"
+              }
+            ]
+          },
+          "docs": "Returns install config updates triggered by a specific app branch run, grouped by install group"
+        },
+        {
+          "info": {
+            "name": "CreateAppBreakGlassConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/break-glass-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create a break glass config for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get app break_glass config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/break-glass-configs/:config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app break glass config ID"
+              }
+            ]
+          },
+          "docs": "Return an app break glass config by id.\n"
+        },
+        {
+          "info": {
+            "name": "CreateAppConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create an app config, by pushing the contents of a config file.\n\nThe API will automatically configure the app according to the config file in the background.\n"
+        },
+        {
+          "info": {
+            "name": "get an app config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/config/:app_config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "load all children configs"
+              }
+            ]
+          },
+          "docs": "Fetch an app config by id.\n"
+        },
+        {
+          "info": {
+            "name": "UpdateAppConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/apps/:app_id/config/:app_config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              }
+            ]
+          },
+          "docs": "Update an app config, setting status and state.\n"
+        },
+        {
+          "info": {
+            "name": "get an app config graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/config/:app_config_id/graph",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              }
+            ]
+          },
+          "docs": "Return raw graphviz data as a string that can be used to visualize a graph for an app.\n\nNote, for more complex viewing recommend to copy this output directly into [Graphviz\nviewer](https://dreampuf.github.io/GraphvizOnline).\n"
+        },
+        {
+          "info": {
+            "name": "UpdateAppConfigInstalls",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/config/:app_config_id/update-installs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "app_config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              }
+            ]
+          },
+          "docs": "Update app configuration across multiple installs.\n"
+        },
+        {
+          "info": {
+            "name": "get app configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all configs for the app.\n"
+        },
+        {
+          "info": {
+            "name": "CreateAppConfigV2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create an app config, by pushing the contents of a config file.\n\nThe API will automatically configure the app according to the config file in the background.\n"
+        },
+        {
+          "info": {
+            "name": "get an app config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs/:config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "load all children configs"
+              }
+            ]
+          },
+          "docs": "Fetch an app config by id.\n"
+        },
+        {
+          "info": {
+            "name": "UpdateAppConflgV2",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs/:config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              }
+            ]
+          },
+          "docs": "Update an app config, setting status and state.\n"
+        },
+        {
+          "info": {
+            "name": "Build all components for an app config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs/:config_id/build",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              }
+            ]
+          },
+          "docs": "Creates a workflow that builds all components defined in the given app config."
+        },
+        {
+          "info": {
+            "name": "diff two app configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs/:config_id/diff",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "new config ID"
+              },
+              {
+                "name": "old_config_id",
+                "value": "",
+                "type": "query",
+                "description": "previous config ID to compare against"
+              }
+            ]
+          },
+          "docs": "Compares a new app config against an old one and returns a hierarchical diff."
+        },
+        {
+          "info": {
+            "name": "get an app config graph",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs/:config_id/graph",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              }
+            ]
+          },
+          "docs": "Return raw graphviz data as a string that can be used to visualize a graph for an app.\n\nNote, for more complex viewing recommend to copy this output directly into [Graphviz\nviewer](https://dreampuf.github.io/GraphvizOnline).\n"
+        },
+        {
+          "info": {
+            "name": "UpdateAppConfigInstallsV2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/configs/:config_id/update-installs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app config ID"
+              }
+            ]
+          },
+          "docs": "Update app configuration across multiple installs.\n"
+        },
+        {
+          "info": {
+            "name": "CreateAppInputConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/input-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "App input configs allow you to declare the inputs for your application, and do things such as require customer inputs or \nexpose configuration knobs in your application.\n"
+        },
+        {
+          "info": {
+            "name": "get app input configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/input-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all input configurations for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "get app input config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/input-configs/:input_config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "input_config_id",
+                "value": "",
+                "type": "path",
+                "description": "input config ID"
+              }
+            ]
+          },
+          "docs": "Return an input config by id.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app input config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/input-latest-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Returns the most recent input config for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create a kubernetes contexts config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/kubernetes-contexts-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create the named kubernetes_context bindings for an app config version. Each context names a peer terraform_module or pulumi component that emits cluster connection details as outputs."
+        },
+        {
+          "info": {
+            "name": "get all labels used across an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/labels",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Returns all distinct label keys with values, usage counts, and assigned colors across components, actions, runbooks, and installs for an app."
+        },
+        {
+          "info": {
+            "name": "get latest app break glass config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/latest-break-glass-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Get the latest break glass config for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/latest-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "load all children configs"
+              }
+            ]
+          },
+          "docs": "Returns the most recent config for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app permissions config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/latest-permissions-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Get the latest app permissions config.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app policies config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/latest-policies-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Get latest app policies config.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app secrets config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/latest-secrets-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Get the latest app secrets config.\n"
+        },
+        {
+          "info": {
+            "name": "create operation role config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/operation-role-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create operation role rules for an app config"
+        },
+        {
+          "info": {
+            "name": "get operation role configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/operation-role-configs/:operation_role_config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "operation_role_config_id",
+                "value": "",
+                "type": "path",
+                "description": "operation role config ID"
+              }
+            ]
+          },
+          "docs": "Get all operation role configs for an app"
+        },
+        {
+          "info": {
+            "name": "CreateAppPermissionsConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/permissions-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create app permissions config.\n"
+        },
+        {
+          "info": {
+            "name": "get app permissions config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/permissions-configs/:config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app permissions config ID"
+              }
+            ]
+          },
+          "docs": "Return an app permissions config by id.\n"
+        },
+        {
+          "info": {
+            "name": "get app policies configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/policies-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Get all policies configs for an app.\n"
+        },
+        {
+          "info": {
+            "name": "CreateAppPoliciesConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/policies-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create app policies config.\n"
+        },
+        {
+          "info": {
+            "name": "get app policies config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/policies-configs/:config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app policies config ID"
+              }
+            ]
+          },
+          "docs": "Return an app policy config by id.\n"
+        },
+        {
+          "info": {
+            "name": "get app policy config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/policy-config/:policy_config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "policy_config_id",
+                "value": "",
+                "type": "path",
+                "description": "app policy config ID"
+              }
+            ]
+          },
+          "docs": "get a single app policy config by ID"
+        },
+        {
+          "info": {
+            "name": "get app runner configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runner-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all runner configurations for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create an app runner config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runner-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create a runner configuration for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app runner config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/runner-latest-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Returns the most recent runner config for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create an app sandbox config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/sandbox-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create a sandbox configuration for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get app sandbox configs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/sandbox-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all sandbox configurations for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create an app sandbox config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/sandbox-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create a sandbox configuration for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get latest app sandbox config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/sandbox-latest-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Returns the most recent sandbox config for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "get app sandbox builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/sandbox/builds",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              }
+            ]
+          },
+          "docs": "get app sandbox builds"
+        },
+        {
+          "info": {
+            "name": "create app sandbox build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/sandbox/builds",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "create app sandbox build"
+        },
+        {
+          "info": {
+            "name": "get app sandbox build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/sandbox/builds/:build_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "build_id",
+                "value": "",
+                "type": "path",
+                "description": "sandbox build ID"
+              }
+            ]
+          },
+          "docs": "get app sandbox build"
+        },
+        {
+          "info": {
+            "name": "create an app secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/secret",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create an app secret that can be used to configure components. To reference an app secret, use `.nuon.secrets.<secret_name>`.\n\n**NOTE** secrets can only be written, or deleted, not read.\n"
+        },
+        {
+          "info": {
+            "name": "delete an app secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/apps/:app_id/secret/:secret_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "secret_id",
+                "value": "",
+                "type": "path",
+                "description": "secret ID"
+              }
+            ]
+          },
+          "docs": "Delete an app secret.\n"
+        },
+        {
+          "info": {
+            "name": "get app secrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/secrets",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of jobs to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of jobs to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "List all secrets for an app.\n\n**NOTE** this does not return any sensitive values, as secrets are write only.\n"
+        },
+        {
+          "info": {
+            "name": "create an app secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/secrets",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create an app secret that can be used to configure components. To reference an app secret, use `.nuon.secrets.<secret_name>`.\n\n**NOTE** secrets can only be written, or deleted, not read.\n"
+        },
+        {
+          "info": {
+            "name": "CreateAppSecretsConfig",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/secrets-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create an app secrets config.\n"
+        },
+        {
+          "info": {
+            "name": "get app secrets config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/secrets-configs/:config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app secrets config ID"
+              }
+            ]
+          },
+          "docs": "Return an app secrets config by id.\n"
+        },
+        {
+          "info": {
+            "name": "delete an app secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/apps/:app_id/secrets/:secret_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "secret_id",
+                "value": "",
+                "type": "path",
+                "description": "secret ID"
+              }
+            ]
+          },
+          "docs": "Delete an app secret.\n"
+        },
+        {
+          "info": {
+            "name": "create an app stack config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/stack-configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create a cloudformation stack config\n"
+        },
+        {
+          "info": {
+            "name": "get app stack config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/stack-configs/:config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "app stack config ID"
+              }
+            ]
+          },
+          "docs": "Return a cloudformation stack config\n"
+        },
+        {
+          "info": {
+            "name": "get an app config template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/template-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "app template type"
+              }
+            ]
+          },
+          "docs": "Create an application template which provides a fully rendered config that can be modified and used to kickstart any application.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

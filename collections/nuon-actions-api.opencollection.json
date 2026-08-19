@@ -1,0 +1,1055 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts actions API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get an app action workflow config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/action-workflows/configs/:action_workflow_config_id",
+            "params": [
+              {
+                "name": "action_workflow_config_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow config ID"
+              }
+            ]
+          },
+          "docs": "Return an action workflow configuration by id.\n"
+        },
+        {
+          "info": {
+            "name": "get an app action workflow by action workflow id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/action-workflows/:action_workflow_id",
+            "params": [
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID or name"
+              }
+            ]
+          },
+          "docs": "Return an app action workflow by id.\n"
+        },
+        {
+          "info": {
+            "name": "patch an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/action-workflows/:action_workflow_id",
+            "params": [
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              }
+            ]
+          },
+          "docs": "Update an app action workflow configuration.\n"
+        },
+        {
+          "info": {
+            "name": "delete an action workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/action-workflows/:action_workflow_id",
+            "params": [
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              }
+            ]
+          },
+          "docs": "Delete an action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/action-workflows/:action_workflow_id/configs",
+            "params": [
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all action workflow configurations.\n"
+        },
+        {
+          "info": {
+            "name": "create action workflow config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/action-workflows/:action_workflow_id/configs",
+            "params": [
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              }
+            ]
+          },
+          "docs": "Create an action workflow configuration.\n"
+        },
+        {
+          "info": {
+            "name": "get an app action workflow's latest config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/action-workflows/:action_workflow_id/latest-config",
+            "params": [
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              }
+            ]
+          },
+          "docs": "Return the latest config for an action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflows for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/action-workflows",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter action workflows by name or ID"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "label filter (key:value,key:value)"
+              },
+              {
+                "name": "trigger_types",
+                "value": "",
+                "type": "query",
+                "description": "filter by action workflow trigger type"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all action workflows for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create an app action workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/action-workflows",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create an action workflow for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get an app action workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/action-workflows/:action_workflow_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID or name"
+              },
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID or name"
+              }
+            ]
+          },
+          "docs": "Return an app action workflow by id.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflows for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter action workflows by name or ID"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "label filter (key:value,key:value)"
+              },
+              {
+                "name": "trigger_types",
+                "value": "",
+                "type": "query",
+                "description": "filter by action workflow trigger type"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all action workflows for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create an app action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create an action workflow for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get an app action config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/configs/:action_config_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_config_id",
+                "value": "",
+                "type": "path",
+                "description": "action config ID"
+              }
+            ]
+          },
+          "docs": "Return an action workflow configuration by id.\n"
+        },
+        {
+          "info": {
+            "name": "get distinct label key:value pairs across all actions for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/label-keys",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Returns all distinct label key:value pairs for actions in the given app."
+        },
+        {
+          "info": {
+            "name": "get an app action workflow by action workflow id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action ID or name"
+              }
+            ]
+          },
+          "docs": "Return an app action workflow by id.\n"
+        },
+        {
+          "info": {
+            "name": "patch an app action",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action ID"
+              }
+            ]
+          },
+          "docs": "Update an app action workflow configuration.\n"
+        },
+        {
+          "info": {
+            "name": "delete an action",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action ID"
+              }
+            ]
+          },
+          "docs": "Delete an action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all action workflow configurations.\n"
+        },
+        {
+          "info": {
+            "name": "create action config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id/configs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action ID"
+              }
+            ]
+          },
+          "docs": "Create an action workflow configuration.\n"
+        },
+        {
+          "info": {
+            "name": "add labels to an action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id/labels",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action ID"
+              }
+            ]
+          },
+          "docs": "Merge the provided labels into the action's existing labels. Existing keys are overwritten."
+        },
+        {
+          "info": {
+            "name": "remove labels from an action",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id/labels",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action ID"
+              }
+            ]
+          },
+          "docs": "Remove the specified label keys from the action."
+        },
+        {
+          "info": {
+            "name": "get an app action workflow's latest config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/actions/:action_id/latest-config",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              }
+            ]
+          },
+          "docs": "Return the latest config for an action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get latest runs for all action workflows by install id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/latest-runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "trigger_types",
+                "value": "",
+                "type": "query",
+                "description": "filter by action workflow trigger by types"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query for action workflow name or ID"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "label filter (key:value,key:value)"
+              },
+              {
+                "name": "synced",
+                "value": "",
+                "type": "query",
+                "description": "return actions in the install's current app config; set false to return only actions no longer in it"
+              }
+            ]
+          },
+          "docs": "Returns the most recent workflow run for each install action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow runs by install id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all action workflow runs for an install.\n"
+        },
+        {
+          "info": {
+            "name": "create an action workflow run for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "AppWorkflowConfigId param has been deprecated and is no longer being consumed, the api uses currently install id to lookup related appworkflowconfigId\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow runs by install id and run id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/runs/:run_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "run ID"
+              }
+            ]
+          },
+          "docs": "Return an install action workflow run by id.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow run step by install id and step id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/runs/:run_id/steps/:step_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow run ID"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step ID"
+              }
+            ]
+          },
+          "docs": "Get an install action workflow run step.\n"
+        },
+        {
+          "info": {
+            "name": "get recent runs for an action workflow by install id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/:action_workflow_id/recent-runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns recent workflow runs for an install action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "create an adhoc action run for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/adhoc-run",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "# Create AdHoc Action\n\nCreates and executes a one-time action on an install without creating a permanent action workflow definition.\n\n## Use Cases\n\n- Running ad-hoc debugging scripts\n- Executing maintenance commands\n- Testing bash snippets before creating permanent actions\n- Quick data exports or transformations\n\n## Request Body\n\nProvide **either** `inline_contents` (for multi-line bash scripts) **or** `command` (for single-line commands), but not both.\n\n### Fields\n\n- `inline_contents` (string, "
+        },
+        {
+          "info": {
+            "name": "get latest runs for all action workflows by install id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/latest-runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "trigger_types",
+                "value": "",
+                "type": "query",
+                "description": "filter by action workflow trigger by types"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query for action workflow name or ID"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "label filter (key:value,key:value)"
+              },
+              {
+                "name": "synced",
+                "value": "",
+                "type": "query",
+                "description": "return actions in the install's current app config; set false to return only actions no longer in it"
+              }
+            ]
+          },
+          "docs": "Returns the most recent workflow run for each install action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow runs by install id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all action workflow runs for an install.\n"
+        },
+        {
+          "info": {
+            "name": "create an action run for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow runs by install id and run id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/runs/:run_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "run ID"
+              }
+            ]
+          },
+          "docs": "Return an install action workflow run by id.\n"
+        },
+        {
+          "info": {
+            "name": "get action workflow run step by install id and step id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/runs/:run_id/steps/:step_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow run ID"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step ID"
+              }
+            ]
+          },
+          "docs": "Get an install action workflow run step.\n"
+        },
+        {
+          "info": {
+            "name": "get recent runs for an action workflow by install id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/:action_id/recent-runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns recent workflow runs for an install action workflow.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

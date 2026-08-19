@@ -1,0 +1,2557 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nuon accounts installs API",
+    "version": "0.19.1074"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "installs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get all installs for an app",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/apps/:app_id/installs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter installs by name or ID"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "label filter (key:value,key:value)"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all installs for the provided app.\n"
+        },
+        {
+          "info": {
+            "name": "create an app install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/apps/:app_id/installs",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Create a new install for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get an install workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/install-workflows/:install_workflow_id",
+            "params": [
+              {
+                "name": "install_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "install workflow ID"
+              }
+            ]
+          },
+          "docs": "Return a workflow.\n"
+        },
+        {
+          "info": {
+            "name": "update an install workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/install-workflows/:install_workflow_id",
+            "params": [
+              {
+                "name": "install_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "install workflow ID"
+              }
+            ]
+          },
+          "docs": "Update a workflow configuration.\n"
+        },
+        {
+          "info": {
+            "name": "cancel an ongoing install workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/install-workflows/:install_workflow_id/cancel",
+            "params": [
+              {
+                "name": "install_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "install workflow ID"
+              }
+            ]
+          },
+          "docs": "Cancel a running workflow execution.\n"
+        },
+        {
+          "info": {
+            "name": "get all of the steps for a given install workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/install-workflows/:install_workflow_id/steps",
+            "params": [
+              {
+                "name": "install_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "install workflow ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Return all steps for a workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get an install workflow step",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/install-workflows/:install_workflow_id/steps/:install_workflow_step_id",
+            "params": [
+              {
+                "name": "install_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow id"
+              },
+              {
+                "name": "install_workflow_step_id",
+                "value": "",
+                "type": "path",
+                "description": "step id"
+              }
+            ]
+          },
+          "docs": "Return a single workflow step.\n"
+        },
+        {
+          "info": {
+            "name": "get an install workflow step approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/install-workflows/:install_workflow_id/steps/:install_workflow_step_id/approvals/:approval_id",
+            "params": [
+              {
+                "name": "install_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow id"
+              },
+              {
+                "name": "install_workflow_step_id",
+                "value": "",
+                "type": "path",
+                "description": "step id"
+              },
+              {
+                "name": "approval_id",
+                "value": "",
+                "type": "path",
+                "description": "approval id"
+              }
+            ]
+          },
+          "docs": "Return a workflow step approval by id.\n"
+        },
+        {
+          "info": {
+            "name": "get all installs for an org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter installs by name or ID"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "label filter (key:value,key:value)"
+              },
+              {
+                "name": "runner_id",
+                "value": "",
+                "type": "query",
+                "description": "filter by runner ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all installs for the provided organization.\n"
+        },
+        {
+          "info": {
+            "name": "create an app install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs"
+          },
+          "docs": "Create a new install for an app.\n"
+        },
+        {
+          "info": {
+            "name": "get distinct label key:value pairs across all installs for an org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/label-keys"
+          },
+          "docs": "Returns all distinct label key:value pairs for installs in the current org."
+        },
+        {
+          "info": {
+            "name": "get an install sandbox run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/sandbox-runs/:run_id",
+            "params": [
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "run ID"
+              }
+            ]
+          },
+          "docs": "Return a sandbox run for an install by id.\n"
+        },
+        {
+          "info": {
+            "name": "get an install stack by stack ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/stacks/:stack_id",
+            "params": [
+              {
+                "name": "stack_id",
+                "value": "",
+                "type": "path",
+                "description": "stack ID"
+              }
+            ]
+          },
+          "docs": "Returns the deployment stack for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "include_drifted_objects",
+                "value": "",
+                "type": "query",
+                "description": "whether to include drifted objects"
+              }
+            ]
+          },
+          "docs": "Return an install by id.\n"
+        },
+        {
+          "info": {
+            "name": "update an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/installs/:install_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "app ID"
+              }
+            ]
+          },
+          "docs": "Update an install's settings.\n"
+        },
+        {
+          "info": {
+            "name": "delete an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/installs/:install_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Delete an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an installs action workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Get install action workflows.\n"
+        },
+        {
+          "info": {
+            "name": "get an install action workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/action-workflows/:action_workflow_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "action_workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              }
+            ]
+          },
+          "docs": "Get an install action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get an installs action workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Get install action workflows.\n"
+        },
+        {
+          "info": {
+            "name": "get an install action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/:action_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action ID"
+              }
+            ]
+          },
+          "docs": "Get an install action workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get an install action workflow outputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/actions/:action_id/outputs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "action_id",
+                "value": "",
+                "type": "path",
+                "description": "action workflow ID or name"
+              }
+            ]
+          },
+          "docs": "Return the latest outputs for an action workflow.\n\nThe action_id parameter accepts either an action workflow ID or name.\n\n**NOTE** requires a valid install.\n"
+        },
+        {
+          "info": {
+            "name": "trigger an app config update for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/app-config-updates",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Creates a workflow to diff and deploy a new app config to an install."
+        },
+        {
+          "info": {
+            "name": "get app config versions for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/app-config-versions",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns the app config version history for an install, ordered by most recent first."
+        },
+        {
+          "info": {
+            "name": "get the diff for an install app config version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/app-config-versions/:version_id/diff",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "version_id",
+                "value": "",
+                "type": "path",
+                "description": "app config version ID"
+              }
+            ]
+          },
+          "docs": "Returns the component diff for a specific app config version transition."
+        },
+        {
+          "info": {
+            "name": "get app permissions config for an install with provisioning status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/app-permissions-config",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "get app permissions config for an install with provisioning status"
+        },
+        {
+          "info": {
+            "name": "get install audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/audit_logs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "start timestamp for audit log range"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "end timestamp for audit log range"
+              }
+            ]
+          },
+          "docs": "Returns audit logs for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get available IAM roles for a specific operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/available-roles",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "principal_type",
+                "value": "",
+                "type": "query",
+                "description": "principal type: component, sandbox, action"
+              },
+              {
+                "name": "operation_type",
+                "value": "",
+                "type": "query",
+                "description": "operation type: provision, reprovision, deprovision, deploy, teardown, trigger"
+              },
+              {
+                "name": "principal_id",
+                "value": "",
+                "type": "query",
+                "description": "principal ID: component ID or action workflow ID (required for component and action)"
+              }
+            ]
+          },
+          "docs": "Returns a list of available IAM roles that can be used for a specific operation on an install.\n\nThe endpoint filters roles based on the operation type:\n- **provision/reprovision**: Custom roles, break glass roles, provision IAM role\n- **deprovision/teardown**: Custom roles, break glass roles, deprovision IAM role\n- **deploy**: Custom roles, break glass roles, maintenance IAM role\n- **trigger** (actions): Custom roles, break glass roles, provision + maintenance IAM roles\n\nRoles are sourced from t"
+        },
+        {
+          "info": {
+            "name": "get an installs components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "component types to filter by"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query for component name or ID"
+              },
+              {
+                "name": "labels",
+                "value": "",
+                "type": "query",
+                "description": "label filter (key:value,key:value)"
+              },
+              {
+                "name": "synced",
+                "value": "",
+                "type": "query",
+                "description": "return components in the install's current app config; set false to return only components no longer in it"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all components for an install.\n"
+        },
+        {
+          "info": {
+            "name": "deploy all components on an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/deploy-all",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Deploy all components to an install.\n\nThis walks the graph order of the install's app, and will trigger a deploy for each on the specified install.\n"
+        },
+        {
+          "info": {
+            "name": "get all deploys to an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/deploys",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all deployments for an install.\n"
+        },
+        {
+          "info": {
+            "name": "teardown an install's components",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/teardown-all",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Teardown all components on an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an install component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              }
+            ]
+          },
+          "docs": "Return an install component by id.\n"
+        },
+        {
+          "info": {
+            "name": "get an install components deploys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/deploys",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all deployments for an install component.\n"
+        },
+        {
+          "info": {
+            "name": "deploy a build to an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/deploys",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              }
+            ]
+          },
+          "docs": "Create a new deployment for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get the latest deploy for an install component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/deploys/latest",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              }
+            ]
+          },
+          "docs": "Returns the most recent deployment for an install component.\n"
+        },
+        {
+          "info": {
+            "name": "get an install deploy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/deploys/:deploy_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              },
+              {
+                "name": "deploy_id",
+                "value": "",
+                "type": "path",
+                "description": "deploy ID"
+              }
+            ]
+          },
+          "docs": "Return a deployment for an install by id.\n"
+        },
+        {
+          "info": {
+            "name": "forget an install component",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/forget",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              }
+            ]
+          },
+          "docs": "# Forget Install Component\n\nPermanently forget (soft delete) an install component from the system. This operation marks the install component as deleted while preserving the record for audit purposes.\n\n## Use Cases\n\n- Remove a component that is no longer needed from an install\n- Clean up failed or orphaned install components\n- Prepare for reinstalling a component from scratch\n\n## Important Notes\n\n- This is a **soft delete** operation - the record is marked as deleted but remains in the database\n"
+        },
+        {
+          "info": {
+            "name": "get an install component outputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/outputs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              }
+            ]
+          },
+          "docs": "Return the latest outputs for a component.\n\n**NOTE** requires a valid install.\n"
+        },
+        {
+          "info": {
+            "name": "teardown an install component",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/teardown",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              }
+            ]
+          },
+          "docs": "Teardown and remove an install component's resources.\n"
+        },
+        {
+          "info": {
+            "name": "toggle an install component on or off",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/components/:component_id/toggle",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "component_id",
+                "value": "",
+                "type": "path",
+                "description": "component ID"
+              }
+            ]
+          },
+          "docs": "Enable or disable a toggleable component on an install. Enabling triggers a deploy workflow, disabling triggers a teardown workflow."
+        },
+        {
+          "info": {
+            "name": "create an install config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/configs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Create a configuration for an install.\n"
+        },
+        {
+          "info": {
+            "name": "update an install config",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/installs/:install_id/configs/:config_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "config_id",
+                "value": "",
+                "type": "path",
+                "description": "config ID"
+              }
+            ]
+          },
+          "docs": "Update an install's configuration.\n"
+        },
+        {
+          "info": {
+            "name": "get all deploys to an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/deploys",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all deployments for an install.\n"
+        },
+        {
+          "info": {
+            "name": "deploy a build to an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/deploys",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Create a new deployment for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an install's latest deploy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/deploys/latest",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns the most recent deployment for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an install deploy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/deploys/:deploy_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "deploy_id",
+                "value": "",
+                "type": "path",
+                "description": "deploy ID"
+              }
+            ]
+          },
+          "docs": "Return a deployment for an install by id.\n"
+        },
+        {
+          "info": {
+            "name": "deprovision an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/deprovision",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Deprovision an install sandbox.\n"
+        },
+        {
+          "info": {
+            "name": "deprovision an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/deprovision-sandbox",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Deprovision a sandbox environment for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get drifted objects for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/drifted-objects",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns all drifted objects for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get events for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/events",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "# Get Install Events\n\nReturn an event stream for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an install event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/events/:event_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "event ID"
+              }
+            ]
+          },
+          "docs": "Get a single install event.\n"
+        },
+        {
+          "info": {
+            "name": "forget an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/forget",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Forget an install that has been deleted outside of nuon.\n\nThis should only be used in cases where an install was broken in an unordinary way and needs to be manually deleted so the parent resources can be deleted.\n"
+        },
+        {
+          "info": {
+            "name": "generate an install config to be used with CLI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/generate-cli-install-config",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Generate CLI configuration for an install.\n"
+        },
+        {
+          "info": {
+            "name": "generate a Terraform installer config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/generate-terraform-installer-config",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Generate terraform configuration for an installer.\n"
+        },
+        {
+          "info": {
+            "name": "get an installs inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/inputs",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns input values for an install.\n"
+        },
+        {
+          "info": {
+            "name": "create install inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/inputs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Create input values for an install.\n"
+        },
+        {
+          "info": {
+            "name": "Updates install input config for app",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/installs/:install_id/inputs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Update input values for an install.\n\nThis endpoint accepts a partial subset of inputs and merges them with the install's existing\ninputs, so callers only need to send the inputs they want to change. Inputs sourced from the\n`install_stack` (customer source) are managed by the install stack and are rejected if supplied.\n"
+        },
+        {
+          "info": {
+            "name": "get an installs current inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/inputs/current",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns input values for an install.\n"
+        },
+        {
+          "info": {
+            "name": "add labels to an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/labels",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Merge the provided labels into the install's existing labels. Existing keys are overwritten."
+        },
+        {
+          "info": {
+            "name": "remove labels from an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/installs/:install_id/labels",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Remove the specified label keys from the install."
+        },
+        {
+          "info": {
+            "name": "phone home for an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/phone-home/:phone_home_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "phone_home_id",
+                "value": "",
+                "type": "path",
+                "description": "phone home ID"
+              }
+            ]
+          },
+          "docs": "A public endpoint for phoning home from a runner AWS cloudformation stack upon successfully processing it.\n"
+        },
+        {
+          "info": {
+            "name": "get install readme rendered with",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/readme",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns the `app.readme` markdown with the values interpolated from the install\ninputs and component outputs.\n"
+        },
+        {
+          "info": {
+            "name": "reprovision an install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/reprovision",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Reprovision an install sandbox.\n\n"
+        },
+        {
+          "info": {
+            "name": "reprovision an install sandbox",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/reprovision-sandbox",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Reprovision an install sandbox and redeploy all components on top.\n"
+        },
+        {
+          "info": {
+            "name": "rerun the workflow steps starting from input step id, can be used to retry a failed step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/retry-workflow",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Retry a failed workflow execution.\n"
+        },
+        {
+          "info": {
+            "name": "get install roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/roles",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter roles by display name or ID"
+              }
+            ]
+          },
+          "docs": "get all roles for an install"
+        },
+        {
+          "info": {
+            "name": "get latest install roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/roles/latest",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "search query to filter roles by display name or ID"
+              }
+            ]
+          },
+          "docs": "get install roles for the current app config"
+        },
+        {
+          "info": {
+            "name": "get install role usages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/roles/usages",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "role_name",
+                "value": "",
+                "type": "query",
+                "description": "unrendered role name template"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "get workflows that used a particular role, filtered by unrendered role name"
+        },
+        {
+          "info": {
+            "name": "update an install role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/installs/:install_id/roles/:role_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "role_id",
+                "value": "",
+                "type": "path",
+                "description": "install role ID"
+              }
+            ]
+          },
+          "docs": "enable or disable an install role"
+        },
+        {
+          "info": {
+            "name": "create a bootstrap token for an install's runner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/runner-bootstrap-token",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "create a bootstrap token for an install's runner"
+        },
+        {
+          "info": {
+            "name": "Get an install's runner group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/runner-group",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Return the runner group, including runners and settings for the provided install.\n"
+        },
+        {
+          "info": {
+            "name": "get an installs sandbox runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/sandbox-runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns all sandbox runs for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an install sandbox run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/sandbox-runs/:run_id",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "run ID"
+              }
+            ]
+          },
+          "docs": "Return a sandbox run for an install by id.\n"
+        },
+        {
+          "info": {
+            "name": "get an install stack by install ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/stack",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns the deployment stack for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get an install's stack runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/stack-runs",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "get install stack runs"
+        },
+        {
+          "info": {
+            "name": "Get the current state of an install.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/state",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Returns the current state for an install.\n"
+        },
+        {
+          "info": {
+            "name": "Get install state history.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/state-history",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Returns the state history for an install.\n"
+        },
+        {
+          "info": {
+            "name": "sync secrets install",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/installs/:install_id/sync-secrets",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              }
+            ]
+          },
+          "docs": "Execute the sync secrets workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/installs/:install_id/workflows",
+            "params": [
+              {
+                "name": "install_id",
+                "value": "",
+                "type": "path",
+                "description": "install ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "planonly",
+                "value": "",
+                "type": "query",
+                "description": "exclude plan only workflows when set to false"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "filter by workflow type"
+              },
+              {
+                "name": "finished",
+                "value": "",
+                "type": "query",
+                "description": "filter by finished state"
+              },
+              {
+                "name": "created_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "filter workflows created after timestamp (RFC3339 format)"
+              },
+              {
+                "name": "created_at_lte",
+                "value": "",
+                "type": "query",
+                "description": "filter workflows created before timestamp (RFC3339 format)"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "case-insensitive substring match against workflow id, type, and metadata (component / action / runbook name)"
+              }
+            ]
+          },
+          "docs": "Return workflows for an install.\n"
+        },
+        {
+          "info": {
+            "name": "get all workflows for the org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              },
+              {
+                "name": "planonly",
+                "value": "",
+                "type": "query",
+                "description": "exclude plan only workflows when set to false"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "filter by workflow type"
+              },
+              {
+                "name": "finished",
+                "value": "",
+                "type": "query",
+                "description": "filter by finished state"
+              },
+              {
+                "name": "created_at_gte",
+                "value": "",
+                "type": "query",
+                "description": "filter workflows created after timestamp (RFC3339 format)"
+              },
+              {
+                "name": "created_at_lte",
+                "value": "",
+                "type": "query",
+                "description": "filter workflows created before timestamp (RFC3339 format)"
+              }
+            ]
+          },
+          "docs": "get all workflows for the org"
+        },
+        {
+          "info": {
+            "name": "cancel multiple workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/cancel"
+          },
+          "docs": "Cancel multiple workflows by ID. Returns partial results if some fail."
+        },
+        {
+          "info": {
+            "name": "get all pending workflow step approvals for the org",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/pending-approvals",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "get all pending workflow step approvals for the org"
+        },
+        {
+          "info": {
+            "name": "get a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              }
+            ]
+          },
+          "docs": "Return a workflow.\n"
+        },
+        {
+          "info": {
+            "name": "update a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              }
+            ]
+          },
+          "docs": "Update a workflow configuration.\n"
+        },
+        {
+          "info": {
+            "name": "cancel an ongoing workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/cancel",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              }
+            ]
+          },
+          "docs": "Cancel a running workflow execution.\n"
+        },
+        {
+          "info": {
+            "name": "get queue position for a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/queue-position",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              }
+            ]
+          },
+          "docs": "Returns the queue position and workflows ahead when a workflow is pending."
+        },
+        {
+          "info": {
+            "name": "get all step groups for a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/step-groups",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              }
+            ]
+          },
+          "docs": "Get all step groups for a workflow, ordered by group index. Each group contains its nested steps.\n"
+        },
+        {
+          "info": {
+            "name": "get a workflow step group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/step-groups/:step_group_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              },
+              {
+                "name": "step_group_id",
+                "value": "",
+                "type": "path",
+                "description": "step group ID"
+              }
+            ]
+          },
+          "docs": "Get a single workflow step group by ID, including its nested steps.\n"
+        },
+        {
+          "info": {
+            "name": "get all of the steps for a given workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "offset of results to return"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "limit of results to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "page number of results to return"
+              }
+            ]
+          },
+          "docs": "Return all steps for a workflow.\n"
+        },
+        {
+          "info": {
+            "name": "get a workflow step",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow id"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step id"
+              }
+            ]
+          },
+          "docs": "Return a single workflow step.\n"
+        },
+        {
+          "info": {
+            "name": "get an workflow step approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id/approvals/:approval_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow id"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step id"
+              },
+              {
+                "name": "approval_id",
+                "value": "",
+                "type": "path",
+                "description": "approval id"
+              }
+            ]
+          },
+          "docs": "Return a workflow step approval by id.\n"
+        },
+        {
+          "info": {
+            "name": "get a workflow step approval contents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id/approvals/:approval_id/contents",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow id"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step id"
+              },
+              {
+                "name": "approval_id",
+                "value": "",
+                "type": "path",
+                "description": "approval id"
+              }
+            ]
+          },
+          "docs": "Return the contents of a json plan for an approval (compressed).\n"
+        },
+        {
+          "info": {
+            "name": "Create an approval response for a workflow step.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id/approvals/:approval_id/response",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow id"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step id"
+              },
+              {
+                "name": "approval_id",
+                "value": "",
+                "type": "path",
+                "description": "approval id"
+              }
+            ]
+          },
+          "docs": "Create a response for an approval for an action workflow step.\n"
+        },
+        {
+          "info": {
+            "name": "long-poll for workflow step completion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id/await",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow id"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step id"
+              }
+            ]
+          },
+          "docs": "Long-poll for a workflow step to complete. Blocks until the step finishes or a 60-second timeout is reached.\n"
+        },
+        {
+          "info": {
+            "name": "cancel an in-progress workflow step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id/cancel",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step ID"
+              }
+            ]
+          },
+          "docs": "cancel an in-progress workflow step"
+        },
+        {
+          "info": {
+            "name": "retry a failed or awaiting-approval workflow step",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id/retry",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step ID"
+              }
+            ]
+          },
+          "docs": "Retry a workflow execution by id.\n"
+        },
+        {
+          "info": {
+            "name": "skip a failed workflow step and continue the workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/workflows/:workflow_id/steps/:step_id/skip",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "workflow ID"
+              },
+              {
+                "name": "step_id",
+                "value": "",
+                "type": "path",
+                "description": "step ID"
+              }
+            ]
+          },
+          "docs": "skip a failed workflow step and continue the workflow"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

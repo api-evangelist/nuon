@@ -1,0 +1,363 @@
+{
+  "item": [
+    {
+      "id": "37ba804d-d835-49ed-a635-ab573bd6037b",
+      "name": "auth",
+      "description": {
+        "content": "auth",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e998db0-8fc1-47f2-884d-c45ac28758cb",
+          "name": "Get current account with identity information",
+          "request": {
+            "name": "Get current account with identity information",
+            "description": {
+              "content": "Returns the authenticated account with identity profile information (provider_type, name, picture)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "auth",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6b2b8862-cc5b-4d15-b303-886420599c81",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "auth",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_type\": \"canary\",\n  \"created_at\": \"string\",\n  \"email\": \"string\",\n  \"id\": \"string\",\n  \"identities\": [\n    {\n      \"name\": \"string\",\n      \"picture\": \"string\",\n      \"provider_type\": \"google\"\n    },\n    {\n      \"name\": \"string\",\n      \"picture\": \"string\",\n      \"provider_type\": \"oidc\"\n    }\n  ],\n  \"org_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"permissions\": {\n    \"key_0\": \"update\"\n  },\n  \"roles\": [\n    {\n      \"createdBy\": {\n        \"account_type\": \"auth\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"read\",\n          \"key_1\": \"all\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"org_admin\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"runner\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"createdBy\": {\n        \"account_type\": \"integration\",\n        \"created_at\": \"string\",\n        \"email\": \"string\",\n        \"id\": \"string\",\n        \"org_ids\": [\n          \"string\",\n          \"string\"\n        ],\n        \"permissions\": {\n          \"key_0\": \"unknown\",\n          \"key_1\": \"read\"\n        },\n        \"roles\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/app.Role detected>\"\n          }\n        ],\n        \"subject\": \"string\",\n        \"updated_at\": \"string\",\n        \"user_journeys\": [\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"steps\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"created_at\": \"string\",\n      \"created_by_id\": \"string\",\n      \"id\": \"string\",\n      \"policies\": [\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"runner\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        },\n        {\n          \"created_at\": \"string\",\n          \"created_by_id\": \"string\",\n          \"id\": \"string\",\n          \"name\": \"hosted_installer\",\n          \"permissions\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\",\n            \"key_3\": \"string\"\n          },\n          \"role_id\": \"string\",\n          \"updated_at\": \"string\"\n        }\n      ],\n      \"role_type\": \"org_support\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"subject\": \"string\",\n  \"updated_at\": \"string\",\n  \"user_journeys\": [\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": true,\n            \"key_2\": true\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": false,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": false\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"steps\": [\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": \"string\",\n            \"key_1\": 3802.7722193688605,\n            \"key_2\": \"string\"\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"complete\": true,\n          \"completed_at\": \"string\",\n          \"completion_method\": \"string\",\n          \"completion_source\": \"string\",\n          \"metadata\": {\n            \"key_0\": 7703,\n            \"key_1\": 5792\n          },\n          \"name\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbc9fa29-7570-4bb7-8e24-d62536d364cf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "auth",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d799d6d-fbac-43e8-8f89-a59552de95dc",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "auth",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db31e013-613d-4349-ab30-2de7b71002b6",
+          "name": "Validate authentication token",
+          "request": {
+            "name": "Validate authentication token",
+            "description": {
+              "content": "Returns 200 if the provided token is valid, 401 otherwise.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "auth",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd049556-2805-4171-924f-2ed73a7b8b13",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "auth",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": false,\n  \"key_1\": false,\n  \"key_2\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f31eae2-96ec-4c3d-a6fe-a47656edd20a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "auth",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nuon.co",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a73dc7ac-9fdf-4b5f-9466-6679b0447f64",
+    "name": "Nuon accounts auth API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing nuon apps, components, installs, and actions.\n\nContact Support:\n Name: Nuon Support\n Email: support@nuon.co",
+      "type": "text/plain"
+    }
+  }
+}

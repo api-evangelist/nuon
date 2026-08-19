@@ -1,0 +1,2308 @@
+{
+  "item": [
+    {
+      "id": "ae94e625-c399-4279-8109-81536ffae4ca",
+      "name": "onboarding",
+      "description": {
+        "content": "onboarding",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd6c278a-8802-44ff-8974-a9bb16691461",
+          "name": "Start a new onboarding session",
+          "request": {
+            "name": "Start a new onboarding session",
+            "description": {
+              "content": "Creates a new active onboarding session for the current account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dffc8c4a-1b3d-426e-998e-e8270c3a2f4b",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 1883,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {}\n    },\n    \"status\": \"pending\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e677434f-b187-4eb3-8792-91b4b36520fd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6682ab67-06d1-40ab-afb7-8afaad6dc6e3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab737b96-766c-4b04-a36e-c1e2036c94d0",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21438d16-dbf5-4cd0-8829-466af9ec6891",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "404d7331-a807-4127-9617-32a919740b2e",
+          "name": "Abandon onboarding session",
+          "request": {
+            "name": "Abandon onboarding session",
+            "description": {
+              "content": "Marks the current active onboarding session as abandoned",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "52d049e0-213a-4933-bccc-5ca4f96391af",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 2727,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-awaiting\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e66ba6cf-c093-464d-8770-fa99005ee5d7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85b5ecac-570a-4f6f-97fe-dd4a818b2623",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6dd9a9f-5525-4e09-9262-4c79e207395d",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82f033da-2962-485d-8f0d-d7ff0ae5fbe0",
+          "name": "Get current onboarding session",
+          "request": {
+            "name": "Get current onboarding session",
+            "description": {
+              "content": "Returns the active onboarding session for the current account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b0d4bac-03c1-40dd-8516-4a85473ac3d4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 2727,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-awaiting\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c290146-e199-4a01-a43e-480733d28289",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4728b95c-a607-4e22-b271-635fac520074",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "513fb7d1-8ccb-4360-8674-0bf878bcf7ca",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf5854c5-59ec-4e7d-a92c-57045f96e635",
+          "name": "Complete the deploy step",
+          "request": {
+            "name": "Complete the deploy step",
+            "description": {
+              "content": "Advances the onboarding past the deploy monitoring to get started",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "current",
+                "steps",
+                "deploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a9b54ae5-bb8f-43d0-a10e-74c546cafec0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 2727,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-awaiting\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c698351c-be46-486d-9d95-b9911798f667",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "977ead90-1dba-427b-87a8-1e8a8d25a34f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c2edad8-2219-4899-b275-2c3a0be59c84",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e04d6925-fe00-4148-89b9-bf631bbdda8e",
+          "name": "Complete onboarding",
+          "request": {
+            "name": "Complete onboarding",
+            "description": {
+              "content": "Marks the onboarding session as completed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "current",
+                "steps",
+                "get-started"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b47d5da3-12bf-4e88-af64-9341e415adc1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "get-started"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 2727,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-awaiting\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7679f0a4-90c4-4261-8562-ae17f49f0fe3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "get-started"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8650ebc-d7ba-4b89-bf99-c45ef82008b9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "get-started"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60a7583c-155d-4f2d-83ab-0f3d52cda980",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "get-started"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9ed1e99-1570-4008-834a-14f3d6cda3f2",
+          "name": "Complete the install step",
+          "request": {
+            "name": "Complete the install step",
+            "description": {
+              "content": "Creates an install and advances the onboarding to the install status step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "current",
+                "steps",
+                "install"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"aws_account\": {\n    \"region\": \"<string>\"\n  },\n  \"azure_account\": {\n    \"location\": \"<string>\"\n  },\n  \"inputs\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"install_mode\": \"<string>\",\n  \"metadata\": {\n    \"managed_by\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "08df65c1-f119-4645-9163-262301718741",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "install"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"aws_account\": {\n    \"region\": \"<string>\"\n  },\n  \"azure_account\": {\n    \"location\": \"<string>\"\n  },\n  \"inputs\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"install_mode\": \"<string>\",\n  \"metadata\": {\n    \"managed_by\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 2727,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-awaiting\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef6af7b5-a9c7-4f94-8829-5554ea27fe29",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "install"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"aws_account\": {\n    \"region\": \"<string>\"\n  },\n  \"azure_account\": {\n    \"location\": \"<string>\"\n  },\n  \"inputs\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"install_mode\": \"<string>\",\n  \"metadata\": {\n    \"managed_by\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4bb7abe-2696-4e59-b0a6-1326672c5547",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "install"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"aws_account\": {\n    \"region\": \"<string>\"\n  },\n  \"azure_account\": {\n    \"location\": \"<string>\"\n  },\n  \"inputs\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"install_mode\": \"<string>\",\n  \"metadata\": {\n    \"managed_by\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb1770c4-bed9-4a88-b92a-39c5e6b9470e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "install"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"aws_account\": {\n    \"region\": \"<string>\"\n  },\n  \"azure_account\": {\n    \"location\": \"<string>\"\n  },\n  \"inputs\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"install_mode\": \"<string>\",\n  \"metadata\": {\n    \"managed_by\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5188745-a3c9-4285-94e2-f61bdbc8711f",
+          "name": "Complete the organization step",
+          "request": {
+            "name": "Complete the organization step",
+            "description": {
+              "content": "Creates a sandbox organization or attaches an existing one, then advances the onboarding to the app profile step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "current",
+                "steps",
+                "organization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec0f313a-0155-4235-833d-78d382dfba3d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 2727,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-awaiting\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31bb9858-4976-4be1-9bb6-5005a3bf148f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "335c3c8c-acd3-41da-a18d-2f8c554e67ae",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "82237acc-6159-4373-90e3-704864b95b88",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "organization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38cd5c48-d350-49aa-aede-cd8652be6e9e",
+          "name": "Complete the your stack step",
+          "request": {
+            "name": "Complete the your stack step",
+            "description": {
+              "content": "Configures the application profile and advances the onboarding to the install step",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "current",
+                "steps",
+                "your-stack"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"app_type\": \"<string>\",\n  \"app_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_provider\": \"<string>\",\n  \"example_app_slug\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eb2c7578-48fe-459f-9130-92d90fa2d44c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "your-stack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_type\": \"<string>\",\n  \"app_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_provider\": \"<string>\",\n  \"example_app_slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"app_attributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"app_branch_id\": \"string\",\n  \"app_config\": {},\n  \"app_id\": \"string\",\n  \"app_type\": \"string\",\n  \"cloud_provider\": \"string\",\n  \"created_at\": \"string\",\n  \"created_by_id\": \"string\",\n  \"current_step\": \"string\",\n  \"example_app_slug\": \"string\",\n  \"id\": \"string\",\n  \"install_id\": \"string\",\n  \"install_mode\": \"string\",\n  \"org_id\": \"string\",\n  \"status\": \"string\",\n  \"status_v2\": {\n    \"created_at_ts\": 2727,\n    \"created_by_id\": \"string\",\n    \"history\": [\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      },\n      {\n        \"value\": \"<Circular reference to #/components/schemas/app.CompositeStatus detected>\"\n      }\n    ],\n    \"metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"status\": \"approval-awaiting\",\n    \"status_human_description\": \"string\"\n  },\n  \"step_error\": \"string\",\n  \"step_status\": \"string\",\n  \"updated_at\": \"string\",\n  \"workflow_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0856b52-34b6-4f7e-9526-a9782734077e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "your-stack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_type\": \"<string>\",\n  \"app_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_provider\": \"<string>\",\n  \"example_app_slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d0efe82-cdf6-4bb8-958d-306620dae1f4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "your-stack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_type\": \"<string>\",\n  \"app_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_provider\": \"<string>\",\n  \"example_app_slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9fbc1d6-9641-49cb-adfd-ed761b3547cf",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "current",
+                    "steps",
+                    "your-stack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"app_type\": \"<string>\",\n  \"app_attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cloud_provider\": \"<string>\",\n  \"example_app_slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa298a09-58db-4a59-a3d8-e95f347d045b",
+          "name": "Get example apps catalog",
+          "request": {
+            "name": "Get example apps catalog",
+            "description": {
+              "content": "Returns the list of available example applications for onboarding",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "onboarding",
+                "example-apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "434875a0-44fa-4012-99e1-e988b9faaccd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "example-apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"category\": \"string\",\n    \"cloud_provider\": \"string\",\n    \"description\": \"string\",\n    \"difficulty\": \"string\",\n    \"directory\": \"string\",\n    \"display_name\": \"string\",\n    \"slug\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"category\": \"string\",\n    \"cloud_provider\": \"string\",\n    \"description\": \"string\",\n    \"difficulty\": \"string\",\n    \"directory\": \"string\",\n    \"display_name\": \"string\",\n    \"slug\": \"string\",\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f027b06-d565-421d-97a1-0dc7f3189bc3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "example-apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6231c63a-7bdf-4f2b-af01-a5ae8bc6ccd1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "onboarding",
+                    "example-apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"string\",\n  \"error\": \"string\",\n  \"user_error\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nuon.co",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a33d9bf6-0eb3-4ed9-a547-2872bfc03bb5",
+    "name": "Nuon accounts onboarding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing nuon apps, components, installs, and actions.\n\nContact Support:\n Name: Nuon Support\n Email: support@nuon.co",
+      "type": "text/plain"
+    }
+  }
+}
