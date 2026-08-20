@@ -63,6 +63,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -73,6 +75,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Actions
+  tags_raw:
   - actions
   properties:
   - type: OpenAPI
@@ -93,6 +97,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Application
+  tags_raw:
   - apps
   properties:
   - type: OpenAPI
@@ -103,6 +109,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Authentication
+  tags_raw:
   - auth
   properties:
   - type: OpenAPI
@@ -113,6 +121,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Components
+  tags_raw:
   - components
   properties:
   - type: OpenAPI
@@ -122,7 +132,8 @@ apis:
   description: general
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
-  tags:
+  tags: []
+  tags_raw:
   - general
   properties:
   - type: OpenAPI
@@ -143,6 +154,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Notebooks
+  tags_raw:
   - notebooks
   properties:
   - type: OpenAPI
@@ -153,6 +166,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Onboarding
+  tags_raw:
   - onboarding
   properties:
   - type: OpenAPI
@@ -163,6 +178,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Organization
+  tags_raw:
   - orgs
   properties:
   - type: OpenAPI
@@ -173,6 +190,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Policy Reports
+  tags_raw:
   - policy-reports
   properties:
   - type: OpenAPI
@@ -183,6 +202,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Queues
+  tags_raw:
   - queues
   properties:
   - type: OpenAPI
@@ -193,6 +214,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Runbooks
+  tags_raw:
   - runbooks
   properties:
   - type: OpenAPI
@@ -203,6 +226,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Runners
+  tags_raw:
   - runners
   properties:
   - type: OpenAPI
@@ -223,6 +248,8 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
+  - Slack
+  tags_raw:
   - slack
   properties:
   - type: OpenAPI
