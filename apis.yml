@@ -166,7 +166,7 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
-  - notebooks
+  - Notebooks
   tags_raw:
   - notebooks
   properties:
@@ -190,7 +190,7 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
-  - orgs
+  - Organization
   tags_raw:
   - orgs
   properties:
@@ -202,7 +202,7 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
-  - policy-reports
+  - Policy Reports
   tags_raw:
   - policy-reports
   properties:
@@ -226,7 +226,7 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
-  - runbooks
+  - Runbooks
   tags_raw:
   - runbooks
   properties:
@@ -238,7 +238,7 @@ apis:
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
   tags:
-  - runners
+  - Runners
   tags_raw:
   - runners
   properties:
