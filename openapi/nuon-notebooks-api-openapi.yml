@@ -1,106 +1,104 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   contact:
     email: support@nuon.co
     name: Nuon Support
   description: API for managing nuon apps, components, installs, and actions.
-  title: Nuon accounts notebooks API
+  title: Nuon Notebooks API
   version: 0.19.1074
-host: api.nuon.co
-basePath: /
-schemes:
-- https
+servers:
+- url: https://api.nuon.co/
 tags:
 - description: notebooks
-  name: notebooks
+  name: Notebooks
 paths:
   /v1/installs/{install_id}/notebooks:
     get:
-      consumes:
-      - application/json
       operationId: GetNotebooks
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
-      - default: 0
-        description: offset
+        schema:
+          type: string
+      - description: offset
         in: query
         name: offset
-        type: integer
-      - default: 10
-        description: limit
+        schema:
+          type: integer
+          default: 0
+      - description: limit
         in: query
         name: limit
-        type: integer
+        schema:
+          type: integer
+          default: 10
       - description: search by name or ID
         in: query
         name: q
-        type: string
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            items:
-              $ref: '#/definitions/app.Notebook'
-            type: array
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/app.Notebook'
+                type: array
       security:
       - APIKey: []
       - OrgID: []
       summary: list notebooks for an install
       tags:
-      - notebooks
+      - Notebooks
     post:
-      consumes:
-      - application/json
       operationId: CreateNotebook
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
-      - description: Input
-        in: body
-        name: req
-        required: true
         schema:
-          $ref: '#/definitions/service.CreateNotebookRequest'
-      produces:
-      - application/json
+          type: string
       responses:
         '201':
           description: Created
-          schema:
-            $ref: '#/definitions/app.Notebook'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.Notebook'
       security:
       - APIKey: []
       - OrgID: []
       summary: create a notebook for an install
       tags:
-      - notebooks
+      - Notebooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.CreateNotebookRequest'
+        description: Input
+        required: true
   /v1/installs/{install_id}/notebooks/{notebook_id}:
     delete:
-      consumes:
-      - application/json
       operationId: DeleteNotebook
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '204':
           description: No Content
@@ -109,108 +107,108 @@ paths:
       - OrgID: []
       summary: delete a notebook
       tags:
-      - notebooks
+      - Notebooks
     get:
-      consumes:
-      - application/json
       operationId: GetNotebook
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/app.Notebook'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.Notebook'
       security:
       - APIKey: []
       - OrgID: []
       summary: get a notebook with its ordered cells and each cell's latest run
       tags:
-      - notebooks
+      - Notebooks
     patch:
-      consumes:
-      - application/json
       operationId: UpdateNotebook
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
-      - description: Input
-        in: body
-        name: req
-        required: true
         schema:
-          $ref: '#/definitions/service.UpdateNotebookRequest'
-      produces:
-      - application/json
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/app.Notebook'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.Notebook'
       security:
       - APIKey: []
       - OrgID: []
       summary: update a notebook
       tags:
-      - notebooks
+      - Notebooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.UpdateNotebookRequest'
+        description: Input
+        required: true
   /v1/installs/{install_id}/notebooks/{notebook_id}/cells:
     post:
-      consumes:
-      - application/json
       operationId: CreateNotebookCell
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
-      - description: Input
-        in: body
-        name: req
-        required: true
         schema:
-          $ref: '#/definitions/service.CreateCellRequest'
-      produces:
-      - application/json
+          type: string
       responses:
         '201':
           description: Created
-          schema:
-            $ref: '#/definitions/app.NotebookCell'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.NotebookCell'
       security:
       - APIKey: []
       - OrgID: []
       summary: add a cell to a notebook
       tags:
-      - notebooks
+      - Notebooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.CreateCellRequest'
+        description: Input
+        required: true
   /v1/installs/{install_id}/notebooks/{notebook_id}/cells/reorder:
     put:
-      consumes:
-      - application/json
       description: accepts the full ordered list of cell IDs and assigns positions
       operationId: ReorderNotebookCells
       parameters:
@@ -218,54 +216,56 @@ paths:
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
-      - description: Input
-        in: body
-        name: req
-        required: true
         schema:
-          $ref: '#/definitions/service.ReorderCellsRequest'
-      produces:
-      - application/json
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/app.Notebook'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.Notebook'
       security:
       - APIKey: []
       - OrgID: []
       summary: reorder a notebook's cells
       tags:
-      - notebooks
+      - Notebooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.ReorderCellsRequest'
+        description: Input
+        required: true
   /v1/installs/{install_id}/notebooks/{notebook_id}/cells/{cell_id}:
     delete:
-      consumes:
-      - application/json
       operationId: DeleteNotebookCell
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: cell ID
         in: path
         name: cell_id
         required: true
-        type: string
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '204':
           description: No Content
@@ -274,95 +274,98 @@ paths:
       - OrgID: []
       summary: delete a cell
       tags:
-      - notebooks
+      - Notebooks
     patch:
-      consumes:
-      - application/json
       operationId: UpdateNotebookCell
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: cell ID
         in: path
         name: cell_id
         required: true
-        type: string
-      - description: Input
-        in: body
-        name: req
-        required: true
         schema:
-          $ref: '#/definitions/service.UpdateCellRequest'
-      produces:
-      - application/json
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/app.NotebookCell'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.NotebookCell'
       security:
       - APIKey: []
       - OrgID: []
       summary: edit a cell (bumps its revision)
       tags:
-      - notebooks
+      - Notebooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.UpdateCellRequest'
+        description: Input
+        required: true
   /v1/installs/{install_id}/notebooks/{notebook_id}/cells/{cell_id}/runs:
     get:
-      consumes:
-      - application/json
       operationId: GetNotebookCellRuns
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: cell ID
         in: path
         name: cell_id
         required: true
-        type: string
-      - default: 0
-        description: offset
+        schema:
+          type: string
+      - description: offset
         in: query
         name: offset
-        type: integer
-      - default: 20
-        description: limit
+        schema:
+          type: integer
+          default: 0
+      - description: limit
         in: query
         name: limit
-        type: integer
-      produces:
-      - application/json
+        schema:
+          type: integer
+          default: 20
       responses:
         '200':
           description: OK
-          schema:
-            items:
-              $ref: '#/definitions/app.NotebookCellRun'
-            type: array
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/app.NotebookCellRun'
+                type: array
       security:
       - APIKey: []
       - OrgID: []
       summary: list a cell's run history (newest first)
       tags:
-      - notebooks
+      - Notebooks
     post:
-      consumes:
-      - application/json
       description: dispatches the cell to the notebook's warm Temporal workflow and records a NotebookCellRun linking to the underlying execution + log stream. Returns once the run is queued, not when it finishes.
       operationId: RunNotebookCell
       parameters:
@@ -370,758 +373,766 @@ paths:
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: cell ID
         in: path
         name: cell_id
         required: true
-        type: string
-      - description: Input
-        in: body
-        name: req
         schema:
-          $ref: '#/definitions/service.RunCellRequest'
-      produces:
-      - application/json
+          type: string
       responses:
         '202':
           description: Accepted
-          schema:
-            $ref: '#/definitions/app.NotebookCellRun'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.NotebookCellRun'
       security:
       - APIKey: []
       - OrgID: []
       summary: run a notebook cell on the install's runner
       tags:
-      - notebooks
+      - Notebooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/service.RunCellRequest'
+        description: Input
   /v1/installs/{install_id}/notebooks/{notebook_id}/runs/{run_id}:
     get:
-      consumes:
-      - application/json
       operationId: GetNotebookCellRun
       parameters:
       - description: install ID
         in: path
         name: install_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: notebook ID
         in: path
         name: notebook_id
         required: true
-        type: string
+        schema:
+          type: string
       - description: run ID
         in: path
         name: run_id
         required: true
-        type: string
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/app.NotebookCellRun'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/app.NotebookCellRun'
       security:
       - APIKey: []
       - OrgID: []
       summary: get a single cell run (includes log_stream_id for tailing)
       tags:
-      - notebooks
-definitions:
-  service.CreateNotebookRequest:
-    properties:
-      description:
-        maxLength: 2000
-        type: string
-      name:
-        maxLength: 255
-        type: string
-    type: object
-  app.QueueEmitter:
-    properties:
-      created_at:
-        type: string
-      created_by_id:
-        type: string
-      cron_schedule:
-        description: 'Schedule configuration
-
-          For cron mode: cron expression (e.g., "0 * * * *")'
-        type: string
-      description:
-        type: string
-      emit_count:
-        type: integer
-      fired:
-        description: 'For scheduled mode: whether the signal has been fired'
-        type: boolean
-      id:
-        type: string
-      jitter_window:
-        description: 'For cron mode: spread emitter ticks deterministically across this window
-
-          to avoid thundering-herd when many emitters share a schedule. A hash of the
-
-          emitter ID determines each emitter''s static offset within the window. Zero
-
-          disables jitter (default).'
-        type: integer
-      last_emitted_at:
-        type: string
-      mode:
-        allOf:
-        - $ref: '#/definitions/app.QueueEmitterMode'
-        description: 'Emitter mode: "cron" for recurring, "scheduled" for one-shot'
-      name:
-        description: Emitter identity
-        type: string
-      next_emit_at:
-        type: string
-      org_id:
-        type: string
-      queue_id:
-        description: 'Many-to-one: each emitter belongs to exactly one queue'
-        type: string
-      scheduled_at:
-        description: 'For scheduled mode: the time to fire the signal'
-        type: string
-      signal_expires_in:
-        description: 'Optional TTL for emitted signals. When set, each emitted signal''s ExpiresAt
-
-          is computed as time.Now().Add(SignalExpiresIn) at emission time.'
-        type: integer
-      signal_template:
-        $ref: '#/definitions/signaldb.SignalData'
-      signal_type:
-        description: Signal template - the signal to emit on each tick
-        type: string
-      status:
-        allOf:
-        - $ref: '#/definitions/app.CompositeStatus'
-        description: Runtime state using shared CompositeStatus
-      updated_at:
-        type: string
-      workflow:
-        allOf:
-        - $ref: '#/definitions/signaldb.WorkflowRef'
-        description: Workflow reference for the emitter's cron workflow
-    type: object
-  app.Notebook:
-    properties:
-      cell_count:
-        type: integer
-      cells:
-        items:
-          $ref: '#/definitions/app.NotebookCell'
-        type: array
-      created_at:
-        type: string
-      created_by:
-        $ref: '#/definitions/app.Account'
-      created_by_id:
-        type: string
-      description:
-        type: string
-      id:
-        type: string
-      install_id:
-        type: string
-      latest_run_at:
-        type: string
-      name:
-        type: string
-      queue:
-        allOf:
-        - $ref: '#/definitions/app.Queue'
-        description: 'Queue owns the lifecycle of the notebook''s warm Temporal workflow: a
-
-          notebook-start signal enqueued at create time starts NotebookWorkflow,
-
-          and the queue can re-dispatch it for recovery. Cell runs still dispatch
-
-          to the workflow directly via update-with-start.'
-      status:
-        type: string
-      updated_at:
-        type: string
-    type: object
-  signaldb.SignalData:
-    properties:
-      signal: {}
-    type: object
-  app.CompositeStatus:
-    properties:
-      created_at_ts:
-        type: integer
-      created_by_id:
-        type: string
-      history:
-        items:
-          $ref: '#/definitions/app.CompositeStatus'
-        type: array
-      metadata:
-        additionalProperties: {}
-        type: object
-      status:
-        $ref: '#/definitions/app.Status'
-      status_human_description:
-        type: string
-    type: object
-  app.RoleType:
-    enum:
-    - org_admin
-    - org_support
-    - installer
-    - runner
-    - hosted-installer
-    type: string
-    x-enum-varnames:
-    - RoleTypeOrgAdmin
-    - RoleTypeOrgSupport
-    - RoleTypeInstaller
-    - RoleTypeRunner
-    - RoleTypeHostedInstaller
-  app.Role:
-    properties:
-      createdBy:
-        $ref: '#/definitions/app.Account'
-      created_at:
-        type: string
-      created_by_id:
-        type: string
-      id:
-        type: string
-      policies:
-        items:
-          $ref: '#/definitions/app.Policy'
-        type: array
-      role_type:
-        $ref: '#/definitions/app.RoleType'
-      updated_at:
-        type: string
-    type: object
-  service.CreateCellRequest:
-    properties:
-      command:
-        type: string
-      enable_kube_config:
-        type: boolean
-        x-nullable: true
-      env_vars:
-        additionalProperties:
+      - Notebooks
+components:
+  schemas:
+    service.CreateNotebookRequest:
+      properties:
+        description:
+          maxLength: 2000
           type: string
-        type: object
-      inline_contents:
-        type: string
-      name:
-        maxLength: 255
-        type: string
-      role:
-        type: string
-      timeout:
-        maximum: 3600
-        minimum: 1
-        type: integer
-    type: object
-  permissions.Permission:
-    enum:
-    - unknown
-    - all
-    - create
-    - read
-    - update
-    - delete
-    type: string
-    x-enum-varnames:
-    - PermissionUnknown
-    - PermissionAll
-    - PermissionCreate
-    - PermissionRead
-    - PermissionUpdate
-    - PermissionDelete
-  app.Queue:
-    properties:
-      created_at:
-        type: string
-      created_by_id:
-        type: string
-      emitters:
-        items:
-          $ref: '#/definitions/app.QueueEmitter'
-        type: array
-      id:
-        type: string
-      idle_timeout:
-        type: integer
-      max_depth:
-        type: integer
-      max_in_flight:
-        type: integer
-      metadata:
-        additionalProperties:
+        name:
+          maxLength: 255
           type: string
-        type: object
-      name:
-        type: string
-      org_id:
-        type: string
-      owner_id:
-        type: string
-      owner_type:
-        type: string
-      queue_signal:
-        items:
-          $ref: '#/definitions/app.QueueSignal'
-        type: array
-      status_v2:
-        $ref: '#/definitions/app.CompositeStatus'
-      updated_at:
-        type: string
-      workflow:
-        $ref: '#/definitions/signaldb.WorkflowRef'
-    type: object
-  app.QueueSignal:
-    properties:
-      callback:
-        $ref: '#/definitions/callback.Ref'
-      callbacks:
-        items:
-          $ref: '#/definitions/callback.Ref'
-        type: array
-      created_at:
-        type: string
-      created_by_id:
-        type: string
-      emitter_id:
-        description: 'Optional: if this signal was emitted by an emitter'
-        type: string
-      enqueued:
-        type: boolean
-      execution_count:
-        type: integer
-      expires_at:
-        type: string
-      id:
-        type: string
-      org_id:
-        type: string
-      owner_id:
-        type: string
-      owner_type:
-        type: string
-      queue:
-        $ref: '#/definitions/app.Queue'
-      queue_id:
-        type: string
-      signal:
-        $ref: '#/definitions/signaldb.SignalData'
-      signal_context:
-        $ref: '#/definitions/cctx.SignalContext'
-      status:
-        $ref: '#/definitions/app.CompositeStatus'
-      type:
-        type: string
-      updated_at:
-        type: string
-      workflow:
-        $ref: '#/definitions/signaldb.WorkflowRef'
-    type: object
-  service.UpdateNotebookRequest:
-    properties:
-      description:
-        maxLength: 2000
-        type: string
-      name:
-        maxLength: 255
-        type: string
-      status:
-        enum:
-        - active
-        - archived
-        type: string
-    type: object
-  permissions.Set:
-    additionalProperties:
-      $ref: '#/definitions/permissions.Permission'
-    type: object
-  app.Account:
-    properties:
-      account_type:
-        $ref: '#/definitions/app.AccountType'
-      created_at:
-        type: string
-      email:
-        type: string
-      id:
-        type: string
-      org_ids:
-        description: ReadOnly Fields
-        items:
+      type: object
+    app.RoleType:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted-installer
+      type: string
+      x-enum-varnames:
+      - RoleTypeOrgAdmin
+      - RoleTypeOrgSupport
+      - RoleTypeInstaller
+      - RoleTypeRunner
+      - RoleTypeHostedInstaller
+    service.UpdateCellRequest:
+      properties:
+        command:
           type: string
-        type: array
-      permissions:
-        $ref: '#/definitions/permissions.Set'
-      roles:
-        items:
-          $ref: '#/definitions/app.Role'
-        type: array
-      subject:
-        type: string
-      updated_at:
-        type: string
-      user_journeys:
-        items:
-          $ref: '#/definitions/app.UserJourney'
-        type: array
-    type: object
-  app.QueueEmitterMode:
-    enum:
-    - cron
-    - scheduled
-    - fire_once
-    type: string
-    x-enum-varnames:
-    - QueueEmitterModeCron
-    - QueueEmitterModeScheduled
-    - QueueEmitterModeFireOnce
-  app.Status:
-    enum:
-    - error
-    - pending
-    - in-progress
-    - checking-plan
-    - success
-    - not-attempted
-    - cancelled
-    - retrying
-    - discarded
-    - user-skipped
-    - auto-skipped
-    - planning
-    - applying
-    - queued
-    - warning
-    - failed-pending-retry
-    - generating
-    - awaiting-user-run
-    - provisioning
-    - active
-    - outdated
-    - expired
-    - approved
-    - drifted
-    - no-drift
-    - approval-expired
-    - approval-denied
-    - approval-retry
-    - building
-    - deleting
-    - noop
-    - approval-awaiting
-    type: string
-    x-enum-varnames:
-    - StatusError
-    - StatusPending
-    - StatusInProgress
-    - StatusCheckPlan
-    - StatusSuccess
-    - StatusNotAttempted
-    - StatusCancelled
-    - StatusRetrying
-    - StatusDiscarded
-    - StatusUserSkipped
-    - StatusAutoSkipped
-    - StatusPlanning
-    - StatusApplying
-    - StatusQueued
-    - StatusWarning
-    - StatusFailedPendingRetry
-    - InstallStackVersionStatusGenerating
-    - InstallStackVersionStatusPendingUser
-    - InstallStackVersionStatusProvisioning
-    - InstallStackVersionStatusActive
-    - InstallStackVersionStatusOutdated
-    - InstallStackVersionStatusExpired
-    - WorkflowStepApprovalStatusApproved
-    - WorkflowStepDrifted
-    - WorkflowStepNoDrift
-    - WorkflowStepApprovalStatusApprovalExpired
-    - WorkflowStepApprovalStatusApprovalDenied
-    - WorkflowStepApprovalStatusApprovalRetryPlan
-    - StatusBuilding
-    - StatusDeleting
-    - InstallDeployStatusV2Noop
-    - AwaitingApproval
-  app.Policy:
-    properties:
-      created_at:
-        type: string
-      created_by_id:
-        type: string
-      id:
-        type: string
-      name:
-        $ref: '#/definitions/app.PolicyName'
-      permissions:
-        additionalProperties:
+        enable_kube_config:
+          type:
+          - boolean
+          - 'null'
+        env_vars:
+          additionalProperties:
+            type: string
+          type: object
+        inline_contents:
           type: string
-        description: Permissions are used to track granular permissions for each domain
-        type: object
-      role_id:
-        type: string
-      updated_at:
-        type: string
-    type: object
-  app.AccountType:
-    enum:
-    - auth
-    - auth0
-    - service
-    - canary
-    - integration
-    type: string
-    x-enum-varnames:
-    - AccountTypeAuth
-    - AccountTypeAuth0
-    - AccountTypeService
-    - AccountTypeCanary
-    - AccountTypeIntegration
-  app.NotebookCellRun:
-    properties:
-      cell_id:
-        type: string
-      cell_revision:
-        description: CellRevision records which revision of the cell this run executed.
-        type: integer
-      command:
-        type: string
-      created_at:
-        type: string
-      created_by:
-        $ref: '#/definitions/app.Account'
-      created_by_id:
-        type: string
-      env_vars:
-        additionalProperties:
+        name:
+          maxLength: 255
           type: string
-        type: object
-      id:
-        type: string
-      idempotency_key:
-        description: 'IdempotencyKey deduplicates run requests (HTTP retries / update retries).
+        role:
+          type: string
+        timeout:
+          maximum: 3600
+          minimum: 1
+          type: integer
+      type: object
+    sql.NullBool:
+      properties:
+        bool:
+          type: boolean
+        valid:
+          description: Valid is true if Bool is not NULL
+          type: boolean
+      type: object
+    app.Policy:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/app.PolicyName'
+        permissions:
+          additionalProperties:
+            type: string
+          description: Permissions are used to track granular permissions for each domain
+          type: object
+        role_id:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    app.Role:
+      properties:
+        createdBy:
+          $ref: '#/components/schemas/app.Account'
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        policies:
+          items:
+            $ref: '#/components/schemas/app.Policy'
+          type: array
+        role_type:
+          $ref: '#/components/schemas/app.RoleType'
+        updated_at:
+          type: string
+      type: object
+    app.AccountType:
+      enum:
+      - auth
+      - auth0
+      - service
+      - canary
+      - integration
+      type: string
+      x-enum-varnames:
+      - AccountTypeAuth
+      - AccountTypeAuth0
+      - AccountTypeService
+      - AccountTypeCanary
+      - AccountTypeIntegration
+    service.CreateCellRequest:
+      properties:
+        command:
+          type: string
+        enable_kube_config:
+          type:
+          - boolean
+          - 'null'
+        env_vars:
+          additionalProperties:
+            type: string
+          type: object
+        inline_contents:
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        role:
+          type: string
+        timeout:
+          maximum: 3600
+          minimum: 1
+          type: integer
+      type: object
+    app.PolicyName:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted_installer
+      type: string
+      x-enum-varnames:
+      - PolicyNameOrgAdmin
+      - PolicyNameOrgSupport
+      - PolicyNameInstaller
+      - PolicyNameRunner
+      - PolicyNameHostedInstaller
+    permissions.Set:
+      additionalProperties:
+        $ref: '#/components/schemas/permissions.Permission'
+      type: object
+    app.Queue:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitters:
+          items:
+            $ref: '#/components/schemas/app.QueueEmitter'
+          type: array
+        id:
+          type: string
+        idle_timeout:
+          type: integer
+        max_depth:
+          type: integer
+        max_in_flight:
+          type: integer
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        name:
+          type: string
+        org_id:
+          type: string
+        owner_id:
+          type: string
+        owner_type:
+          type: string
+        queue_signal:
+          items:
+            $ref: '#/components/schemas/app.QueueSignal'
+          type: array
+        status_v2:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        updated_at:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
+      type: object
+    app.NotebookCellRun:
+      properties:
+        cell_id:
+          type: string
+        cell_revision:
+          description: CellRevision records which revision of the cell this run executed.
+          type: integer
+        command:
+          type: string
+        created_at:
+          type: string
+        created_by:
+          $ref: '#/components/schemas/app.Account'
+        created_by_id:
+          type: string
+        env_vars:
+          additionalProperties:
+            type: string
+          type: object
+        id:
+          type: string
+        idempotency_key:
+          description: 'IdempotencyKey deduplicates run requests (HTTP retries / update retries).
 
-          A server-side key is always generated, so the composite unique index on
+            A server-side key is always generated, so the composite unique index on
 
-          (notebook_id, idempotency_key) in Indexes() never sees an empty key.'
-        type: string
-      inline_contents:
-        type: string
-      install_action_workflow_run_id:
-        description: Link to the existing execution/audit artifacts.
-        type: string
-      install_id:
-        type: string
-      log_stream_id:
-        type: string
-      name:
-        description: Cell config snapshot at run time.
-        type: string
-      notebook_id:
-        type: string
-      runner_job_id:
-        type: string
-      status:
-        type: string
-      status_description:
-        type: string
-      status_v2:
-        $ref: '#/definitions/app.CompositeStatus'
-      triggered_by_id:
-        type: string
-      triggered_by_type:
-        type: string
-      updated_at:
-        type: string
-    type: object
-  app.PolicyName:
-    enum:
-    - org_admin
-    - org_support
-    - installer
-    - runner
-    - hosted_installer
-    type: string
-    x-enum-varnames:
-    - PolicyNameOrgAdmin
-    - PolicyNameOrgSupport
-    - PolicyNameInstaller
-    - PolicyNameRunner
-    - PolicyNameHostedInstaller
-  cctx.SignalContext:
-    properties:
-      account_id:
-        type: string
-      log_stream_id:
-        type: string
-      org_id:
-        type: string
-      trace_id:
-        type: string
-    type: object
-  service.UpdateCellRequest:
-    properties:
-      command:
-        type: string
-      enable_kube_config:
-        type: boolean
-        x-nullable: true
-      env_vars:
-        additionalProperties:
+            (notebook_id, idempotency_key) in Indexes() never sees an empty key.'
           type: string
-        type: object
-      inline_contents:
-        type: string
-      name:
-        maxLength: 255
-        type: string
-      role:
-        type: string
-      timeout:
-        maximum: 3600
-        minimum: 1
-        type: integer
-    type: object
-  callback.Ref:
-    properties:
-      namespace:
-        type: string
-      signal_name:
-        type: string
-      workflow_id:
-        type: string
-    type: object
-  service.ReorderCellsRequest:
-    properties:
-      cell_ids:
-        items:
+        inline_contents:
           type: string
-        minItems: 1
-        type: array
-    required:
-    - cell_ids
-    type: object
-  sql.NullBool:
-    properties:
-      bool:
-        type: boolean
-      valid:
-        description: Valid is true if Bool is not NULL
-        type: boolean
-    type: object
-  app.UserJourney:
-    properties:
-      name:
-        type: string
-      steps:
-        items:
-          $ref: '#/definitions/app.UserJourneyStep'
-        type: array
-      title:
-        type: string
-    type: object
-  service.RunCellRequest:
-    properties:
-      idempotency_key:
-        description: 'IdempotencyKey deduplicates retried run requests. Optional; a server-side
+        install_action_workflow_run_id:
+          description: Link to the existing execution/audit artifacts.
+          type: string
+        install_id:
+          type: string
+        log_stream_id:
+          type: string
+        name:
+          description: Cell config snapshot at run time.
+          type: string
+        notebook_id:
+          type: string
+        runner_job_id:
+          type: string
+        status:
+          type: string
+        status_description:
+          type: string
+        status_v2:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        triggered_by_id:
+          type: string
+        triggered_by_type:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    service.RunCellRequest:
+      properties:
+        idempotency_key:
+          description: 'IdempotencyKey deduplicates retried run requests. Optional; a server-side
 
-          key is generated when empty.'
-        maxLength: 255
-        type: string
-    type: object
-  app.NotebookCell:
-    properties:
-      command:
-        type: string
-      created_at:
-        type: string
-      created_by_id:
-        type: string
-      enable_kube_config:
-        $ref: '#/definitions/sql.NullBool'
-      env_vars:
-        additionalProperties:
+            key is generated when empty.'
+          maxLength: 255
           type: string
-        type: object
-      id:
-        type: string
-      inline_contents:
-        type: string
-      latest_run:
-        allOf:
-        - $ref: '#/definitions/app.NotebookCellRun'
-        description: 'LatestRun is populated on read so the UI can show the most recent run''s
+      type: object
+    app.Notebook:
+      properties:
+        cell_count:
+          type: integer
+        cells:
+          items:
+            $ref: '#/components/schemas/app.NotebookCell'
+          type: array
+        created_at:
+          type: string
+        created_by:
+          $ref: '#/components/schemas/app.Account'
+        created_by_id:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        install_id:
+          type: string
+        latest_run_at:
+          type: string
+        name:
+          type: string
+        queue:
+          allOf:
+          - $ref: '#/components/schemas/app.Queue'
+          description: 'Queue owns the lifecycle of the notebook''s warm Temporal workflow: a
 
-          status and log stream directly below the cell. Not persisted.'
-      name:
-        type: string
-      notebook_id:
-        type: string
-      position:
-        description: Position is the 0-based ordering of this cell within the notebook.
-        type: integer
-      revision:
-        description: Revision increments on every edit; runs snapshot the revision they ran.
-        type: integer
-      role:
-        type: string
-      timeout:
-        type: integer
-      updated_at:
-        type: string
-    type: object
-  signaldb.WorkflowRef:
-    properties:
-      id:
-        type: string
-      namespace:
-        type: string
-      run_id:
-        type: string
-    type: object
-  app.UserJourneyStep:
-    properties:
-      complete:
-        type: boolean
-      completed_at:
-        description: Top-level completion tracking fields
-        type: string
-      completion_method:
-        type: string
-      completion_source:
-        type: string
-      metadata:
-        additionalProperties: true
-        description: Flexible metadata for business data
-        type: object
-      name:
-        type: string
-      title:
-        type: string
-    type: object
-securityDefinitions:
-  APIKey:
-    description: Type "Bearer" followed by a space and token.
-    in: header
-    name: Authorization
-    type: apiKey
-  OrgID:
-    description: Nuon org ID
-    in: header
-    name: X-Nuon-Org-ID
-    type: apiKey
+            notebook-start signal enqueued at create time starts NotebookWorkflow,
+
+            and the queue can re-dispatch it for recovery. Cell runs still dispatch
+
+            to the workflow directly via update-with-start.'
+        status:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    app.QueueEmitter:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        cron_schedule:
+          description: 'Schedule configuration
+
+            For cron mode: cron expression (e.g., "0 * * * *")'
+          type: string
+        description:
+          type: string
+        emit_count:
+          type: integer
+        fired:
+          description: 'For scheduled mode: whether the signal has been fired'
+          type: boolean
+        id:
+          type: string
+        jitter_window:
+          description: 'For cron mode: spread emitter ticks deterministically across this window
+
+            to avoid thundering-herd when many emitters share a schedule. A hash of the
+
+            emitter ID determines each emitter''s static offset within the window. Zero
+
+            disables jitter (default).'
+          type: integer
+        last_emitted_at:
+          type: string
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/app.QueueEmitterMode'
+          description: 'Emitter mode: "cron" for recurring, "scheduled" for one-shot'
+        name:
+          description: Emitter identity
+          type: string
+        next_emit_at:
+          type: string
+        org_id:
+          type: string
+        queue_id:
+          description: 'Many-to-one: each emitter belongs to exactly one queue'
+          type: string
+        scheduled_at:
+          description: 'For scheduled mode: the time to fire the signal'
+          type: string
+        signal_expires_in:
+          description: 'Optional TTL for emitted signals. When set, each emitted signal''s ExpiresAt
+
+            is computed as time.Now().Add(SignalExpiresIn) at emission time.'
+          type: integer
+        signal_template:
+          $ref: '#/components/schemas/signaldb.SignalData'
+        signal_type:
+          description: Signal template - the signal to emit on each tick
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/app.CompositeStatus'
+          description: Runtime state using shared CompositeStatus
+        updated_at:
+          type: string
+        workflow:
+          allOf:
+          - $ref: '#/components/schemas/signaldb.WorkflowRef'
+          description: Workflow reference for the emitter's cron workflow
+      type: object
+    cctx.SignalContext:
+      properties:
+        account_id:
+          type: string
+        log_stream_id:
+          type: string
+        org_id:
+          type: string
+        trace_id:
+          type: string
+      type: object
+    app.UserJourneyStep:
+      properties:
+        complete:
+          type: boolean
+        completed_at:
+          description: Top-level completion tracking fields
+          type: string
+        completion_method:
+          type: string
+        completion_source:
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Flexible metadata for business data
+          type: object
+        name:
+          type: string
+        title:
+          type: string
+      type: object
+    signaldb.WorkflowRef:
+      properties:
+        id:
+          type: string
+        namespace:
+          type: string
+        run_id:
+          type: string
+      type: object
+    app.CompositeStatus:
+      properties:
+        created_at_ts:
+          type: integer
+        created_by_id:
+          type: string
+        history:
+          items:
+            $ref: '#/components/schemas/app.CompositeStatus'
+          type: array
+        metadata:
+          additionalProperties: {}
+          type: object
+        status:
+          $ref: '#/components/schemas/app.Status'
+        status_human_description:
+          type: string
+      type: object
+    service.UpdateNotebookRequest:
+      properties:
+        description:
+          maxLength: 2000
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        status:
+          enum:
+          - active
+          - archived
+          type: string
+      type: object
+    app.Account:
+      properties:
+        account_type:
+          $ref: '#/components/schemas/app.AccountType'
+        created_at:
+          type: string
+        email:
+          type: string
+        id:
+          type: string
+        org_ids:
+          description: ReadOnly Fields
+          items:
+            type: string
+          type: array
+        permissions:
+          $ref: '#/components/schemas/permissions.Set'
+        roles:
+          items:
+            $ref: '#/components/schemas/app.Role'
+          type: array
+        subject:
+          type: string
+        updated_at:
+          type: string
+        user_journeys:
+          items:
+            $ref: '#/components/schemas/app.UserJourney'
+          type: array
+      type: object
+    app.Status:
+      enum:
+      - error
+      - pending
+      - in-progress
+      - checking-plan
+      - success
+      - not-attempted
+      - cancelled
+      - retrying
+      - discarded
+      - user-skipped
+      - auto-skipped
+      - planning
+      - applying
+      - queued
+      - warning
+      - failed-pending-retry
+      - generating
+      - awaiting-user-run
+      - provisioning
+      - active
+      - outdated
+      - expired
+      - approved
+      - drifted
+      - no-drift
+      - approval-expired
+      - approval-denied
+      - approval-retry
+      - building
+      - deleting
+      - noop
+      - approval-awaiting
+      type: string
+      x-enum-varnames:
+      - StatusError
+      - StatusPending
+      - StatusInProgress
+      - StatusCheckPlan
+      - StatusSuccess
+      - StatusNotAttempted
+      - StatusCancelled
+      - StatusRetrying
+      - StatusDiscarded
+      - StatusUserSkipped
+      - StatusAutoSkipped
+      - StatusPlanning
+      - StatusApplying
+      - StatusQueued
+      - StatusWarning
+      - StatusFailedPendingRetry
+      - InstallStackVersionStatusGenerating
+      - InstallStackVersionStatusPendingUser
+      - InstallStackVersionStatusProvisioning
+      - InstallStackVersionStatusActive
+      - InstallStackVersionStatusOutdated
+      - InstallStackVersionStatusExpired
+      - WorkflowStepApprovalStatusApproved
+      - WorkflowStepDrifted
+      - WorkflowStepNoDrift
+      - WorkflowStepApprovalStatusApprovalExpired
+      - WorkflowStepApprovalStatusApprovalDenied
+      - WorkflowStepApprovalStatusApprovalRetryPlan
+      - StatusBuilding
+      - StatusDeleting
+      - InstallDeployStatusV2Noop
+      - AwaitingApproval
+    app.NotebookCell:
+      properties:
+        command:
+          type: string
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        enable_kube_config:
+          $ref: '#/components/schemas/sql.NullBool'
+        env_vars:
+          additionalProperties:
+            type: string
+          type: object
+        id:
+          type: string
+        inline_contents:
+          type: string
+        latest_run:
+          allOf:
+          - $ref: '#/components/schemas/app.NotebookCellRun'
+          description: 'LatestRun is populated on read so the UI can show the most recent run''s
+
+            status and log stream directly below the cell. Not persisted.'
+        name:
+          type: string
+        notebook_id:
+          type: string
+        position:
+          description: Position is the 0-based ordering of this cell within the notebook.
+          type: integer
+        revision:
+          description: Revision increments on every edit; runs snapshot the revision they ran.
+          type: integer
+        role:
+          type: string
+        timeout:
+          type: integer
+        updated_at:
+          type: string
+      type: object
+    app.UserJourney:
+      properties:
+        name:
+          type: string
+        steps:
+          items:
+            $ref: '#/components/schemas/app.UserJourneyStep'
+          type: array
+        title:
+          type: string
+      type: object
+    app.QueueSignal:
+      properties:
+        callback:
+          $ref: '#/components/schemas/callback.Ref'
+        callbacks:
+          items:
+            $ref: '#/components/schemas/callback.Ref'
+          type: array
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitter_id:
+          description: 'Optional: if this signal was emitted by an emitter'
+          type: string
+        enqueued:
+          type: boolean
+        execution_count:
+          type: integer
+        expires_at:
+          type: string
+        id:
+          type: string
+        org_id:
+          type: string
+        owner_id:
+          type: string
+        owner_type:
+          type: string
+        queue:
+          $ref: '#/components/schemas/app.Queue'
+        queue_id:
+          type: string
+        signal:
+          $ref: '#/components/schemas/signaldb.SignalData'
+        signal_context:
+          $ref: '#/components/schemas/cctx.SignalContext'
+        status:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        type:
+          type: string
+        updated_at:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
+      type: object
+    callback.Ref:
+      properties:
+        namespace:
+          type: string
+        signal_name:
+          type: string
+        workflow_id:
+          type: string
+      type: object
+    permissions.Permission:
+      enum:
+      - unknown
+      - all
+      - create
+      - read
+      - update
+      - delete
+      type: string
+      x-enum-varnames:
+      - PermissionUnknown
+      - PermissionAll
+      - PermissionCreate
+      - PermissionRead
+      - PermissionUpdate
+      - PermissionDelete
+    app.QueueEmitterMode:
+      enum:
+      - cron
+      - scheduled
+      - fire_once
+      type: string
+      x-enum-varnames:
+      - QueueEmitterModeCron
+      - QueueEmitterModeScheduled
+      - QueueEmitterModeFireOnce
+    service.ReorderCellsRequest:
+      properties:
+        cell_ids:
+          items:
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - cell_ids
+      type: object
+    signaldb.SignalData:
+      properties:
+        signal: {}
+      type: object
+  securitySchemes:
+    APIKey:
+      description: Type "Bearer" followed by a space and token.
+      in: header
+      name: Authorization
+      type: apiKey
+    OrgID:
+      description: Nuon org ID
+      in: header
+      name: X-Nuon-Org-ID
+      type: apiKey
