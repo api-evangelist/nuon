@@ -66,6 +66,20 @@ paths:
       - Auth
 components:
   schemas:
+    app.ProviderType:
+      enum:
+      - oidc
+      - google
+      - github
+      type: string
+      x-enum-varnames:
+      - ProviderTypeOIDC
+      - ProviderTypeGoogle
+      - ProviderTypeGitHub
+    permissions.Set:
+      additionalProperties:
+        $ref: '#/components/schemas/permissions.Permission'
+      type: object
     app.UserJourney:
       properties:
         name:
@@ -76,6 +90,113 @@ components:
           type: array
         title:
           type: string
+      type: object
+    app.Role:
+      properties:
+        createdBy:
+          $ref: '#/components/schemas/app.Account'
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        policies:
+          items:
+            $ref: '#/components/schemas/app.Policy'
+          type: array
+        role_type:
+          $ref: '#/components/schemas/app.RoleType'
+        updated_at:
+          type: string
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    app.Policy:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/app.PolicyName'
+        permissions:
+          additionalProperties:
+            type: string
+          description: Permissions are used to track granular permissions for each domain
+          type: object
+        role_id:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    app.UserJourneyStep:
+      properties:
+        complete:
+          type: boolean
+        completed_at:
+          description: Top-level completion tracking fields
+          type: string
+        completion_method:
+          type: string
+        completion_source:
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Flexible metadata for business data
+          type: object
+        name:
+          type: string
+        title:
+          type: string
+      type: object
+    service.AuthMeIdentity:
+      properties:
+        name:
+          type: string
+        picture:
+          type: string
+        provider_type:
+          $ref: '#/components/schemas/app.ProviderType'
+      type: object
+    app.Account:
+      properties:
+        account_type:
+          $ref: '#/components/schemas/app.AccountType'
+        created_at:
+          type: string
+        email:
+          type: string
+        id:
+          type: string
+        org_ids:
+          description: ReadOnly Fields
+          items:
+            type: string
+          type: array
+        permissions:
+          $ref: '#/components/schemas/permissions.Set'
+        roles:
+          items:
+            $ref: '#/components/schemas/app.Role'
+          type: array
+        subject:
+          type: string
+        updated_at:
+          type: string
+        user_journeys:
+          items:
+            $ref: '#/components/schemas/app.UserJourney'
+          type: array
       type: object
     permissions.Permission:
       enum:
@@ -107,6 +228,34 @@ components:
       - PolicyNameInstaller
       - PolicyNameRunner
       - PolicyNameHostedInstaller
+    app.AccountType:
+      enum:
+      - auth
+      - auth0
+      - service
+      - canary
+      - integration
+      type: string
+      x-enum-varnames:
+      - AccountTypeAuth
+      - AccountTypeAuth0
+      - AccountTypeService
+      - AccountTypeCanary
+      - AccountTypeIntegration
+    app.RoleType:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted-installer
+      type: string
+      x-enum-varnames:
+      - RoleTypeOrgAdmin
+      - RoleTypeOrgSupport
+      - RoleTypeInstaller
+      - RoleTypeRunner
+      - RoleTypeHostedInstaller
     service.AuthMeResponse:
       properties:
         account_type:
@@ -140,155 +289,6 @@ components:
           items:
             $ref: '#/components/schemas/app.UserJourney'
           type: array
-      type: object
-    app.ProviderType:
-      enum:
-      - oidc
-      - google
-      - github
-      type: string
-      x-enum-varnames:
-      - ProviderTypeOIDC
-      - ProviderTypeGoogle
-      - ProviderTypeGitHub
-    app.Account:
-      properties:
-        account_type:
-          $ref: '#/components/schemas/app.AccountType'
-        created_at:
-          type: string
-        email:
-          type: string
-        id:
-          type: string
-        org_ids:
-          description: ReadOnly Fields
-          items:
-            type: string
-          type: array
-        permissions:
-          $ref: '#/components/schemas/permissions.Set'
-        roles:
-          items:
-            $ref: '#/components/schemas/app.Role'
-          type: array
-        subject:
-          type: string
-        updated_at:
-          type: string
-        user_journeys:
-          items:
-            $ref: '#/components/schemas/app.UserJourney'
-          type: array
-      type: object
-    permissions.Set:
-      additionalProperties:
-        $ref: '#/components/schemas/permissions.Permission'
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    app.RoleType:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted-installer
-      type: string
-      x-enum-varnames:
-      - RoleTypeOrgAdmin
-      - RoleTypeOrgSupport
-      - RoleTypeInstaller
-      - RoleTypeRunner
-      - RoleTypeHostedInstaller
-    app.AccountType:
-      enum:
-      - auth
-      - auth0
-      - service
-      - canary
-      - integration
-      type: string
-      x-enum-varnames:
-      - AccountTypeAuth
-      - AccountTypeAuth0
-      - AccountTypeService
-      - AccountTypeCanary
-      - AccountTypeIntegration
-    app.UserJourneyStep:
-      properties:
-        complete:
-          type: boolean
-        completed_at:
-          description: Top-level completion tracking fields
-          type: string
-        completion_method:
-          type: string
-        completion_source:
-          type: string
-        metadata:
-          additionalProperties: true
-          description: Flexible metadata for business data
-          type: object
-        name:
-          type: string
-        title:
-          type: string
-      type: object
-    service.AuthMeIdentity:
-      properties:
-        name:
-          type: string
-        picture:
-          type: string
-        provider_type:
-          $ref: '#/components/schemas/app.ProviderType'
-      type: object
-    app.Policy:
-      properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        name:
-          $ref: '#/components/schemas/app.PolicyName'
-        permissions:
-          additionalProperties:
-            type: string
-          description: Permissions are used to track granular permissions for each domain
-          type: object
-        role_id:
-          type: string
-        updated_at:
-          type: string
-      type: object
-    app.Role:
-      properties:
-        createdBy:
-          $ref: '#/components/schemas/app.Account'
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        policies:
-          items:
-            $ref: '#/components/schemas/app.Policy'
-          type: array
-        role_type:
-          $ref: '#/components/schemas/app.RoleType'
-        updated_at:
-          type: string
       type: object
   securitySchemes:
     APIKey:

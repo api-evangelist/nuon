@@ -657,39 +657,16 @@ paths:
       - Slack
 components:
   schemas:
-    service.GetInstallURLResponse:
-      properties:
-        url:
-          type: string
-      type: object
-    service.slashResponse:
-      properties:
-        response_type:
-          type: string
-        text:
-          type: string
-      type: object
-    service.slackChallengeResponse:
-      properties:
-        challenge:
-          type: string
-      type: object
-    service.CreateChannelSubscriptionRequest:
-      properties:
-        channel_id:
-          type: string
-        channel_name:
-          type: string
-        interests:
-          type: object
-        match:
-          type: object
-        org_link_id:
-          type: string
-      required:
-      - channel_id
-      - org_link_id
-      type: object
+    app.SlackInstallationStatus:
+      enum:
+      - active
+      - uninstalled
+      - disabled
+      type: string
+      x-enum-varnames:
+      - SlackInstallationStatusActive
+      - SlackInstallationStatusUninstalled
+      - SlackInstallationStatusDisabled
     stderr.ErrResponse:
       properties:
         description:
@@ -698,6 +675,35 @@ components:
           type: string
         user_error:
           type: boolean
+      type: object
+    service.CreateOrgLinkRequest:
+      properties:
+        team_id:
+          type: string
+      required:
+      - team_id
+      type: object
+    service.slashResponse:
+      properties:
+        response_type:
+          type: string
+        text:
+          type: string
+      type: object
+    client.Conversation:
+      properties:
+        id:
+          type: string
+        is_archived:
+          type: boolean
+        is_channel:
+          type: boolean
+        is_member:
+          type: boolean
+        is_private:
+          type: boolean
+        name:
+          type: string
       type: object
     app.SlackOrgLink:
       properties:
@@ -718,37 +724,26 @@ components:
         updated_at:
           type: string
       type: object
-    service.CreateOrgLinkRequest:
+    service.GetInstallURLResponse:
       properties:
-        team_id:
+        url:
           type: string
-      required:
-      - team_id
       type: object
-    service.UpdateChannelSubscriptionRequest:
+    app.SlackOrgLinkStatus:
+      enum:
+      - verified
+      - revoked
+      type: string
+      x-enum-varnames:
+      - SlackOrgLinkStatusVerified
+      - SlackOrgLinkStatusRevoked
+    service.ListChannelsResponse:
       properties:
-        channel_id:
-          type: string
-        channel_name:
-          type: string
-        interests:
-          type: object
-        match:
-          type: object
-      type: object
-    client.Conversation:
-      properties:
-        id:
-          type: string
-        is_archived:
-          type: boolean
-        is_channel:
-          type: boolean
-        is_member:
-          type: boolean
-        is_private:
-          type: boolean
-        name:
+        channels:
+          items:
+            $ref: '#/components/schemas/client.Conversation'
+          type: array
+        next_cursor:
           type: string
       type: object
     app.SlackInstallation:
@@ -783,13 +778,36 @@ components:
         updated_at:
           type: string
       type: object
-    service.ListChannelsResponse:
+    service.CreateChannelSubscriptionRequest:
       properties:
-        channels:
-          items:
-            $ref: '#/components/schemas/client.Conversation'
-          type: array
-        next_cursor:
+        channel_id:
+          type: string
+        channel_name:
+          type: string
+        interests:
+          type: object
+        match:
+          type: object
+        org_link_id:
+          type: string
+      required:
+      - channel_id
+      - org_link_id
+      type: object
+    service.UpdateChannelSubscriptionRequest:
+      properties:
+        channel_id:
+          type: string
+        channel_name:
+          type: string
+        interests:
+          type: object
+        match:
+          type: object
+      type: object
+    service.slackChallengeResponse:
+      properties:
+        challenge:
           type: string
       type: object
     app.SlackChannelSubscription:
@@ -836,24 +854,6 @@ components:
         updated_at:
           type: string
       type: object
-    app.SlackOrgLinkStatus:
-      enum:
-      - verified
-      - revoked
-      type: string
-      x-enum-varnames:
-      - SlackOrgLinkStatusVerified
-      - SlackOrgLinkStatusRevoked
-    app.SlackInstallationStatus:
-      enum:
-      - active
-      - uninstalled
-      - disabled
-      type: string
-      x-enum-varnames:
-      - SlackInstallationStatusActive
-      - SlackInstallationStatusUninstalled
-      - SlackInstallationStatusDisabled
   securitySchemes:
     APIKey:
       description: Type "Bearer" followed by a space and token.

@@ -443,155 +443,51 @@ paths:
       - Notebooks
 components:
   schemas:
-    service.CreateNotebookRequest:
+    app.QueueSignal:
       properties:
-        description:
-          maxLength: 2000
-          type: string
-        name:
-          maxLength: 255
-          type: string
-      type: object
-    app.RoleType:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted-installer
-      type: string
-      x-enum-varnames:
-      - RoleTypeOrgAdmin
-      - RoleTypeOrgSupport
-      - RoleTypeInstaller
-      - RoleTypeRunner
-      - RoleTypeHostedInstaller
-    service.UpdateCellRequest:
-      properties:
-        command:
-          type: string
-        enable_kube_config:
-          type:
-          - boolean
-          - 'null'
-        env_vars:
-          additionalProperties:
-            type: string
-          type: object
-        inline_contents:
-          type: string
-        name:
-          maxLength: 255
-          type: string
-        role:
-          type: string
-        timeout:
-          maximum: 3600
-          minimum: 1
-          type: integer
-      type: object
-    sql.NullBool:
-      properties:
-        bool:
-          type: boolean
-        valid:
-          description: Valid is true if Bool is not NULL
-          type: boolean
-      type: object
-    app.Policy:
-      properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        name:
-          $ref: '#/components/schemas/app.PolicyName'
-        permissions:
-          additionalProperties:
-            type: string
-          description: Permissions are used to track granular permissions for each domain
-          type: object
-        role_id:
-          type: string
-        updated_at:
-          type: string
-      type: object
-    app.Role:
-      properties:
-        createdBy:
-          $ref: '#/components/schemas/app.Account'
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        policies:
+        callback:
+          $ref: '#/components/schemas/callback.Ref'
+        callbacks:
           items:
-            $ref: '#/components/schemas/app.Policy'
+            $ref: '#/components/schemas/callback.Ref'
           type: array
-        role_type:
-          $ref: '#/components/schemas/app.RoleType'
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitter_id:
+          description: 'Optional: if this signal was emitted by an emitter'
+          type: string
+        enqueued:
+          type: boolean
+        execution_count:
+          type: integer
+        expires_at:
+          type: string
+        id:
+          type: string
+        org_id:
+          type: string
+        owner_id:
+          type: string
+        owner_type:
+          type: string
+        queue:
+          $ref: '#/components/schemas/app.Queue'
+        queue_id:
+          type: string
+        signal:
+          $ref: '#/components/schemas/signaldb.SignalData'
+        signal_context:
+          $ref: '#/components/schemas/cctx.SignalContext'
+        status:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        type:
+          type: string
         updated_at:
           type: string
-      type: object
-    app.AccountType:
-      enum:
-      - auth
-      - auth0
-      - service
-      - canary
-      - integration
-      type: string
-      x-enum-varnames:
-      - AccountTypeAuth
-      - AccountTypeAuth0
-      - AccountTypeService
-      - AccountTypeCanary
-      - AccountTypeIntegration
-    service.CreateCellRequest:
-      properties:
-        command:
-          type: string
-        enable_kube_config:
-          type:
-          - boolean
-          - 'null'
-        env_vars:
-          additionalProperties:
-            type: string
-          type: object
-        inline_contents:
-          type: string
-        name:
-          maxLength: 255
-          type: string
-        role:
-          type: string
-        timeout:
-          maximum: 3600
-          minimum: 1
-          type: integer
-      type: object
-    app.PolicyName:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted_installer
-      type: string
-      x-enum-varnames:
-      - PolicyNameOrgAdmin
-      - PolicyNameOrgSupport
-      - PolicyNameInstaller
-      - PolicyNameRunner
-      - PolicyNameHostedInstaller
-    permissions.Set:
-      additionalProperties:
-        $ref: '#/components/schemas/permissions.Permission'
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
     app.Queue:
       properties:
@@ -634,109 +530,18 @@ components:
         workflow:
           $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
-    app.NotebookCellRun:
+    service.UpdateNotebookRequest:
       properties:
-        cell_id:
-          type: string
-        cell_revision:
-          description: CellRevision records which revision of the cell this run executed.
-          type: integer
-        command:
-          type: string
-        created_at:
-          type: string
-        created_by:
-          $ref: '#/components/schemas/app.Account'
-        created_by_id:
-          type: string
-        env_vars:
-          additionalProperties:
-            type: string
-          type: object
-        id:
-          type: string
-        idempotency_key:
-          description: 'IdempotencyKey deduplicates run requests (HTTP retries / update retries).
-
-            A server-side key is always generated, so the composite unique index on
-
-            (notebook_id, idempotency_key) in Indexes() never sees an empty key.'
-          type: string
-        inline_contents:
-          type: string
-        install_action_workflow_run_id:
-          description: Link to the existing execution/audit artifacts.
-          type: string
-        install_id:
-          type: string
-        log_stream_id:
+        description:
+          maxLength: 2000
           type: string
         name:
-          description: Cell config snapshot at run time.
-          type: string
-        notebook_id:
-          type: string
-        runner_job_id:
-          type: string
-        status:
-          type: string
-        status_description:
-          type: string
-        status_v2:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        triggered_by_id:
-          type: string
-        triggered_by_type:
-          type: string
-        updated_at:
-          type: string
-      type: object
-    service.RunCellRequest:
-      properties:
-        idempotency_key:
-          description: 'IdempotencyKey deduplicates retried run requests. Optional; a server-side
-
-            key is generated when empty.'
           maxLength: 255
           type: string
-      type: object
-    app.Notebook:
-      properties:
-        cell_count:
-          type: integer
-        cells:
-          items:
-            $ref: '#/components/schemas/app.NotebookCell'
-          type: array
-        created_at:
-          type: string
-        created_by:
-          $ref: '#/components/schemas/app.Account'
-        created_by_id:
-          type: string
-        description:
-          type: string
-        id:
-          type: string
-        install_id:
-          type: string
-        latest_run_at:
-          type: string
-        name:
-          type: string
-        queue:
-          allOf:
-          - $ref: '#/components/schemas/app.Queue'
-          description: 'Queue owns the lifecycle of the notebook''s warm Temporal workflow: a
-
-            notebook-start signal enqueued at create time starts NotebookWorkflow,
-
-            and the queue can re-dispatch it for recovery. Cell runs still dispatch
-
-            to the workflow directly via update-with-start.'
         status:
-          type: string
-        updated_at:
+          enum:
+          - active
+          - archived
           type: string
       type: object
     app.QueueEmitter:
@@ -808,6 +613,33 @@ components:
           - $ref: '#/components/schemas/signaldb.WorkflowRef'
           description: Workflow reference for the emitter's cron workflow
       type: object
+    app.AccountType:
+      enum:
+      - auth
+      - auth0
+      - service
+      - canary
+      - integration
+      type: string
+      x-enum-varnames:
+      - AccountTypeAuth
+      - AccountTypeAuth0
+      - AccountTypeService
+      - AccountTypeCanary
+      - AccountTypeIntegration
+    signaldb.SignalData:
+      properties:
+        signal: {}
+      type: object
+    service.RunCellRequest:
+      properties:
+        idempotency_key:
+          description: 'IdempotencyKey deduplicates retried run requests. Optional; a server-side
+
+            key is generated when empty.'
+          maxLength: 255
+          type: string
+      type: object
     cctx.SignalContext:
       properties:
         account_id:
@@ -817,67 +649,6 @@ components:
         org_id:
           type: string
         trace_id:
-          type: string
-      type: object
-    app.UserJourneyStep:
-      properties:
-        complete:
-          type: boolean
-        completed_at:
-          description: Top-level completion tracking fields
-          type: string
-        completion_method:
-          type: string
-        completion_source:
-          type: string
-        metadata:
-          additionalProperties: true
-          description: Flexible metadata for business data
-          type: object
-        name:
-          type: string
-        title:
-          type: string
-      type: object
-    signaldb.WorkflowRef:
-      properties:
-        id:
-          type: string
-        namespace:
-          type: string
-        run_id:
-          type: string
-      type: object
-    app.CompositeStatus:
-      properties:
-        created_at_ts:
-          type: integer
-        created_by_id:
-          type: string
-        history:
-          items:
-            $ref: '#/components/schemas/app.CompositeStatus'
-          type: array
-        metadata:
-          additionalProperties: {}
-          type: object
-        status:
-          $ref: '#/components/schemas/app.Status'
-        status_human_description:
-          type: string
-      type: object
-    service.UpdateNotebookRequest:
-      properties:
-        description:
-          maxLength: 2000
-          type: string
-        name:
-          maxLength: 255
-          type: string
-        status:
-          enum:
-          - active
-          - archived
           type: string
       type: object
     app.Account:
@@ -909,6 +680,79 @@ components:
           items:
             $ref: '#/components/schemas/app.UserJourney'
           type: array
+      type: object
+    permissions.Permission:
+      enum:
+      - unknown
+      - all
+      - create
+      - read
+      - update
+      - delete
+      type: string
+      x-enum-varnames:
+      - PermissionUnknown
+      - PermissionAll
+      - PermissionCreate
+      - PermissionRead
+      - PermissionUpdate
+      - PermissionDelete
+    app.PolicyName:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted_installer
+      type: string
+      x-enum-varnames:
+      - PolicyNameOrgAdmin
+      - PolicyNameOrgSupport
+      - PolicyNameInstaller
+      - PolicyNameRunner
+      - PolicyNameHostedInstaller
+    app.Notebook:
+      properties:
+        cell_count:
+          type: integer
+        cells:
+          items:
+            $ref: '#/components/schemas/app.NotebookCell'
+          type: array
+        created_at:
+          type: string
+        created_by:
+          $ref: '#/components/schemas/app.Account'
+        created_by_id:
+          type: string
+        description:
+          type: string
+        id:
+          type: string
+        install_id:
+          type: string
+        latest_run_at:
+          type: string
+        name:
+          type: string
+        queue:
+          allOf:
+          - $ref: '#/components/schemas/app.Queue'
+          description: 'Queue owns the lifecycle of the notebook''s warm Temporal workflow: a
+
+            notebook-start signal enqueued at create time starts NotebookWorkflow,
+
+            and the queue can re-dispatch it for recovery. Cell runs still dispatch
+
+            to the workflow directly via update-with-start.'
+        status:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    permissions.Set:
+      additionalProperties:
+        $ref: '#/components/schemas/permissions.Permission'
       type: object
     app.Status:
       enum:
@@ -978,6 +822,116 @@ components:
       - StatusDeleting
       - InstallDeployStatusV2Noop
       - AwaitingApproval
+    app.UserJourneyStep:
+      properties:
+        complete:
+          type: boolean
+        completed_at:
+          description: Top-level completion tracking fields
+          type: string
+        completion_method:
+          type: string
+        completion_source:
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Flexible metadata for business data
+          type: object
+        name:
+          type: string
+        title:
+          type: string
+      type: object
+    app.NotebookCellRun:
+      properties:
+        cell_id:
+          type: string
+        cell_revision:
+          description: CellRevision records which revision of the cell this run executed.
+          type: integer
+        command:
+          type: string
+        created_at:
+          type: string
+        created_by:
+          $ref: '#/components/schemas/app.Account'
+        created_by_id:
+          type: string
+        env_vars:
+          additionalProperties:
+            type: string
+          type: object
+        id:
+          type: string
+        idempotency_key:
+          description: 'IdempotencyKey deduplicates run requests (HTTP retries / update retries).
+
+            A server-side key is always generated, so the composite unique index on
+
+            (notebook_id, idempotency_key) in Indexes() never sees an empty key.'
+          type: string
+        inline_contents:
+          type: string
+        install_action_workflow_run_id:
+          description: Link to the existing execution/audit artifacts.
+          type: string
+        install_id:
+          type: string
+        log_stream_id:
+          type: string
+        name:
+          description: Cell config snapshot at run time.
+          type: string
+        notebook_id:
+          type: string
+        runner_job_id:
+          type: string
+        status:
+          type: string
+        status_description:
+          type: string
+        status_v2:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        triggered_by_id:
+          type: string
+        triggered_by_type:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    app.QueueEmitterMode:
+      enum:
+      - cron
+      - scheduled
+      - fire_once
+      type: string
+      x-enum-varnames:
+      - QueueEmitterModeCron
+      - QueueEmitterModeScheduled
+      - QueueEmitterModeFireOnce
+    service.CreateNotebookRequest:
+      properties:
+        description:
+          maxLength: 2000
+          type: string
+        name:
+          maxLength: 255
+          type: string
+      type: object
+    app.RoleType:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted-installer
+      type: string
+      x-enum-varnames:
+      - RoleTypeOrgAdmin
+      - RoleTypeOrgSupport
+      - RoleTypeInstaller
+      - RoleTypeRunner
+      - RoleTypeHostedInstaller
     app.NotebookCell:
       properties:
         command:
@@ -1019,6 +973,59 @@ components:
         updated_at:
           type: string
       type: object
+    service.CreateCellRequest:
+      properties:
+        command:
+          type: string
+        enable_kube_config:
+          type:
+          - boolean
+          - 'null'
+        env_vars:
+          additionalProperties:
+            type: string
+          type: object
+        inline_contents:
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        role:
+          type: string
+        timeout:
+          maximum: 3600
+          minimum: 1
+          type: integer
+      type: object
+    app.Policy:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/app.PolicyName'
+        permissions:
+          additionalProperties:
+            type: string
+          description: Permissions are used to track granular permissions for each domain
+          type: object
+        role_id:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    callback.Ref:
+      properties:
+        namespace:
+          type: string
+        signal_name:
+          type: string
+        workflow_id:
+          type: string
+      type: object
     app.UserJourney:
       properties:
         name:
@@ -1030,87 +1037,84 @@ components:
         title:
           type: string
       type: object
-    app.QueueSignal:
+    app.Role:
       properties:
-        callback:
-          $ref: '#/components/schemas/callback.Ref'
-        callbacks:
-          items:
-            $ref: '#/components/schemas/callback.Ref'
-          type: array
+        createdBy:
+          $ref: '#/components/schemas/app.Account'
         created_at:
           type: string
         created_by_id:
           type: string
-        emitter_id:
-          description: 'Optional: if this signal was emitted by an emitter'
-          type: string
-        enqueued:
-          type: boolean
-        execution_count:
-          type: integer
-        expires_at:
-          type: string
         id:
           type: string
-        org_id:
-          type: string
-        owner_id:
-          type: string
-        owner_type:
-          type: string
-        queue:
-          $ref: '#/components/schemas/app.Queue'
-        queue_id:
-          type: string
-        signal:
-          $ref: '#/components/schemas/signaldb.SignalData'
-        signal_context:
-          $ref: '#/components/schemas/cctx.SignalContext'
-        status:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        type:
-          type: string
+        policies:
+          items:
+            $ref: '#/components/schemas/app.Policy'
+          type: array
+        role_type:
+          $ref: '#/components/schemas/app.RoleType'
         updated_at:
           type: string
-        workflow:
-          $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
-    callback.Ref:
+    service.UpdateCellRequest:
       properties:
+        command:
+          type: string
+        enable_kube_config:
+          type:
+          - boolean
+          - 'null'
+        env_vars:
+          additionalProperties:
+            type: string
+          type: object
+        inline_contents:
+          type: string
+        name:
+          maxLength: 255
+          type: string
+        role:
+          type: string
+        timeout:
+          maximum: 3600
+          minimum: 1
+          type: integer
+      type: object
+    sql.NullBool:
+      properties:
+        bool:
+          type: boolean
+        valid:
+          description: Valid is true if Bool is not NULL
+          type: boolean
+      type: object
+    app.CompositeStatus:
+      properties:
+        created_at_ts:
+          type: integer
+        created_by_id:
+          type: string
+        history:
+          items:
+            $ref: '#/components/schemas/app.CompositeStatus'
+          type: array
+        metadata:
+          additionalProperties: {}
+          type: object
+        status:
+          $ref: '#/components/schemas/app.Status'
+        status_human_description:
+          type: string
+      type: object
+    signaldb.WorkflowRef:
+      properties:
+        id:
+          type: string
         namespace:
           type: string
-        signal_name:
-          type: string
-        workflow_id:
+        run_id:
           type: string
       type: object
-    permissions.Permission:
-      enum:
-      - unknown
-      - all
-      - create
-      - read
-      - update
-      - delete
-      type: string
-      x-enum-varnames:
-      - PermissionUnknown
-      - PermissionAll
-      - PermissionCreate
-      - PermissionRead
-      - PermissionUpdate
-      - PermissionDelete
-    app.QueueEmitterMode:
-      enum:
-      - cron
-      - scheduled
-      - fire_once
-      type: string
-      x-enum-varnames:
-      - QueueEmitterModeCron
-      - QueueEmitterModeScheduled
-      - QueueEmitterModeFireOnce
     service.ReorderCellsRequest:
       properties:
         cell_ids:
@@ -1120,10 +1124,6 @@ components:
           type: array
       required:
       - cell_ids
-      type: object
-    signaldb.SignalData:
-      properties:
-        signal: {}
       type: object
   securitySchemes:
     APIKey:

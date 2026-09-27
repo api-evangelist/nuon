@@ -309,6 +309,150 @@ paths:
       - Queues
 components:
   schemas:
+    callback.Ref:
+      properties:
+        namespace:
+          type: string
+        signal_name:
+          type: string
+        workflow_id:
+          type: string
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    app.Status:
+      enum:
+      - error
+      - pending
+      - in-progress
+      - checking-plan
+      - success
+      - not-attempted
+      - cancelled
+      - retrying
+      - discarded
+      - user-skipped
+      - auto-skipped
+      - planning
+      - applying
+      - queued
+      - warning
+      - failed-pending-retry
+      - generating
+      - awaiting-user-run
+      - provisioning
+      - active
+      - outdated
+      - expired
+      - approved
+      - drifted
+      - no-drift
+      - approval-expired
+      - approval-denied
+      - approval-retry
+      - building
+      - deleting
+      - noop
+      - approval-awaiting
+      type: string
+      x-enum-varnames:
+      - StatusError
+      - StatusPending
+      - StatusInProgress
+      - StatusCheckPlan
+      - StatusSuccess
+      - StatusNotAttempted
+      - StatusCancelled
+      - StatusRetrying
+      - StatusDiscarded
+      - StatusUserSkipped
+      - StatusAutoSkipped
+      - StatusPlanning
+      - StatusApplying
+      - StatusQueued
+      - StatusWarning
+      - StatusFailedPendingRetry
+      - InstallStackVersionStatusGenerating
+      - InstallStackVersionStatusPendingUser
+      - InstallStackVersionStatusProvisioning
+      - InstallStackVersionStatusActive
+      - InstallStackVersionStatusOutdated
+      - InstallStackVersionStatusExpired
+      - WorkflowStepApprovalStatusApproved
+      - WorkflowStepDrifted
+      - WorkflowStepNoDrift
+      - WorkflowStepApprovalStatusApprovalExpired
+      - WorkflowStepApprovalStatusApprovalDenied
+      - WorkflowStepApprovalStatusApprovalRetryPlan
+      - StatusBuilding
+      - StatusDeleting
+      - InstallDeployStatusV2Noop
+      - AwaitingApproval
+    queue.StatusResponse:
+      properties:
+        inFlight:
+          items:
+            type: string
+          type: array
+        inFlightCount:
+          type: integer
+        paused:
+          type: boolean
+        queueDepthCount:
+          type: integer
+        ready:
+          type: boolean
+        stopped:
+          type: boolean
+      type: object
+    app.Queue:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitters:
+          items:
+            $ref: '#/components/schemas/app.QueueEmitter'
+          type: array
+        id:
+          type: string
+        idle_timeout:
+          type: integer
+        max_depth:
+          type: integer
+        max_in_flight:
+          type: integer
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        name:
+          type: string
+        org_id:
+          type: string
+        owner_id:
+          type: string
+        owner_type:
+          type: string
+        queue_signal:
+          items:
+            $ref: '#/components/schemas/app.QueueSignal'
+          type: array
+        status_v2:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        updated_at:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
+      type: object
     app.QueueSignal:
       properties:
         callback:
@@ -355,13 +499,15 @@ components:
         workflow:
           $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
-    callback.Ref:
+    cctx.SignalContext:
       properties:
-        namespace:
+        account_id:
           type: string
-        signal_name:
+        log_stream_id:
           type: string
-        workflow_id:
+        org_id:
+          type: string
+        trace_id:
           type: string
       type: object
     app.QueueEmitterMode:
@@ -374,55 +520,23 @@ components:
       - QueueEmitterModeCron
       - QueueEmitterModeScheduled
       - QueueEmitterModeFireOnce
-    stderr.ErrResponse:
+    app.CompositeStatus:
       properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    app.Queue:
-      properties:
-        created_at:
-          type: string
+        created_at_ts:
+          type: integer
         created_by_id:
           type: string
-        emitters:
+        history:
           items:
-            $ref: '#/components/schemas/app.QueueEmitter'
+            $ref: '#/components/schemas/app.CompositeStatus'
           type: array
-        id:
-          type: string
-        idle_timeout:
-          type: integer
-        max_depth:
-          type: integer
-        max_in_flight:
-          type: integer
         metadata:
-          additionalProperties:
-            type: string
+          additionalProperties: {}
           type: object
-        name:
+        status:
+          $ref: '#/components/schemas/app.Status'
+        status_human_description:
           type: string
-        org_id:
-          type: string
-        owner_id:
-          type: string
-        owner_type:
-          type: string
-        queue_signal:
-          items:
-            $ref: '#/components/schemas/app.QueueSignal'
-          type: array
-        status_v2:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        updated_at:
-          type: string
-        workflow:
-          $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
     app.QueueEmitter:
       properties:
@@ -497,102 +611,6 @@ components:
       properties:
         signal: {}
       type: object
-    queue.StatusResponse:
-      properties:
-        inFlight:
-          items:
-            type: string
-          type: array
-        inFlightCount:
-          type: integer
-        paused:
-          type: boolean
-        queueDepthCount:
-          type: integer
-        ready:
-          type: boolean
-        stopped:
-          type: boolean
-      type: object
-    cctx.SignalContext:
-      properties:
-        account_id:
-          type: string
-        log_stream_id:
-          type: string
-        org_id:
-          type: string
-        trace_id:
-          type: string
-      type: object
-    app.Status:
-      enum:
-      - error
-      - pending
-      - in-progress
-      - checking-plan
-      - success
-      - not-attempted
-      - cancelled
-      - retrying
-      - discarded
-      - user-skipped
-      - auto-skipped
-      - planning
-      - applying
-      - queued
-      - warning
-      - failed-pending-retry
-      - generating
-      - awaiting-user-run
-      - provisioning
-      - active
-      - outdated
-      - expired
-      - approved
-      - drifted
-      - no-drift
-      - approval-expired
-      - approval-denied
-      - approval-retry
-      - building
-      - deleting
-      - noop
-      - approval-awaiting
-      type: string
-      x-enum-varnames:
-      - StatusError
-      - StatusPending
-      - StatusInProgress
-      - StatusCheckPlan
-      - StatusSuccess
-      - StatusNotAttempted
-      - StatusCancelled
-      - StatusRetrying
-      - StatusDiscarded
-      - StatusUserSkipped
-      - StatusAutoSkipped
-      - StatusPlanning
-      - StatusApplying
-      - StatusQueued
-      - StatusWarning
-      - StatusFailedPendingRetry
-      - InstallStackVersionStatusGenerating
-      - InstallStackVersionStatusPendingUser
-      - InstallStackVersionStatusProvisioning
-      - InstallStackVersionStatusActive
-      - InstallStackVersionStatusOutdated
-      - InstallStackVersionStatusExpired
-      - WorkflowStepApprovalStatusApproved
-      - WorkflowStepDrifted
-      - WorkflowStepNoDrift
-      - WorkflowStepApprovalStatusApprovalExpired
-      - WorkflowStepApprovalStatusApprovalDenied
-      - WorkflowStepApprovalStatusApprovalRetryPlan
-      - StatusBuilding
-      - StatusDeleting
-      - InstallDeployStatusV2Noop
-      - AwaitingApproval
     signaldb.WorkflowRef:
       properties:
         id:
@@ -600,24 +618,6 @@ components:
         namespace:
           type: string
         run_id:
-          type: string
-      type: object
-    app.CompositeStatus:
-      properties:
-        created_at_ts:
-          type: integer
-        created_by_id:
-          type: string
-        history:
-          items:
-            $ref: '#/components/schemas/app.CompositeStatus'
-          type: array
-        metadata:
-          additionalProperties: {}
-          type: object
-        status:
-          $ref: '#/components/schemas/app.Status'
-        status_human_description:
           type: string
       type: object
   securitySchemes:

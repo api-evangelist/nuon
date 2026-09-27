@@ -391,17 +391,6 @@ paths:
         required: true
 components:
   schemas:
-    app.UserJourney:
-      properties:
-        name:
-          type: string
-        steps:
-          items:
-            $ref: '#/components/schemas/app.UserJourneyStep'
-          type: array
-        title:
-          type: string
-      type: object
     app.Policy:
       properties:
         created_at:
@@ -422,142 +411,20 @@ components:
         updated_at:
           type: string
       type: object
-    permissions.Permission:
-      enum:
-      - unknown
-      - all
-      - create
-      - read
-      - update
-      - delete
-      type: string
-      x-enum-varnames:
-      - PermissionUnknown
-      - PermissionAll
-      - PermissionCreate
-      - PermissionRead
-      - PermissionUpdate
-      - PermissionDelete
-    app.PolicyName:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted_installer
-      type: string
-      x-enum-varnames:
-      - PolicyNameOrgAdmin
-      - PolicyNameOrgSupport
-      - PolicyNameInstaller
-      - PolicyNameRunner
-      - PolicyNameHostedInstaller
-    app.TokenType:
-      enum:
-      - auth
-      - auth0
-      - admin
-      - static
-      - integration
-      - canary
-      - nuon
-      type: string
-      x-enum-comments:
-        TokenTypeAuth: nuon auth service
-      x-enum-descriptions:
-      - nuon auth service
-      - ''
-      - ''
-      - ''
-      - ''
-      - ''
-      - ''
-      x-enum-varnames:
-      - TokenTypeAuth
-      - TokenTypeAuth0
-      - TokenTypeAdmin
-      - TokenTypeStatic
-      - TokenTypeIntegration
-      - TokenTypeCanary
-      - TokenTypeNuon
-    app.Account:
-      properties:
-        account_type:
-          $ref: '#/components/schemas/app.AccountType'
-        created_at:
-          type: string
-        email:
-          type: string
-        id:
-          type: string
-        org_ids:
-          description: ReadOnly Fields
-          items:
-            type: string
-          type: array
-        permissions:
-          $ref: '#/components/schemas/permissions.Set'
-        roles:
-          items:
-            $ref: '#/components/schemas/app.Role'
-          type: array
-        subject:
-          type: string
-        updated_at:
-          type: string
-        user_journeys:
-          items:
-            $ref: '#/components/schemas/app.UserJourney'
-          type: array
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    service.CreateStaticTokenRequest:
-      properties:
-        duration:
-          default: 8760h
-          description: defaults to one year
-          type: string
-        name:
-          description: human-friendly name to identify the token later
-          type: string
-      required:
-      - name
-      type: object
-    app.RoleType:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted-installer
-      type: string
-      x-enum-varnames:
-      - RoleTypeOrgAdmin
-      - RoleTypeOrgSupport
-      - RoleTypeInstaller
-      - RoleTypeRunner
-      - RoleTypeHostedInstaller
     permissions.Set:
       additionalProperties:
         $ref: '#/components/schemas/permissions.Permission'
       type: object
-    service.CreateUserJourneyStepReq:
+    app.UserJourney:
       properties:
         name:
           type: string
+        steps:
+          items:
+            $ref: '#/components/schemas/app.UserJourneyStep'
+          type: array
         title:
           type: string
-      required:
-      - name
-      - title
       type: object
     app.Role:
       properties:
@@ -578,12 +445,24 @@ components:
         updated_at:
           type: string
       type: object
-    github_com_nuonco_nuon_services_ctl-api_internal_app_accounts_service.StaticTokenResponse:
+    service.CreateUserJourneyStepReq:
       properties:
-        api_token:
+        name:
           type: string
-        id:
+        title:
           type: string
+      required:
+      - name
+      - title
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
       type: object
     app.Token:
       properties:
@@ -631,6 +510,107 @@ components:
         title:
           type: string
       type: object
+    github_com_nuonco_nuon_services_ctl-api_internal_app_accounts_service.StaticTokenResponse:
+      properties:
+        api_token:
+          type: string
+        id:
+          type: string
+      type: object
+    service.CreateStaticTokenRequest:
+      properties:
+        duration:
+          default: 8760h
+          description: defaults to one year
+          type: string
+        name:
+          description: human-friendly name to identify the token later
+          type: string
+      required:
+      - name
+      type: object
+    service.UpdateUserJourneyStepRequest:
+      properties:
+        complete:
+          type: boolean
+        metadata:
+          additionalProperties: true
+          type: object
+      type: object
+    app.Account:
+      properties:
+        account_type:
+          $ref: '#/components/schemas/app.AccountType'
+        created_at:
+          type: string
+        email:
+          type: string
+        id:
+          type: string
+        org_ids:
+          description: ReadOnly Fields
+          items:
+            type: string
+          type: array
+        permissions:
+          $ref: '#/components/schemas/permissions.Set'
+        roles:
+          items:
+            $ref: '#/components/schemas/app.Role'
+          type: array
+        subject:
+          type: string
+        updated_at:
+          type: string
+        user_journeys:
+          items:
+            $ref: '#/components/schemas/app.UserJourney'
+          type: array
+      type: object
+    permissions.Permission:
+      enum:
+      - unknown
+      - all
+      - create
+      - read
+      - update
+      - delete
+      type: string
+      x-enum-varnames:
+      - PermissionUnknown
+      - PermissionAll
+      - PermissionCreate
+      - PermissionRead
+      - PermissionUpdate
+      - PermissionDelete
+    app.PolicyName:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted_installer
+      type: string
+      x-enum-varnames:
+      - PolicyNameOrgAdmin
+      - PolicyNameOrgSupport
+      - PolicyNameInstaller
+      - PolicyNameRunner
+      - PolicyNameHostedInstaller
+    app.AccountType:
+      enum:
+      - auth
+      - auth0
+      - service
+      - canary
+      - integration
+      type: string
+      x-enum-varnames:
+      - AccountTypeAuth
+      - AccountTypeAuth0
+      - AccountTypeService
+      - AccountTypeCanary
+      - AccountTypeIntegration
     service.CreateUserJourneyRequest:
       properties:
         name:
@@ -646,28 +626,48 @@ components:
       - steps
       - title
       type: object
-    app.AccountType:
+    app.RoleType:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted-installer
+      type: string
+      x-enum-varnames:
+      - RoleTypeOrgAdmin
+      - RoleTypeOrgSupport
+      - RoleTypeInstaller
+      - RoleTypeRunner
+      - RoleTypeHostedInstaller
+    app.TokenType:
       enum:
       - auth
       - auth0
-      - service
-      - canary
+      - admin
+      - static
       - integration
+      - canary
+      - nuon
       type: string
+      x-enum-comments:
+        TokenTypeAuth: nuon auth service
+      x-enum-descriptions:
+      - nuon auth service
+      - ''
+      - ''
+      - ''
+      - ''
+      - ''
+      - ''
       x-enum-varnames:
-      - AccountTypeAuth
-      - AccountTypeAuth0
-      - AccountTypeService
-      - AccountTypeCanary
-      - AccountTypeIntegration
-    service.UpdateUserJourneyStepRequest:
-      properties:
-        complete:
-          type: boolean
-        metadata:
-          additionalProperties: true
-          type: object
-      type: object
+      - TokenTypeAuth
+      - TokenTypeAuth0
+      - TokenTypeAdmin
+      - TokenTypeStatic
+      - TokenTypeIntegration
+      - TokenTypeCanary
+      - TokenTypeNuon
   securitySchemes:
     APIKey:
       description: Type "Bearer" followed by a space and token.

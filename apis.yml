@@ -71,7 +71,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: nuon:nuon-accounts-api
-  name: Nuon accounts API
+  name: Nuon Accounts API
   description: accounts
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -83,7 +83,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-accounts-api-openapi.yml
 - aid: nuon:nuon-actions-api
-  name: Nuon actions API
+  name: Nuon Actions API
   description: actions
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -95,7 +95,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-actions-api-openapi.yml
 - aid: nuon:nuon-actions-runner-api
-  name: Nuon actions/runner API
+  name: Nuon Actions/runner API
   description: actions/runner
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -105,7 +105,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-actions-runner-api-openapi.yml
 - aid: nuon:nuon-apps-api
-  name: Nuon apps API
+  name: Nuon Apps API
   description: apps
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -117,7 +117,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-apps-api-openapi.yml
 - aid: nuon:nuon-auth-api
-  name: Nuon auth API
+  name: Nuon Auth API
   description: auth
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -129,7 +129,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-auth-api-openapi.yml
 - aid: nuon:nuon-components-api
-  name: Nuon components API
+  name: Nuon Components API
   description: components
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -141,7 +141,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-components-api-openapi.yml
 - aid: nuon:nuon-general-api
-  name: Nuon general API
+  name: Nuon General API
   description: general
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -152,7 +152,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-general-api-openapi.yml
 - aid: nuon:nuon-installs-api
-  name: Nuon installs API
+  name: Nuon Installs API
   description: installs
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -162,7 +162,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-installs-api-openapi.yml
 - aid: nuon:nuon-notebooks-api
-  name: Nuon notebooks API
+  name: Nuon Notebooks API
   description: notebooks
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -174,7 +174,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-notebooks-api-openapi.yml
 - aid: nuon:nuon-onboarding-api
-  name: Nuon onboarding API
+  name: Nuon Onboarding API
   description: onboarding
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -186,7 +186,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-onboarding-api-openapi.yml
 - aid: nuon:nuon-orgs-api
-  name: Nuon orgs API
+  name: Nuon Orgs API
   description: orgs
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -198,7 +198,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-orgs-api-openapi.yml
 - aid: nuon:nuon-policy-reports-api
-  name: Nuon policy-reports API
+  name: Nuon Policy Reports API
   description: policy-reports
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -210,7 +210,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-policy-reports-api-openapi.yml
 - aid: nuon:nuon-queues-api
-  name: Nuon queues API
+  name: Nuon Queues API
   description: queues
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -222,7 +222,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-queues-api-openapi.yml
 - aid: nuon:nuon-runbooks-api
-  name: Nuon runbooks API
+  name: Nuon Runbooks API
   description: runbooks
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -234,7 +234,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-runbooks-api-openapi.yml
 - aid: nuon:nuon-runners-api
-  name: Nuon runners API
+  name: Nuon Runners API
   description: runners
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -246,7 +246,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-runners-api-openapi.yml
 - aid: nuon:nuon-runners-runner-api
-  name: Nuon runners/runner API
+  name: Nuon Runners/runner API
   description: runners/runner
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -256,7 +256,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-runners-runner-api-openapi.yml
 - aid: nuon:nuon-slack-api
-  name: Nuon slack API
+  name: Nuon Slack API
   description: slack
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
@@ -268,7 +268,7 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-slack-api-openapi.yml
 - aid: nuon:nuon-vcs-api
-  name: Nuon vcs API
+  name: Nuon VCS API
   description: vcs
   humanURL: https://docs.nuon.co/nuon-api
   baseURL: https://api.nuon.co
