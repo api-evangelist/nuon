@@ -657,25 +657,6 @@ paths:
       - Slack
 components:
   schemas:
-    app.SlackInstallationStatus:
-      enum:
-      - active
-      - uninstalled
-      - disabled
-      type: string
-      x-enum-varnames:
-      - SlackInstallationStatusActive
-      - SlackInstallationStatusUninstalled
-      - SlackInstallationStatusDisabled
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
     service.CreateOrgLinkRequest:
       properties:
         team_id:
@@ -683,13 +664,14 @@ components:
       required:
       - team_id
       type: object
-    service.slashResponse:
-      properties:
-        response_type:
-          type: string
-        text:
-          type: string
-      type: object
+    app.SlackOrgLinkStatus:
+      enum:
+      - verified
+      - revoked
+      type: string
+      x-enum-varnames:
+      - SlackOrgLinkStatusVerified
+      - SlackOrgLinkStatusRevoked
     client.Conversation:
       properties:
         id:
@@ -703,6 +685,11 @@ components:
         is_private:
           type: boolean
         name:
+          type: string
+      type: object
+    service.slackChallengeResponse:
+      properties:
+        challenge:
           type: string
       type: object
     app.SlackOrgLink:
@@ -722,28 +709,6 @@ components:
         team_id:
           type: string
         updated_at:
-          type: string
-      type: object
-    service.GetInstallURLResponse:
-      properties:
-        url:
-          type: string
-      type: object
-    app.SlackOrgLinkStatus:
-      enum:
-      - verified
-      - revoked
-      type: string
-      x-enum-varnames:
-      - SlackOrgLinkStatusVerified
-      - SlackOrgLinkStatusRevoked
-    service.ListChannelsResponse:
-      properties:
-        channels:
-          items:
-            $ref: '#/components/schemas/client.Conversation'
-          type: array
-        next_cursor:
           type: string
       type: object
     app.SlackInstallation:
@@ -778,21 +743,20 @@ components:
         updated_at:
           type: string
       type: object
-    service.CreateChannelSubscriptionRequest:
+    app.SlackInstallationStatus:
+      enum:
+      - active
+      - uninstalled
+      - disabled
+      type: string
+      x-enum-varnames:
+      - SlackInstallationStatusActive
+      - SlackInstallationStatusUninstalled
+      - SlackInstallationStatusDisabled
+    service.GetInstallURLResponse:
       properties:
-        channel_id:
+        url:
           type: string
-        channel_name:
-          type: string
-        interests:
-          type: object
-        match:
-          type: object
-        org_link_id:
-          type: string
-      required:
-      - channel_id
-      - org_link_id
       type: object
     service.UpdateChannelSubscriptionRequest:
       properties:
@@ -804,11 +768,6 @@ components:
           type: object
         match:
           type: object
-      type: object
-    service.slackChallengeResponse:
-      properties:
-        challenge:
-          type: string
       type: object
     app.SlackChannelSubscription:
       properties:
@@ -852,6 +811,47 @@ components:
         team_id:
           type: string
         updated_at:
+          type: string
+      type: object
+    service.CreateChannelSubscriptionRequest:
+      properties:
+        channel_id:
+          type: string
+        channel_name:
+          type: string
+        interests:
+          type: object
+        match:
+          type: object
+        org_link_id:
+          type: string
+      required:
+      - channel_id
+      - org_link_id
+      type: object
+    service.slashResponse:
+      properties:
+        response_type:
+          type: string
+        text:
+          type: string
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    service.ListChannelsResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/client.Conversation'
+          type: array
+        next_cursor:
           type: string
       type: object
   securitySchemes:

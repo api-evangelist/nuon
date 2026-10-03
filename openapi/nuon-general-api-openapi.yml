@@ -360,7 +360,7 @@ paths:
         required: true
 components:
   schemas:
-    app.Policy:
+    app.Waitlist:
       properties:
         created_at:
           type: string
@@ -368,88 +368,36 @@ components:
           type: string
         id:
           type: string
-        name:
-          $ref: '#/components/schemas/app.PolicyName'
-        permissions:
-          additionalProperties:
-            type: string
-          description: Permissions are used to track granular permissions for each domain
-          type: object
-        role_id:
-          type: string
-        updated_at:
-          type: string
-      type: object
-    permissions.Set:
-      additionalProperties:
-        $ref: '#/components/schemas/permissions.Permission'
-      type: object
-    app.UserJourney:
-      properties:
-        name:
-          type: string
-        steps:
-          items:
-            $ref: '#/components/schemas/app.UserJourneyStep'
-          type: array
-        title:
-          type: string
-      type: object
-    app.Role:
-      properties:
-        createdBy:
-          $ref: '#/components/schemas/app.Account'
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        policies:
-          items:
-            $ref: '#/components/schemas/app.Policy'
-          type: array
-        role_type:
-          $ref: '#/components/schemas/app.RoleType'
-        updated_at:
-          type: string
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    service.WaitlistRequest:
-      properties:
         org_name:
           type: string
-      required:
-      - org_name
+        updated_at:
+          type: string
       type: object
-    app.UserJourneyStep:
+    app.CloudPlatformRegion:
       properties:
-        complete:
-          type: boolean
-        completed_at:
-          description: Top-level completion tracking fields
+        display_name:
           type: string
-        completion_method:
+        icon:
           type: string
-        completion_source:
-          type: string
-        metadata:
-          additionalProperties: true
-          description: Flexible metadata for business data
-          type: object
         name:
           type: string
-        title:
+        value:
           type: string
       type: object
+    app.AccountType:
+      enum:
+      - auth
+      - auth0
+      - service
+      - canary
+      - integration
+      type: string
+      x-enum-varnames:
+      - AccountTypeAuth
+      - AccountTypeAuth0
+      - AccountTypeService
+      - AccountTypeCanary
+      - AccountTypeIntegration
     app.Account:
       properties:
         account_type:
@@ -480,6 +428,105 @@ components:
             $ref: '#/components/schemas/app.UserJourney'
           type: array
       type: object
+    app.Policy:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/app.PolicyName'
+        permissions:
+          additionalProperties:
+            type: string
+          description: Permissions are used to track granular permissions for each domain
+          type: object
+        role_id:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    app.UserJourneyStep:
+      properties:
+        complete:
+          type: boolean
+        completed_at:
+          description: Top-level completion tracking fields
+          type: string
+        completion_method:
+          type: string
+        completion_source:
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Flexible metadata for business data
+          type: object
+        name:
+          type: string
+        title:
+          type: string
+      type: object
+    app.UserJourney:
+      properties:
+        name:
+          type: string
+        steps:
+          items:
+            $ref: '#/components/schemas/app.UserJourneyStep'
+          type: array
+        title:
+          type: string
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    app.RoleType:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted-installer
+      type: string
+      x-enum-varnames:
+      - RoleTypeOrgAdmin
+      - RoleTypeOrgSupport
+      - RoleTypeInstaller
+      - RoleTypeRunner
+      - RoleTypeHostedInstaller
+    service.WaitlistRequest:
+      properties:
+        org_name:
+          type: string
+      required:
+      - org_name
+      type: object
+    app.PolicyName:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted_installer
+      type: string
+      x-enum-varnames:
+      - PolicyNameOrgAdmin
+      - PolicyNameOrgSupport
+      - PolicyNameInstaller
+      - PolicyNameRunner
+      - PolicyNameHostedInstaller
+    permissions.Set:
+      additionalProperties:
+        $ref: '#/components/schemas/permissions.Permission'
+      type: object
     permissions.Permission:
       enum:
       - unknown
@@ -496,72 +543,6 @@ components:
       - PermissionRead
       - PermissionUpdate
       - PermissionDelete
-    app.PolicyName:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted_installer
-      type: string
-      x-enum-varnames:
-      - PolicyNameOrgAdmin
-      - PolicyNameOrgSupport
-      - PolicyNameInstaller
-      - PolicyNameRunner
-      - PolicyNameHostedInstaller
-    app.CloudPlatformRegion:
-      properties:
-        display_name:
-          type: string
-        icon:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-      type: object
-    app.AccountType:
-      enum:
-      - auth
-      - auth0
-      - service
-      - canary
-      - integration
-      type: string
-      x-enum-varnames:
-      - AccountTypeAuth
-      - AccountTypeAuth0
-      - AccountTypeService
-      - AccountTypeCanary
-      - AccountTypeIntegration
-    app.RoleType:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted-installer
-      type: string
-      x-enum-varnames:
-      - RoleTypeOrgAdmin
-      - RoleTypeOrgSupport
-      - RoleTypeInstaller
-      - RoleTypeRunner
-      - RoleTypeHostedInstaller
-    app.Waitlist:
-      properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        org_name:
-          type: string
-        updated_at:
-          type: string
-      type: object
     service.CLIConfig:
       properties:
         auth_audience:
@@ -575,6 +556,25 @@ components:
         nuon_auth_enabled:
           type: boolean
         root_domain:
+          type: string
+      type: object
+    app.Role:
+      properties:
+        createdBy:
+          $ref: '#/components/schemas/app.Account'
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        policies:
+          items:
+            $ref: '#/components/schemas/app.Policy'
+          type: array
+        role_type:
+          $ref: '#/components/schemas/app.RoleType'
+        updated_at:
           type: string
       type: object
   securitySchemes:

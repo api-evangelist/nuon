@@ -706,100 +706,6 @@ paths:
       - vcs
 components:
   schemas:
-    github.Timestamp:
-      properties:
-        time.Time:
-          type: string
-      type: object
-    app.QueueSignal:
-      properties:
-        callback:
-          $ref: '#/components/schemas/callback.Ref'
-        callbacks:
-          items:
-            $ref: '#/components/schemas/callback.Ref'
-          type: array
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        emitter_id:
-          description: 'Optional: if this signal was emitted by an emitter'
-          type: string
-        enqueued:
-          type: boolean
-        execution_count:
-          type: integer
-        expires_at:
-          type: string
-        id:
-          type: string
-        org_id:
-          type: string
-        owner_id:
-          type: string
-        owner_type:
-          type: string
-        queue:
-          $ref: '#/components/schemas/app.Queue'
-        queue_id:
-          type: string
-        signal:
-          $ref: '#/components/schemas/signaldb.SignalData'
-        signal_context:
-          $ref: '#/components/schemas/cctx.SignalContext'
-        status:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        type:
-          type: string
-        updated_at:
-          type: string
-        workflow:
-          $ref: '#/components/schemas/signaldb.WorkflowRef'
-      type: object
-    app.Queue:
-      properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        emitters:
-          items:
-            $ref: '#/components/schemas/app.QueueEmitter'
-          type: array
-        id:
-          type: string
-        idle_timeout:
-          type: integer
-        max_depth:
-          type: integer
-        max_in_flight:
-          type: integer
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-        name:
-          type: string
-        org_id:
-          type: string
-        owner_id:
-          type: string
-        owner_type:
-          type: string
-        queue_signal:
-          items:
-            $ref: '#/components/schemas/app.QueueSignal'
-          type: array
-        status_v2:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        updated_at:
-          type: string
-        workflow:
-          $ref: '#/components/schemas/signaldb.WorkflowRef'
-      type: object
-    blobstore.Blob:
-      type: object
     service.VCSConnectionRepo:
       properties:
         default_branch:
@@ -821,127 +727,12 @@ components:
         updated_at:
           type: string
       type: object
-    app.VCSConnection:
+    service.CreateConnectionRequest:
       properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        github_account_id:
-          type: string
-        github_account_name:
-          type: string
         github_install_id:
           type: string
-        id:
-          type: string
-        queues:
-          items:
-            $ref: '#/components/schemas/app.Queue'
-          type: array
-        status:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        updated_at:
-          type: string
-        vcs_connection_commit:
-          items:
-            $ref: '#/components/schemas/app.VCSConnectionCommit'
-          type: array
-      type: object
-    app.VCSConnectionCommit:
-      properties:
-        author_email:
-          type: string
-        author_name:
-          type: string
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        message:
-          type: string
-        owner_id:
-          description: Polymorphic ownership - references VCS config that owns this commit
-          type: string
-        owner_type:
-          type: string
-        sha:
-          type: string
-        updated_at:
-          type: string
-        vcs_connection_id:
-          type: string
-      type: object
-    app.QueueEmitter:
-      properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        cron_schedule:
-          description: 'Schedule configuration
-
-            For cron mode: cron expression (e.g., "0 * * * *")'
-          type: string
-        description:
-          type: string
-        emit_count:
-          type: integer
-        fired:
-          description: 'For scheduled mode: whether the signal has been fired'
-          type: boolean
-        id:
-          type: string
-        jitter_window:
-          description: 'For cron mode: spread emitter ticks deterministically across this window
-
-            to avoid thundering-herd when many emitters share a schedule. A hash of the
-
-            emitter ID determines each emitter''s static offset within the window. Zero
-
-            disables jitter (default).'
-          type: integer
-        last_emitted_at:
-          type: string
-        mode:
-          allOf:
-          - $ref: '#/components/schemas/app.QueueEmitterMode'
-          description: 'Emitter mode: "cron" for recurring, "scheduled" for one-shot'
-        name:
-          description: Emitter identity
-          type: string
-        next_emit_at:
-          type: string
-        org_id:
-          type: string
-        queue_id:
-          description: 'Many-to-one: each emitter belongs to exactly one queue'
-          type: string
-        scheduled_at:
-          description: 'For scheduled mode: the time to fire the signal'
-          type: string
-        signal_expires_in:
-          description: 'Optional TTL for emitted signals. When set, each emitted signal''s ExpiresAt
-
-            is computed as time.Now().Add(SignalExpiresIn) at emission time.'
-          type: integer
-        signal_template:
-          $ref: '#/components/schemas/signaldb.SignalData'
-        signal_type:
-          description: Signal template - the signal to emit on each tick
-          type: string
-        status:
-          allOf:
-          - $ref: '#/components/schemas/app.CompositeStatus'
-          description: Runtime state using shared CompositeStatus
-        updated_at:
-          type: string
-        workflow:
-          allOf:
-          - $ref: '#/components/schemas/signaldb.WorkflowRef'
-          description: Workflow reference for the emitter's cron workflow
+      required:
+      - github_install_id
       type: object
     service.VCSConnectionReposResponse:
       properties:
@@ -951,65 +742,6 @@ components:
           type: array
         total_count:
           type: integer
-      type: object
-    service.CreateConnectionRequest:
-      properties:
-        github_install_id:
-          type: string
-      required:
-      - github_install_id
-      type: object
-    signaldb.SignalData:
-      properties:
-        signal: {}
-      type: object
-    service.VCSConnectionAccount:
-      properties:
-        id:
-          type: integer
-        login:
-          type: string
-        type:
-          type: string
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    cctx.SignalContext:
-      properties:
-        account_id:
-          type: string
-        log_stream_id:
-          type: string
-        org_id:
-          type: string
-        trace_id:
-          type: string
-      type: object
-    app.GithubEvent:
-      properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        event_type:
-          type: string
-        github_install_id:
-          type: string
-        id:
-          type: string
-        payload:
-          $ref: '#/components/schemas/blobstore.Blob'
-        status:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        updated_at:
-          type: string
       type: object
     github.User:
       properties:
@@ -1113,6 +845,104 @@ components:
           description: API URLs
           type: string
       type: object
+    app.QueueSignal:
+      properties:
+        callback:
+          $ref: '#/components/schemas/callback.Ref'
+        callbacks:
+          items:
+            $ref: '#/components/schemas/callback.Ref'
+          type: array
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitter_id:
+          description: 'Optional: if this signal was emitted by an emitter'
+          type: string
+        enqueued:
+          type: boolean
+        execution_count:
+          type: integer
+        expires_at:
+          type: string
+        id:
+          type: string
+        org_id:
+          type: string
+        owner_id:
+          type: string
+        owner_type:
+          type: string
+        queue:
+          $ref: '#/components/schemas/app.Queue'
+        queue_id:
+          type: string
+        signal:
+          $ref: '#/components/schemas/signaldb.SignalData'
+        signal_context:
+          $ref: '#/components/schemas/cctx.SignalContext'
+        status:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        type:
+          type: string
+        updated_at:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
+      type: object
+    service.VCSConnectionStatusResponse:
+      properties:
+        account:
+          $ref: '#/components/schemas/service.VCSConnectionAccount'
+        checked_at:
+          type: string
+        error:
+          type: string
+        github_install_id:
+          type: string
+        permissions:
+          additionalProperties:
+            type: string
+          type: object
+        repository_selection:
+          type: string
+        status:
+          type: string
+        suspended_at:
+          type: string
+        suspended_by:
+          $ref: '#/components/schemas/github.User'
+      type: object
+    signaldb.SignalData:
+      properties:
+        signal: {}
+      type: object
+    app.QueueEmitterMode:
+      enum:
+      - cron
+      - scheduled
+      - fire_once
+      type: string
+      x-enum-varnames:
+      - QueueEmitterModeCron
+      - QueueEmitterModeScheduled
+      - QueueEmitterModeFireOnce
+    github.Plan:
+      properties:
+        collaborators:
+          type: integer
+        filled_seats:
+          type: integer
+        name:
+          type: string
+        private_repos:
+          type: integer
+        seats:
+          type: integer
+        space:
+          type: integer
+      type: object
     github.Match:
       properties:
         indices:
@@ -1120,6 +950,311 @@ components:
             type: integer
           type: array
         text:
+          type: string
+      type: object
+    signaldb.WorkflowRef:
+      properties:
+        id:
+          type: string
+        namespace:
+          type: string
+        run_id:
+          type: string
+      type: object
+    app.VCSWebhookSubscription:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        github_hook_id:
+          type: integer
+        github_install_id:
+          type: string
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        updated_at:
+          type: string
+        vcs_connection_id:
+          type: string
+        webhook_url:
+          type: string
+      type: object
+    github.TextMatch:
+      properties:
+        fragment:
+          type: string
+        matches:
+          items:
+            $ref: '#/components/schemas/github.Match'
+          type: array
+        object_type:
+          type: string
+        object_url:
+          type: string
+        property:
+          type: string
+      type: object
+    service.VCSConnectionAccount:
+      properties:
+        id:
+          type: integer
+        login:
+          type: string
+        type:
+          type: string
+      type: object
+    app.Queue:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitters:
+          items:
+            $ref: '#/components/schemas/app.QueueEmitter'
+          type: array
+        id:
+          type: string
+        idle_timeout:
+          type: integer
+        max_depth:
+          type: integer
+        max_in_flight:
+          type: integer
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        name:
+          type: string
+        org_id:
+          type: string
+        owner_id:
+          type: string
+        owner_type:
+          type: string
+        queue_signal:
+          items:
+            $ref: '#/components/schemas/app.QueueSignal'
+          type: array
+        status_v2:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        updated_at:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
+      type: object
+    app.VCSConnectionCommit:
+      properties:
+        author_email:
+          type: string
+        author_name:
+          type: string
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        message:
+          type: string
+        owner_id:
+          description: Polymorphic ownership - references VCS config that owns this commit
+          type: string
+        owner_type:
+          type: string
+        sha:
+          type: string
+        updated_at:
+          type: string
+        vcs_connection_id:
+          type: string
+      type: object
+    app.GithubEvent:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        event_type:
+          type: string
+        github_install_id:
+          type: string
+        id:
+          type: string
+        payload:
+          $ref: '#/components/schemas/blobstore.Blob'
+        status:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        updated_at:
+          type: string
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    app.QueueEmitter:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        cron_schedule:
+          description: 'Schedule configuration
+
+            For cron mode: cron expression (e.g., "0 * * * *")'
+          type: string
+        description:
+          type: string
+        emit_count:
+          type: integer
+        fired:
+          description: 'For scheduled mode: whether the signal has been fired'
+          type: boolean
+        id:
+          type: string
+        jitter_window:
+          description: 'For cron mode: spread emitter ticks deterministically across this window
+
+            to avoid thundering-herd when many emitters share a schedule. A hash of the
+
+            emitter ID determines each emitter''s static offset within the window. Zero
+
+            disables jitter (default).'
+          type: integer
+        last_emitted_at:
+          type: string
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/app.QueueEmitterMode'
+          description: 'Emitter mode: "cron" for recurring, "scheduled" for one-shot'
+        name:
+          description: Emitter identity
+          type: string
+        next_emit_at:
+          type: string
+        org_id:
+          type: string
+        queue_id:
+          description: 'Many-to-one: each emitter belongs to exactly one queue'
+          type: string
+        scheduled_at:
+          description: 'For scheduled mode: the time to fire the signal'
+          type: string
+        signal_expires_in:
+          description: 'Optional TTL for emitted signals. When set, each emitted signal''s ExpiresAt
+
+            is computed as time.Now().Add(SignalExpiresIn) at emission time.'
+          type: integer
+        signal_template:
+          $ref: '#/components/schemas/signaldb.SignalData'
+        signal_type:
+          description: Signal template - the signal to emit on each tick
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/app.CompositeStatus'
+          description: Runtime state using shared CompositeStatus
+        updated_at:
+          type: string
+        workflow:
+          allOf:
+          - $ref: '#/components/schemas/signaldb.WorkflowRef'
+          description: Workflow reference for the emitter's cron workflow
+      type: object
+    app.CompositeStatus:
+      properties:
+        created_at_ts:
+          type: integer
+        created_by_id:
+          type: string
+        history:
+          items:
+            $ref: '#/components/schemas/app.CompositeStatus'
+          type: array
+        metadata:
+          additionalProperties: {}
+          type: object
+        status:
+          $ref: '#/components/schemas/app.Status'
+        status_human_description:
+          type: string
+      type: object
+    service.CreateConnectionCallbackRequest:
+      properties:
+        github_install_id:
+          type: string
+        org_id:
+          type: string
+      required:
+      - github_install_id
+      - org_id
+      type: object
+    app.VCSConnection:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        github_account_id:
+          type: string
+        github_account_name:
+          type: string
+        github_install_id:
+          type: string
+        id:
+          type: string
+        queues:
+          items:
+            $ref: '#/components/schemas/app.Queue'
+          type: array
+        status:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        updated_at:
+          type: string
+        vcs_connection_commit:
+          items:
+            $ref: '#/components/schemas/app.VCSConnectionCommit'
+          type: array
+      type: object
+    github.Timestamp:
+      properties:
+        time.Time:
+          type: string
+      type: object
+    cctx.SignalContext:
+      properties:
+        account_id:
+          type: string
+        log_stream_id:
+          type: string
+        org_id:
+          type: string
+        trace_id:
+          type: string
+      type: object
+    blobstore.Blob:
+      type: object
+    service.Branch:
+      properties:
+        name:
+          type: string
+      type: object
+    callback.Ref:
+      properties:
+        namespace:
+          type: string
+        signal_name:
+          type: string
+        workflow_id:
           type: string
       type: object
     app.Status:
@@ -1190,141 +1325,6 @@ components:
       - StatusDeleting
       - InstallDeployStatusV2Noop
       - AwaitingApproval
-    github.Plan:
-      properties:
-        collaborators:
-          type: integer
-        filled_seats:
-          type: integer
-        name:
-          type: string
-        private_repos:
-          type: integer
-        seats:
-          type: integer
-        space:
-          type: integer
-      type: object
-    service.CreateConnectionCallbackRequest:
-      properties:
-        github_install_id:
-          type: string
-        org_id:
-          type: string
-      required:
-      - github_install_id
-      - org_id
-      type: object
-    app.QueueEmitterMode:
-      enum:
-      - cron
-      - scheduled
-      - fire_once
-      type: string
-      x-enum-varnames:
-      - QueueEmitterModeCron
-      - QueueEmitterModeScheduled
-      - QueueEmitterModeFireOnce
-    callback.Ref:
-      properties:
-        namespace:
-          type: string
-        signal_name:
-          type: string
-        workflow_id:
-          type: string
-      type: object
-    github.TextMatch:
-      properties:
-        fragment:
-          type: string
-        matches:
-          items:
-            $ref: '#/components/schemas/github.Match'
-          type: array
-        object_type:
-          type: string
-        object_url:
-          type: string
-        property:
-          type: string
-      type: object
-    service.Branch:
-      properties:
-        name:
-          type: string
-      type: object
-    app.CompositeStatus:
-      properties:
-        created_at_ts:
-          type: integer
-        created_by_id:
-          type: string
-        history:
-          items:
-            $ref: '#/components/schemas/app.CompositeStatus'
-          type: array
-        metadata:
-          additionalProperties: {}
-          type: object
-        status:
-          $ref: '#/components/schemas/app.Status'
-        status_human_description:
-          type: string
-      type: object
-    service.VCSConnectionStatusResponse:
-      properties:
-        account:
-          $ref: '#/components/schemas/service.VCSConnectionAccount'
-        checked_at:
-          type: string
-        error:
-          type: string
-        github_install_id:
-          type: string
-        permissions:
-          additionalProperties:
-            type: string
-          type: object
-        repository_selection:
-          type: string
-        status:
-          type: string
-        suspended_at:
-          type: string
-        suspended_by:
-          $ref: '#/components/schemas/github.User'
-      type: object
-    signaldb.WorkflowRef:
-      properties:
-        id:
-          type: string
-        namespace:
-          type: string
-        run_id:
-          type: string
-      type: object
-    app.VCSWebhookSubscription:
-      properties:
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        github_hook_id:
-          type: integer
-        github_install_id:
-          type: string
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        updated_at:
-          type: string
-        vcs_connection_id:
-          type: string
-        webhook_url:
-          type: string
-      type: object
   securitySchemes:
     APIKey:
       description: Type "Bearer" followed by a space and token.
