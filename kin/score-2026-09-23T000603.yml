@@ -1,24 +1,22 @@
-# Kin Score artifact — nuon — 2026-09-01T222808
+# Kin Score artifact — nuon — 2026-09-23T000603
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: nuon
-  schema_version: 0.18.0
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T222808
-  composite: 52.3
-  band: developing
+  schema_version: 0.22.0
+  scored_at: '2026-09-23'
+  run_ts: 2026-09-23T000603
+  composite: 55.5
+  band: strong
   facets:
     discoverability: 75.9
-    contract_quality: 66.7
-    governance: 4.5
-    operational_transparency: 26.3
-    developer_ergonomics: 73.2
-    commercial_clarity: 47.4
+    contract_quality: 66.9
     contract_governance: 4.5
+    operational_transparency: 34.2
+    developer_ergonomics: 73.2
     access_clarity: 47.4
   agent_readiness:
-    score: 30.0
+    score: 36.4
     band: agent-ready
     dimensions:
       spec_presence: true
@@ -26,7 +24,7 @@ kin_score:
       reversibility_documented: documented
       mcp_server: false
       auth_clarity: bearer
-      idempotency: false
+      idempotency: verified
       error_semantics: verified
       openapi_examples: false
       rate_limit_signal: false
