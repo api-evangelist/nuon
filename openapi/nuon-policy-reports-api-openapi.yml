@@ -456,166 +456,6 @@ paths:
       - Policy Reports
 components:
   schemas:
-    app.CompositeStatus:
-      properties:
-        created_at_ts:
-          type: integer
-        created_by_id:
-          type: string
-        history:
-          items:
-            $ref: '#/components/schemas/app.CompositeStatus'
-          type: array
-        metadata:
-          additionalProperties: {}
-          type: object
-        status:
-          $ref: '#/components/schemas/app.Status'
-        status_human_description:
-          type: string
-      type: object
-    app.PolicyResult:
-      properties:
-        deny_count:
-          type: integer
-        input_count:
-          type: integer
-        pass_count:
-          type: integer
-        policy_id:
-          type: string
-        policy_name:
-          type: string
-        status:
-          description: '"deny", "warn", or "pass"'
-          type: string
-        warn_count:
-          type: integer
-      type: object
-    service.BreakdownEntry:
-      properties:
-        denies:
-          type: integer
-        evaluations:
-          type: integer
-        key:
-          type: string
-        passes:
-          type: integer
-        warns:
-          type: integer
-      type: object
-    service.PolicyAnalyticsBreakdown:
-      properties:
-        dimension:
-          type: string
-        end:
-          type: string
-        entries:
-          items:
-            $ref: '#/components/schemas/service.BreakdownEntry'
-          type: array
-        start:
-          type: string
-      type: object
-    app.PolicyInputRef:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-      type: object
-    service.TimeseriesBucket:
-      properties:
-        denies:
-          type: integer
-        evaluations:
-          type: integer
-        passes:
-          type: integer
-        series:
-          items:
-            $ref: '#/components/schemas/service.SeriesPoint'
-          type: array
-        time:
-          type: string
-        warns:
-          type: integer
-      type: object
-    app.PolicyViolation:
-      properties:
-        input_identity:
-          description: Human-readable input reference (e.g., "Deployment/default/nginx")
-          type: string
-        input_index:
-          type: integer
-        message:
-          type: string
-        policy_id:
-          type: string
-        policy_name:
-          type: string
-        severity:
-          description: '"deny" or "warn"'
-          type: string
-      type: object
-    app.PolicyReportOwnerType:
-      enum:
-      - install_deploys
-      - install_sandbox_runs
-      - component_builds
-      type: string
-      x-enum-varnames:
-      - PolicyReportOwnerTypeInstallDeploy
-      - PolicyReportOwnerTypeInstallSandboxRun
-      - PolicyReportOwnerTypeComponentBuild
-    service.PolicyAnalyticsTimeseries:
-      properties:
-        buckets:
-          items:
-            $ref: '#/components/schemas/service.TimeseriesBucket'
-          type: array
-        end:
-          type: string
-        group_by:
-          items:
-            type: string
-          type: array
-        interval:
-          type: string
-        start:
-          type: string
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    service.PolicyAnalyticsSummary:
-      properties:
-        end:
-          type: string
-        start:
-          type: string
-        total_denies:
-          type: integer
-        total_evaluations:
-          type: integer
-        total_passes:
-          type: integer
-        total_warns:
-          type: integer
-        unique_policies:
-          type: integer
-        unique_reports:
-          type: integer
-      type: object
     service.SeriesPoint:
       properties:
         denies:
@@ -699,6 +539,82 @@ components:
       - StatusDeleting
       - InstallDeployStatusV2Noop
       - AwaitingApproval
+    service.PolicyAnalyticsBreakdown:
+      properties:
+        dimension:
+          type: string
+        end:
+          type: string
+        entries:
+          items:
+            $ref: '#/components/schemas/service.BreakdownEntry'
+          type: array
+        start:
+          type: string
+      type: object
+    service.PolicyAnalyticsSummary:
+      properties:
+        end:
+          type: string
+        start:
+          type: string
+        total_denies:
+          type: integer
+        total_evaluations:
+          type: integer
+        total_passes:
+          type: integer
+        total_warns:
+          type: integer
+        unique_policies:
+          type: integer
+        unique_reports:
+          type: integer
+      type: object
+    app.PolicyResult:
+      properties:
+        deny_count:
+          type: integer
+        input_count:
+          type: integer
+        pass_count:
+          type: integer
+        policy_id:
+          type: string
+        policy_name:
+          type: string
+        status:
+          description: '"deny", "warn", or "pass"'
+          type: string
+        warn_count:
+          type: integer
+      type: object
+    service.TimeseriesBucket:
+      properties:
+        denies:
+          type: integer
+        evaluations:
+          type: integer
+        passes:
+          type: integer
+        series:
+          items:
+            $ref: '#/components/schemas/service.SeriesPoint'
+          type: array
+        time:
+          type: string
+        warns:
+          type: integer
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
     app.PolicyReport:
       properties:
         app_id:
@@ -762,6 +678,90 @@ components:
           type: integer
         workflow_step_policy_validation_id:
           description: Optional context references (indexes defined in Indexes())
+          type: string
+      type: object
+    service.BreakdownEntry:
+      properties:
+        denies:
+          type: integer
+        evaluations:
+          type: integer
+        key:
+          type: string
+        passes:
+          type: integer
+        warns:
+          type: integer
+      type: object
+    app.CompositeStatus:
+      properties:
+        created_at_ts:
+          type: integer
+        created_by_id:
+          type: string
+        history:
+          items:
+            $ref: '#/components/schemas/app.CompositeStatus'
+          type: array
+        metadata:
+          additionalProperties: {}
+          type: object
+        status:
+          $ref: '#/components/schemas/app.Status'
+        status_human_description:
+          type: string
+      type: object
+    app.PolicyViolation:
+      properties:
+        input_identity:
+          description: Human-readable input reference (e.g., "Deployment/default/nginx")
+          type: string
+        input_index:
+          type: integer
+        message:
+          type: string
+        policy_id:
+          type: string
+        policy_name:
+          type: string
+        severity:
+          description: '"deny" or "warn"'
+          type: string
+      type: object
+    service.PolicyAnalyticsTimeseries:
+      properties:
+        buckets:
+          items:
+            $ref: '#/components/schemas/service.TimeseriesBucket'
+          type: array
+        end:
+          type: string
+        group_by:
+          items:
+            type: string
+          type: array
+        interval:
+          type: string
+        start:
+          type: string
+      type: object
+    app.PolicyReportOwnerType:
+      enum:
+      - install_deploys
+      - install_sandbox_runs
+      - component_builds
+      type: string
+      x-enum-varnames:
+      - PolicyReportOwnerTypeInstallDeploy
+      - PolicyReportOwnerTypeInstallSandboxRun
+      - PolicyReportOwnerTypeComponentBuild
+    app.PolicyInputRef:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
           type: string
       type: object
   securitySchemes:

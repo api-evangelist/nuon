@@ -309,72 +309,83 @@ paths:
       - Queues
 components:
   schemas:
-    app.Queue:
+    app.Status:
+      enum:
+      - error
+      - pending
+      - in-progress
+      - checking-plan
+      - success
+      - not-attempted
+      - cancelled
+      - retrying
+      - discarded
+      - user-skipped
+      - auto-skipped
+      - planning
+      - applying
+      - queued
+      - warning
+      - failed-pending-retry
+      - generating
+      - awaiting-user-run
+      - provisioning
+      - active
+      - outdated
+      - expired
+      - approved
+      - drifted
+      - no-drift
+      - approval-expired
+      - approval-denied
+      - approval-retry
+      - building
+      - deleting
+      - noop
+      - approval-awaiting
+      type: string
+      x-enum-varnames:
+      - StatusError
+      - StatusPending
+      - StatusInProgress
+      - StatusCheckPlan
+      - StatusSuccess
+      - StatusNotAttempted
+      - StatusCancelled
+      - StatusRetrying
+      - StatusDiscarded
+      - StatusUserSkipped
+      - StatusAutoSkipped
+      - StatusPlanning
+      - StatusApplying
+      - StatusQueued
+      - StatusWarning
+      - StatusFailedPendingRetry
+      - InstallStackVersionStatusGenerating
+      - InstallStackVersionStatusPendingUser
+      - InstallStackVersionStatusProvisioning
+      - InstallStackVersionStatusActive
+      - InstallStackVersionStatusOutdated
+      - InstallStackVersionStatusExpired
+      - WorkflowStepApprovalStatusApproved
+      - WorkflowStepDrifted
+      - WorkflowStepNoDrift
+      - WorkflowStepApprovalStatusApprovalExpired
+      - WorkflowStepApprovalStatusApprovalDenied
+      - WorkflowStepApprovalStatusApprovalRetryPlan
+      - StatusBuilding
+      - StatusDeleting
+      - InstallDeployStatusV2Noop
+      - AwaitingApproval
+    cctx.SignalContext:
       properties:
-        created_at:
+        account_id:
           type: string
-        created_by_id:
-          type: string
-        emitters:
-          items:
-            $ref: '#/components/schemas/app.QueueEmitter'
-          type: array
-        id:
-          type: string
-        idle_timeout:
-          type: integer
-        max_depth:
-          type: integer
-        max_in_flight:
-          type: integer
-        metadata:
-          additionalProperties:
-            type: string
-          type: object
-        name:
+        log_stream_id:
           type: string
         org_id:
           type: string
-        owner_id:
-          type: string
-        owner_type:
-          type: string
-        queue_signal:
-          items:
-            $ref: '#/components/schemas/app.QueueSignal'
-          type: array
-        status_v2:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        updated_at:
-          type: string
-        workflow:
-          $ref: '#/components/schemas/signaldb.WorkflowRef'
-      type: object
-    app.CompositeStatus:
-      properties:
-        created_at_ts:
-          type: integer
-        created_by_id:
-          type: string
-        history:
-          items:
-            $ref: '#/components/schemas/app.CompositeStatus'
-          type: array
-        metadata:
-          additionalProperties: {}
-          type: object
-        status:
-          $ref: '#/components/schemas/app.Status'
-        status_human_description:
-          type: string
-      type: object
-    signaldb.WorkflowRef:
-      properties:
-        id:
-          type: string
-        namespace:
-          type: string
-        run_id:
+        trace_id:
           type: string
       type: object
     app.QueueEmitter:
@@ -446,6 +457,93 @@ components:
           - $ref: '#/components/schemas/signaldb.WorkflowRef'
           description: Workflow reference for the emitter's cron workflow
       type: object
+    app.CompositeStatus:
+      properties:
+        created_at_ts:
+          type: integer
+        created_by_id:
+          type: string
+        history:
+          items:
+            $ref: '#/components/schemas/app.CompositeStatus'
+          type: array
+        metadata:
+          additionalProperties: {}
+          type: object
+        status:
+          $ref: '#/components/schemas/app.Status'
+        status_human_description:
+          type: string
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    app.QueueEmitterMode:
+      enum:
+      - cron
+      - scheduled
+      - fire_once
+      type: string
+      x-enum-varnames:
+      - QueueEmitterModeCron
+      - QueueEmitterModeScheduled
+      - QueueEmitterModeFireOnce
+    app.Queue:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitters:
+          items:
+            $ref: '#/components/schemas/app.QueueEmitter'
+          type: array
+        id:
+          type: string
+        idle_timeout:
+          type: integer
+        max_depth:
+          type: integer
+        max_in_flight:
+          type: integer
+        metadata:
+          additionalProperties:
+            type: string
+          type: object
+        name:
+          type: string
+        org_id:
+          type: string
+        owner_id:
+          type: string
+        owner_type:
+          type: string
+        queue_signal:
+          items:
+            $ref: '#/components/schemas/app.QueueSignal'
+          type: array
+        status_v2:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        updated_at:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
+      type: object
+    callback.Ref:
+      properties:
+        namespace:
+          type: string
+        signal_name:
+          type: string
+        workflow_id:
+          type: string
+      type: object
     app.QueueSignal:
       properties:
         callback:
@@ -492,47 +590,17 @@ components:
         workflow:
           $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
-    app.QueueEmitterMode:
-      enum:
-      - cron
-      - scheduled
-      - fire_once
-      type: string
-      x-enum-varnames:
-      - QueueEmitterModeCron
-      - QueueEmitterModeScheduled
-      - QueueEmitterModeFireOnce
     signaldb.SignalData:
       properties:
         signal: {}
       type: object
-    cctx.SignalContext:
+    signaldb.WorkflowRef:
       properties:
-        account_id:
+        id:
           type: string
-        log_stream_id:
-          type: string
-        org_id:
-          type: string
-        trace_id:
-          type: string
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    callback.Ref:
-      properties:
         namespace:
           type: string
-        signal_name:
-          type: string
-        workflow_id:
+        run_id:
           type: string
       type: object
     queue.StatusResponse:
@@ -552,74 +620,6 @@ components:
         stopped:
           type: boolean
       type: object
-    app.Status:
-      enum:
-      - error
-      - pending
-      - in-progress
-      - checking-plan
-      - success
-      - not-attempted
-      - cancelled
-      - retrying
-      - discarded
-      - user-skipped
-      - auto-skipped
-      - planning
-      - applying
-      - queued
-      - warning
-      - failed-pending-retry
-      - generating
-      - awaiting-user-run
-      - provisioning
-      - active
-      - outdated
-      - expired
-      - approved
-      - drifted
-      - no-drift
-      - approval-expired
-      - approval-denied
-      - approval-retry
-      - building
-      - deleting
-      - noop
-      - approval-awaiting
-      type: string
-      x-enum-varnames:
-      - StatusError
-      - StatusPending
-      - StatusInProgress
-      - StatusCheckPlan
-      - StatusSuccess
-      - StatusNotAttempted
-      - StatusCancelled
-      - StatusRetrying
-      - StatusDiscarded
-      - StatusUserSkipped
-      - StatusAutoSkipped
-      - StatusPlanning
-      - StatusApplying
-      - StatusQueued
-      - StatusWarning
-      - StatusFailedPendingRetry
-      - InstallStackVersionStatusGenerating
-      - InstallStackVersionStatusPendingUser
-      - InstallStackVersionStatusProvisioning
-      - InstallStackVersionStatusActive
-      - InstallStackVersionStatusOutdated
-      - InstallStackVersionStatusExpired
-      - WorkflowStepApprovalStatusApproved
-      - WorkflowStepDrifted
-      - WorkflowStepNoDrift
-      - WorkflowStepApprovalStatusApprovalExpired
-      - WorkflowStepApprovalStatusApprovalDenied
-      - WorkflowStepApprovalStatusApprovalRetryPlan
-      - StatusBuilding
-      - StatusDeleting
-      - InstallDeployStatusV2Noop
-      - AwaitingApproval
   securitySchemes:
     APIKey:
       description: Type "Bearer" followed by a space and token.

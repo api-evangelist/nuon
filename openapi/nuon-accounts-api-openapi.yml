@@ -391,13 +391,111 @@ paths:
         required: true
 components:
   schemas:
-    service.UpdateUserJourneyStepRequest:
+    app.RoleType:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted-installer
+      type: string
+      x-enum-varnames:
+      - RoleTypeOrgAdmin
+      - RoleTypeOrgSupport
+      - RoleTypeInstaller
+      - RoleTypeRunner
+      - RoleTypeHostedInstaller
+    github_com_nuonco_nuon_services_ctl-api_internal_app_accounts_service.StaticTokenResponse:
       properties:
-        complete:
-          type: boolean
-        metadata:
-          additionalProperties: true
+        api_token:
+          type: string
+        id:
+          type: string
+      type: object
+    service.CreateStaticTokenRequest:
+      properties:
+        duration:
+          default: 8760h
+          description: defaults to one year
+          type: string
+        name:
+          description: human-friendly name to identify the token later
+          type: string
+      required:
+      - name
+      type: object
+    app.Token:
+      properties:
+        account_id:
+          type: string
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        expires_at:
+          description: claim data
+          type: string
+        id:
+          type: string
+        issued_at:
+          type: string
+        issuer:
+          type: string
+        name:
+          type: string
+        org_id:
+          type: string
+        token_type:
+          $ref: '#/components/schemas/app.TokenType'
+        updated_at:
+          type: string
+      type: object
+    app.UserJourney:
+      properties:
+        name:
+          type: string
+        steps:
+          items:
+            $ref: '#/components/schemas/app.UserJourneyStep'
+          type: array
+        title:
+          type: string
+      type: object
+    permissions.Permission:
+      enum:
+      - unknown
+      - all
+      - create
+      - read
+      - update
+      - delete
+      type: string
+      x-enum-varnames:
+      - PermissionUnknown
+      - PermissionAll
+      - PermissionCreate
+      - PermissionRead
+      - PermissionUpdate
+      - PermissionDelete
+    app.Policy:
+      properties:
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        id:
+          type: string
+        name:
+          $ref: '#/components/schemas/app.PolicyName'
+        permissions:
+          additionalProperties:
+            type: string
+          description: Permissions are used to track granular permissions for each domain
           type: object
+        role_id:
+          type: string
+        updated_at:
+          type: string
       type: object
     service.CreateUserJourneyStepReq:
       properties:
@@ -409,20 +507,6 @@ components:
       - name
       - title
       type: object
-    app.AccountType:
-      enum:
-      - auth
-      - auth0
-      - service
-      - canary
-      - integration
-      type: string
-      x-enum-varnames:
-      - AccountTypeAuth
-      - AccountTypeAuth0
-      - AccountTypeService
-      - AccountTypeCanary
-      - AccountTypeIntegration
     service.CreateUserJourneyRequest:
       properties:
         name:
@@ -437,6 +521,15 @@ components:
       - name
       - steps
       - title
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
       type: object
     app.TokenType:
       enum:
@@ -466,152 +559,25 @@ components:
       - TokenTypeIntegration
       - TokenTypeCanary
       - TokenTypeNuon
-    app.Policy:
+    app.Role:
       properties:
+        createdBy:
+          $ref: '#/components/schemas/app.Account'
         created_at:
           type: string
         created_by_id:
           type: string
         id:
           type: string
-        name:
-          $ref: '#/components/schemas/app.PolicyName'
-        permissions:
-          additionalProperties:
-            type: string
-          description: Permissions are used to track granular permissions for each domain
-          type: object
-        role_id:
-          type: string
-        updated_at:
-          type: string
-      type: object
-    service.CreateStaticTokenRequest:
-      properties:
-        duration:
-          default: 8760h
-          description: defaults to one year
-          type: string
-        name:
-          description: human-friendly name to identify the token later
-          type: string
-      required:
-      - name
-      type: object
-    app.UserJourneyStep:
-      properties:
-        complete:
-          type: boolean
-        completed_at:
-          description: Top-level completion tracking fields
-          type: string
-        completion_method:
-          type: string
-        completion_source:
-          type: string
-        metadata:
-          additionalProperties: true
-          description: Flexible metadata for business data
-          type: object
-        name:
-          type: string
-        title:
-          type: string
-      type: object
-    app.UserJourney:
-      properties:
-        name:
-          type: string
-        steps:
+        policies:
           items:
-            $ref: '#/components/schemas/app.UserJourneyStep'
+            $ref: '#/components/schemas/app.Policy'
           type: array
-        title:
-          type: string
-      type: object
-    app.RoleType:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted-installer
-      type: string
-      x-enum-varnames:
-      - RoleTypeOrgAdmin
-      - RoleTypeOrgSupport
-      - RoleTypeInstaller
-      - RoleTypeRunner
-      - RoleTypeHostedInstaller
-    app.PolicyName:
-      enum:
-      - org_admin
-      - org_support
-      - installer
-      - runner
-      - hosted_installer
-      type: string
-      x-enum-varnames:
-      - PolicyNameOrgAdmin
-      - PolicyNameOrgSupport
-      - PolicyNameInstaller
-      - PolicyNameRunner
-      - PolicyNameHostedInstaller
-    permissions.Set:
-      additionalProperties:
-        $ref: '#/components/schemas/permissions.Permission'
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    app.Token:
-      properties:
-        account_id:
-          type: string
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        expires_at:
-          description: claim data
-          type: string
-        id:
-          type: string
-        issued_at:
-          type: string
-        issuer:
-          type: string
-        name:
-          type: string
-        org_id:
-          type: string
-        token_type:
-          $ref: '#/components/schemas/app.TokenType'
+        role_type:
+          $ref: '#/components/schemas/app.RoleType'
         updated_at:
           type: string
       type: object
-    permissions.Permission:
-      enum:
-      - unknown
-      - all
-      - create
-      - read
-      - update
-      - delete
-      type: string
-      x-enum-varnames:
-      - PermissionUnknown
-      - PermissionAll
-      - PermissionCreate
-      - PermissionRead
-      - PermissionUpdate
-      - PermissionDelete
     app.Account:
       properties:
         account_type:
@@ -642,30 +608,64 @@ components:
             $ref: '#/components/schemas/app.UserJourney'
           type: array
       type: object
-    app.Role:
-      properties:
-        createdBy:
-          $ref: '#/components/schemas/app.Account'
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        id:
-          type: string
-        policies:
-          items:
-            $ref: '#/components/schemas/app.Policy'
-          type: array
-        role_type:
-          $ref: '#/components/schemas/app.RoleType'
-        updated_at:
-          type: string
+    app.PolicyName:
+      enum:
+      - org_admin
+      - org_support
+      - installer
+      - runner
+      - hosted_installer
+      type: string
+      x-enum-varnames:
+      - PolicyNameOrgAdmin
+      - PolicyNameOrgSupport
+      - PolicyNameInstaller
+      - PolicyNameRunner
+      - PolicyNameHostedInstaller
+    permissions.Set:
+      additionalProperties:
+        $ref: '#/components/schemas/permissions.Permission'
       type: object
-    github_com_nuonco_nuon_services_ctl-api_internal_app_accounts_service.StaticTokenResponse:
+    service.UpdateUserJourneyStepRequest:
       properties:
-        api_token:
+        complete:
+          type: boolean
+        metadata:
+          additionalProperties: true
+          type: object
+      type: object
+    app.AccountType:
+      enum:
+      - auth
+      - auth0
+      - service
+      - canary
+      - integration
+      type: string
+      x-enum-varnames:
+      - AccountTypeAuth
+      - AccountTypeAuth0
+      - AccountTypeService
+      - AccountTypeCanary
+      - AccountTypeIntegration
+    app.UserJourneyStep:
+      properties:
+        complete:
+          type: boolean
+        completed_at:
+          description: Top-level completion tracking fields
           type: string
-        id:
+        completion_method:
+          type: string
+        completion_source:
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Flexible metadata for business data
+          type: object
+        name:
+          type: string
+        title:
           type: string
       type: object
   securitySchemes:

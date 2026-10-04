@@ -657,40 +657,27 @@ paths:
       - Slack
 components:
   schemas:
+    service.slackChallengeResponse:
+      properties:
+        challenge:
+          type: string
+      type: object
+    app.SlackInstallationStatus:
+      enum:
+      - active
+      - uninstalled
+      - disabled
+      type: string
+      x-enum-varnames:
+      - SlackInstallationStatusActive
+      - SlackInstallationStatusUninstalled
+      - SlackInstallationStatusDisabled
     service.CreateOrgLinkRequest:
       properties:
         team_id:
           type: string
       required:
       - team_id
-      type: object
-    app.SlackOrgLinkStatus:
-      enum:
-      - verified
-      - revoked
-      type: string
-      x-enum-varnames:
-      - SlackOrgLinkStatusVerified
-      - SlackOrgLinkStatusRevoked
-    client.Conversation:
-      properties:
-        id:
-          type: string
-        is_archived:
-          type: boolean
-        is_channel:
-          type: boolean
-        is_member:
-          type: boolean
-        is_private:
-          type: boolean
-        name:
-          type: string
-      type: object
-    service.slackChallengeResponse:
-      properties:
-        challenge:
-          type: string
       type: object
     app.SlackOrgLink:
       properties:
@@ -710,64 +697,6 @@ components:
           type: string
         updated_at:
           type: string
-      type: object
-    app.SlackInstallation:
-      properties:
-        app_id:
-          type: string
-        bot_user_id:
-          type: string
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        enterprise_id:
-          type: string
-        id:
-          type: string
-        installed_by_account_id:
-          type: string
-        installed_by_slack_user_id:
-          type: string
-        scope:
-          type: string
-        status:
-          $ref: '#/components/schemas/app.SlackInstallationStatus'
-        team_id:
-          description: 'TeamID is the stable Slack workspace identifier (e.g. "T0123456789").
-
-            Combined with deleted_at to allow re-installation after uninstall.'
-          type: string
-        team_name:
-          type: string
-        updated_at:
-          type: string
-      type: object
-    app.SlackInstallationStatus:
-      enum:
-      - active
-      - uninstalled
-      - disabled
-      type: string
-      x-enum-varnames:
-      - SlackInstallationStatusActive
-      - SlackInstallationStatusUninstalled
-      - SlackInstallationStatusDisabled
-    service.GetInstallURLResponse:
-      properties:
-        url:
-          type: string
-      type: object
-    service.UpdateChannelSubscriptionRequest:
-      properties:
-        channel_id:
-          type: string
-        channel_name:
-          type: string
-        interests:
-          type: object
-        match:
-          type: object
       type: object
     app.SlackChannelSubscription:
       properties:
@@ -813,6 +742,80 @@ components:
         updated_at:
           type: string
       type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    service.ListChannelsResponse:
+      properties:
+        channels:
+          items:
+            $ref: '#/components/schemas/client.Conversation'
+          type: array
+        next_cursor:
+          type: string
+      type: object
+    app.SlackOrgLinkStatus:
+      enum:
+      - verified
+      - revoked
+      type: string
+      x-enum-varnames:
+      - SlackOrgLinkStatusVerified
+      - SlackOrgLinkStatusRevoked
+    app.SlackInstallation:
+      properties:
+        app_id:
+          type: string
+        bot_user_id:
+          type: string
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        enterprise_id:
+          type: string
+        id:
+          type: string
+        installed_by_account_id:
+          type: string
+        installed_by_slack_user_id:
+          type: string
+        scope:
+          type: string
+        status:
+          $ref: '#/components/schemas/app.SlackInstallationStatus'
+        team_id:
+          description: 'TeamID is the stable Slack workspace identifier (e.g. "T0123456789").
+
+            Combined with deleted_at to allow re-installation after uninstall.'
+          type: string
+        team_name:
+          type: string
+        updated_at:
+          type: string
+      type: object
+    service.GetInstallURLResponse:
+      properties:
+        url:
+          type: string
+      type: object
+    service.UpdateChannelSubscriptionRequest:
+      properties:
+        channel_id:
+          type: string
+        channel_name:
+          type: string
+        interests:
+          type: object
+        match:
+          type: object
+      type: object
     service.CreateChannelSubscriptionRequest:
       properties:
         channel_id:
@@ -836,22 +839,19 @@ components:
         text:
           type: string
       type: object
-    stderr.ErrResponse:
+    client.Conversation:
       properties:
-        description:
+        id:
           type: string
-        error:
-          type: string
-        user_error:
+        is_archived:
           type: boolean
-      type: object
-    service.ListChannelsResponse:
-      properties:
-        channels:
-          items:
-            $ref: '#/components/schemas/client.Conversation'
-          type: array
-        next_cursor:
+        is_channel:
+          type: boolean
+        is_member:
+          type: boolean
+        is_private:
+          type: boolean
+        name:
           type: string
       type: object
   securitySchemes:

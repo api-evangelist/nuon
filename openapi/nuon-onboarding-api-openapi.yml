@@ -397,110 +397,6 @@ components:
         workflow_id:
           type: string
       type: object
-    app.CompositeStatus:
-      properties:
-        created_at_ts:
-          type: integer
-        created_by_id:
-          type: string
-        history:
-          items:
-            $ref: '#/components/schemas/app.CompositeStatus'
-          type: array
-        metadata:
-          additionalProperties: {}
-          type: object
-        status:
-          $ref: '#/components/schemas/app.Status'
-        status_human_description:
-          type: string
-      type: object
-    service.CompleteYourStackStepRequest:
-      properties:
-        app_attributes:
-          items:
-            type: string
-          type: array
-        app_type:
-          enum:
-          - custom
-          - example
-          type: string
-        cloud_provider:
-          type: string
-        example_app_slug:
-          type: string
-      required:
-      - app_type
-      type: object
-    service.CompleteInstallStepRequest:
-      properties:
-        aws_account:
-          properties:
-            region:
-              type: string
-          type: object
-        azure_account:
-          properties:
-            location:
-              type: string
-          type: object
-        inputs:
-          additionalProperties:
-            type: string
-          type: object
-        install_mode:
-          enum:
-          - cloud
-          - sandbox
-          type: string
-        metadata:
-          properties:
-            managed_by:
-              type: string
-          type: object
-        name:
-          type: string
-      required:
-      - name
-      type: object
-    service.CompleteOrganizationStepRequest:
-      properties:
-        name:
-          type: string
-        org_id:
-          type: string
-      type: object
-    service.ExampleApp:
-      properties:
-        category:
-          type: string
-        cloud_provider:
-          type: string
-        description:
-          type: string
-        difficulty:
-          type: string
-        directory:
-          type: string
-        display_name:
-          type: string
-        slug:
-          type: string
-        tags:
-          items:
-            type: string
-          type: array
-      type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
     app.Status:
       enum:
       - error
@@ -569,6 +465,110 @@ components:
       - StatusDeleting
       - InstallDeployStatusV2Noop
       - AwaitingApproval
+    service.CompleteYourStackStepRequest:
+      properties:
+        app_attributes:
+          items:
+            type: string
+          type: array
+        app_type:
+          enum:
+          - custom
+          - example
+          type: string
+        cloud_provider:
+          type: string
+        example_app_slug:
+          type: string
+      required:
+      - app_type
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
+          type: boolean
+      type: object
+    service.CompleteInstallStepRequest:
+      properties:
+        aws_account:
+          properties:
+            region:
+              type: string
+          type: object
+        azure_account:
+          properties:
+            location:
+              type: string
+          type: object
+        inputs:
+          additionalProperties:
+            type: string
+          type: object
+        install_mode:
+          enum:
+          - cloud
+          - sandbox
+          type: string
+        metadata:
+          properties:
+            managed_by:
+              type: string
+          type: object
+        name:
+          type: string
+      required:
+      - name
+      type: object
+    service.CompleteOrganizationStepRequest:
+      properties:
+        name:
+          type: string
+        org_id:
+          type: string
+      type: object
+    app.CompositeStatus:
+      properties:
+        created_at_ts:
+          type: integer
+        created_by_id:
+          type: string
+        history:
+          items:
+            $ref: '#/components/schemas/app.CompositeStatus'
+          type: array
+        metadata:
+          additionalProperties: {}
+          type: object
+        status:
+          $ref: '#/components/schemas/app.Status'
+        status_human_description:
+          type: string
+      type: object
+    service.ExampleApp:
+      properties:
+        category:
+          type: string
+        cloud_provider:
+          type: string
+        description:
+          type: string
+        difficulty:
+          type: string
+        directory:
+          type: string
+        display_name:
+          type: string
+        slug:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
   securitySchemes:
     APIKey:
       description: Type "Bearer" followed by a space and token.
