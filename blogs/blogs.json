@@ -2,13 +2,26 @@
   "repo": "nuon",
   "feeds": [
     {
-      "source": "https://support.nuon.co",
-      "feed_url": "https://support.nuon.co",
+      "source": "https://nuon.co/blog",
+      "feed_url": "https://nuon.co/blog",
       "title": "",
       "saved": 0,
       "method": "none"
+    },
+    {
+      "source": "https://nuon.co/rss.xml",
+      "feed_url": "https://nuon.co/rss.xml",
+      "title": "",
+      "saved": 1,
+      "method": "feed"
+    },
+    {
+      "source": "https://support.nuon.co",
+      "feed_url": "",
+      "saved": 0,
+      "skipped": "community-shaped; a vendor feed already saved this run (roadmap#239)"
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "post_count": 1,
+  "fetched": "2026-10-10T13:15:00Z"
 }
