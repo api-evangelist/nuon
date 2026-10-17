@@ -456,21 +456,6 @@ paths:
       - Policy Reports
 components:
   schemas:
-    service.SeriesPoint:
-      properties:
-        denies:
-          type: integer
-        evaluations:
-          type: integer
-        labels:
-          additionalProperties:
-            type: string
-          type: object
-        passes:
-          type: integer
-        warns:
-          type: integer
-      type: object
     app.Status:
       enum:
       - error
@@ -539,56 +524,6 @@ components:
       - StatusDeleting
       - InstallDeployStatusV2Noop
       - AwaitingApproval
-    service.PolicyAnalyticsBreakdown:
-      properties:
-        dimension:
-          type: string
-        end:
-          type: string
-        entries:
-          items:
-            $ref: '#/components/schemas/service.BreakdownEntry'
-          type: array
-        start:
-          type: string
-      type: object
-    service.PolicyAnalyticsSummary:
-      properties:
-        end:
-          type: string
-        start:
-          type: string
-        total_denies:
-          type: integer
-        total_evaluations:
-          type: integer
-        total_passes:
-          type: integer
-        total_warns:
-          type: integer
-        unique_policies:
-          type: integer
-        unique_reports:
-          type: integer
-      type: object
-    app.PolicyResult:
-      properties:
-        deny_count:
-          type: integer
-        input_count:
-          type: integer
-        pass_count:
-          type: integer
-        policy_id:
-          type: string
-        policy_name:
-          type: string
-        status:
-          description: '"deny", "warn", or "pass"'
-          type: string
-        warn_count:
-          type: integer
-      type: object
     service.TimeseriesBucket:
       properties:
         denies:
@@ -606,14 +541,14 @@ components:
         warns:
           type: integer
       type: object
-    stderr.ErrResponse:
+    app.PolicyInputRef:
       properties:
-        description:
+        id:
           type: string
-        error:
+        name:
           type: string
-        user_error:
-          type: boolean
+        type:
+          type: string
       type: object
     app.PolicyReport:
       properties:
@@ -680,18 +615,78 @@ components:
           description: Optional context references (indexes defined in Indexes())
           type: string
       type: object
-    service.BreakdownEntry:
+    service.SeriesPoint:
       properties:
         denies:
           type: integer
         evaluations:
           type: integer
-        key:
-          type: string
+        labels:
+          additionalProperties:
+            type: string
+          type: object
         passes:
           type: integer
         warns:
           type: integer
+      type: object
+    service.PolicyAnalyticsBreakdown:
+      properties:
+        dimension:
+          type: string
+        end:
+          type: string
+        entries:
+          items:
+            $ref: '#/components/schemas/service.BreakdownEntry'
+          type: array
+        start:
+          type: string
+      type: object
+    app.PolicyResult:
+      properties:
+        deny_count:
+          type: integer
+        input_count:
+          type: integer
+        pass_count:
+          type: integer
+        policy_id:
+          type: string
+        policy_name:
+          type: string
+        status:
+          description: '"deny", "warn", or "pass"'
+          type: string
+        warn_count:
+          type: integer
+      type: object
+    app.PolicyReportOwnerType:
+      enum:
+      - install_deploys
+      - install_sandbox_runs
+      - component_builds
+      type: string
+      x-enum-varnames:
+      - PolicyReportOwnerTypeInstallDeploy
+      - PolicyReportOwnerTypeInstallSandboxRun
+      - PolicyReportOwnerTypeComponentBuild
+    service.PolicyAnalyticsTimeseries:
+      properties:
+        buckets:
+          items:
+            $ref: '#/components/schemas/service.TimeseriesBucket'
+          type: array
+        end:
+          type: string
+        group_by:
+          items:
+            type: string
+          type: array
+        interval:
+          type: string
+        start:
+          type: string
       type: object
     app.CompositeStatus:
       properties:
@@ -711,6 +706,25 @@ components:
         status_human_description:
           type: string
       type: object
+    service.PolicyAnalyticsSummary:
+      properties:
+        end:
+          type: string
+        start:
+          type: string
+        total_denies:
+          type: integer
+        total_evaluations:
+          type: integer
+        total_passes:
+          type: integer
+        total_warns:
+          type: integer
+        unique_policies:
+          type: integer
+        unique_reports:
+          type: integer
+      type: object
     app.PolicyViolation:
       properties:
         input_identity:
@@ -728,41 +742,27 @@ components:
           description: '"deny" or "warn"'
           type: string
       type: object
-    service.PolicyAnalyticsTimeseries:
+    service.BreakdownEntry:
       properties:
-        buckets:
-          items:
-            $ref: '#/components/schemas/service.TimeseriesBucket'
-          type: array
-        end:
+        denies:
+          type: integer
+        evaluations:
+          type: integer
+        key:
           type: string
-        group_by:
-          items:
-            type: string
-          type: array
-        interval:
-          type: string
-        start:
-          type: string
+        passes:
+          type: integer
+        warns:
+          type: integer
       type: object
-    app.PolicyReportOwnerType:
-      enum:
-      - install_deploys
-      - install_sandbox_runs
-      - component_builds
-      type: string
-      x-enum-varnames:
-      - PolicyReportOwnerTypeInstallDeploy
-      - PolicyReportOwnerTypeInstallSandboxRun
-      - PolicyReportOwnerTypeComponentBuild
-    app.PolicyInputRef:
+    stderr.ErrResponse:
       properties:
-        id:
+        description:
           type: string
-        name:
+        error:
           type: string
-        type:
-          type: string
+        user_error:
+          type: boolean
       type: object
   securitySchemes:
     APIKey:

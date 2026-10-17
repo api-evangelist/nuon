@@ -377,16 +377,70 @@ components:
       - StatusDeleting
       - InstallDeployStatusV2Noop
       - AwaitingApproval
-    cctx.SignalContext:
+    app.QueueEmitterMode:
+      enum:
+      - cron
+      - scheduled
+      - fire_once
+      type: string
+      x-enum-varnames:
+      - QueueEmitterModeCron
+      - QueueEmitterModeScheduled
+      - QueueEmitterModeFireOnce
+    callback.Ref:
       properties:
-        account_id:
+        namespace:
           type: string
-        log_stream_id:
+        signal_name:
+          type: string
+        workflow_id:
+          type: string
+      type: object
+    app.QueueSignal:
+      properties:
+        callback:
+          $ref: '#/components/schemas/callback.Ref'
+        callbacks:
+          items:
+            $ref: '#/components/schemas/callback.Ref'
+          type: array
+        created_at:
+          type: string
+        created_by_id:
+          type: string
+        emitter_id:
+          description: 'Optional: if this signal was emitted by an emitter'
+          type: string
+        enqueued:
+          type: boolean
+        execution_count:
+          type: integer
+        expires_at:
+          type: string
+        id:
           type: string
         org_id:
           type: string
-        trace_id:
+        owner_id:
           type: string
+        owner_type:
+          type: string
+        queue:
+          $ref: '#/components/schemas/app.Queue'
+        queue_id:
+          type: string
+        signal:
+          $ref: '#/components/schemas/signaldb.SignalData'
+        signal_context:
+          $ref: '#/components/schemas/cctx.SignalContext'
+        status:
+          $ref: '#/components/schemas/app.CompositeStatus'
+        type:
+          type: string
+        updated_at:
+          type: string
+        workflow:
+          $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
     app.QueueEmitter:
       properties:
@@ -457,6 +511,15 @@ components:
           - $ref: '#/components/schemas/signaldb.WorkflowRef'
           description: Workflow reference for the emitter's cron workflow
       type: object
+    signaldb.WorkflowRef:
+      properties:
+        id:
+          type: string
+        namespace:
+          type: string
+        run_id:
+          type: string
+      type: object
     app.CompositeStatus:
       properties:
         created_at_ts:
@@ -475,25 +538,6 @@ components:
         status_human_description:
           type: string
       type: object
-    stderr.ErrResponse:
-      properties:
-        description:
-          type: string
-        error:
-          type: string
-        user_error:
-          type: boolean
-      type: object
-    app.QueueEmitterMode:
-      enum:
-      - cron
-      - scheduled
-      - fire_once
-      type: string
-      x-enum-varnames:
-      - QueueEmitterModeCron
-      - QueueEmitterModeScheduled
-      - QueueEmitterModeFireOnce
     app.Queue:
       properties:
         created_at:
@@ -535,72 +579,15 @@ components:
         workflow:
           $ref: '#/components/schemas/signaldb.WorkflowRef'
       type: object
-    callback.Ref:
+    cctx.SignalContext:
       properties:
-        namespace:
+        account_id:
           type: string
-        signal_name:
-          type: string
-        workflow_id:
-          type: string
-      type: object
-    app.QueueSignal:
-      properties:
-        callback:
-          $ref: '#/components/schemas/callback.Ref'
-        callbacks:
-          items:
-            $ref: '#/components/schemas/callback.Ref'
-          type: array
-        created_at:
-          type: string
-        created_by_id:
-          type: string
-        emitter_id:
-          description: 'Optional: if this signal was emitted by an emitter'
-          type: string
-        enqueued:
-          type: boolean
-        execution_count:
-          type: integer
-        expires_at:
-          type: string
-        id:
+        log_stream_id:
           type: string
         org_id:
           type: string
-        owner_id:
-          type: string
-        owner_type:
-          type: string
-        queue:
-          $ref: '#/components/schemas/app.Queue'
-        queue_id:
-          type: string
-        signal:
-          $ref: '#/components/schemas/signaldb.SignalData'
-        signal_context:
-          $ref: '#/components/schemas/cctx.SignalContext'
-        status:
-          $ref: '#/components/schemas/app.CompositeStatus'
-        type:
-          type: string
-        updated_at:
-          type: string
-        workflow:
-          $ref: '#/components/schemas/signaldb.WorkflowRef'
-      type: object
-    signaldb.SignalData:
-      properties:
-        signal: {}
-      type: object
-    signaldb.WorkflowRef:
-      properties:
-        id:
-          type: string
-        namespace:
-          type: string
-        run_id:
+        trace_id:
           type: string
       type: object
     queue.StatusResponse:
@@ -618,6 +605,19 @@ components:
         ready:
           type: boolean
         stopped:
+          type: boolean
+      type: object
+    signaldb.SignalData:
+      properties:
+        signal: {}
+      type: object
+    stderr.ErrResponse:
+      properties:
+        description:
+          type: string
+        error:
+          type: string
+        user_error:
           type: boolean
       type: object
   securitySchemes:
