@@ -278,6 +278,8 @@ apis:
   - type: OpenAPI
     url: openapi/nuon-vcs-api-openapi.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/nuon/overview
 - url: https://nuon.co/rss.xml
   type: BlogRSS
 - type: CapabilityMap
