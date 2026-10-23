@@ -59,3 +59,43 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: nuon-hex
+  label: Hex
+  partner: hex-pm
+  partner_name: Hex
+  category: official SDK (Elixir/Erlang)
+  type: register
+  channel: package-registry
+  evidence: https://hex.pm/packages/nuon
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Hex (public registry JSON)
+    spec_file: null
+    language: Elixir/Erlang
+    packages:
+    - name: nuon
+      version: 0.19.138
+      released: '2024-05-21'
+      released_field: inserted_at
+      lapsed: true
+      page: https://hex.pm/packages/nuon
+      repo_leg: domain:nuon.co
+      publisher_leg: org:nuonco
+      matched_by: domain
+    - name: nuon_api
+      version: 0.19.13
+      released: '2024-01-09'
+      released_field: inserted_at
+      lapsed: true
+      page: https://hex.pm/packages/nuon_api
+      repo_leg: domain:nuon.co
+      publisher_leg: org:nuonco
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null

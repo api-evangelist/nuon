@@ -63,6 +63,45 @@ edges:
   detected: '2026-10-21'
   detected_by: mirror-platform-listings.py
   category: infrastructure-as-code provider registry listing
+- partner_name: Hex
+  partner: hex-pm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Elixir/Erlang)
+  evidence: https://hex.pm/packages/nuon
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Hex (public registry JSON)
+    spec_file: null
+    language: Elixir/Erlang
+    packages:
+    - name: nuon
+      version: 0.19.138
+      released: '2024-05-21'
+      released_field: inserted_at
+      lapsed: true
+      page: https://hex.pm/packages/nuon
+      repo_leg: domain:nuon.co
+      publisher_leg: org:nuonco
+      matched_by: domain
+    - name: nuon_api
+      version: 0.19.13
+      released: '2024-01-09'
+      released_field: inserted_at
+      lapsed: true
+      page: https://hex.pm/packages/nuon_api
+      repo_leg: domain:nuon.co
+      publisher_leg: org:nuonco
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-php-dart-elixir-package-registries.py
+    detected: '2026-10-22'
+  detected_by: sweep-php-dart-elixir-package-registries.py
+  first_seen: '2026-10-22'
 generated: '2026-10-18'
 method: searched
 source:
@@ -83,3 +122,6 @@ checked:
 - https://rubygems.org/api/v1
 - opentofu/integrations/opentofu-integration-edges.yml
 - terraform/integrations/terraform-integration-edges.yml
+- https://hex.pm/api
+- https://packagist.org/packages
+- https://pub.dev/api
